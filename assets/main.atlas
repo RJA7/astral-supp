@@ -1,0 +1,22 @@
+animations {
+  id: "player_idle"
+  images {
+    image: "/assets/textures/character_pink_idle.png"
+    pivot_y: 1.0
+  }
+  playback: PLAYBACK_NONE
+}
+animations {
+  id: "player_walk"
+  images {
+    image: "/assets/textures/character_pink_walk_a.png"
+    pivot_y: 1.0
+  }
+  images {
+    image: "/assets/textures/character_pink_walk_b.png"
+    pivot_y: 1.0
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 7
+}
+extrude_borders: 2

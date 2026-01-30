@@ -1,0 +1,40 @@
+local input = require("systems.input")
+
+function init(self)
+    self.dragging = false
+    input.register(msg.url("."))
+end
+
+function final(self)
+    input.unregister(msg.url("."))
+end
+
+function update(self, dt)
+
+end
+
+function on_message(self, message_id, message, sender)
+    if message_id ~= hash("input") then
+        return
+    end
+
+    local action_id = message.action_id
+    local action = message.action
+
+    if action_id == hash("mouse_button_1") or action_id == hash("touch") then
+        if action.pressed then
+            self.dragging = true
+        end
+
+        if action.released then
+            self.dragging = false
+        end
+    end
+
+    if self.dragging then
+        local pos = go.get_position()
+        pos.x = action.x
+        pos.y = action.y
+        go.set_position(pos)
+    end
+end
