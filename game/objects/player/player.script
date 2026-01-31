@@ -3,6 +3,7 @@ local input = require("systems.input")
 function init(self)
     self.dragging = false
     input.register(msg.url("."))
+    go.set_scale_xy(0.6)
 end
 
 function final(self)
@@ -32,9 +33,8 @@ function on_message(self, message_id, message, sender)
     end
 
     if self.dragging then
-        local pos = go.get_position()
-        pos.x = action.x
-        pos.y = action.y
-        go.set_position(pos)
+        local new_pos = camera.screen_xy_to_world(action.screen_x, action.screen_y)
+        new_pos.z = go.get_position().z
+        go.set_position(new_pos)
     end
 end
