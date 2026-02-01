@@ -1,9 +1,9 @@
-import { input } from '../systems/Input';
-import { MessageId } from '../types/MessageId';
-import { Message } from '../types/Message';
-import { ActionId } from '../types/ActionId';
-import { Ref } from '../types/Url';
-import { messageUrl } from '../systems/Message';
+import { input } from '../modules/systems/Input';
+import { MessageId } from '../modules/types/MessageId';
+import { Message } from '../modules/types/Message';
+import { ActionId } from '../modules/types/ActionId';
+import { Ref } from '../modules/types/Url';
+import { messageUrl } from '../modules/systems/Message';
 
 type Self = {
 	dragging: boolean;
@@ -29,7 +29,7 @@ export function on_message<ID extends MessageId>(
 
 	const { actionId, action } = message;
 
-	if (actionId === ActionId.mouse_button_1 || actionId === ActionId.touch) {
+	if (actionId === ActionId.touch) {
 		if (action.pressed) {
 			this.dragging = true;
 		}

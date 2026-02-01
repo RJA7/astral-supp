@@ -1,11 +1,11 @@
-import { stateManager } from '../state/StateManager';
-import { StateName } from '../state/StateName';
-import { DESIGN_HEIGHT, DESIGN_WIDTH } from '../data/constants';
-import { input } from '../systems/Input';
-import { Action } from '../types/Action';
-import { Message } from '../types/Message';
-import { MessageId } from '../types/MessageId';
-import { ActionId } from '../types/ActionId';
+import { stateManager } from '../modules/state/StateManager';
+import { StateName } from '../modules/state/StateName';
+import { DESIGN_HEIGHT, DESIGN_WIDTH } from '../modules/data/constants';
+import { input } from '../modules/systems/Input';
+import { Action } from '../modules/types/Action';
+import { Message } from '../modules/types/Message';
+import { MessageId } from '../modules/types/MessageId';
+import { ActionId } from '../modules/types/ActionId';
 
 type Self = object;
 

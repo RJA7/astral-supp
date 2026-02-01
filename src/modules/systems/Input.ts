@@ -14,20 +14,10 @@ class Input {
 		this.listeners.delete(listener);
 	}
 
-	private dispatch(actionId: ActionId, action: Action) {
+	onInput(actionId: ActionId, action: Action) {
 		this.listeners.forEach((listener) => {
 			postMessage(listener, MessageId.Input, { actionId, action });
 		});
-	}
-
-	onInput(actionId: ActionId, action: Action) {
-		if (
-			actionId === ActionId.touch ||
-			actionId === ActionId.mouse_button_1 ||
-			actionId === ActionId.mouse_move
-		) {
-			this.dispatch(actionId, action);
-		}
 	}
 }
 

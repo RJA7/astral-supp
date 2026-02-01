@@ -13,7 +13,7 @@ update_frequency = 60
 input_method = HiddenInputField
 
 [project]
-title = tsd-template
+title = astral-supp
 dependencies#0 = https://github.com/ts-defold/defold-lldebugger/archive/extension.zip
 
 [render]
