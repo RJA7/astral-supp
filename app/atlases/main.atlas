@@ -1,3 +1,6 @@
+images {
+  image: "/atlases/main/white_noise.jpg"
+}
 animations {
   id: "idle"
   images {

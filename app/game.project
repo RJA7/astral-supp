@@ -22,3 +22,6 @@ clear_color_red = 0.19
 clear_color_green = 0.47
 clear_color_blue = 0.78
 
+[input]
+game_binding = /game.input_bindingc
+

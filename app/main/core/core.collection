@@ -1,6 +1,50 @@
 name: "core"
-instances {
-  id: "player"
-  prototype: "/main/core/player.go"
-}
 scale_along_z: 0
+embedded_instances {
+  id: "mask"
+  data: "embedded_components {\n"
+  "  id: \"sprite\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"walk\\\"\\n"
+  "material: \\\"/main/materials/mask/mask.material\\\"\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/atlases/main.atlas\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "  position {\n"
+  "    y: -436.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    y: 0.008726535\n"
+  "    w: 0.9999619\n"
+  "  }\n"
+  "  scale {\n"
+  "    x: 7.0\n"
+  "    y: 7.0\n"
+  "  }\n"
+  "}\n"
+  ""
+}
+embedded_instances {
+  id: "effect"
+  data: "components {\n"
+  "  id: \"effect\"\n"
+  "  component: \"/scripts/effect.script\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"sprite\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"white_noise\\\"\\n"
+  "material: \\\"/main/materials/effect/effect.material\\\"\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/atlases/main.atlas\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    z: -10.0
+  }
+}

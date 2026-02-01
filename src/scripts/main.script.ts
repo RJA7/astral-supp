@@ -1,6 +1,5 @@
 import { stateManager } from '../modules/state/StateManager';
 import { StateName } from '../modules/state/StateName';
-import { DESIGN_HEIGHT, DESIGN_WIDTH } from '../modules/data/constants';
 import { input } from '../modules/systems/Input';
 import { Action } from '../modules/types/Action';
 import { Message } from '../modules/types/Message';
@@ -10,7 +9,6 @@ import { ActionId } from '../modules/types/ActionId';
 type Self = object;
 
 export function init(this: Self) {
-	go.set_position(vmath.vector3(DESIGN_WIDTH / 2, DESIGN_HEIGHT / 2, 0));
 	msg.post('.', 'acquire_input_focus');
 
 	window.set_listener(window_callback);
