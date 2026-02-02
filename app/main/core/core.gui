@@ -1,0 +1,103 @@
+fonts {
+  name: "GoblinOne-Regular"
+  font: "/assets/fonts/GoblinOne-Regular.font"
+}
+textures {
+  name: "mockups"
+  texture: "/atlases/mockups.atlas"
+}
+nodes {
+  position {
+    x: 640.0
+    y: 360.0
+  }
+  type: TYPE_BOX
+  texture: "mockups/mockup_core"
+  id: "mockup"
+  inherit_alpha: true
+  alpha: 0.5
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 125.0
+    y: 664.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "LIFE"
+  font: "GoblinOne-Regular"
+  id: "life_label"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 125.0
+    y: 616.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "9\n"
+  ""
+  font: "GoblinOne-Regular"
+  id: "life_text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 1129.0
+    y: 664.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "SCORE"
+  font: "GoblinOne-Regular"
+  id: "score_label"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 1129.0
+    y: 617.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  color {
+    x: 0.043
+    y: 0.827
+    z: 0.482
+  }
+  type: TYPE_TEXT
+  text: "0001573"
+  font: "GoblinOne-Regular"
+  id: "score_text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 1110.0
+    y: 48.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "WORLD 1-5"
+  font: "GoblinOne-Regular"
+  id: "world_text"
+  inherit_alpha: true
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

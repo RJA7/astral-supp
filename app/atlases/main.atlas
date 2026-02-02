@@ -1,11 +1,16 @@
 images {
   image: "/atlases/main/white_noise.jpg"
 }
+images {
+  image: "/atlases/main/white_rect.png"
+}
+images {
+  image: "/atlases/main/white_pixel.png"
+}
 animations {
   id: "idle"
   images {
     image: "/atlases/main/character_pink_idle.png"
-    pivot_y: 1.0
   }
   playback: PLAYBACK_NONE
 }
@@ -13,11 +18,9 @@ animations {
   id: "walk"
   images {
     image: "/atlases/main/character_pink_walk_a.png"
-    pivot_y: 1.0
   }
   images {
     image: "/atlases/main/character_pink_walk_b.png"
-    pivot_y: 1.0
   }
   playback: PLAYBACK_LOOP_FORWARD
   fps: 7

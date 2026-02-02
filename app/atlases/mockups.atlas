@@ -1,0 +1,4 @@
+images {
+  image: "/atlases/mockups/mockup_core.png"
+}
+extrude_borders: 2

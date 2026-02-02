@@ -12,7 +12,6 @@ type Self = {
 export function init(this: Self) {
 	this.dragging = false;
 	input.register(messageUrl(Ref.CurrentComponent));
-	go.set_scale_xy(0.6);
 }
 
 export function final(this: Self) {

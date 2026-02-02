@@ -1,4 +1,5 @@
 enum Predicate {
+	bg_effect = 'bg_effect',
 	mask = 'mask',
 	effect = 'effect',
 }
@@ -15,6 +16,8 @@ export function addPredicates(this: Self) {
 
 export function renderMasked(this: Self, drawOptionsWorld: object) {
 	const predicates = this.predicates;
+
+	render.draw(predicates.bg_effect, drawOptionsWorld);
 
 	// STENCIL MASK PASS
 	render.enable_state(graphics.STATE_STENCIL_TEST);
