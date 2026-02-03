@@ -1,6 +1,6 @@
 name: "effect"
 tags: "masked"
-vertex_program: "/main/materials/effect/effect.vp"
+vertex_program: "/builtins/materials/sprite.vp"
 fragment_program: "/main/materials/effect/effect.fp"
 vertex_constants {
   name: "view_proj"

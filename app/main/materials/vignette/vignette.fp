@@ -21,5 +21,5 @@ void main()
 	float vig = uv.x * uv.y * intensity.x;
 	vig = 1 - pow(vig, tint.a);
 
-	out_fragColor = vec4(tint.rgb * vig, vig);
+	out_fragColor = vec4(tint.rgb * vig, vig * tex.a);
 }

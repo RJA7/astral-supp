@@ -10,7 +10,7 @@ layout(std140) uniform u_time_block
 	vec4 globals;
 };
 
-float time = globals.x;
+float time = globals.z;
 
 // Simple pseudo-random
 float rand(vec2 co)

@@ -6,7 +6,7 @@ enum Predicate {
 type Self = {
 	predicates: Record<Predicate, number>;
 	constants: {
-		globals: vmath.vector4; // x - time, others unused
+		globals: vmath.vector4; // resolution - xy, z - time, z - unused
 	};
 };
 
@@ -26,7 +26,9 @@ export function update(
 	drawOptions: { constants?: render.constant_buffer },
 ) {
 	const { globals } = this.constants;
-	globals.x += dt;
+	globals.x = render.get_width();
+	globals.y = render.get_height();
+	globals.z += dt;
 	drawOptions.constants = drawOptions.constants || this.constants;
 	drawOptions.constants.globals = globals; // reassign to update buffer
 

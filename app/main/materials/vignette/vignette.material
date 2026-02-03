@@ -1,6 +1,6 @@
 name: "vignette"
 tags: "tile"
-vertex_program: "/main/materials/vignette/vignette.vp"
+vertex_program: "/builtins/materials/sprite.vp"
 fragment_program: "/main/materials/vignette/vignette.fp"
 vertex_constants {
   name: "view_proj"
