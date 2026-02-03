@@ -1,23 +1,36 @@
 enum Predicate {
-	bg_effect = 'bg_effect',
 	mask = 'mask',
-	effect = 'effect',
+	masked = 'masked',
 }
 
 type Self = {
 	predicates: Record<Predicate, number>;
+	constants: {
+		globals: vmath.vector4; // x - time, others unused
+	};
 };
 
 export function addPredicates(this: Self) {
 	Object.values(Predicate).forEach((predicate) => {
 		this.predicates[predicate] = render.predicate([predicate]);
 	});
+
+	this.constants = Object.assign(render.constant_buffer(), {
+		globals: vmath.vector4(),
+	});
 }
 
-export function renderMasked(this: Self, drawOptionsWorld: object) {
-	const predicates = this.predicates;
+export function update(
+	this: Self,
+	dt: number,
+	drawOptions: { constants?: render.constant_buffer },
+) {
+	const { globals } = this.constants;
+	globals.x += dt;
+	drawOptions.constants = drawOptions.constants || this.constants;
+	drawOptions.constants.globals = globals; // reassign to update buffer
 
-	render.draw(predicates.bg_effect, drawOptionsWorld);
+	const predicates = this.predicates;
 
 	// STENCIL MASK PASS
 	render.enable_state(graphics.STATE_STENCIL_TEST);
@@ -36,7 +49,7 @@ export function renderMasked(this: Self, drawOptionsWorld: object) {
 	);
 
 	render.set_color_mask(false, false, false, false);
-	render.draw(predicates.mask, drawOptionsWorld);
+	render.draw(predicates.mask, drawOptions);
 	render.set_color_mask(true, true, true, true);
 
 	// MASKED EFFECT PASS
@@ -50,7 +63,7 @@ export function renderMasked(this: Self, drawOptionsWorld: object) {
 		graphics.STENCIL_OP_KEEP,
 	);
 
-	render.draw(predicates.effect, drawOptionsWorld);
+	render.draw(predicates.masked, drawOptions);
 
 	// Disable stencil so rest of world is normal
 	render.disable_state(graphics.STATE_STENCIL_TEST);

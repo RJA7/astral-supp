@@ -1,10 +1,11 @@
 name: "core"
 instances {
-  id: "player"
+  id: "50_player"
   prototype: "/main/core/player.go"
   position {
     x: -341.0
     y: -216.0
+    z: 50.0
   }
   scale3 {
     x: 0.5
@@ -13,7 +14,7 @@ instances {
 }
 scale_along_z: 0
 embedded_instances {
-  id: "mask"
+  id: "10_mask"
   data: "embedded_components {\n"
   "  id: \"sprite1\"\n"
   "  type: \"sprite\"\n"
@@ -37,15 +38,12 @@ embedded_instances {
   position {
     x: -172.0
     y: -224.0
+    z: 10.0
   }
 }
 embedded_instances {
-  id: "effect"
-  data: "components {\n"
-  "  id: \"effect\"\n"
-  "  component: \"/scripts/effect.script\"\n"
-  "}\n"
-  "embedded_components {\n"
+  id: "11_masked"
+  data: "embedded_components {\n"
   "  id: \"sprite\"\n"
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"white_noise\\\"\\n"
@@ -58,143 +56,42 @@ embedded_instances {
   "}\n"
   ""
   position {
-    z: -8.0
+    z: 11.0
   }
   scale3 {
-    x: 1.0E-6
-    y: 1.0E-6
+    z: 2.0
   }
 }
 embedded_instances {
-  id: "bg_effect"
-  data: "components {\n"
-  "  id: \"effect\"\n"
-  "  component: \"/scripts/effect.script\"\n"
-  "}\n"
-  "components {\n"
-  "  id: \"rotate\"\n"
-  "  component: \"/scripts/rotate.script\"\n"
-  "  properties {\n"
-  "    id: \"sign\"\n"
-  "    value: \"-1.0\"\n"
-  "    type: PROPERTY_TYPE_NUMBER\n"
-  "  }\n"
-  "}\n"
-  "embedded_components {\n"
-  "  id: \"sprite\"\n"
-  "  type: \"sprite\"\n"
-  "  data: \"default_animation: \\\"white_noise\\\"\\n"
-  "material: \\\"/main/materials/bg_effect/bg_effect.material\\\"\\n"
-  "textures {\\n"
-  "  sampler: \\\"texture_sampler\\\"\\n"
-  "  texture: \\\"/atlases/main.atlas\\\"\\n"
-  "}\\n"
-  "\"\n"
-  "}\n"
-  ""
-  position {
-    z: -10.0
-  }
-  scale3 {
-    x: 1.0E-6
-    y: 1.0E-6
-  }
-}
-embedded_instances {
-  id: "mask1"
-  data: "embedded_components {\n"
-  "  id: \"sprite2\"\n"
-  "  type: \"sprite\"\n"
-  "  data: \"default_animation: \\\"white_rect\\\"\\n"
-  "material: \\\"/main/materials/mask/mask.material\\\"\\n"
-  "size {\\n"
-  "  x: 8.0\\n"
-  "  y: 8.0\\n"
-  "}\\n"
-  "textures {\\n"
-  "  sampler: \\\"texture_sampler\\\"\\n"
-  "  texture: \\\"/atlases/main.atlas\\\"\\n"
-  "}\\n"
-  "\"\n"
-  "  scale {\n"
-  "    x: 50.0\n"
-  "    y: 7.0\n"
-  "  }\n"
-  "}\n"
-  ""
-  position {
-    x: 172.0
-    y: 224.0
-  }
-}
-embedded_instances {
-  id: "mask2"
-  data: "components {\n"
-  "  id: \"rotate\"\n"
-  "  component: \"/scripts/rotate.script\"\n"
-  "}\n"
-  "embedded_components {\n"
-  "  id: \"sprite\"\n"
-  "  type: \"sprite\"\n"
-  "  data: \"default_animation: \\\"white_rect\\\"\\n"
-  "material: \\\"/main/materials/mask/mask.material\\\"\\n"
-  "size {\\n"
-  "  x: 8.0\\n"
-  "  y: 8.0\\n"
-  "}\\n"
-  "textures {\\n"
-  "  sampler: \\\"texture_sampler\\\"\\n"
-  "  texture: \\\"/atlases/main.atlas\\\"\\n"
-  "}\\n"
-  "\"\n"
-  "  scale {\n"
-  "    x: 50.0\n"
-  "    y: 7.0\n"
-  "  }\n"
-  "}\n"
-  ""
-  rotation {
-    z: -0.70710677
-    w: 0.70710677
-  }
-}
-embedded_instances {
-  id: "gui"
+  id: "90_gui"
   data: "components {\n"
   "  id: \"core\"\n"
   "  component: \"/main/core/core.gui\"\n"
   "}\n"
   ""
+  position {
+    z: 90.0
+  }
 }
 embedded_instances {
-  id: "bg"
+  id: "00_background"
   data: "components {\n"
-  "  id: \"material_data_3\"\n"
-  "  component: \"/scripts/components/material_data_3.script\"\n"
+  "  id: \"vignette_params\"\n"
+  "  component: \"/main/materials/vignette/vignette_params.script\"\n"
   "  properties {\n"
-  "    id: \"u_data_1\"\n"
-  "    value: \"0.02, 0.62, 0.47, 1.0\"\n"
-  "    type: PROPERTY_TYPE_VECTOR4\n"
-  "  }\n"
-  "  properties {\n"
-  "    id: \"u_data_2\"\n"
+  "    id: \"tint\"\n"
   "    value: \"1.0, 1.0, 1.0, 0.1\"\n"
-  "    type: PROPERTY_TYPE_VECTOR4\n"
-  "  }\n"
-  "  properties {\n"
-  "    id: \"u_data_3\"\n"
-  "    value: \"50.0, 0.05, 0.0, 0.0\"\n"
   "    type: PROPERTY_TYPE_VECTOR4\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
   "  id: \"sprite\"\n"
   "  type: \"sprite\"\n"
-  "  data: \"default_animation: \\\"white_pixel\\\"\\n"
+  "  data: \"default_animation: \\\"empty_pixel\\\"\\n"
   "material: \\\"/main/materials/vignette/vignette.material\\\"\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
-  "  texture: \\\"/atlases/main.atlas\\\"\\n"
+  "  texture: \\\"/atlases/empty.atlas\\\"\\n"
   "}\\n"
   "\"\n"
   "  scale {\n"

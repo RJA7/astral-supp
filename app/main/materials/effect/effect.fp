@@ -7,8 +7,10 @@ uniform sampler2D texture_sampler;
 
 layout(std140) uniform u_time_block
 {
-	vec4 u_data; // x = time
+	vec4 globals;
 };
+
+float time = globals.x;
 
 // Simple pseudo-random
 float rand(vec2 co)
@@ -24,8 +26,8 @@ void main()
 	// Small random shake
 	float maxOffset = 0.02; // max shake in UV space (2% of frame)
 	vec2 shake = vec2(
-		(rand(uv + u_data.x * 12.34) - 0.5) * maxOffset,
-		(rand(uv + u_data.x * 56.78) - 0.5) * maxOffset
+		(rand(uv + time * 12.34) - 0.5) * maxOffset,
+		(rand(uv + time * 56.78) - 0.5) * maxOffset
 	);
 
 	uv += shake;

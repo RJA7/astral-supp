@@ -7,28 +7,24 @@ vertex_constants {
   type: CONSTANT_TYPE_VIEWPROJ
 }
 fragment_constants {
-  name: "u_data_1"
+  name: "tint"
   type: CONSTANT_TYPE_USER
   value {
+    w: 0.1
   }
 }
 fragment_constants {
-  name: "u_data_2"
+  name: "intensity"
   type: CONSTANT_TYPE_USER
   value {
-  }
-}
-fragment_constants {
-  name: "u_data_3"
-  type: CONSTANT_TYPE_USER
-  value {
+    x: 150.0
   }
 }
 samplers {
   name: "texture_sampler"
-  wrap_u: WRAP_MODE_REPEAT
-  wrap_v: WRAP_MODE_REPEAT
-  filter_min: FILTER_MODE_MIN_NEAREST
-  filter_mag: FILTER_MODE_MAG_NEAREST
+  wrap_u: WRAP_MODE_CLAMP_TO_EDGE
+  wrap_v: WRAP_MODE_CLAMP_TO_EDGE
+  filter_min: FILTER_MODE_MIN_DEFAULT
+  filter_mag: FILTER_MODE_MAG_DEFAULT
   max_anisotropy: 0.0
 }

@@ -1,0 +1,8 @@
+go.property("target", msg.url("#sprite"))
+go.property("tint", vmath.vector4(0, 0, 0, 0.1))
+go.property("intensity", vmath.vector4(150, 0, 0, 0))
+
+function init(self)
+	go.set(self.target, 'tint', self.tint)
+	go.set(self.target, 'intensity', self.intensity)
+end
