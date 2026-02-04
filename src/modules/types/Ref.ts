@@ -3,11 +3,13 @@ export enum Ref {
 	CurrentComponent = '#',
 
 	// main collection
-	Main = 'main:/go#main',
+	MainRootGO = 'main:/root',
 	CoreProxy = 'main:/state_loader#core',
 	MenuProxy = 'main:/state_loader#menu',
 
-	// core collection
-	PlayerGO = 'core:/player',
-	CursorGO = 'core:/cursor',
+	CoreRootGO = 'core:/root',
+	MenuRootGO = 'menu:/root',
+
+	PlayerGO = '/player',
+	CursorGO = '/cursor',
 }

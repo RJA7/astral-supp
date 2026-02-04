@@ -1,42 +1,27 @@
-import { BaseState } from './BaseState';
-import { Message } from '../../types/Message';
-import { ActionId } from '../../types/ActionId';
-import { Action } from '../../types/Action';
 import { ComponentUrl } from '../ComponentUrl';
+import { GameObject } from '../GameObject';
 
 export class StateManager<T extends string> {
-	private currentState?: BaseState;
+	private current?: GameObject;
 
-	private readonly stateByName: Record<T, BaseState>;
+	private readonly proxyByName: Record<T, GameObject>;
 
-	constructor(stateByName: Record<T, BaseState>) {
-		this.stateByName = stateByName;
+	constructor(stateByName: Record<T, GameObject>) {
+		this.proxyByName = stateByName;
 	}
 
 	load(stateName: T) {
-		this.currentState?.disable();
-		this.currentState = this.stateByName[stateName];
-		this.currentState.load();
+		if (this.current) {
+			this.current.disable();
+			this.current.unload();
+		}
+
+		this.current = this.proxyByName[stateName];
+		this.current.load();
 	}
 
-	enable() {
-		this.currentState?.enable();
-		this.resize();
-	}
-
-	update(dt: number) {
-		this.currentState?.update(dt);
-	}
-
-	onMessage(message: Message, sender: ComponentUrl) {
-		this.currentState?.onMessage(message, sender);
-	}
-
-	onInput(actionId: ActionId, action: Action) {
-		this.currentState?.onInput(actionId, action);
-	}
-
-	resize() {
-		this.currentState?.resize();
+	onProxyLoaded(sender: ComponentUrl) {
+		if (!this.current || sender !== this.current.url) return;
+		this.current.enable();
 	}
 }

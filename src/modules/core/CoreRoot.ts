@@ -1,21 +1,24 @@
-import { Cursor } from '../entities/Cursor';
-import { ActionId } from '../../types/ActionId';
-import { Action } from '../../types/Action';
-import { Ref } from '../../types/Ref';
-import { Player } from '../entities/Player';
+import { Cursor } from './entities/Cursor';
+import { ActionId } from '../types/ActionId';
+import { Action } from '../types/Action';
+import { Ref } from '../types/Ref';
+import { Player } from './entities/Player';
+import { GameObject } from '../engine/GameObject';
+import { MessageId } from '../types/MessageId';
 
-export class CoreController {
+export class CoreRoot extends GameObject {
 	private readonly player: Player;
 	private readonly cursor: Cursor;
 
 	private isPointerDown = false;
 
-	constructor() {
+	constructor(ref: Ref) {
+		super(ref);
+
 		this.player = new Player(Ref.PlayerGO);
 		this.cursor = new Cursor(Ref.CursorGO);
-	}
 
-	start() {
+		this.postMessage({ id: MessageId.acquire_input_focus });
 		this.cursor.setMouseLocked(true);
 		this.cursor.setPosition(this.player.getPosition());
 	}
