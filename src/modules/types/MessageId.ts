@@ -1,7 +1,7 @@
 import { patchEnum, toHash } from '../utils/PatchEnum';
 
 export enum MessageId {
-	Input = 'Input',
+	SwitchState = 'SwitchState',
 }
 
 patchEnum(MessageId, toHash);

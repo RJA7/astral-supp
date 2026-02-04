@@ -169,7 +169,7 @@ local function reset_camera_world(state)
 	end
 end
 
-local custom_render = require("modules.utils.CustomRender")
+local custom_render = require("modules.engine.CustomRender")
 
 function init(self)
 	self.predicates = create_predicates("tile", "gui", "particle", "model", "debug_text")

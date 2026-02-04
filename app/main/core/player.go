@@ -1,7 +1,3 @@
-components {
-  id: "player"
-  component: "/scripts/player.script"
-}
 embedded_components {
   id: "sprite"
   type: "sprite"

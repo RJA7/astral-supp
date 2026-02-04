@@ -1,37 +1,50 @@
-import { stateManager } from '../modules/state/StateManager';
-import { StateName } from '../modules/state/StateName';
-import { input } from '../modules/systems/Input';
+import { StateManager } from '../modules/systems/state_manager/StateManager';
+import { StateName } from '../modules/types/StateName';
 import { Action } from '../modules/types/Action';
 import { Message } from '../modules/types/Message';
 import { MessageId } from '../modules/types/MessageId';
 import { ActionId } from '../modules/types/ActionId';
+import { ComponentUrl } from '../modules/engine/ComponentUrl';
+import { CoreState } from '../modules/core/CoreState';
+import { MenuState } from '../modules/menu/MenuState';
 
-type Self = object;
+type Self = {
+	stateManager: StateManager<StateName>;
+};
 
 export function init(this: Self) {
 	msg.post('.', 'acquire_input_focus');
 
 	window.set_listener(window_callback);
 
-	stateManager.init();
-	stateManager.switch(StateName.Core);
+	this.stateManager = new StateManager({
+		[StateName.Core]: new CoreState(),
+		[StateName.Menu]: new MenuState(),
+	});
+
+	this.stateManager.switch(StateName.Core);
 }
 
 export function update(this: Self, dt: number) {
-	stateManager.update(dt);
+	this.stateManager.update(dt);
 }
 
-export function on_message<ID extends MessageId>(
+export function on_message(
 	this: Self,
-	messageId: MessageId,
-	message: Message<ID>,
-	sender: url,
+	_messageId: MessageId,
+	message: Message,
+	sender: ComponentUrl,
 ) {
-	stateManager.onMessage(messageId, message, sender);
+	if (message.id === MessageId.SwitchState) {
+		this.stateManager.switch(message.stateName);
+		return;
+	}
+
+	this.stateManager.onMessage(message, sender);
 }
 
 export function on_input(this: Self, actionId: ActionId, action: Action) {
-	input.onInput(actionId, action);
+	this.stateManager.onInput(actionId, action);
 }
 
 function window_callback(
@@ -40,6 +53,6 @@ function window_callback(
 	_data: { width: number; height: number } | object,
 ) {
 	if (event === window.WINDOW_EVENT_RESIZED) {
-		//
+		this.stateManager.resize();
 	}
 }

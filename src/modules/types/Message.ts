@@ -1,10 +1,7 @@
-import { Action } from './Action';
-import { ActionId } from './ActionId';
 import { MessageId } from './MessageId';
+import { StateName } from './StateName';
 
-export type Message<ID extends MessageId> = {
-	[MessageId.Input]: {
-		actionId: ActionId;
-		action: Action;
-	};
-}[ID];
+export type Message = {
+	id: MessageId.SwitchState;
+	stateName: StateName;
+};
