@@ -8,21 +8,6 @@ textures {
 }
 nodes {
   position {
-    x: 640.0
-    y: 360.0
-  }
-  scale {
-    x: 1.0E-6
-  }
-  type: TYPE_BOX
-  texture: "mockups/mockup_core"
-  id: "mockup"
-  inherit_alpha: true
-  alpha: 0.5
-  size_mode: SIZE_MODE_AUTO
-}
-nodes {
-  position {
     x: 125.0
     y: 664.0
   }
@@ -101,6 +86,21 @@ nodes {
   font: "GoblinOne-Regular"
   id: "world_text"
   inherit_alpha: true
+}
+nodes {
+  position {
+    x: 640.0
+    y: 360.0
+  }
+  scale {
+    x: 1.0E-6
+  }
+  type: TYPE_BOX
+  texture: "mockups/mockup_core"
+  id: "mockup"
+  inherit_alpha: true
+  alpha: 0.5
+  size_mode: SIZE_MODE_AUTO
 }
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT

@@ -3,12 +3,14 @@
 varying mediump vec4 position;
 varying mediump vec2 var_texcoord0;
 
-uniform lowp sampler2D texture_sampler;
+out vec4 out_fragColor;
 
-layout(std140) uniform u_time_block
+uniform fs_uniforms
 {
 	vec4 globals;
 };
+
+uniform lowp sampler2D texture_sampler;
 
 vec2 iResolution = globals.xy;
 float iTime = globals.z;
@@ -56,9 +58,9 @@ vec3 auroraLayer(vec2 uv, float speed, float intensity, vec3 color) {
 	return aurora * intensity * color;
 }
 
-void mainImage(out vec4 fragColor, in vec2 fragCoord) {
+void main() {
 	vec4 tex = texture(texture_sampler, var_texcoord0);
-	vec2 uv = fragCoord / iResolution.xy;
+	vec2 uv = var_texcoord0;
 	uv.x *= iResolution.x / iResolution.y;
 
 	// Add jitter effect
@@ -81,9 +83,9 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 	color += skyColor2 * (1.0 - smoothstep(0.0, 2.0, uv.y));
 	color += skyColor1 * (1.0 - smoothstep(0.0, 1.0, uv.y));
 
-	gl_FragColor = vec4(color, 2.0 * tex.a);
-}
-
-void main(void) {
-	mainImage(gl_FragColor, gl_FragCoord.xy);
+#ifdef EDITOR
+	out_fragColor = vec4(0.0);
+#else
+	out_fragColor = vec4(color, 2.0 * tex.a);
+#endif
 }
