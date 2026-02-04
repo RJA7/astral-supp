@@ -3,9 +3,9 @@ export enum Ref {
 	CurrentComponent = '#',
 
 	// main collection
-	MainRootGO = 'main:/root',
-	CoreProxy = 'main:/state_loader#core',
-	MenuProxy = 'main:/state_loader#menu',
+	RootGO = 'main:/root',
+	CoreProxy = 'main:/root#proxy_core',
+	MenuProxy = 'main:/root#proxy_menu',
 
 	CoreRootGO = 'core:/root',
 	MenuRootGO = 'menu:/root',

@@ -1,32 +1,21 @@
-import { StateManager } from './engine/state_manager/StateManager';
-import { StateName } from './types/StateName';
+import { ProxyLoader } from './engine/ProxyLoader';
 import { GameObject } from './engine/GameObject';
 import { Ref } from './types/Ref';
 import { Message } from './types/Message';
 import { ComponentUrl } from './engine/ComponentUrl';
-import { MessageId } from './types/MessageId';
+import { Controller } from './types/Controller';
 
-export class App {
-	private readonly stateManager: StateManager<StateName>;
+export class App extends GameObject implements Controller {
+	private readonly proxyLoader: ProxyLoader;
 
-	constructor() {
-		this.stateManager = new StateManager({
-			[StateName.Core]: new GameObject(Ref.CoreProxy),
-			[StateName.Menu]: new GameObject(Ref.MenuProxy),
-		});
+	constructor(ref: Ref) {
+		super(ref);
 
-		this.stateManager.load(StateName.Core);
+		this.proxyLoader = new ProxyLoader([Ref.CoreProxy, Ref.MenuProxy]);
+		this.proxyLoader.loadProxy(Ref.CoreProxy);
 	}
 
 	onMessage(message: Message, sender: ComponentUrl) {
-		if (message.id === MessageId.LoadState) {
-			this.stateManager.load(message.stateName);
-			return;
-		}
-
-		if (message.id === MessageId.proxy_loaded) {
-			this.stateManager.onProxyLoaded(sender);
-			return;
-		}
+		this.proxyLoader.onMessage(message, sender);
 	}
 }

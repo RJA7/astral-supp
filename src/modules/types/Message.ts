@@ -1,18 +1,7 @@
 import { MessageId } from './MessageId';
-import { StateName } from './StateName';
+import { Ref } from './Ref';
 
-export type Message =
-	| {
-			id:
-				| MessageId.enable
-				| MessageId.disable
-				| MessageId.load
-				| MessageId.unload
-				| MessageId.proxy_loaded
-				| MessageId.acquire_input_focus
-				| MessageId.Resize;
-	  }
-	| {
-			id: MessageId.LoadState;
-			stateName: StateName;
-	  };
+export type Message = {
+	id: MessageId.LoadProxy;
+	proxyRef: Ref;
+};

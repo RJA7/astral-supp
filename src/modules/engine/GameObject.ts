@@ -1,8 +1,7 @@
 import { Ref } from '../types/Ref';
 import { componentUrl, ComponentUrl } from './ComponentUrl';
-import { postMessage } from './PostMessage';
+import { postMessageId } from './PostMessage';
 import { MessageId } from '../types/MessageId';
-import { Message } from '../types/Message';
 
 export class GameObject {
 	public readonly url: ComponentUrl;
@@ -16,26 +15,34 @@ export class GameObject {
 	}
 
 	setPosition(position: vmath.vector3) {
-		go.set_position(position);
+		go.set_position(position, this.url);
 	}
 
 	enable() {
-		this.postMessage({ id: MessageId.enable });
+		postMessageId(this.url, MessageId.enable);
 	}
 
 	disable() {
-		this.postMessage({ id: MessageId.disable });
+		postMessageId(this.url, MessageId.disable);
+	}
+
+	asyncLoad(): void {
+		postMessageId(this.url, MessageId.async_load);
 	}
 
 	load(): void {
-		this.postMessage({ id: MessageId.load });
+		postMessageId(this.url, MessageId.load);
 	}
 
 	unload(): void {
-		this.postMessage({ id: MessageId.unload });
+		postMessageId(this.url, MessageId.unload);
 	}
 
-	postMessage(message: Message) {
-		postMessage(this.url, message);
+	acquireInputFocus(): void {
+		postMessageId(this.url, MessageId.acquire_input_focus);
+	}
+
+	release_input_focus(): void {
+		postMessageId(this.url, MessageId.release_input_focus);
 	}
 }
