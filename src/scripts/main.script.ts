@@ -1,4 +1,4 @@
-import { StateManager } from '../modules/systems/state_manager/StateManager';
+import { StateManager } from '../modules/engine/state_manager/StateManager';
 import { StateName } from '../modules/types/StateName';
 import { Action } from '../modules/types/Action';
 import { Message } from '../modules/types/Message';
@@ -7,6 +7,7 @@ import { ActionId } from '../modules/types/ActionId';
 import { ComponentUrl } from '../modules/engine/ComponentUrl';
 import { CoreState } from '../modules/core/CoreState';
 import { MenuState } from '../modules/menu/MenuState';
+import { Ref } from '../modules/types/Ref';
 
 type Self = {
 	stateManager: StateManager<StateName>;
@@ -18,11 +19,11 @@ export function init(this: Self) {
 	window.set_listener(window_callback);
 
 	this.stateManager = new StateManager({
-		[StateName.Core]: new CoreState(),
-		[StateName.Menu]: new MenuState(),
+		[StateName.Core]: new CoreState(Ref.CoreProxy),
+		[StateName.Menu]: new MenuState(Ref.MenuProxy),
 	});
 
-	this.stateManager.switch(StateName.Core);
+	this.stateManager.load(StateName.Core);
 }
 
 export function update(this: Self, dt: number) {
@@ -31,12 +32,19 @@ export function update(this: Self, dt: number) {
 
 export function on_message(
 	this: Self,
-	_messageId: MessageId,
+	messageId: MessageId,
 	message: Message,
 	sender: ComponentUrl,
 ) {
-	if (message.id === MessageId.SwitchState) {
-		this.stateManager.switch(message.stateName);
+	message.id = messageId; // for engine messages
+
+	if (message.id === MessageId.LoadState) {
+		this.stateManager.load(message.stateName);
+		return;
+	}
+
+	if (message.id === MessageId.proxy_loaded) {
+		this.stateManager.enable();
 		return;
 	}
 

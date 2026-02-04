@@ -21,8 +21,12 @@ embedded_instances {
 }
 embedded_instances {
   id: "state_loader"
-  data: "embedded_components {\n"
-  "  id: \"core_proxy\"\n"
+  data: "components {\n"
+  "  id: \"test\"\n"
+  "  component: \"/scripts/test.script\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"core\"\n"
   "  type: \"collectionproxy\"\n"
   "  data: \"collection: \\\"/main/core/core.collection\\\"\\n"
   "\"\n"

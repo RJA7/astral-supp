@@ -2,7 +2,7 @@ import { BaseState } from './BaseState';
 import { Message } from '../../types/Message';
 import { ActionId } from '../../types/ActionId';
 import { Action } from '../../types/Action';
-import { ComponentUrl } from '../../engine/ComponentUrl';
+import { ComponentUrl } from '../ComponentUrl';
 
 export class StateManager<T extends string> {
 	private currentState?: BaseState;
@@ -13,16 +13,14 @@ export class StateManager<T extends string> {
 		this.stateByName = stateByName;
 	}
 
-	switch(stateName: T) {
-		if (this.currentState) {
-			this.currentState.exit();
-			msg.post(this.currentState.root, 'unload');
-		}
-
+	load(stateName: T) {
+		this.currentState?.disable();
 		this.currentState = this.stateByName[stateName];
-		msg.post(this.currentState.root, 'load');
-		msg.post(this.currentState.root, 'enable');
-		this.currentState.enter();
+		this.currentState.load();
+	}
+
+	enable() {
+		this.currentState?.enable();
 		this.resize();
 	}
 

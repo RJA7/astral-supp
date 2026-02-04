@@ -1,22 +1,32 @@
-import { BaseState } from '../systems/state_manager/BaseState';
+import { BaseState } from '../engine/state_manager/BaseState';
 import { Message } from '../types/Message';
-import { Ref } from '../types/Ref';
 import { ActionId } from '../types/ActionId';
 import { Action } from '../types/Action';
-import { ComponentUrl, componentUrl } from '../engine/ComponentUrl';
+import { ComponentUrl } from '../engine/ComponentUrl';
+import { CoreController } from './controllers/CoreController';
+import { GameObject } from '../engine/GameObject';
 
-export class CoreState implements BaseState {
-	public readonly root = componentUrl(Ref.CoreProxy);
+export class CoreState extends GameObject implements BaseState {
+	private controller: CoreController | undefined;
 
-	enter(): void {}
+	enable(): void {
+		super.enable();
 
-	exit(): void {}
+		this.controller = new CoreController();
+		this.controller.start();
+	}
+
+	disable(): void {
+		super.disable();
+	}
 
 	update(_dt: number): void {}
 
 	onMessage(_message: Message, _sender: ComponentUrl) {}
 
-	onInput(_actionId: ActionId, _action: Action): void {}
+	onInput(actionId: ActionId, action: Action): void {
+		this.controller?.onInput(actionId, action);
+	}
 
 	resize(): void {}
 }

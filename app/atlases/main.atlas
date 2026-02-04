@@ -1,11 +1,14 @@
 images {
-  image: "/atlases/main/white_noise.jpg"
-}
-images {
   image: "/atlases/main/white_rect.png"
 }
 images {
   image: "/atlases/main/white_pixel.png"
+}
+images {
+  image: "/atlases/main/cursor_grab.png"
+}
+images {
+  image: "/atlases/main/cursor_hand.png"
 }
 animations {
   id: "idle"

@@ -4,6 +4,10 @@ export enum Ref {
 
 	// main collection
 	Main = 'main:/go#main',
-	CoreProxy = 'main:/state_loader#core_proxy',
-	MenuProxy = 'main:/state_loader#menu_proxy',
+	CoreProxy = 'main:/state_loader#core',
+	MenuProxy = 'main:/state_loader#menu',
+
+	// core collection
+	PlayerGO = 'core:/player',
+	CursorGO = 'core:/cursor',
 }

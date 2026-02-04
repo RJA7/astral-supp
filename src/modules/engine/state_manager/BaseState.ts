@@ -1,12 +1,9 @@
 import { Message } from '../../types/Message';
 import { ActionId } from '../../types/ActionId';
 import { Action } from '../../types/Action';
-import { ComponentUrl } from '../../engine/ComponentUrl';
+import { GameObject } from '../GameObject';
 
-export type BaseState = {
-	root: ComponentUrl;
-	enter(): void;
-	exit(): void;
+export type BaseState = GameObject & {
 	update(dt: number): void;
 	onMessage(message: Message, sender: url): void;
 	onInput(actionId: ActionId, action: Action): void;

@@ -1,16 +1,18 @@
-import { BaseState } from '../systems/state_manager/BaseState';
+import { BaseState } from '../engine/state_manager/BaseState';
 import { Message } from '../types/Message';
-import { Ref } from '../types/Ref';
 import { ActionId } from '../types/ActionId';
 import { Action } from '../types/Action';
-import { ComponentUrl, componentUrl } from '../engine/ComponentUrl';
+import { ComponentUrl } from '../engine/ComponentUrl';
+import { GameObject } from '../engine/GameObject';
 
-export class MenuState implements BaseState {
-	public readonly root = componentUrl(Ref.MenuProxy);
+export class MenuState extends GameObject implements BaseState {
+	enable(): void {
+		super.enable();
+	}
 
-	enter(): void {}
-
-	exit(): void {}
+	disable(): void {
+		super.disable();
+	}
 
 	update(_dt: number): void {}
 
