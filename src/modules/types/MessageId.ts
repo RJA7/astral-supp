@@ -2,6 +2,8 @@ import { patchEnum, toHash } from '../utils/PatchEnum';
 
 export enum MessageId {
 	LoadProxy = 'LoadProxy',
+	PlayerLeftSafeZone = 'PlayerLeftSafeZone',
+	PlayerEnteredSafeZone = 'PlayerEnteredSafeZone',
 
 	// engine
 	enable = 'enable',
@@ -13,6 +15,7 @@ export enum MessageId {
 	acquire_input_focus = 'acquire_input_focus',
 	release_input_focus = 'release_input_focus',
 	animation_done = 'animation_done',
+	trigger_response = 'trigger_response',
 }
 
 patchEnum(MessageId, toHash);

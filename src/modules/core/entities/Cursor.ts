@@ -14,12 +14,16 @@ export class Cursor extends GameObject {
 
 	show() {
 		this.animate(Property.Scale, 1, 0.3, Easing.OUTSINE);
+
+		this.sprite.cancelAnimation(Property.Alpha);
 		this.sprite.animate(Property.Alpha, 1, 0.3);
 		this.sprite.playFlipBook('cursor_hand');
 	}
 
 	hide() {
 		this.animate(Property.Scale, 0.6, 0.2, Easing.INSINE);
+
+		this.sprite.cancelAnimation(Property.Alpha);
 		this.sprite.animate(Property.Alpha, 0, 0.1, undefined, undefined, 0.2);
 		this.sprite.playFlipBook('cursor_grab');
 	}

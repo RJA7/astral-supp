@@ -1,23 +1,23 @@
 images {
-  image: "/atlases/main/white_rect.png"
+  image: "/assets/atlases/main/white_rect.png"
 }
 images {
-  image: "/atlases/main/white_pixel.png"
+  image: "/assets/atlases/main/white_pixel.png"
 }
 animations {
   id: "idle"
   images {
-    image: "/atlases/main/character_pink_idle.png"
+    image: "/assets/atlases/main/character_pink_idle.png"
   }
   playback: PLAYBACK_NONE
 }
 animations {
   id: "walk"
   images {
-    image: "/atlases/main/character_pink_walk_a.png"
+    image: "/assets/atlases/main/character_pink_walk_a.png"
   }
   images {
-    image: "/atlases/main/character_pink_walk_b.png"
+    image: "/assets/atlases/main/character_pink_walk_b.png"
   }
   playback: PLAYBACK_LOOP_FORWARD
   fps: 7
@@ -25,14 +25,14 @@ animations {
 animations {
   id: "cursor_grab"
   images {
-    image: "/atlases/main/cursor_grab.png"
+    image: "/assets/atlases/main/cursor_grab.png"
   }
   playback: PLAYBACK_LOOP_FORWARD
 }
 animations {
   id: "cursor_hand"
   images {
-    image: "/atlases/main/cursor_hand.png"
+    image: "/assets/atlases/main/cursor_hand.png"
   }
   playback: PLAYBACK_LOOP_FORWARD
 }

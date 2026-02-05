@@ -4,7 +4,7 @@ fonts {
 }
 textures {
   name: "mockups"
-  texture: "/atlases/mockups.atlas"
+  texture: "/assets/atlases/mockups.atlas"
 }
 nodes {
   position {
@@ -88,6 +88,9 @@ nodes {
   inherit_alpha: true
 }
 nodes {
+  scale {
+    x: 1.0E-6
+  }
   type: TYPE_BOX
   texture: "mockups/mockup_core"
   id: "mockup"

@@ -8,7 +8,18 @@ export type Message =
 	  }
 	| AnimationDoneMessage
 	| {
-			mid: MessageId.proxy_loaded;
+			mid:
+				| MessageId.proxy_loaded
+				| MessageId.PlayerEnteredSafeZone
+				| MessageId.PlayerLeftSafeZone;
+	  }
+	| {
+			mid: MessageId.trigger_response;
+			other_id: hash;
+			enter: boolean;
+			group: hash;
+			other_group: hash;
+			own_group: hash;
 	  };
 
 export type AnimationDoneMessage = {

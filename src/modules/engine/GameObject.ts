@@ -101,6 +101,14 @@ export class GameObject {
 		);
 	}
 
+	cancelAnimation(property: Property | hash) {
+		go.cancel_animations(this.url, property);
+	}
+
+	cancelAnimations() {
+		go.cancel_animations(this.url);
+	}
+
 	setImage(imageId: string) {
 		go.set(this.url, 'image', imageId);
 	}

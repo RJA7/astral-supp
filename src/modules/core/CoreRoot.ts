@@ -5,6 +5,9 @@ import { Ref } from '../types/Ref';
 import { Player } from './entities/Player';
 import { GameObject } from '../engine/GameObject';
 import { Controller } from '../types/Controller';
+import { Message } from '../types/Message';
+import { ComponentUrl } from '../engine/ComponentUrl';
+import { MessageId } from '../types/MessageId';
 
 const SENSITIVITY = 3; // scales raw input
 const DAMPING = 0.5;
@@ -32,6 +35,14 @@ export class CoreRoot extends GameObject implements Controller {
 	update(dt: number) {
 		this.player.addPosition2D(this.pointerSpeed.mul(dt));
 		this.pointerSpeed = this.pointerSpeed.mul(DAMPING);
+	}
+
+	onMessage(message: Message, _sender: ComponentUrl): void {
+		if (message.mid === MessageId.PlayerEnteredSafeZone) {
+			print('Player entered safe zone');
+		} else if (message.mid === MessageId.PlayerLeftSafeZone) {
+			print('Player left safe zone');
+		}
 	}
 
 	onInput(actionId: ActionId, action: Action): void {
