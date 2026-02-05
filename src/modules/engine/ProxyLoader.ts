@@ -29,13 +29,13 @@ export class ProxyLoader {
 	}
 
 	onMessage(message: Message, sender: ComponentUrl) {
-		if (message.id === MessageId.LoadProxy) {
+		if (message.mid === MessageId.LoadProxy) {
 			this.loadProxy(message.proxyRef);
 			return;
 		}
 
 		if (
-			message.id === MessageId.proxy_loaded &&
+			message.mid === MessageId.proxy_loaded &&
 			this.current &&
 			sender === this.current.url
 		) {

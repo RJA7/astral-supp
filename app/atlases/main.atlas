@@ -4,12 +4,6 @@ images {
 images {
   image: "/atlases/main/white_pixel.png"
 }
-images {
-  image: "/atlases/main/cursor_grab.png"
-}
-images {
-  image: "/atlases/main/cursor_hand.png"
-}
 animations {
   id: "idle"
   images {
@@ -27,5 +21,19 @@ animations {
   }
   playback: PLAYBACK_LOOP_FORWARD
   fps: 7
+}
+animations {
+  id: "cursor_grab"
+  images {
+    image: "/atlases/main/cursor_grab.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+}
+animations {
+  id: "cursor_hand"
+  images {
+    image: "/atlases/main/cursor_hand.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
 }
 extrude_borders: 2

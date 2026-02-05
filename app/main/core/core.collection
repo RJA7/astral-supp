@@ -14,15 +14,6 @@ instances {
 }
 scale_along_z: 0
 embedded_instances {
-  id: "mask"
-  data: ""
-  position {
-    x: -172.0
-    y: -224.0
-    z: 10.0
-  }
-}
-embedded_instances {
   id: "gui"
   data: "components {\n"
   "  id: \"core\"\n"
@@ -89,16 +80,16 @@ embedded_instances {
   "  texture: \\\"/atlases/main.atlas\\\"\\n"
   "}\\n"
   "\"\n"
+  "  scale {\n"
+  "    x: 0.6\n"
+  "    y: 0.6\n"
+  "  }\n"
   "}\n"
   ""
   position {
     x: 396.0
     y: 147.0
     z: 90.0
-  }
-  scale3 {
-    x: 0.6
-    y: 0.6
   }
 }
 embedded_instances {

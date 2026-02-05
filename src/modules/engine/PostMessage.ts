@@ -4,7 +4,7 @@ import { ComponentUrl } from './ComponentUrl';
 import { MessageId } from '../types/MessageId';
 
 export function postMessage(receiver: Ref | ComponentUrl, message: Message) {
-	msg.post(receiver, message.id, message);
+	msg.post(receiver, message.mid, message);
 }
 
 export function postMessageId(

@@ -1,7 +1,18 @@
 import { MessageId } from './MessageId';
 import { Ref } from './Ref';
 
-export type Message = {
-	id: MessageId.LoadProxy;
-	proxyRef: Ref;
+export type Message =
+	| {
+			mid: MessageId.LoadProxy;
+			proxyRef: Ref;
+	  }
+	| AnimationDoneMessage
+	| {
+			mid: MessageId.proxy_loaded;
+	  };
+
+export type AnimationDoneMessage = {
+	mid: MessageId.animation_done;
+	id: hash; // id of the animation that was completed
+	current_tile: number; // the current tile of the sprite
 };
