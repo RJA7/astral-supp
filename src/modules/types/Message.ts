@@ -20,6 +20,12 @@ export type Message =
 			group: hash;
 			other_group: hash;
 			own_group: hash;
+	  }
+	| {
+			mid: MessageId.use_fixed_fit_projection;
+			near: number;
+			far: number;
+			zoom?: number;
 	  };
 
 export type AnimationDoneMessage = {

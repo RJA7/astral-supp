@@ -16,6 +16,7 @@ export enum MessageId {
 	release_input_focus = 'release_input_focus',
 	animation_done = 'animation_done',
 	trigger_response = 'trigger_response',
+	use_fixed_fit_projection = 'use_fixed_fit_projection',
 }
 
 patchEnum(MessageId, toHash);

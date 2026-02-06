@@ -1,6 +1,7 @@
 export enum Ref {
 	CurrentGameObject = '.',
 	CurrentComponent = '#',
+	Render = '@render:',
 
 	// main collection
 	RootGO = 'main:/root',
