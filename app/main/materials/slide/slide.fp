@@ -60,7 +60,7 @@ vec3 auroraLayer(vec2 uv, float speed, float intensity, vec3 color) {
 
 void main() {
 	vec4 tex = texture(texture_sampler, var_texcoord0);
-	vec2 uv = var_texcoord0;
+	vec2 uv = gl_FragCoord.xy / iResolution;
 	uv.x *= iResolution.x / iResolution.y;
 
 	// Add jitter effect

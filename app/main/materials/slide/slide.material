@@ -1,5 +1,5 @@
 name: "vignette"
-tags: "masked"
+tags: "tile"
 vertex_program: "/builtins/materials/sprite.vp"
 fragment_program: "/main/materials/slide/slide.fp"
 vertex_constants {

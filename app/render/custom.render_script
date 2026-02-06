@@ -173,7 +173,6 @@ local custom_render = require("modules.engine.CustomRender")
 
 function init(self)
 	self.predicates = create_predicates("tile", "gui", "particle", "model", "debug_text")
-	custom_render.addPredicates(self)
 
 	-- default is stretch projection. copy from builtins and change for different projection
 	-- or send a message to the render script to change projection:
@@ -192,6 +191,7 @@ function init(self)
 	-- It will take precedence over any other camera, and not change from messages
 	local camera_component = create_camera(state, "camera_component")
 	update_state(state)
+	custom_render.init(self, camera_world)
 end
 
 function update(self, dt)
@@ -219,7 +219,7 @@ function update(self, dt)
 	render.set_blend_func(graphics.BLEND_FACTOR_SRC_ALPHA, graphics.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA)
 	render.enable_state(graphics.STATE_DEPTH_TEST)
 
-	-- custom: render masked world objects
+	-- custom
 	--
 	custom_render.update(self, dt, draw_options_world)
 
