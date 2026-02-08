@@ -219,9 +219,7 @@ function update(self, dt)
 	render.set_blend_func(graphics.BLEND_FACTOR_SRC_ALPHA, graphics.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA)
 	render.enable_state(graphics.STATE_DEPTH_TEST)
 
-	-- custom
-	--
-	custom_render.update(self, dt, draw_options_world)
+	custom_render.update(self, dt, draw_options_world) -- custom
 
 	-- render `model` predicate for default 3D material
 	--
@@ -233,6 +231,7 @@ function update(self, dt)
 	-- render the other components: sprites, tilemaps, particles etc
 	--
 	render.enable_state(graphics.STATE_BLEND)
+	custom_render.draw(self, draw_options_world) -- custom
 	render.draw(predicates.tile, draw_options_world)
 	render.draw(predicates.particle, draw_options_world)
 	render.disable_state(graphics.STATE_DEPTH_TEST)

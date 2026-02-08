@@ -28,7 +28,7 @@ export class Cursor extends GameObject {
 		this.sprite.playFlipBook('cursor_grab');
 	}
 
-	setMouseLocked(value: boolean) {
-		window.set_mouse_lock(value);
+	setMouseLocked(_value: boolean) {
+		// window.set_mouse_lock(value);
 	}
 }

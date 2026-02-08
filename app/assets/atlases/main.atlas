@@ -4,6 +4,9 @@ images {
 images {
   image: "/assets/atlases/main/white_pixel.png"
 }
+images {
+  image: "/assets/atlases/main/glow.png"
+}
 animations {
   id: "idle"
   images {
