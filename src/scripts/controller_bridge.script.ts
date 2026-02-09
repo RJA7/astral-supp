@@ -43,7 +43,6 @@ export function on_message(
 	message: Message,
 	sender: ComponentUrl,
 ) {
-	// @ts-expect-error for engine messages like proxy_loaded
 	message.mid = messageId;
 	this.controller.onMessage?.(message, sender);
 }

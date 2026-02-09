@@ -1,4 +1,4 @@
-script: "/render/custom.render_script"
+script: "/scripts/render.render_script"
 render_resources {
   name: "outline_rt"
   path: "/main/materials/outline/outline.render_target"

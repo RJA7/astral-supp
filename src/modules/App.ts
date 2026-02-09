@@ -14,7 +14,7 @@ export class App extends GameObject implements Controller {
 		super(ref);
 
 		postMessage(Ref.Render, {
-			mid: MessageId.use_fixed_fit_projection,
+			mid: MessageId.UseFixedFitProjection,
 			near: -100,
 			far: 100,
 		});

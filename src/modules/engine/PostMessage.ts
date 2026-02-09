@@ -1,7 +1,6 @@
-import { Message } from '../types/Message';
+import { Message, VoidMessageId } from '../types/Message';
 import { Ref } from '../types/Ref';
 import { ComponentUrl } from './ComponentUrl';
-import { MessageId } from '../types/MessageId';
 
 export function postMessage(receiver: Ref | ComponentUrl, message: Message) {
 	msg.post(receiver, message.mid, message);
@@ -9,7 +8,7 @@ export function postMessage(receiver: Ref | ComponentUrl, message: Message) {
 
 export function postMessageId(
 	receiver: Ref | ComponentUrl,
-	messageId: MessageId,
+	messageId: VoidMessageId,
 ) {
 	msg.post(receiver, messageId);
 }

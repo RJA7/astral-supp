@@ -5,6 +5,14 @@ export enum MessageId {
 	PlayerLeftSafeZone = 'PlayerLeftSafeZone',
 	PlayerEnteredSafeZone = 'PlayerEnteredSafeZone',
 
+	// render
+	ClearColor = 'ClearColor',
+	SetViewProjection = 'SetViewProjection',
+	SetCameraProjection = 'SetCameraProjection',
+	UseStretchProjection = 'UseStretchProjection',
+	UseFixedProjection = 'UseFixedProjection',
+	UseFixedFitProjection = 'UseFixedFitProjection',
+
 	// engine
 	enable = 'enable',
 	disable = 'disable',
@@ -16,7 +24,7 @@ export enum MessageId {
 	release_input_focus = 'release_input_focus',
 	animation_done = 'animation_done',
 	trigger_response = 'trigger_response',
-	use_fixed_fit_projection = 'use_fixed_fit_projection',
+	window_resized = 'window_resized',
 }
 
 patchEnum(MessageId, toHash);
