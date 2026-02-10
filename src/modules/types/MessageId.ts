@@ -7,11 +7,6 @@ export enum MessageId {
 
 	// render
 	ClearColor = 'ClearColor',
-	SetViewProjection = 'SetViewProjection',
-	SetCameraProjection = 'SetCameraProjection',
-	UseStretchProjection = 'UseStretchProjection',
-	UseFixedProjection = 'UseFixedProjection',
-	UseFixedFitProjection = 'UseFixedFitProjection',
 
 	// engine
 	enable = 'enable',
