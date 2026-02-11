@@ -1,6 +1,5 @@
 import { MessageId } from './MessageId';
 import { Ref } from './Ref';
-import { RenderMessage } from '../../scripts/render.render_script';
 
 export type Message =
 	| {
@@ -19,7 +18,10 @@ export type Message =
 			other_group: hash;
 			own_group: hash;
 	  }
-	| RenderMessage;
+	| {
+			mid: MessageId.ClearColor;
+			color: vmath.vector4;
+	  };
 
 export type VoidMessageId =
 	| MessageId.PlayerEnteredSafeZone
