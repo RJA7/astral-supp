@@ -9,16 +9,15 @@ void main() {
 	vec2 uv = var_texcoord0;
 	vec4 color = texture(texture_sampler, uv);
 
-	#ifdef EDITOR
-	out_fragColor = vec4(0.0);
-	return;
-	#endif
-
 	if (color.a > 0.6) {
 		out_fragColor = vec4(1.0, 1.0, 1.0, 1.0);
-	} else if (color.a > 0.1) {
+	} else if (color.a > 0.05) {
 		out_fragColor = vec4(0.0, 0.0, 0.0, 1.0);
 	} else {
 		out_fragColor = vec4(0.0);
 	}
+
+	#ifdef EDITOR
+	out_fragColor = vec4(0.0);
+	#endif
 }

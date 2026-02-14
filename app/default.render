@@ -1,5 +1,5 @@
 script: "/scripts/render.render_script"
 render_resources {
   name: "outline_rt"
-  path: "/main/materials/outline/outline.render_target"
+  path: "/materials/outline/outline.render_target"
 }

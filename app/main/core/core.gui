@@ -88,15 +88,17 @@ nodes {
   inherit_alpha: true
 }
 nodes {
-  scale {
-    x: 1.0E-6
+  position {
+    x: 640.0
+    y: 360.0
   }
   type: TYPE_BOX
-  texture: "mockups/mockup_core"
+  texture: "mockups/mockup_level_1"
   id: "mockup"
   inherit_alpha: true
   alpha: 0.5
   size_mode: SIZE_MODE_AUTO
+  enabled: false
 }
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT
