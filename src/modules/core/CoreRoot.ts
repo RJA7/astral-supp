@@ -37,13 +37,7 @@ export class CoreRoot extends GameObject implements Controller {
 		this.pointerSpeed = this.pointerSpeed.mul(DAMPING);
 	}
 
-	onMessage(message: Message, _sender: ComponentUrl): void {
-		if (message.mid === MessageId.PlayerEnteredSafeZone) {
-			print('Player entered safe zone');
-		} else if (message.mid === MessageId.PlayerLeftSafeZone) {
-			print('Player left safe zone');
-		}
-	}
+	onMessage(_message: Message, _sender: ComponentUrl): void {}
 
 	onInput(actionId: ActionId, action: Action): void {
 		const isTouch = actionId === ActionId.touch;

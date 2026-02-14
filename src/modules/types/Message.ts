@@ -21,11 +21,10 @@ export type Message =
 	| {
 			mid: MessageId.ClearColor;
 			color: vmath.vector4;
-	  };
+	  }
+	| ContactPointResponseMessage;
 
 export type VoidMessageId =
-	| MessageId.PlayerEnteredSafeZone
-	| MessageId.PlayerLeftSafeZone
 	| MessageId.enable
 	| MessageId.disable
 	| MessageId.async_load
@@ -41,4 +40,21 @@ export type AnimationDoneMessage = {
 	mid: MessageId.animation_done;
 	id: hash; // id of the animation that was completed
 	current_tile: number; // the current tile of the sprite
+};
+
+export type ContactPointResponseMessage = {
+	mid: MessageId.contact_point_response;
+	position: vmath.vector3;
+	distance: number;
+	applied_impulse: number;
+	life_time: number;
+	mass: number;
+	other_id: hash;
+	own_group: hash;
+	group: hash;
+	other_position: vmath.vector3;
+	other_group: hash;
+	other_mass: number;
+	relative_velocity: vmath.vector3;
+	normal: vmath.vector3;
 };

@@ -2,8 +2,6 @@ import { patchEnum, toHash } from '../utils/PatchEnum';
 
 export enum MessageId {
 	LoadProxy = 'LoadProxy',
-	PlayerLeftSafeZone = 'PlayerLeftSafeZone',
-	PlayerEnteredSafeZone = 'PlayerEnteredSafeZone',
 
 	// render
 	ClearColor = 'ClearColor',
@@ -19,6 +17,7 @@ export enum MessageId {
 	release_input_focus = 'release_input_focus',
 	animation_done = 'animation_done',
 	trigger_response = 'trigger_response',
+	contact_point_response = 'contact_point_response',
 	window_resized = 'window_resized',
 }
 

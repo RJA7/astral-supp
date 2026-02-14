@@ -25,3 +25,6 @@ clear_color_blue = 0.78
 [input]
 game_binding = /game.input_bindingc
 
+[physics]
+debug = 1
+
