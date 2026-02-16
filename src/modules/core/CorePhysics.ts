@@ -1,0 +1,46 @@
+import { PhysicsEvent, PhysicsEventType, PhysicsGroup } from '../types/Physics';
+import { GameObjectId } from '../types/GameObjectId';
+
+export class CorePhysics {
+	private isSafeById = new Map<GameObjectId, number>();
+
+	public handleEvents(events: PhysicsEvent[]) {
+		for (const event of events) {
+			this.handleEvent(event);
+		}
+
+		this.logResult();
+	}
+
+	private handleEvent(event: PhysicsEvent) {
+		if (event.a.group < event.b.group) {
+			[event.a, event.b] = [event.b, event.a];
+		}
+
+		if (
+			event.type === PhysicsEventType.trigger_event &&
+			event.a.group === PhysicsGroup.player &&
+			event.b.group === PhysicsGroup.safe_zone
+		) {
+			const current = this.isSafeById.get(event.a.id) ?? 0;
+
+			if (event.enter) {
+				this.isSafeById.set(event.a.id, current + 1);
+			} else {
+				this.isSafeById.set(event.a.id, Math.max(0, current - 1));
+			}
+		}
+	}
+
+	private logResult() {
+		if (this.isSafeById.get(GameObjectId.player_center) === 0) {
+			print('KILL');
+			return;
+		}
+
+		for (const [id] of this.isSafeById) {
+			if (this.isSafeById.get(id) !== 0) continue;
+			print('HIT', id);
+		}
+	}
+}

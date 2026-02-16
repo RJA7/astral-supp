@@ -3,6 +3,7 @@ import { ComponentUrl } from '../engine/ComponentUrl';
 import { ActionId } from './ActionId';
 import { Action } from './Action';
 import { GameObject } from '../engine/GameObject';
+import { PhysicsEvent } from './Physics';
 
 export type Controller = GameObject & {
 	final?(): void;
@@ -12,4 +13,5 @@ export type Controller = GameObject & {
 	onMessage?(message: Message, sender: ComponentUrl): void;
 	onInput?(actionId: ActionId, action: Action): void;
 	onReload?(): void;
+	physicsListener?(events: PhysicsEvent[]): void;
 };

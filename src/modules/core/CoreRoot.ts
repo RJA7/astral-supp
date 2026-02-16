@@ -9,6 +9,7 @@ import { Message } from '../types/Message';
 import { ComponentUrl } from '../engine/ComponentUrl';
 import { CoreInput } from './CoreInput';
 import { CorePhysics } from './CorePhysics';
+import { PhysicsEvent } from '../types/Physics';
 
 export class CoreRoot extends GameObject implements Controller {
 	private readonly input: CoreInput;
@@ -47,5 +48,9 @@ export class CoreRoot extends GameObject implements Controller {
 
 	onInput(actionId: ActionId, action: Action): void {
 		this.input.onInput(actionId, action);
+	}
+
+	physicsListener(events: PhysicsEvent[]): void {
+		this.physics.handleEvents(events);
 	}
 }

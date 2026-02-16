@@ -6,6 +6,7 @@ import { Action } from '../modules/types/Action';
 import { Ref } from '../modules/types/Ref';
 import { Controller } from '../modules/types/Controller';
 import { Controllers } from '../modules/Controllers';
+import { PhysicsEvent } from '../modules/types/Physics';
 
 type Self = {
 	Controller: hash;
@@ -18,6 +19,7 @@ export function init(this: Self) {
 	const Controller = Controllers.get(this.Controller)!;
 	this.controller = new Controller(Ref.CurrentGameObject);
 	this.controller.acquireInputFocus();
+	physics.set_event_listener(physics_listener);
 }
 
 export function final(this: Self) {
@@ -53,4 +55,8 @@ export function on_input(this: Self, actionId: ActionId, action: Action) {
 
 export function on_reload(this: Self) {
 	this.controller.onReload?.();
+}
+
+function physics_listener(this: Self, events: PhysicsEvent[]) {
+	this.controller.physicsListener?.(events);
 }

@@ -1,3 +1,27 @@
-export const PLAYER_GROUP = hash('player');
+import { patchEnum, toHash } from '../utils/PatchEnum';
+import { GameObjectId } from './GameObjectId';
 
-export const SAFE_ZONE_GROUP = hash('safe_zone');
+export enum PhysicsEventType {
+	trigger_event = 'trigger_event',
+}
+patchEnum(PhysicsEventType, toHash);
+
+export enum PhysicsGroup {
+	player = 'player',
+	safe_zone = 'safe_zone',
+}
+patchEnum(PhysicsGroup, toHash);
+
+export type PhysicsObject = {
+	group: PhysicsGroup;
+	id: GameObjectId;
+};
+
+export type TriggerEvent = {
+	type: PhysicsEventType;
+	a: PhysicsObject;
+	b: PhysicsObject;
+	enter: boolean;
+};
+
+export type PhysicsEvent = TriggerEvent;
