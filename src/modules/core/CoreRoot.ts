@@ -10,21 +10,27 @@ import { ComponentUrl } from '../engine/ComponentUrl';
 import { CoreInput } from './CoreInput';
 import { CorePhysics } from './CorePhysics';
 import { PhysicsEvent } from '../types/Physics';
+import { CoreLevel } from './CoreLevel';
+import { level1 } from './levels/level1';
+import { GameObjectId } from '../types/GameObjectId';
 
 export class CoreRoot extends GameObject implements Controller {
 	private readonly input: CoreInput;
 	private readonly player: Player;
 	private readonly cursor: Cursor;
+	private readonly level: CoreLevel;
 	private readonly physics: CorePhysics;
 
 	constructor(ref: Ref) {
 		super(ref);
 
 		this.input = new CoreInput();
-		this.player = new Player(Ref.PlayerGO);
-		this.cursor = new Cursor(Ref.CursorGO);
+		this.player = new Player(GameObjectId.player);
+		this.cursor = new Cursor(GameObjectId.cursor);
+		this.level = new CoreLevel(level1);
 		this.physics = new CorePhysics();
 
+		this.player.setPosition2D(this.level.getPlayerPosition());
 		this.cursor.setPosition2D(this.player.getPosition());
 	}
 

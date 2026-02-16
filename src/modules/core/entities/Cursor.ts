@@ -1,8 +1,8 @@
 import { GameObject } from '../../engine/GameObject';
 import { Easing } from '../../engine/types/Easing';
 import { Property } from '../../engine/types/Property';
-import { Ref } from '../../types/Ref';
 import { clampMagnitude } from '../../utils/ClampMagnitude';
+import { GameObjectId } from '../../types/GameObjectId';
 
 const MAX_CURSOR_OFFSET = 25;
 const CURSOR_FOLLOW = 0.1;
@@ -14,10 +14,10 @@ export class Cursor extends GameObject {
 
 	private visible = true;
 
-	constructor(ref: Ref) {
-		super(ref);
+	constructor(id: GameObjectId) {
+		super(id);
 
-		this.sprite = this.getChild('sprite');
+		this.sprite = new GameObject(id, 'sprite');
 		// this.setMouseLocked(true);
 	}
 

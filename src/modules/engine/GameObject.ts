@@ -6,14 +6,17 @@ import { Playback } from './types/Playback';
 import { Property } from './types/Property';
 import { Easing } from './types/Easing';
 import { AnimationDoneMessage } from '../types/Message';
+import { GameObjectId } from '../types/GameObjectId';
+import { DynamicGameObjectId } from '../types/Factory';
 
 export class GameObject {
-	public readonly ref: Ref;
 	public readonly url: ComponentUrl;
 
-	constructor(ref: Ref) {
-		this.ref = ref;
-		this.url = componentUrl(ref);
+	constructor(
+		id: GameObjectId | DynamicGameObjectId | Ref,
+		fragment?: string | hash,
+	) {
+		this.url = componentUrl(id, fragment);
 	}
 
 	getPosition() {
@@ -132,8 +135,18 @@ export class GameObject {
 		);
 	}
 
-	getChild(name: string) {
-		const ref = `${this.ref}#${name}` as Ref;
-		return new GameObject(ref);
+	setParent(parent: GameObject) {
+		go.set_parent(this.url, parent.url);
+	}
+
+	setSize(value: vmath.vector3) {
+		go.set(this.url, Property.Size, value);
+	}
+
+	createGameObject<T extends GameObject>(
+		Type: new (id: DynamicGameObjectId) => T,
+	): T {
+		const id = factory.create(this.url) as DynamicGameObjectId;
+		return new Type(id);
 	}
 }

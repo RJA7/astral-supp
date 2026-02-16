@@ -16,8 +16,6 @@ input_method = HiddenInputField
 [project]
 title = astral-supp
 dependencies#0 = https://github.com/ts-defold/defold-lldebugger/archive/extension.zip
-dependencies#1 = https://github.com/Insality/defold-tweener/archive/refs/tags/5.zip
-dependencies#2 = https://github.com/Insality/panthera/archive/refs/tags/runtime.6.zip
 
 [render]
 clear_color_red = 0.19
