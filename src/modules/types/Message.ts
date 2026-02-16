@@ -2,27 +2,12 @@ import { MessageId } from './MessageId';
 import { Ref } from './Ref';
 
 export type Message =
-	| {
-			mid: VoidMessageId;
-	  }
-	| {
-			mid: MessageId.LoadProxy;
-			proxyRef: Ref;
-	  }
+	| VoidMessage
+	| LoadProxyMessage
 	| AnimationDoneMessage
-	| {
-			mid: MessageId.trigger_response;
-			other_id: hash;
-			enter: boolean;
-			group: hash;
-			other_group: hash;
-			own_group: hash;
-	  }
-	| {
-			mid: MessageId.ClearColor;
-			color: vmath.vector4;
-	  }
-	| ContactPointResponseMessage;
+	| ClearColorMessage
+	| ContactPointResponseMessage
+	| TriggerResponseMessage;
 
 export type VoidMessageId =
 	| MessageId.enable
@@ -35,6 +20,20 @@ export type VoidMessageId =
 	| MessageId.release_input_focus
 	| MessageId.animation_done
 	| MessageId.window_resized;
+
+export type VoidMessage<T extends VoidMessageId = VoidMessageId> = {
+	mid: T;
+};
+
+export type LoadProxyMessage = {
+	mid: MessageId.LoadProxy;
+	proxyRef: Ref;
+};
+
+export type ClearColorMessage = {
+	mid: MessageId.ClearColor;
+	color: vmath.vector4;
+};
 
 export type AnimationDoneMessage = {
 	mid: MessageId.animation_done;
@@ -57,4 +56,13 @@ export type ContactPointResponseMessage = {
 	other_mass: number;
 	relative_velocity: vmath.vector3;
 	normal: vmath.vector3;
+};
+
+export type TriggerResponseMessage = {
+	mid: MessageId.trigger_response;
+	other_id: hash;
+	enter: boolean;
+	group: hash;
+	other_group: hash;
+	own_group: hash;
 };

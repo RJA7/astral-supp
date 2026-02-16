@@ -81,8 +81,8 @@ export class GameObject {
 			| vmath.vector4
 			| vmath.quaternion
 			| ReturnType<typeof vmath.vector> = Easing.LINEAR,
-		playback: Playback = Playback.PLAYBACK_ONCE_FORWARD,
 		delay: number = 0,
+		playback: Playback = Playback.PLAYBACK_ONCE_FORWARD,
 		completeFunction?: (
 			this: object,
 			url: ComponentUrl,
