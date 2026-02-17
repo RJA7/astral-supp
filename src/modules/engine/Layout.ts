@@ -4,20 +4,34 @@ import { RigidBody } from './components/RigidBody';
 import { ShapeClass } from './shapes/Shape';
 import { Fragment, GameObjectId } from './types/GameObjectId';
 
-export type CollectionSchema = Record<string, GameObjectSchema>;
+export type CollectionSchema = Record<
+	string,
+	GameObjectSchema | List<GameObjectSchema>
+>;
 
-export type GameObjectSchema = Record<string, ComponentSchema>;
+export type GameObjectSchema = Record<
+	string,
+	ComponentSchema | List<ComponentSchema>
+>;
 
 export type ComponentSchema = ComponentClass | RigidBodySchema;
 
-export type RigidBodySchema = Record<string, ShapeClass>;
+export type RigidBodySchema = Record<string, ShapeClass | List<ShapeClass>>;
 
 export type CollectionLayout<T extends CollectionSchema> = {
-	[K in keyof T]: GameObjectLayout<T[K]>;
+	[K in keyof T]: T[K] extends List<any>
+		? GameObjectLayout<T[K]['schema']>[]
+		: T[K] extends GameObjectSchema
+			? GameObjectLayout<T[K]>
+			: never;
 };
 
 export type GameObjectLayout<T extends GameObjectSchema> = GameObject & {
-	[K in keyof T]: ComponentLayout<T[K]>;
+	[K in keyof T]: T[K] extends List<any>
+		? ComponentLayout<T[K]['schema']>[]
+		: T[K] extends ComponentSchema
+			? ComponentLayout<T[K]>
+			: never;
 };
 
 export type ComponentLayout<T extends ComponentSchema> =
@@ -28,38 +42,67 @@ export type ComponentLayout<T extends ComponentSchema> =
 			: never;
 
 export type RigidBodyLayout<T extends RigidBodySchema> = RigidBody & {
-	[K in keyof T]: InstanceType<T[K]>;
+	[K in keyof T]: T[K] extends List<any>
+		? InstanceType<T[K]['schema']>[]
+		: T[K] extends ShapeClass
+			? InstanceType<T[K]>
+			: never;
 };
 
 export function createCollectionLayout<T extends CollectionSchema>(
 	schema: T,
 ): CollectionLayout<T> {
-	const layout = {} as CollectionLayout<T>;
+	const layout: Record<string, any> = {};
 
-	for (const [id, gameObjectSchema] of Object.entries(schema)) {
-		// @ts-expect-error
-		layout[id] = createGameObjectLayout(hash(`/${id}`), gameObjectSchema);
+	for (const [name, goSchema] of Object.entries(schema)) {
+		if (isList(goSchema)) {
+			const list = goSchema as List<GameObjectSchema>;
+			const baseName = list.baseName ?? name.slice(0, -1);
+			const layouts = [] as GameObjectLayout<any>[];
+			layout[name] = layouts;
+
+			for (let i = 0; true; i++) {
+				const id = hash(`/${baseName}${i}`);
+
+				if (!go.exists(id)) break;
+
+				layouts.push(createGameObjectLayout(id, list.schema));
+			}
+		} else {
+			layout[name] = createGameObjectLayout(hash(`/${name}`), goSchema);
+		}
 	}
 
-	return layout;
+	return layout as CollectionLayout<T>;
 }
 
 export function createGameObjectLayout<T extends GameObjectSchema>(
 	id: GameObjectId,
 	schema: T,
 ): GameObjectLayout<T> {
-	const layout = new GameObject(id) as GameObjectLayout<T>;
+	const layout: Record<string, any> = new GameObject(id);
 
-	for (const [fragment, componentSchema] of Object.entries(schema)) {
-		// @ts-expect-error
-		layout[fragment] = createComponentLayout(
-			id,
-			hash(fragment),
-			componentSchema,
-		);
+	for (const [name, componentSchema] of Object.entries(schema)) {
+		if (isList(componentSchema)) {
+			const list = componentSchema as List<ComponentSchema>;
+			const baseName = list.baseName ?? name.slice(0, -1);
+			const layouts = [] as ComponentLayout<any>[];
+			layout[name] = layouts;
+
+			for (let i = 0; true; i++) {
+				const fragment = hash(`${baseName}${i}`);
+				const url = msg.url(undefined, id, fragment);
+
+				if (!componentExists(url)) break;
+
+				layouts.push(createComponentLayout(id, fragment, list.schema));
+			}
+		} else {
+			layout[name] = createComponentLayout(id, hash(name), componentSchema);
+		}
 	}
 
-	return layout;
+	return layout as GameObjectLayout<T>;
 }
 
 export function createComponentLayout<T extends ComponentSchema>(
@@ -81,12 +124,67 @@ export function createRigidBodyLayout<T extends RigidBodySchema>(
 	fragment: Fragment,
 	schema: T,
 ): RigidBodyLayout<T> {
-	const layout = new RigidBody(id, fragment) as RigidBodyLayout<T>;
+	const body = new RigidBody(id, fragment);
+	const layout = body as Record<string, any>;
 
-	for (const [shapeId, Shape] of Object.entries(schema)) {
-		// @ts-expect-error
-		layout[shapeId] = new Shape(layout, hash(shapeId));
+	for (const [name, Shape] of Object.entries(schema)) {
+		if (isList(Shape)) {
+			const list = Shape as List<ShapeClass>;
+			const baseName = list.baseName ?? name.slice(0, -1);
+			const layouts = [] as InstanceType<ShapeClass>[];
+			layout[name] = layouts;
+
+			for (let i = 0; true; i++) {
+				const shapeId = hash(`${baseName}${i}`);
+
+				if (!shapeExists(body.url, shapeId)) break;
+
+				layouts.push(new list.schema(body, shapeId));
+			}
+		} else {
+			layout[name] = new Shape(body, hash(name));
+		}
 	}
 
-	return layout;
+	return layout as RigidBodyLayout<T>;
+}
+
+type ListSchema = GameObjectSchema | ComponentSchema | ShapeClass;
+
+export type List<T extends ListSchema> = {
+	isList: true;
+	schema: T;
+	baseName?: string;
+};
+
+export function list<T extends ListSchema>(
+	schema: T,
+	baseName?: string,
+): List<T> {
+	return {
+		isList: true,
+		schema,
+		baseName,
+	};
+}
+
+function isList(schema: any): schema is List<any> {
+	return schema.isList === true;
+}
+
+function componentExists(url: url) {
+	const [isSprite] = pcall(go.get, url, 'scale.x');
+
+	if (isSprite) {
+		return true;
+	}
+
+	const [isBody] = pcall(physics.get_group, url);
+
+	return isBody;
+}
+
+function shapeExists(bodyUrl: url, shapeId: hash) {
+	const [ok, _] = pcall(physics.get_shape, bodyUrl, shapeId);
+	return ok;
 }
