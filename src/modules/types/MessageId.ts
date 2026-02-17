@@ -1,8 +1,6 @@
 import { patchEnum, toHash } from '../utils/PatchEnum';
 
 export enum MessageId {
-	LoadProxy = 'LoadProxy',
-
 	// render
 	ClearColor = 'ClearColor',
 

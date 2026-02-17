@@ -1,18 +1,18 @@
-import { GameObjectId } from '../types/GameObjectId';
-import { Ref } from '../types/Ref';
-import { DynamicGameObjectId } from '../types/Factory';
+import { Fragment, GameObjectId } from './types/GameObjectId';
 
 export type ComponentUrl = url & { __brand: 'ComponentUrl' };
 
 export function componentUrl(
-	id: GameObjectId | DynamicGameObjectId | Ref,
-	fragment?: string | hash,
+	id: GameObjectId,
+	fragment?: Fragment,
 ): ComponentUrl {
-	const url =
-		typeof id === 'string' ? msg.url(id) : msg.url(undefined, id, fragment);
+	const url = msg.url(undefined, id, fragment);
 
 	if (!go.exists(url)) {
-		throw new Error(`Component ${id} does not exist`);
+		const message = fragment
+			? `Component ${id}#${fragment} does not exist in ${url.socket}`
+			: `Game object ${id} does not exist in ${url.socket}`;
+		throw new Error(message);
 	}
 
 	return url as ComponentUrl;

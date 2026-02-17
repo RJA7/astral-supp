@@ -7,7 +7,7 @@ embedded_instances {
   "  component: \"/scripts/controller_bridge.script\"\n"
   "  properties {\n"
   "    id: \"Controller\"\n"
-  "    value: \"App\"\n"
+  "    value: \"MainController\"\n"
   "    type: PROPERTY_TYPE_HASH\n"
   "  }\n"
   "}\n"

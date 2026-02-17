@@ -1,8 +1,14 @@
 import { PhysicsEvent, PhysicsEventType, PhysicsGroup } from '../types/Physics';
-import { GameObjectId } from '../types/GameObjectId';
+import { GameObjectId } from '../engine/types/GameObjectId';
 
 export class CorePhysics {
 	private isSafeById = new Map<GameObjectId, number>();
+
+	private readonly playerCenterId: GameObjectId;
+
+	constructor(playerCenterId: GameObjectId) {
+		this.playerCenterId = playerCenterId;
+	}
 
 	public handleEvents(events: PhysicsEvent[]) {
 		for (const event of events) {
@@ -33,7 +39,7 @@ export class CorePhysics {
 	}
 
 	private logResult() {
-		if (this.isSafeById.get(GameObjectId.player_center) === 0) {
+		if (this.isSafeById.get(this.playerCenterId) === 0) {
 			print('KILL');
 			return;
 		}

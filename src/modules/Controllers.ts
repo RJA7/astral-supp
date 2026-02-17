@@ -1,8 +1,7 @@
-import { App } from './App';
-import { CoreRoot } from './core/CoreRoot';
+import { MainController } from './MainController';
+import { CoreController } from './core/CoreController';
 import { Controller } from './types/Controller';
-import { Ref } from './types/Ref';
 
-export const Controllers = new Map<hash, new (ref: Ref) => Controller>();
-Controllers.set(hash('App'), App);
-Controllers.set(hash('CoreRoot'), CoreRoot);
+export const Controllers = new Map<hash, new () => Controller>();
+Controllers.set(hash('MainController'), MainController);
+Controllers.set(hash('CoreController'), CoreController);

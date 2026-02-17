@@ -3,7 +3,6 @@ import { MessageId } from '../modules/types/MessageId';
 import { ComponentUrl } from '../modules/engine/ComponentUrl';
 import { ActionId } from '../modules/types/ActionId';
 import { Action } from '../modules/types/Action';
-import { Ref } from '../modules/types/Ref';
 import { Controller } from '../modules/types/Controller';
 import { Controllers } from '../modules/Controllers';
 import { PhysicsEvent } from '../modules/types/Physics';
@@ -17,13 +16,11 @@ go.property('Controller', hash(''));
 
 export function init(this: Self) {
 	const Controller = Controllers.get(this.Controller)!;
-	this.controller = new Controller(Ref.CurrentGameObject);
-	this.controller.acquireInputFocus();
+	this.controller = new Controller();
 	physics.set_event_listener(physics_listener);
 }
 
 export function final(this: Self) {
-	this.controller.release_input_focus();
 	this.controller.final?.();
 }
 

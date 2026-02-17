@@ -1,30 +1,23 @@
 import { LevelData } from './types';
-import { Ref } from '../types/Ref';
 import { SafeZone } from './entities/SafeZone';
-import { GameObject } from '../engine/GameObject';
-import { GameObjectId } from '../types/GameObjectId';
 import { FinishZone } from './entities/FinishZone';
+import { CoreLayout } from '../layouts/CoreLayout';
+import { safeZoneSchema } from '../layouts/SafeZoneLayout';
 
 export class CoreLevel {
 	private readonly data: LevelData;
 
-	private readonly safeZonesFactory: GameObject;
-
-	private readonly safeZones: GameObject;
-
 	private readonly finishZone: FinishZone;
 
-	constructor(data: LevelData) {
+	constructor(layout: CoreLayout, data: LevelData) {
 		this.data = data;
 
-		this.safeZonesFactory = new GameObject(Ref.SafeZonesFactory);
-		this.safeZones = new GameObject(GameObjectId.safe_zones);
-		this.finishZone = new FinishZone(GameObjectId.finish_zone, data.finish);
+		this.finishZone = new FinishZone(layout.finish_zone, data.finish);
 
 		for (const safeZoneData of this.data.safeZones) {
-			const safeZone = this.safeZonesFactory.createGameObject(SafeZone);
+			const safeZoneLayout = layout.safe_zones.factory.create(safeZoneSchema);
+			const safeZone = new SafeZone(safeZoneLayout);
 			safeZone.setData(safeZoneData);
-			safeZone.setParent(this.safeZones);
 		}
 	}
 

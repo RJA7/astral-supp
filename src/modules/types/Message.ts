@@ -1,9 +1,7 @@
 import { MessageId } from './MessageId';
-import { Ref } from './Ref';
 
 export type Message =
 	| VoidMessage
-	| LoadProxyMessage
 	| AnimationDoneMessage
 	| ClearColorMessage
 	| ContactPointResponseMessage
@@ -23,11 +21,6 @@ export type VoidMessageId =
 
 export type VoidMessage<T extends VoidMessageId = VoidMessageId> = {
 	mid: T;
-};
-
-export type LoadProxyMessage = {
-	mid: MessageId.LoadProxy;
-	proxyRef: Ref;
 };
 
 export type ClearColorMessage = {

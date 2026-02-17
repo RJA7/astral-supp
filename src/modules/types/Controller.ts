@@ -2,10 +2,9 @@ import { Message } from './Message';
 import { ComponentUrl } from '../engine/ComponentUrl';
 import { ActionId } from './ActionId';
 import { Action } from './Action';
-import { GameObject } from '../engine/GameObject';
 import { PhysicsEvent } from './Physics';
 
-export type Controller = GameObject & {
+export type Controller = {
 	final?(): void;
 	update?(dt: number): void;
 	lateUpdate?(dt: number): void;

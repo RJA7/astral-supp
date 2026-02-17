@@ -13,7 +13,6 @@ embedded_instances {
   children: "cursor"
   children: "finish_zone"
   children: "player"
-  children: "root"
   children: "safe_zones"
   children: "safe_zones_rt"
   children: "vignette"
@@ -84,19 +83,6 @@ embedded_instances {
     x: 149.0
     z: 50.0
   }
-}
-embedded_instances {
-  id: "root"
-  data: "components {\n"
-  "  id: \"root\"\n"
-  "  component: \"/scripts/controller_bridge.script\"\n"
-  "  properties {\n"
-  "    id: \"Controller\"\n"
-  "    value: \"CoreRoot\"\n"
-  "    type: PROPERTY_TYPE_HASH\n"
-  "  }\n"
-  "}\n"
-  ""
 }
 embedded_instances {
   id: "vignette"
@@ -485,6 +471,19 @@ embedded_instances {
   "  texture: \\\"/assets/atlases/main.atlas\\\"\\n"
   "}\\n"
   "\"\n"
+  "}\n"
+  ""
+}
+embedded_instances {
+  id: "root"
+  data: "components {\n"
+  "  id: \"root\"\n"
+  "  component: \"/scripts/controller_bridge.script\"\n"
+  "  properties {\n"
+  "    id: \"Controller\"\n"
+  "    value: \"CoreController\"\n"
+  "    type: PROPERTY_TYPE_HASH\n"
+  "  }\n"
   "}\n"
   ""
 }

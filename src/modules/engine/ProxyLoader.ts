@@ -1,39 +1,22 @@
 import { ComponentUrl } from './ComponentUrl';
-import { GameObject } from './GameObject';
-import { Ref } from '../types/Ref';
 import { Message } from '../types/Message';
 import { MessageId } from '../types/MessageId';
+import { CollectionProxy } from './components/CollectionProxy';
 
 export class ProxyLoader {
-	private current?: GameObject;
+	private current?: CollectionProxy;
 
-	private readonly proxyByName: Map<Ref, GameObject>;
-
-	constructor(proxyRefs: Ref[]) {
-		this.proxyByName = new Map(
-			proxyRefs.map((ref) => {
-				const go = new GameObject(ref);
-				return [ref, go];
-			}),
-		);
-	}
-
-	loadProxy(proxyRef: Ref) {
+	loadProxy(proxy: CollectionProxy) {
 		if (this.current) {
 			this.current.disable();
 			this.current.unload();
 		}
 
-		this.current = this.proxyByName.get(proxyRef)!;
+		this.current = proxy;
 		this.current.asyncLoad();
 	}
 
 	onMessage(message: Message, sender: ComponentUrl) {
-		if (message.mid === MessageId.LoadProxy) {
-			this.loadProxy(message.proxyRef);
-			return;
-		}
-
 		if (
 			message.mid === MessageId.proxy_loaded &&
 			this.current &&
