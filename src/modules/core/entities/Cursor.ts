@@ -15,7 +15,7 @@ export class Cursor {
 
 	constructor(layout: CursorLayout) {
 		this.layout = layout;
-		// this.setMouseLocked(true);
+		this.setMouseLocked(true);
 	}
 
 	public update(

@@ -17,7 +17,7 @@ export function playLevelAnimations(levelIdsMap: IdsMap) {
 	layout.safe_zone5.animate(
 		Property.PositionX,
 		-472,
-		3,
+		5,
 		Easing.INOUTSINE,
 		0,
 		Playback.PLAYBACK_LOOP_PINGPONG,
@@ -25,8 +25,8 @@ export function playLevelAnimations(levelIdsMap: IdsMap) {
 
 	layout.safe_zone6.animate(
 		Property.PositionX,
-		370,
-		3,
+		-80,
+		4,
 		Easing.INOUTSINE,
 		0,
 		Playback.PLAYBACK_LOOP_PINGPONG,

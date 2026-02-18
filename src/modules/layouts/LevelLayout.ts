@@ -3,7 +3,7 @@ import { Sprite } from '../engine/components/Sprite';
 import { BoxShape } from '../engine/shapes/BoxShape';
 
 export const levelSchema = {
-	finish: {
+	bg: {
 		sprite: Sprite,
 	},
 	player_position: {},
@@ -13,6 +13,12 @@ export const levelSchema = {
 		},
 		sprite: Sprite,
 	}),
+	finish_zone: {
+		body: {
+			box: BoxShape,
+		},
+		sprite: Sprite,
+	},
 } satisfies CollectionSchema;
 
 export type LevelLayout = CollectionLayout<typeof levelSchema>;

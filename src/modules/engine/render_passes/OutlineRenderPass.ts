@@ -8,7 +8,6 @@ import { setCamera } from '../render/Helpers';
 export class OutlineRenderPass implements RenderPass {
 	private readonly renderTexture: render.render_target & hash;
 	private readonly predicateRT: number;
-	private readonly predicateMain: number;
 	private readonly clearColorRT: vmath.vector4;
 	private readonly cameraRT: Camera;
 
@@ -16,7 +15,6 @@ export class OutlineRenderPass implements RenderPass {
 		this.renderTexture = hash('outline_rt') as unknown as render.render_target &
 			hash;
 		this.predicateRT = render.predicate(['outline_rt']);
-		this.predicateMain = render.predicate(['outline']);
 		this.clearColorRT = vmath.vector4();
 
 		this.cameraRT = state.addCamera(
@@ -53,16 +51,7 @@ export class OutlineRenderPass implements RenderPass {
 			render.RENDER_TARGET_DEFAULT as unknown as render.render_target,
 		);
 
-		// Draw RT onto the screen
 		render.set_viewport(0, 0, state.windowWidth, state.windowHeight);
 		setCamera(state.cameraWorld);
-
-		render.enable_texture(
-			0,
-			this.renderTexture,
-			graphics.BUFFER_TYPE_COLOR0_BIT,
-		);
-		render.draw(this.predicateMain, state.cameraWorld.options);
-		render.disable_texture(0);
 	}
 }

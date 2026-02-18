@@ -11,7 +11,7 @@ export class RenderState {
 	prevWindowHeight = 0;
 	cameras: Camera[] = [];
 	clearBuffers = {
-		[graphics.BUFFER_TYPE_COLOR0_BIT]: vmath.vector4(0.19, 0.47, 0.68, 1),
+		[graphics.BUFFER_TYPE_COLOR0_BIT]: vmath.vector4(),
 		[graphics.BUFFER_TYPE_DEPTH_BIT]: 1,
 		[graphics.BUFFER_TYPE_STENCIL_BIT]: 0,
 	};

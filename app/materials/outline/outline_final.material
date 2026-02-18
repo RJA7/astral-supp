@@ -1,5 +1,5 @@
 name: "outline"
-tags: "outline"
+tags: "tile"
 vertex_program: "/builtins/materials/sprite.vp"
 fragment_program: "/materials/outline/outline_final.fp"
 vertex_constants {

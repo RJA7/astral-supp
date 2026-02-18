@@ -17,11 +17,6 @@ input_method = HiddenInputField
 title = astral-supp
 dependencies#0 = https://github.com/ts-defold/defold-lldebugger/archive/extension.zip
 
-[render]
-clear_color_red = 0.19
-clear_color_green = 0.47
-clear_color_blue = 0.78
-
 [input]
 game_binding = /game.input_bindingc
 

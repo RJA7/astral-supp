@@ -56,6 +56,7 @@ export class CoreController implements Controller {
 	onResize(): void {
 		this.layout.vignette.sprite.width = screen.width;
 		this.layout.vignette.sprite.height = screen.height;
+		this.level.resize();
 	}
 
 	onInput(actionId: ActionId, action: Action): void {
