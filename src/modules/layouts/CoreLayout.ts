@@ -19,6 +19,9 @@ export const coreSchema = {
 			box: BoxShape,
 		},
 	},
+	vignette: {
+		sprite: Sprite,
+	},
 } satisfies CollectionSchema;
 
 export type CoreLayout = CollectionLayout<typeof coreSchema>;

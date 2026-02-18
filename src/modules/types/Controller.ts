@@ -12,5 +12,6 @@ export type Controller = {
 	onMessage?(message: Message, sender: ComponentUrl): void;
 	onInput?(actionId: ActionId, action: Action): void;
 	onReload?(): void;
+	onResize?(): void;
 	physicsListener?(events: PhysicsEvent[]): void;
 };

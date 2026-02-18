@@ -4,6 +4,7 @@ import { RenderState } from '../modules/engine/render/RenderState';
 import { RenderPass } from '../modules/engine/render/types';
 import { OutlineRenderPass } from '../modules/engine/render_passes/OutlineRenderPass';
 import { setCamera } from '../modules/engine/render/Helpers';
+import { screen } from '../modules/engine/render/Screen';
 
 type Self = {
 	state: RenderState;
@@ -111,5 +112,10 @@ export function on_message(
 		state.clearBuffers[graphics.BUFFER_TYPE_COLOR0_BIT] = message.color;
 	} else if (message.mid === MessageId.window_resized) {
 		state.update();
+
+		screen.dispatchOnResize(
+			state.windowWidth / state.cameraWorld.zoom,
+			state.windowHeight / state.cameraWorld.zoom,
+		);
 	}
 }

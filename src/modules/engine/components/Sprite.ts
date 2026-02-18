@@ -6,7 +6,6 @@ import { Component } from './Component';
 import { Fragment, GameObjectId, ImageResource, Material } from '../types/Hash';
 import { Easing } from '../types/Easing';
 import { Playback } from '../types/Playback';
-import { SizeMode } from '../types/SizeMode';
 
 export class Sprite implements Component {
 	public readonly url: ComponentUrl;
@@ -15,28 +14,60 @@ export class Sprite implements Component {
 		this.url = componentUrl(id, fragment);
 	}
 
-	getAlpha() {
-		return go.get(this.url, SpriteProperty.Alpha);
+	set width(value: number) {
+		go.set(this.url, SpriteProperty.Width, value);
 	}
 
-	setAlpha(value: number) {
+	get width() {
+		return go.get(this.url, SpriteProperty.Width) as number;
+	}
+
+	set height(value: number) {
+		go.set(this.url, SpriteProperty.Height, value);
+	}
+
+	get height() {
+		return go.get(this.url, SpriteProperty.Height) as number;
+	}
+
+	set alpha(value: number) {
 		go.set(this.url, SpriteProperty.Alpha, value);
 	}
 
-	setImage(imageId: ImageResource | string) {
-		go.set(this.url, 'image', imageId);
+	get alpha() {
+		return go.get(this.url, SpriteProperty.Alpha) as number;
 	}
 
-	getImage(): ImageResource {
+	set image(value: ImageResource) {
+		go.set(this.url, 'image', value);
+	}
+
+	get image() {
 		return go.get(this.url, 'image') as ImageResource;
 	}
 
-	setMaterial(material: Material) {
-		go.set(this.url, 'material', material);
+	set material(value: Material) {
+		go.set(this.url, 'material', value);
 	}
 
-	getMaterial(): Material {
+	get material() {
 		return go.get(this.url, 'material') as Material;
+	}
+
+	set size(value: vmath.vector3) {
+		this.setSize(value);
+	}
+
+	get size() {
+		return this.getSize();
+	}
+
+	setSize(value: vmath.vector3) {
+		go.set(this.url, SpriteProperty.Size, value);
+	}
+
+	getSize(): vmath.vector3 {
+		return go.get(this.url, SpriteProperty.Size) as vmath.vector3;
 	}
 
 	playFlipBook(
@@ -53,30 +84,6 @@ export class Sprite implements Component {
 			this.wrapAnimationCompleteFunction(completeFunction),
 			playProperties,
 		);
-	}
-
-	setSize(value: vmath.vector3) {
-		go.set(this.url, SpriteProperty.Size, value);
-	}
-
-	getSize(): vmath.vector3 {
-		return go.get(this.url, SpriteProperty.Size) as vmath.vector3;
-	}
-
-	setSizeMode(mode: SizeMode) {
-		go.set(this.url, 'size_mode', mode);
-	}
-
-	getSizeMode(): SizeMode {
-		return go.get(this.url, 'size_mode') as SizeMode;
-	}
-
-	setSlice9(value: vmath.vector4) {
-		go.set(this.url, 'slice9', value);
-	}
-
-	getSlice9(): vmath.vector4 {
-		return go.get(this.url, 'slice9') as vmath.vector4;
 	}
 
 	animate(

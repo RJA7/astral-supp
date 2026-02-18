@@ -4,7 +4,7 @@ embedded_instances {
   id: "root"
   data: "components {\n"
   "  id: \"root\"\n"
-  "  component: \"/scripts/controller_bridge.script\"\n"
+  "  component: \"/scripts/controller.script\"\n"
   "  properties {\n"
   "    id: \"Controller\"\n"
   "    value: \"MainController\"\n"

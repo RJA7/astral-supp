@@ -11,6 +11,7 @@ import { PhysicsEvent } from '../types/Physics';
 import { CoreLevel } from './CoreLevel';
 import { CoreLayout, coreSchema } from '../layouts/CoreLayout';
 import { createCollectionLayout } from '../engine/Layout';
+import { screen } from '../engine/render/Screen';
 
 export class CoreController implements Controller {
 	private readonly layout: CoreLayout;
@@ -51,6 +52,11 @@ export class CoreController implements Controller {
 	}
 
 	onMessage(_message: Message, _sender: ComponentUrl): void {}
+
+	onResize(): void {
+		this.layout.vignette.sprite.width = screen.width;
+		this.layout.vignette.sprite.height = screen.height;
+	}
 
 	onInput(actionId: ActionId, action: Action): void {
 		this.input.onInput(actionId, action);
