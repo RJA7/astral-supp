@@ -14,7 +14,6 @@ embedded_instances {
   children: "finish_zone"
   children: "player"
   children: "safe_zones"
-  children: "safe_zones_rt"
   children: "vignette"
   data: ""
   position {
@@ -118,42 +117,9 @@ embedded_instances {
 }
 embedded_instances {
   id: "safe_zones"
-  data: "embedded_components {\n"
-  "  id: \"factory\"\n"
-  "  type: \"factory\"\n"
-  "  data: \"prototype: \\\"/main/core/objects/safe_zone.go\\\"\\n"
-  "\"\n"
-  "}\n"
-  ""
+  data: ""
   position {
     z: 40.0
-  }
-}
-embedded_instances {
-  id: "safe_zones_rt"
-  data: "embedded_components {\n"
-  "  id: \"outline\"\n"
-  "  type: \"model\"\n"
-  "  data: \"mesh: \\\"/builtins/assets/meshes/quad.dae\\\"\\n"
-  "name: \\\"{{NAME}}\\\"\\n"
-  "materials {\\n"
-  "  name: \\\"default\\\"\\n"
-  "  material: \\\"/materials/outline/outline.material\\\"\\n"
-  "  textures {\\n"
-  "    sampler: \\\"texture_sampler\\\"\\n"
-  "    texture: \\\"/materials/outline/outline.render_target\\\"\\n"
-  "  }\\n"
-  "}\\n"
-  "create_go_bones: false\\n"
-  "\"\n"
-  "}\n"
-  ""
-  position {
-    z: 40.0
-  }
-  scale3 {
-    x: 1280.0
-    y: 720.0
   }
 }
 embedded_instances {
@@ -468,7 +434,7 @@ embedded_instances {
   "size_mode: SIZE_MODE_MANUAL\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
-  "  texture: \\\"/assets/atlases/main.atlas\\\"\\n"
+  "  texture: \\\"/assets/atlases/white.atlas\\\"\\n"
   "}\\n"
   "\"\n"
   "}\n"
@@ -485,5 +451,40 @@ embedded_instances {
   "    type: PROPERTY_TYPE_HASH\n"
   "  }\n"
   "}\n"
+  "embedded_components {\n"
+  "  id: \"level_factory\"\n"
+  "  type: \"collectionfactory\"\n"
+  "  data: \"prototype: \\\"/main/levels/level1.collection\\\"\\n"
+  "\"\n"
+  "}\n"
   ""
+}
+embedded_instances {
+  id: "outline"
+  data: "embedded_components {\n"
+  "  id: \"mesh\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/builtins/assets/meshes/quad.dae\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"default\\\"\\n"
+  "  material: \\\"/materials/outline/outline_final.material\\\"\\n"
+  "  textures {\\n"
+  "    sampler: \\\"texture_sampler\\\"\\n"
+  "    texture: \\\"/materials/outline/outline.render_target\\\"\\n"
+  "  }\\n"
+  "}\\n"
+  "create_go_bones: false\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 640.0
+    y: 360.0
+    z: 40.0
+  }
+  scale3 {
+    x: 1280.0
+    y: 720.0
+  }
 }

@@ -9,7 +9,6 @@ import { CoreInput } from './CoreInput';
 import { CorePhysics } from './CorePhysics';
 import { PhysicsEvent } from '../types/Physics';
 import { CoreLevel } from './CoreLevel';
-import { level1 } from './levels/level1';
 import { CoreLayout, coreSchema } from '../layouts/CoreLayout';
 import { createCollectionLayout } from '../engine/Layout';
 
@@ -28,8 +27,8 @@ export class CoreController implements Controller {
 		this.input = new CoreInput();
 		this.player = new Player(this.layout.player);
 		this.cursor = new Cursor(this.layout.cursor);
-		this.level = new CoreLevel(this.layout, level1);
-		this.physics = new CorePhysics(this.layout.player_center.getId());
+		this.level = new CoreLevel(this.layout);
+		this.physics = new CorePhysics(this.layout.player_center.id);
 
 		this.layout.player.setPosition2D(this.level.getPlayerPosition());
 		this.layout.cursor.setPosition2D(this.level.getPlayerPosition());

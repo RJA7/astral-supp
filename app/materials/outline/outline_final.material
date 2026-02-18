@@ -1,7 +1,7 @@
 name: "outline"
 tags: "outline"
 vertex_program: "/builtins/materials/sprite.vp"
-fragment_program: "/materials/outline/outline.fp"
+fragment_program: "/materials/outline/outline_final.fp"
 vertex_constants {
   name: "view_proj"
   type: CONSTANT_TYPE_VIEWPROJ

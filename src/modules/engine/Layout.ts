@@ -2,7 +2,8 @@ import { GameObject } from './GameObject';
 import { ComponentClass } from './components/Component';
 import { RigidBody } from './components/RigidBody';
 import { ShapeClass } from './shapes/Shape';
-import { Fragment, GameObjectId } from './types/GameObjectId';
+import { Fragment, GameObjectId, IdsMap } from './types/Hash';
+import { componentExists, componentUrl } from './ComponentUrl';
 
 export type CollectionSchema = Record<
 	string,
@@ -51,6 +52,7 @@ export type RigidBodyLayout<T extends RigidBodySchema> = RigidBody & {
 
 export function createCollectionLayout<T extends CollectionSchema>(
 	schema: T,
+	map?: IdsMap,
 ): CollectionLayout<T> {
 	const layout: Record<string, any> = {};
 
@@ -62,14 +64,17 @@ export function createCollectionLayout<T extends CollectionSchema>(
 			layout[name] = layouts;
 
 			for (let i = 0; true; i++) {
-				const id = hash(`/${baseName}${i}`);
+				const ownId = hash(`/${baseName}${i}`);
+				const id = map ? map.get(ownId) : ownId;
 
-				if (!go.exists(id)) break;
+				if (!id || !go.exists(id)) break;
 
 				layouts.push(createGameObjectLayout(id, list.schema));
 			}
 		} else {
-			layout[name] = createGameObjectLayout(hash(`/${name}`), goSchema);
+			const ownId = hash(`/${name}`);
+			const id = map ? map.get(ownId)! : ownId;
+			layout[name] = createGameObjectLayout(id, goSchema);
 		}
 	}
 
@@ -91,7 +96,7 @@ export function createGameObjectLayout<T extends GameObjectSchema>(
 
 			for (let i = 0; true; i++) {
 				const fragment = hash(`${baseName}${i}`);
-				const url = msg.url(undefined, id, fragment);
+				const url = componentUrl(id, fragment, true);
 
 				if (!componentExists(url)) break;
 
@@ -170,18 +175,6 @@ export function list<T extends ListSchema>(
 
 function isList(schema: any): schema is List<any> {
 	return schema.isList === true;
-}
-
-function componentExists(url: url) {
-	const [isSprite] = pcall(go.get, url, 'scale.x');
-
-	if (isSprite) {
-		return true;
-	}
-
-	const [isBody] = pcall(physics.get_group, url);
-
-	return isBody;
 }
 
 function shapeExists(bodyUrl: url, shapeId: hash) {

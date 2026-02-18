@@ -1,34 +1,36 @@
-import { componentUrl, ComponentUrl } from './ComponentUrl';
-import { postMessageId } from './PostMessage';
+import { ComponentUrl } from './ComponentUrl';
+import { postVoidMessage } from './PostMessage';
 import { MessageId } from '../types/MessageId';
 import { Playback } from './types/Playback';
 import { Property } from './types/Property';
 import { Easing } from './types/Easing';
-import { Fragment, GameObjectId } from './types/GameObjectId';
+import { GameObjectId } from './types/Hash';
 
 export class GameObject {
-	public readonly url: ComponentUrl;
+	public readonly id: GameObjectId;
 
-	constructor(id: GameObjectId, fragment?: Fragment) {
-		this.url = componentUrl(id, fragment);
-	}
+	constructor(id: GameObjectId) {
+		if (!go.exists(id)) {
+			throw new Error(
+				`GameObject with id ${id} does not exist in ${msg.url().socket}`,
+			);
+		}
 
-	getId(): GameObjectId {
-		return this.url.path;
+		this.id = id;
 	}
 
 	getPosition() {
-		return go.get_position(this.url);
+		return go.get_position(this.id);
 	}
 
 	setPosition(position: vmath.vector3) {
-		go.set_position(position, this.url);
+		go.set_position(position, this.id);
 	}
 
 	setPosition2D(position: vmath.vector3 | vmath.vector4) {
 		go.set_position(
 			vmath.vector3(position.x, position.y, this.getPosition().z),
-			this.url,
+			this.id,
 		);
 	}
 
@@ -37,19 +39,19 @@ export class GameObject {
 	}
 
 	enable() {
-		postMessageId(this.url, MessageId.enable);
+		postVoidMessage(this.id, MessageId.enable);
 	}
 
 	disable() {
-		postMessageId(this.url, MessageId.disable);
+		postVoidMessage(this.id, MessageId.disable);
 	}
 
 	acquireInputFocus(): void {
-		postMessageId(this.url, MessageId.acquire_input_focus);
+		postVoidMessage(this.id, MessageId.acquire_input_focus);
 	}
 
 	releaseInputFocus(): void {
-		postMessageId(this.url, MessageId.release_input_focus);
+		postVoidMessage(this.id, MessageId.release_input_focus);
 	}
 
 	animate(
@@ -71,7 +73,7 @@ export class GameObject {
 		) => void,
 	) {
 		go.animate(
-			this.url,
+			this.id,
 			property,
 			go[playback],
 			to,
@@ -83,14 +85,18 @@ export class GameObject {
 	}
 
 	cancelAnimation(property: Property | hash) {
-		go.cancel_animations(this.url, property);
+		go.cancel_animations(this.id, property);
 	}
 
 	cancelAnimations() {
-		go.cancel_animations(this.url);
+		go.cancel_animations(this.id);
 	}
 
 	setParent(parent: GameObject) {
-		go.set_parent(this.url, parent.url);
+		go.set_parent(this.id, parent.id);
+	}
+
+	addChild(child: GameObject) {
+		go.set_parent(child.id, this.id);
 	}
 }

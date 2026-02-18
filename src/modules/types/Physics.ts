@@ -1,5 +1,5 @@
 import { patchEnum, toHash } from '../utils/PatchEnum';
-import { GameObjectId } from '../engine/types/GameObjectId';
+import { GameObjectId } from '../engine/types/Hash';
 
 export enum PhysicsEventType {
 	trigger_event = 'trigger_event',

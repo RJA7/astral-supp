@@ -1,6 +1,6 @@
 import { Shape } from './Shape';
 import { RigidBody } from '../components/RigidBody';
-import { ShapeId } from '../types/GameObjectId';
+import { ShapeId } from '../types/Hash';
 
 export class BoxShape implements Shape {
 	private readonly body: RigidBody;

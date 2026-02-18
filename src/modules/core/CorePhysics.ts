@@ -1,5 +1,5 @@
 import { PhysicsEvent, PhysicsEventType, PhysicsGroup } from '../types/Physics';
-import { GameObjectId } from '../engine/types/GameObjectId';
+import { GameObjectId } from '../engine/types/Hash';
 
 export class CorePhysics {
 	private isSafeById = new Map<GameObjectId, number>();

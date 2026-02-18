@@ -22,15 +22,6 @@ export enum Property {
 	ScaleY = 'scale.y',
 	ScaleZ = 'scale.z',
 
-	// Sprite
-	Tint = 'tint', // vector4 (RGBA)
-	Size = 'size', // vector3 (local size)
-
-	TintR = 'tint.x',
-	TintG = 'tint.y',
-	TintB = 'tint.z',
-	Alpha = 'tint.w',
-
 	// Label
 	Color = 'color', // vector4 (RGBA)
 	// scale vector3
@@ -63,4 +54,18 @@ export enum Property {
 
 	// Particle
 	// scale number !!!!!!!!!!!!!!!!!!!!!!!
+}
+
+export enum SpriteProperty {
+	Size = 'size',
+	Tint = 'tint',
+
+	Width = 'size.x',
+	Height = 'size.y',
+	Depth = 'size.z',
+
+	TintR = 'tint.x',
+	TintG = 'tint.y',
+	TintB = 'tint.z',
+	Alpha = 'tint.w',
 }

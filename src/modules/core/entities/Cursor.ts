@@ -1,5 +1,5 @@
 import { Easing } from '../../engine/types/Easing';
-import { Property } from '../../engine/types/Property';
+import { Property, SpriteProperty } from '../../engine/types/Property';
 import { clampMagnitude } from '../../utils/ClampMagnitude';
 import { CursorLayout } from '../../layouts/CoreLayout';
 
@@ -36,8 +36,8 @@ export class Cursor {
 		this.visible = value;
 
 		const { sprite } = this.layout;
-		sprite.cancelAnimation(Property.Alpha);
-		sprite.animate(Property.Alpha, value ? 1 : 0, 0.1);
+		sprite.cancelAnimation(SpriteProperty.Alpha);
+		sprite.animate(SpriteProperty.Alpha, value ? 1 : 0, 0.1);
 
 		const scale = value ? 1 : 0.6;
 		const easing = value ? Easing.OUTSINE : Easing.INSINE;
@@ -46,8 +46,8 @@ export class Cursor {
 		const alpha = value ? 1 : 0;
 		const delay = value ? 0 : 0.2;
 		const asset = value ? 'cursor_hand' : 'cursor_grab';
-		sprite.cancelAnimation(Property.Alpha);
-		sprite.animate(Property.Alpha, alpha, 0.1, Easing.LINEAR, delay);
+		sprite.cancelAnimation(SpriteProperty.Alpha);
+		sprite.animate(SpriteProperty.Alpha, alpha, 0.1, Easing.LINEAR, delay);
 		sprite.playFlipBook(asset);
 	}
 

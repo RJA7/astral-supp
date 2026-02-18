@@ -1,12 +1,3 @@
-images {
-  image: "/assets/atlases/main/white_rect.png"
-}
-images {
-  image: "/assets/atlases/main/white_pixel.png"
-}
-images {
-  image: "/assets/atlases/main/glow.png"
-}
 animations {
   id: "idle"
   images {
@@ -36,6 +27,13 @@ animations {
   id: "cursor_hand"
   images {
     image: "/assets/atlases/main/cursor_hand.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+}
+animations {
+  id: "glow"
+  images {
+    image: "/assets/atlases/main/glow.png"
   }
   playback: PLAYBACK_LOOP_FORWARD
 }

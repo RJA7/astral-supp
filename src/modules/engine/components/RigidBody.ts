@@ -1,6 +1,6 @@
 import { Component } from './Component';
 import { componentUrl, ComponentUrl } from '../ComponentUrl';
-import { Fragment, GameObjectId } from '../types/GameObjectId';
+import { Fragment, GameObjectId } from '../types/Hash';
 
 export class RigidBody implements Component {
 	public readonly url: ComponentUrl;
