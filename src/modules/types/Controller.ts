@@ -1,17 +1,28 @@
-import { Message } from './Message';
-import { ComponentUrl } from '../engine/ComponentUrl';
 import { ActionId } from './ActionId';
 import { Action } from './Action';
 import { PhysicsEvent } from './Physics';
+import { Messenger } from '../engine/Messenger';
 
-export type Controller = {
-	final?(): void;
-	update?(dt: number): void;
-	lateUpdate?(dt: number): void;
-	fixedUpdate?(dt: number): void;
-	onMessage?(message: Message, sender: ComponentUrl): void;
-	onInput?(actionId: ActionId, action: Action): void;
-	onReload?(): void;
-	onResize?(): void;
-	physicsListener?(events: PhysicsEvent[]): void;
-};
+export class Controller {
+	messenger: Messenger;
+
+	constructor() {
+		this.messenger = new Messenger();
+	}
+
+	final(): void {}
+
+	update(_dt: number): void {}
+
+	lateUpdate(_dt: number): void {}
+
+	fixedUpdate(_dt: number): void {}
+
+	onInput(_actionId: ActionId, _action: Action): void {}
+
+	onReload(): void {}
+
+	onResize(): void {}
+
+	physicsListener(_events: PhysicsEvent[]): void {}
+}

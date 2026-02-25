@@ -1,25 +1,21 @@
 import { ProxyLoader } from './engine/ProxyLoader';
-import { Message } from './types/Message';
-import { ComponentUrl } from './engine/ComponentUrl';
 import { Controller } from './types/Controller';
 import { MainLayout, mainSchema } from './layouts/MainLayout';
 import { createCollectionLayout } from './engine/layout/CollectionLayout';
 
-export class MainController implements Controller {
+export class MainController extends Controller {
 	private readonly layout: MainLayout;
 
 	private readonly proxyLoader: ProxyLoader;
 
 	constructor() {
+		super();
+
 		this.layout = createCollectionLayout(mainSchema);
 		this.layout.root.acquireInputFocus();
 
-		this.proxyLoader = new ProxyLoader();
+		this.proxyLoader = new ProxyLoader(this.messenger);
 		this.proxyLoader.loadProxy(this.layout.root.proxy_core);
-	}
-
-	onMessage(message: Message, sender: ComponentUrl) {
-		this.proxyLoader.onMessage(message, sender);
 	}
 
 	final() {

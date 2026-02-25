@@ -13,7 +13,7 @@ import { CoreLayout, coreSchema } from '../layouts/CoreLayout';
 import { createCollectionLayout } from '../engine/layout/CollectionLayout';
 import { screen } from '../engine/render/Screen';
 
-export class CoreController implements Controller {
+export class CoreController extends Controller {
 	private readonly layout: CoreLayout;
 	private readonly input: CoreInput;
 	private readonly player: Player;
@@ -22,6 +22,8 @@ export class CoreController implements Controller {
 	private readonly physics: CorePhysics;
 
 	constructor() {
+		super();
+
 		this.layout = createCollectionLayout(coreSchema);
 		this.layout.root.acquireInputFocus();
 
