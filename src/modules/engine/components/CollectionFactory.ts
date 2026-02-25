@@ -1,11 +1,8 @@
 import { componentUrl, ComponentUrl } from '../ComponentUrl';
 import { Component } from './Component';
 import { Fragment, GameObjectId, IdsMap } from '../types/Hash';
-import {
-	CollectionLayout,
-	CollectionSchema,
-	createCollectionLayout,
-} from '../Layout';
+import { CollectionLayout, CollectionSchema } from '../layout/types';
+import { createCollectionLayout } from '../layout/CollectionLayout';
 
 export class CollectionFactory implements Component {
 	public readonly url: ComponentUrl;

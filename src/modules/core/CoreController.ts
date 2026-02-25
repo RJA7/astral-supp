@@ -10,7 +10,7 @@ import { CorePhysics } from './CorePhysics';
 import { PhysicsEvent } from '../types/Physics';
 import { CoreLevel } from './CoreLevel';
 import { CoreLayout, coreSchema } from '../layouts/CoreLayout';
-import { createCollectionLayout } from '../engine/Layout';
+import { createCollectionLayout } from '../engine/layout/CollectionLayout';
 import { screen } from '../engine/render/Screen';
 
 export class CoreController implements Controller {

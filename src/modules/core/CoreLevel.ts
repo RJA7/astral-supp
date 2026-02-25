@@ -1,7 +1,7 @@
 import { CoreLayout } from '../layouts/CoreLayout';
 import { LevelLayout, levelSchema } from '../layouts/LevelLayout';
 import { playLevelAnimations } from './levels/Level1';
-import { createCollectionLayout } from '../engine/Layout';
+import { createCollectionLayout } from '../engine/layout/CollectionLayout';
 import { screen } from '../engine/render/Screen';
 
 export class CoreLevel {

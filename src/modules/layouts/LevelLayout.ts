@@ -1,6 +1,7 @@
-import { CollectionLayout, CollectionSchema, list } from '../engine/Layout';
 import { Sprite } from '../engine/components/Sprite';
 import { BoxShape } from '../engine/shapes/BoxShape';
+import { CollectionLayout, CollectionSchema } from '../engine/layout/types';
+import { body, list } from '../engine/layout/Elements';
 
 export const levelSchema = {
 	bg: {
@@ -8,15 +9,15 @@ export const levelSchema = {
 	},
 	player_position: {},
 	safe_zones: list({
-		body: {
+		body: body({
 			box: BoxShape,
-		},
+		}),
 		sprite: Sprite,
 	}),
 	finish_zone: {
-		body: {
+		body: body({
 			box: BoxShape,
-		},
+		}),
 		sprite: Sprite,
 	},
 } satisfies CollectionSchema;

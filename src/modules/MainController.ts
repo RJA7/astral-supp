@@ -3,7 +3,7 @@ import { Message } from './types/Message';
 import { ComponentUrl } from './engine/ComponentUrl';
 import { Controller } from './types/Controller';
 import { MainLayout, mainSchema } from './layouts/MainLayout';
-import { createCollectionLayout } from './engine/Layout';
+import { createCollectionLayout } from './engine/layout/CollectionLayout';
 
 export class MainController implements Controller {
 	private readonly layout: MainLayout;

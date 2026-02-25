@@ -1,11 +1,8 @@
 import { componentUrl, ComponentUrl } from '../ComponentUrl';
 import { Component } from './Component';
 import { Fragment, GameObjectId } from '../types/Hash';
-import {
-	createGameObjectLayout,
-	GameObjectLayout,
-	GameObjectSchema,
-} from '../Layout';
+import { GameObjectLayout, GameObjectSchema } from '../layout/types';
+import { createGameObjectLayout } from '../layout/GameObjectLayout';
 
 export class Factory implements Component {
 	public readonly url: ComponentUrl;

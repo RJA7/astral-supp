@@ -1,4 +1,4 @@
-import { CollectionLayout, CollectionSchema } from '../engine/Layout';
+import { CollectionLayout, CollectionSchema } from '../engine/layout/types';
 import { CollectionProxy } from '../engine/components/CollectionProxy';
 
 export const mainSchema = {

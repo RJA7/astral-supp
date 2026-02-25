@@ -1,6 +1,6 @@
-import { CollectionSchema, CollectionLayout } from '../engine/Layout';
 import { Sprite } from '../engine/components/Sprite';
 import { CollectionFactory } from '../engine/components/CollectionFactory';
+import { CollectionLayout, CollectionSchema } from '../engine/layout/types';
 
 export const coreSchema = {
 	root: {

@@ -1,8 +1,9 @@
-import { CollectionSchema, createCollectionLayout } from '../../engine/Layout';
 import { Property } from '../../engine/types/Property';
 import { Playback } from '../../engine/types/Playback';
 import { Easing } from '../../engine/types/Easing';
 import { IdsMap } from '../../engine/types/Hash';
+import { CollectionSchema } from '../../engine/layout/types';
+import { createCollectionLayout } from '../../engine/layout/CollectionLayout';
 
 const schema = {
 	safe_zone5: {},
