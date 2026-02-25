@@ -16,6 +16,7 @@ input_method = HiddenInputField
 [project]
 title = astral-supp
 dependencies#0 = https://github.com/ts-defold/defold-lldebugger/archive/extension.zip
+dependencies#1 = https://github.com/defold/extension-spine/archive/refs/tags/4.4.1.zip
 
 [input]
 game_binding = /game.input_bindingc

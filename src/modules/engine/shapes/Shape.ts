@@ -1,5 +1,5 @@
-import { RigidBody } from '../components/RigidBody';
+import { ComponentUrl } from '../ComponentUrl';
 
 export type Shape = {};
 
-export type ShapeClass = new (body: RigidBody, shapeId: hash) => Shape;
+export type ShapeClass = new (bodyUrl: ComponentUrl, shapeId: hash) => Shape;

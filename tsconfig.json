@@ -17,7 +17,7 @@
 
 		"plugins": [{ "name": "typescript-tstl-plugin" }]
 	},
-	"exclude": ["./node_modules/*"],
+	"exclude": ["./node_modules/*", "./tools/*"],
 	"tstl": {
 		"luaTarget": "5.1",
 		"luaLibImport": "require",

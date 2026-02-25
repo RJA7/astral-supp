@@ -144,10 +144,10 @@ export function createRigidBodyLayout<T extends RigidBodySchema>(
 
 				if (!shapeExists(body.url, shapeId)) break;
 
-				layouts.push(new list.schema(body, shapeId));
+				layouts.push(new list.schema(body.url, shapeId));
 			}
 		} else {
-			layout[name] = new Shape(body, hash(name));
+			layout[name] = new Shape(body.url, hash(name));
 		}
 	}
 
