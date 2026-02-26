@@ -11,23 +11,10 @@ embedded_instances {
 embedded_instances {
   id: "world"
   children: "cursor"
+  children: "outline"
   children: "player"
   children: "vignette"
-  data: "embedded_components {\n"
-  "  id: \"spinemodel\"\n"
-  "  type: \"spinemodel\"\n"
-  "  data: \"spine_scene: \\\"/assets/spines/spine.spinescene\\\"\\n"
-  "default_animation: \\\"4_transparent\\\"\\n"
-  "skin: \\\"skin_1\\\"\\n"
-  "material: \\\"/defold-spine/assets/spine.material\\\"\\n"
-  "create_go_bones: true\\n"
-  "\"\n"
-  "  position {\n"
-  "    x: -634.0\n"
-  "    y: 356.33334\n"
-  "  }\n"
-  "}\n"
-  ""
+  data: ""
   position {
     x: 640.0
     y: 360.0
@@ -408,7 +395,40 @@ embedded_instances {
   "  id: \"level_factory\"\n"
   "  type: \"collectionfactory\"\n"
   "  data: \"prototype: \\\"/main/levels/level1.collection\\\"\\n"
+  "dynamic_prototype: true\\n"
+  "\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"safe_zone_factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/main/core/safe_zone.go\\\"\\n"
   "\"\n"
   "}\n"
   ""
+}
+embedded_instances {
+  id: "outline"
+  data: "embedded_components {\n"
+  "  id: \"model\"\n"
+  "  type: \"model\"\n"
+  "  data: \"mesh: \\\"/builtins/assets/meshes/quad.dae\\\"\\n"
+  "name: \\\"{{NAME}}\\\"\\n"
+  "materials {\\n"
+  "  name: \\\"default\\\"\\n"
+  "  material: \\\"/materials/outline/outline_final.material\\\"\\n"
+  "  textures {\\n"
+  "    sampler: \\\"texture_sampler\\\"\\n"
+  "    texture: \\\"/materials/outline/outline.render_target\\\"\\n"
+  "  }\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    z: 40.0
+  }
+  scale3 {
+    x: 1280.0
+    y: 720.0
+  }
 }

@@ -11,10 +11,6 @@ export class CoreLevel {
 		const levelIdsMap = layout.root.level_factory.create();
 		this.levelLayout = createCollectionLayout(levelSchema, levelIdsMap);
 
-		this.levelLayout.finish_zone.body.box.set(
-			this.levelLayout.finish_zone.sprite.getSize(),
-		);
-
 		const stroke = vmath.vector3(50, 50, 0);
 
 		for (const safeZoneLayout of this.levelLayout.safe_zones) {

@@ -14,12 +14,6 @@ export const levelSchema = {
 		}),
 		sprite: Sprite,
 	}),
-	finish_zone: {
-		body: body({
-			box: BoxShape,
-		}),
-		sprite: Sprite,
-	},
 } satisfies CollectionSchema;
 
 export type LevelLayout = CollectionLayout<typeof levelSchema>;

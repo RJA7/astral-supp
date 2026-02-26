@@ -1,3 +1,6 @@
+images {
+  image: "/assets/atlases/main/white_pixel.png"
+}
 animations {
   id: "idle"
   images {

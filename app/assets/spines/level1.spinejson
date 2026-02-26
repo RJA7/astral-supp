@@ -1,0 +1,65 @@
+{
+  "skeleton": {
+    "hash": "rEdsObZoMVC8QoD3PPrUP00+3yE",
+    "spine": "4.2",
+    "x": -200,
+    "y": -224.5,
+    "width": 400,
+    "height": 249.5,
+    "images": "../../assets/atlases/main/",
+    "audio": ""
+  },
+  "bones": [
+    {
+      "name": "root"
+    },
+    {
+      "name": "safe_zone0",
+      "parent": "root",
+      "scaleX": 400,
+      "scaleY": 50
+    },
+    {
+      "name": "safe_zone1",
+      "parent": "root",
+      "rotation": 90,
+      "y": -124.5,
+      "scaleX": 200,
+      "scaleY": 50
+    }
+  ],
+  "slots": [
+    {
+      "name": "white_pixel",
+      "bone": "safe_zone0",
+      "attachment": "white_pixel"
+    },
+    {
+      "name": "white_pixel2",
+      "bone": "safe_zone1",
+      "attachment": "white_pixel"
+    }
+  ],
+  "skins": [
+    {
+      "name": "default",
+      "attachments": {
+        "white_pixel2": {
+          "white_pixel": {
+            "width": 1,
+            "height": 1
+          }
+        },
+        "white_pixel": {
+          "white_pixel": {
+            "width": 1,
+            "height": 1
+          }
+        }
+      }
+    }
+  ],
+  "animations": {
+    "animation": {}
+  }
+}
