@@ -66,11 +66,7 @@ export class GameObject {
 			| ReturnType<typeof vmath.vector> = Easing.LINEAR,
 		delay: number = 0,
 		playback: Playback = Playback.PLAYBACK_ONCE_FORWARD,
-		completeFunction?: (
-			this: object,
-			url: ComponentUrl,
-			property: string | hash,
-		) => void,
+		completeFunction?: (url: ComponentUrl, property: Property) => void,
 	) {
 		go.animate(
 			this.id,
@@ -80,7 +76,7 @@ export class GameObject {
 			typeof easing === 'string' ? go[easing] : easing,
 			duration,
 			delay,
-			completeFunction,
+			this.wrapAnimationComplete(completeFunction),
 		);
 	}
 
@@ -98,5 +94,15 @@ export class GameObject {
 
 	addChild(child: GameObject) {
 		go.set_parent(child.id, this.id);
+	}
+
+	private wrapAnimationComplete(
+		complete?: (url: ComponentUrl, property: Property) => void,
+	) {
+		if (!complete) return;
+
+		return function (this: object, url: ComponentUrl, property: string | hash) {
+			complete(url, property as Property);
+		};
 	}
 }

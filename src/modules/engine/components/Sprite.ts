@@ -72,16 +72,13 @@ export class Sprite implements Component {
 
 	playFlipBook(
 		id: string | hash,
-		completeFunction?: (
-			message: AnimationDoneMessage,
-			sender: ComponentUrl,
-		) => void,
+		complete?: (message: AnimationDoneMessage, sender: ComponentUrl) => void,
 		playProperties: { offset?: number; playback_rate?: number } = {},
 	) {
 		sprite.play_flipbook(
 			this.url,
 			id,
-			this.wrapAnimationCompleteFunction(completeFunction),
+			this.wrapFlipBookComplete(complete),
 			playProperties,
 		);
 	}
@@ -98,11 +95,7 @@ export class Sprite implements Component {
 			| ReturnType<typeof vmath.vector> = Easing.LINEAR,
 		delay: number = 0,
 		playback: Playback = Playback.PLAYBACK_ONCE_FORWARD,
-		completeFunction?: (
-			this: object,
-			url: ComponentUrl,
-			property: string | hash,
-		) => void,
+		complete?: (url: ComponentUrl, property: SpriteProperty) => void,
 	) {
 		go.animate(
 			this.url,
@@ -112,7 +105,7 @@ export class Sprite implements Component {
 			typeof easing === 'string' ? go[easing] : easing,
 			duration,
 			delay,
-			completeFunction,
+			this.wrapAnimationComplete(complete),
 		);
 	}
 
@@ -124,13 +117,10 @@ export class Sprite implements Component {
 		go.cancel_animations(this.url);
 	}
 
-	private wrapAnimationCompleteFunction(
-		completeFunction?: (
-			message: AnimationDoneMessage,
-			sender: ComponentUrl,
-		) => void,
+	private wrapFlipBookComplete(
+		complete?: (message: AnimationDoneMessage, sender: ComponentUrl) => void,
 	) {
-		if (!completeFunction) return;
+		if (!complete) return;
 
 		return function (
 			this: object,
@@ -140,7 +130,17 @@ export class Sprite implements Component {
 		) {
 			// @ts-expect-error
 			message.mid = messageId;
-			completeFunction(message as AnimationDoneMessage, sender as ComponentUrl);
+			complete(message as AnimationDoneMessage, sender as ComponentUrl);
+		};
+	}
+
+	private wrapAnimationComplete(
+		complete?: (url: ComponentUrl, property: SpriteProperty) => void,
+	) {
+		if (!complete) return;
+
+		return function (this: object, url: ComponentUrl, property: string | hash) {
+			complete(url, property as SpriteProperty);
 		};
 	}
 }

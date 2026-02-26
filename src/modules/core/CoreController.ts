@@ -3,8 +3,6 @@ import { ActionId } from '../types/ActionId';
 import { Action } from '../types/Action';
 import { Player } from './entities/Player';
 import { Controller } from '../types/Controller';
-import { Message } from '../types/Message';
-import { ComponentUrl } from '../engine/ComponentUrl';
 import { CoreInput } from './CoreInput';
 import { CorePhysics } from './CorePhysics';
 import { PhysicsEvent } from '../types/Physics';
@@ -52,8 +50,6 @@ export class CoreController extends Controller {
 			this.input.isPointerDown(),
 		);
 	}
-
-	onMessage(_message: Message, _sender: ComponentUrl): void {}
 
 	onResize(): void {
 		this.layout.vignette.sprite.width = screen.width;
