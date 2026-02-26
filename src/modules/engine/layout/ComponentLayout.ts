@@ -1,12 +1,17 @@
 import { resolveListItemName } from './ListLayout';
-import { ComponentLayout, ComponentSchema, ListLayout } from './types';
+import {
+	ComponentLayout,
+	ComponentSchema,
+	ComponentType,
+	ListLayout,
+} from './types';
 import { componentExists, componentUrl } from '../ComponentUrl';
 import { Fragment, GameObjectId } from '../types/Hash';
 import { ComponentClass } from '../components/Component';
 import { createRigidBodyLayout } from './RigidBodyLayout';
 import { assertNever } from '../utils/assertNever';
 
-export function createComponentListLayout(
+export function createComponentLayouts(
 	list: ListLayout<ComponentSchema>,
 	id: GameObjectId,
 	name: string,
@@ -35,7 +40,7 @@ export function createComponentLayout<T extends ComponentSchema>(
 		return new schema(id, fragment) as ComponentLayout<T>;
 	}
 
-	if (schema.type === 'RigidBody') {
+	if (schema.type === ComponentType.RigidBody) {
 		return createRigidBodyLayout(id, fragment, schema) as ComponentLayout<T>;
 	}
 

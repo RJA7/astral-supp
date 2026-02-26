@@ -4,10 +4,10 @@ import { GameObjectLayout, GameObjectSchema, ListLayout } from './types';
 import { isListLayout, resolveListItemName } from './ListLayout';
 import {
 	createComponentLayout,
-	createComponentListLayout,
+	createComponentLayouts,
 } from './ComponentLayout';
 
-export function createGameObjectListLayout(
+export function createGameObjectLayouts(
 	list: ListLayout<GameObjectSchema>,
 	name: string,
 	map?: IdsMap,
@@ -35,7 +35,7 @@ export function createGameObjectLayout<T extends GameObjectSchema>(
 
 	for (const [name, componentSchema] of Object.entries(schema)) {
 		if (isListLayout(componentSchema)) {
-			layout[name] = createComponentListLayout(componentSchema, id, name);
+			layout[name] = createComponentLayouts(componentSchema, id, name);
 		} else {
 			layout[name] = createComponentLayout(id, hash(name), componentSchema);
 		}

@@ -13,18 +13,18 @@ export function createRigidBodyLayout<T extends RigidBodySchema>(
 	const body = new RigidBody(id, fragment);
 	const layout = body as Record<string, any>;
 
-	for (const [name, Shape] of Object.entries(schema.shapes)) {
-		if (isListLayout(Shape)) {
-			layout[name] = createShapesListLayout(Shape, body.url, name);
+	for (const [name, shape] of Object.entries(schema.shapes)) {
+		if (isListLayout(shape)) {
+			layout[name] = createShapeLayouts(shape, body.url, name);
 		} else {
-			layout[name] = new Shape(body.url, hash(name));
+			layout[name] = new shape(body.url, hash(name));
 		}
 	}
 
 	return layout as RigidBodyLayout<T>;
 }
 
-function createShapesListLayout(
+function createShapeLayouts(
 	list: ListLayout<ShapeClass>,
 	bodyUrl: ComponentUrl,
 	name: string,

@@ -3,7 +3,7 @@ import { CollectionLayout, CollectionSchema } from './types';
 import { isListLayout } from './ListLayout';
 import {
 	createGameObjectLayout,
-	createGameObjectListLayout,
+	createGameObjectLayouts,
 } from './GameObjectLayout';
 
 export function createCollectionLayout<T extends CollectionSchema>(
@@ -14,7 +14,7 @@ export function createCollectionLayout<T extends CollectionSchema>(
 
 	for (const [name, goSchema] of Object.entries(schema)) {
 		if (isListLayout(goSchema)) {
-			layout[name] = createGameObjectListLayout(goSchema, name, map);
+			layout[name] = createGameObjectLayouts(goSchema, name, map);
 		} else {
 			const ownId = hash(`/${name}`);
 			const id = map ? map.get(ownId)! : ownId;

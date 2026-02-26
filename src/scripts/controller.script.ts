@@ -28,7 +28,7 @@ export function init(this: Self) {
 
 	this.resizeBinding = screen.onResize.add(
 		this.controller.messenger.wrapCrossScript(() => {
-			this.controller.onResize?.();
+			this.controller.onResize();
 		}),
 	);
 	physics.set_event_listener(physics_listener);
@@ -37,19 +37,19 @@ export function init(this: Self) {
 export function final(this: Self) {
 	this.resizeBinding.destroy();
 	this.controller.messenger.final();
-	this.controller.final?.();
+	this.controller.final();
 }
 
 export function update(this: Self, dt: number) {
-	this.controller.update?.(dt);
+	this.controller.update(dt);
 }
 
 export function late_update(this: Self, dt: number) {
-	this.controller.lateUpdate?.(dt);
+	this.controller.lateUpdate(dt);
 }
 
 export function fixed_update(this: Self, dt: number) {
-	this.controller.fixedUpdate?.(dt);
+	this.controller.fixedUpdate(dt);
 }
 
 export function on_message(
@@ -63,13 +63,13 @@ export function on_message(
 }
 
 export function on_input(this: Self, actionId: ActionId, action: Action) {
-	this.controller.onInput?.(actionId, action);
+	this.controller.onInput(actionId, action);
 }
 
 export function on_reload(this: Self) {
-	this.controller.onReload?.();
+	this.controller.onReload();
 }
 
 function physics_listener(this: Self, events: PhysicsEvent[]) {
-	this.controller.physicsListener?.(events);
+	this.controller.physicsListener(events);
 }
