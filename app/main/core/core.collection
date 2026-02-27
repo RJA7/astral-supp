@@ -398,12 +398,6 @@ embedded_instances {
   "dynamic_prototype: true\\n"
   "\"\n"
   "}\n"
-  "embedded_components {\n"
-  "  id: \"safe_zone_factory\"\n"
-  "  type: \"factory\"\n"
-  "  data: \"prototype: \\\"/main/core/safe_zone.go\\\"\\n"
-  "\"\n"
-  "}\n"
   ""
 }
 embedded_instances {

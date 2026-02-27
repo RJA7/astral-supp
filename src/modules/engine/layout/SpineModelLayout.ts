@@ -3,6 +3,7 @@ import { ListLayout, SpineModelLayout, SpineModelSchema } from './types';
 import { Fragment, GameObjectId } from '../types/Hash';
 import { SpineModel } from '../components/SpineModel';
 import { GameObject } from '../GameObject';
+import { ComponentUrl } from '../ComponentUrl';
 
 export function createSpineModelLayout<T extends SpineModelSchema>(
 	id: GameObjectId,
@@ -14,25 +15,31 @@ export function createSpineModelLayout<T extends SpineModelSchema>(
 
 	for (const [name, bone] of Object.entries(schema.bones)) {
 		if (isListLayout(bone)) {
-			layout[name] = createBoneLayouts(bone, name);
+			layout[name] = createBoneLayouts(bone, spineModel.url, name);
 		} else {
-			layout[name] = new GameObject(hash(name));
+			const boneId: GameObjectId = spine.get_go(spineModel.url, hash(name));
+			layout[name] = new GameObject(boneId);
 		}
 	}
 
 	return layout as SpineModelLayout<T>;
 }
 
-function createBoneLayouts(list: ListLayout<object>, name: string) {
+function createBoneLayouts(
+	list: ListLayout<object>,
+	spineModelUrl: ComponentUrl,
+	name: string,
+) {
 	const baseName = resolveListItemName(list, name);
 	const layouts = [] as GameObject[];
 
 	for (let i = 0; true; i++) {
-		const id: GameObjectId = hash(`${baseName}${i}`);
+		const boneHash = hash(`${baseName}${i}`);
 
-		if (!go.exists(id)) break;
+		const [ok, boneId] = pcall(spine.get_go, spineModelUrl, boneHash);
+		if (!ok) break;
 
-		layouts.push(new GameObject(id));
+		layouts.push(new GameObject(boneId));
 	}
 
 	return layouts;

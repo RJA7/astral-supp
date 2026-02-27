@@ -38,6 +38,18 @@ export class GameObject {
 		this.setPosition2D(this.getPosition().add(position));
 	}
 
+	getScale(): vmath.vector3 {
+		return go.get_scale(this.id);
+	}
+
+	setScale(scale: vmath.vector3) {
+		go.set_scale(scale, this.id);
+	}
+
+	setScale2D(scale: vmath.vector3) {
+		go.set_scale_xy(scale, this.id);
+	}
+
 	enable() {
 		postVoidMessage(this.id, MessageId.enable);
 	}
