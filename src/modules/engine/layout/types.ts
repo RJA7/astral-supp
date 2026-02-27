@@ -2,33 +2,44 @@ import { GameObject } from '../GameObject';
 import { ComponentClass } from '../components/Component';
 import { ShapeClass } from '../shapes/Shape';
 import { RigidBody } from '../components/RigidBody';
+import { SpineModel } from '../components/SpineModel';
 
-export type CollectionSchema = Record<
-	string,
-	GameObjectSchema | ListLayout<GameObjectSchema>
->;
+export type ListLayout<T> = {
+	isList: true;
+	schema: T;
+	baseName?: string;
+};
 
-export type GameObjectSchema = Record<
-	string,
-	ComponentSchema | ListLayout<ComponentSchema>
->;
+type ListOr<T> = T | ListLayout<T>;
 
-export type ComponentSchema = ComponentClass | RigidBodySchema;
+export type CollectionSchema = Record<string, ListOr<GameObjectSchema>>;
+
+export type GameObjectSchema = Record<string, ListOr<ComponentSchema>>;
+
+export type ComponentSchema =
+	| ComponentClass
+	| RigidBodySchema
+	| SpineModelSchema;
 
 export enum ComponentType {
 	RigidBody = 'RigidBody',
+	SpineModel = 'SpineModel',
 }
 
-export type RigidBodySchemaShapes = Record<
-	string,
-	ShapeClass | ListLayout<ShapeClass>
->;
+export type RigidBodySchemaShapes = Record<string, ListOr<ShapeClass>>;
 
 export type RigidBodySchema<
 	T extends RigidBodySchemaShapes = RigidBodySchemaShapes,
 > = {
 	type: ComponentType.RigidBody;
 	shapes: T;
+};
+
+export type SpineModelBones = Record<string, ListOr<object>>;
+
+export type SpineModelSchema<T extends SpineModelBones = SpineModelBones> = {
+	type: ComponentType.SpineModel;
+	bones: T;
 };
 
 export type CollectionLayout<T extends CollectionSchema> = {
@@ -50,9 +61,11 @@ export type GameObjectLayout<T extends GameObjectSchema> = GameObject & {
 export type ComponentLayout<T extends ComponentSchema> =
 	T extends RigidBodySchema
 		? RigidBodyLayout<T>
-		: T extends ComponentClass
-			? InstanceType<T>
-			: never;
+		: T extends SpineModelSchema
+			? SpineModelLayout<T>
+			: T extends ComponentClass
+				? InstanceType<T>
+				: never;
 
 export type RigidBodyLayout<
 	S extends RigidBodySchema,
@@ -65,10 +78,9 @@ export type RigidBodyLayout<
 			: never;
 };
 
-export type ListSchema = GameObjectSchema | ComponentSchema | ShapeClass;
-
-export type ListLayout<T extends ListSchema> = {
-	isList: true;
-	schema: T;
-	baseName?: string;
+export type SpineModelLayout<
+	S extends SpineModelSchema,
+	T = S['bones'],
+> = SpineModel & {
+	[K in keyof T]: T[K] extends ListLayout<object> ? GameObject[] : GameObject;
 };

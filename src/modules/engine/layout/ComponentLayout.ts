@@ -10,6 +10,7 @@ import { Fragment, GameObjectId } from '../types/Hash';
 import { ComponentClass } from '../components/Component';
 import { createRigidBodyLayout } from './RigidBodyLayout';
 import { assertNever } from '../utils/assertNever';
+import { createSpineModelLayout } from './SpineModelLayout';
 
 export function createComponentLayouts(
 	list: ListLayout<ComponentSchema>,
@@ -44,7 +45,11 @@ export function createComponentLayout<T extends ComponentSchema>(
 		return createRigidBodyLayout(id, fragment, schema) as ComponentLayout<T>;
 	}
 
-	assertNever(schema.type);
+	if (schema.type === ComponentType.SpineModel) {
+		return createSpineModelLayout(id, fragment, schema) as ComponentLayout<T>;
+	}
+
+	assertNever(schema);
 }
 
 function isComponentClass(schema: any): schema is ComponentClass {

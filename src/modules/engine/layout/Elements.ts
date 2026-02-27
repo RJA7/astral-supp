@@ -1,9 +1,10 @@
 import {
 	ComponentType,
 	ListLayout,
-	ListSchema,
 	RigidBodySchema,
 	RigidBodySchemaShapes,
+	SpineModelBones,
+	SpineModelSchema,
 } from './types';
 
 export function body<T extends RigidBodySchemaShapes>(
@@ -15,7 +16,16 @@ export function body<T extends RigidBodySchemaShapes>(
 	};
 }
 
-export function list<T extends ListSchema>(
+export function spineModel<T extends SpineModelBones>(
+	bones: T,
+): SpineModelSchema<T> {
+	return {
+		type: ComponentType.SpineModel,
+		bones,
+	};
+}
+
+export function list<T>(
 	schema: T,
 	baseName?: string,
 ): ListLayout<T> {
