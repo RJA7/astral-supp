@@ -1,4 +1,4 @@
-import { GameObject } from '../GameObject';
+import { GameObject, GameObjectClass } from '../GameObject';
 import { ComponentClass } from '../components/Component';
 import { ShapeClass } from '../shapes/Shape';
 import { RigidBody } from '../components/RigidBody';
@@ -35,7 +35,7 @@ export type RigidBodySchema<
 	shapes: T;
 };
 
-export type SpineModelBones = Record<string, ListOr<object>>;
+export type SpineModelBones = Record<string, ListOr<GameObjectClass>>;
 
 export type SpineModelSchema<T extends SpineModelBones = SpineModelBones> = {
 	type: ComponentType.SpineModel;

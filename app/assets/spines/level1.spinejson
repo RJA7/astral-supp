@@ -1,65 +1,210 @@
 {
   "skeleton": {
-    "hash": "rEdsObZoMVC8QoD3PPrUP00+3yE",
+    "hash": "18d/jsBkUZvB3o2ehE378uSnuQA",
     "spine": "4.2",
-    "x": -200,
-    "y": -224.5,
-    "width": 400,
-    "height": 249.5,
-    "images": "../../assets/atlases/main/",
-    "audio": ""
+    "x": -641,
+    "y": -361,
+    "width": 1282,
+    "height": 722,
+    "images": "../../assets/atlases/level1/",
+    "audio": "D:/1_my_Work/2026/Roma/mockup_1/mockup_1_spine/1"
   },
   "bones": [
     {
       "name": "root"
     },
     {
+      "name": "safe_zone2",
+      "parent": "root",
+      "x": 100.38,
+      "y": 164.19,
+      "scaleX": 600,
+      "scaleY": 50
+    },
+    {
       "name": "safe_zone0",
       "parent": "root",
-      "scaleX": 400,
-      "scaleY": 50
+      "x": 50.31,
+      "y": 40,
+      "scaleX": 100,
+      "scaleY": 298
     },
     {
       "name": "safe_zone1",
       "parent": "root",
-      "rotation": 90,
-      "y": -124.5,
-      "scaleX": 200,
+      "x": -249.55,
+      "y": -160.66,
+      "scaleX": 100,
+      "scaleY": 200
+    },
+    {
+      "name": "safe_zone3",
+      "parent": "root",
+      "x": -225.14,
+      "y": -83.89,
+      "scaleX": 250,
       "scaleY": 50
+    },
+    {
+      "name": "safe_zone4",
+      "parent": "root",
+      "x": 74.57,
+      "y": -83.89,
+      "scaleX": 250,
+      "scaleY": 50
+    },
+    {
+      "name": "safe_zone5",
+      "parent": "root",
+      "x": -149.85,
+      "y": -235.89,
+      "scaleX": 600,
+      "scaleY": 50
+    },
+    {
+      "name": "safe_zone6",
+      "parent": "root",
+      "x": 374.99,
+      "y": 189.29,
+      "scaleX": 50,
+      "scaleY": 100
     }
   ],
   "slots": [
     {
-      "name": "white_pixel",
-      "bone": "safe_zone0",
-      "attachment": "white_pixel"
+      "name": "bg",
+      "bone": "root",
+      "attachment": "bg"
     },
     {
-      "name": "white_pixel2",
+      "name": "safe_zone_slot0",
+      "bone": "safe_zone0",
+      "attachment": "safe_zone_asset"
+    },
+    {
+      "name": "safe_zone_slot1",
       "bone": "safe_zone1",
-      "attachment": "white_pixel"
+      "attachment": "safe_zone_asset"
+    },
+    {
+      "name": "safe_zone_slot2",
+      "bone": "safe_zone2",
+      "attachment": "safe_zone_asset"
+    },
+    {
+      "name": "safe_zone_slot5",
+      "bone": "safe_zone5",
+      "attachment": "safe_zone_asset"
+    },
+    {
+      "name": "safe_zone_slot6",
+      "bone": "safe_zone6",
+      "attachment": "safe_zone_asset"
+    },
+    {
+      "name": "safe_zone_slot3",
+      "bone": "safe_zone3",
+      "attachment": "safe_zone_asset"
+    },
+    {
+      "name": "safe_zone_slot4",
+      "bone": "safe_zone4",
+      "attachment": "safe_zone_asset"
+    },
+    {
+      "name": "mask_on_safe",
+      "bone": "root"
     }
   ],
   "skins": [
     {
       "name": "default",
       "attachments": {
-        "white_pixel2": {
-          "white_pixel": {
+        "bg": {
+          "bg": {
+            "width": 1282,
+            "height": 722
+          }
+        },
+        "safe_zone_slot0": {
+          "safe_zone_asset": {
             "width": 1,
             "height": 1
           }
         },
-        "white_pixel": {
-          "white_pixel": {
+        "safe_zone_slot1": {
+          "safe_zone_asset": {
             "width": 1,
             "height": 1
+          }
+        },
+        "safe_zone_slot2": {
+          "safe_zone_asset": {
+            "width": 1,
+            "height": 1
+          }
+        },
+        "safe_zone_slot3": {
+          "safe_zone_asset": {
+            "width": 1,
+            "height": 1
+          }
+        },
+        "safe_zone_slot4": {
+          "safe_zone_asset": {
+            "width": 1,
+            "height": 1
+          }
+        },
+        "safe_zone_slot5": {
+          "safe_zone_asset": {
+            "width": 1,
+            "height": 1
+          }
+        },
+        "safe_zone_slot6": {
+          "safe_zone_asset": {
+            "width": 1,
+            "height": 1
+          }
+        },
+        "mask_on_safe": {
+          "mask_on_safe": {
+            "width": 1282,
+            "height": 722
           }
         }
       }
     }
   ],
   "animations": {
-    "animation": {}
+    "animation": {
+      "bones": {
+        "safe_zone0": {
+          "translate": [
+            {},
+            {
+              "time": 3.3333,
+              "x": -200.56
+            },
+            {
+              "time": 6.6667
+            }
+          ]
+        },
+        "safe_zone1": {
+          "translate": [
+            {},
+            {
+              "time": 3.3333,
+              "x": 297.57
+            },
+            {
+              "time": 6.6667
+            }
+          ]
+        }
+      }
+    }
   }
 }

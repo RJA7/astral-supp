@@ -17,4 +17,8 @@ export class SpineModel implements Component {
 	get alpha() {
 		return go.get(this.url, SpriteProperty.Alpha) as number;
 	}
+
+	public hideSlotAttachment(slotName: string) {
+		spine.set_attachment(this.url, slotName, undefined!);
+	}
 }

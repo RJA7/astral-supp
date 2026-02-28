@@ -1,0 +1,16 @@
+{
+"class": "export-json",
+"name": "JSON",
+"project": "D:\\Projects\\Defold\\astral-supp\\app\\art\\levels\\level1.spine",
+"output": "D:/Projects/Defold/astral-supp/app/assets/spines",
+"open": false,
+"extension": ".json",
+"format": "JSON",
+"prettyPrint": false,
+"nonessential": true,
+"cleanUp": true,
+"packAtlas": null,
+"packSource": "attachments",
+"packTarget": "perskeleton",
+"warnings": false
+}

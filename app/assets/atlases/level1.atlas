@@ -1,0 +1,10 @@
+images {
+  image: "/assets/atlases/level1/bg.png"
+}
+images {
+  image: "/assets/atlases/level1/mask_on_safe.png"
+}
+images {
+  image: "/assets/atlases/level1/safe_zone_asset.png"
+}
+extrude_borders: 2

@@ -6,6 +6,8 @@ import { Property } from './types/Property';
 import { Easing } from './types/Easing';
 import { GameObjectId } from './types/Hash';
 
+export type GameObjectClass = typeof GameObject;
+
 export class GameObject {
 	public readonly id: GameObjectId;
 

@@ -2,7 +2,7 @@ import { isListLayout, resolveListItemName } from './ListLayout';
 import { ListLayout, SpineModelLayout, SpineModelSchema } from './types';
 import { Fragment, GameObjectId } from '../types/Hash';
 import { SpineModel } from '../components/SpineModel';
-import { GameObject } from '../GameObject';
+import { GameObject, GameObjectClass } from '../GameObject';
 import { ComponentUrl } from '../ComponentUrl';
 
 export function createSpineModelLayout<T extends SpineModelSchema>(
@@ -26,8 +26,8 @@ export function createSpineModelLayout<T extends SpineModelSchema>(
 }
 
 function createBoneLayouts(
-	list: ListLayout<object>,
-	spineModelUrl: ComponentUrl,
+	list: ListLayout<GameObjectClass>,
+	spineUrl: ComponentUrl,
 	name: string,
 ) {
 	const baseName = resolveListItemName(list, name);
@@ -36,7 +36,7 @@ function createBoneLayouts(
 	for (let i = 0; true; i++) {
 		const boneHash = hash(`${baseName}${i}`);
 
-		const [ok, boneId] = pcall(spine.get_go, spineModelUrl, boneHash);
+		const [ok, boneId] = pcall(spine.get_go, spineUrl, boneHash);
 		if (!ok) break;
 
 		layouts.push(new GameObject(boneId));
