@@ -37,7 +37,7 @@ export default class Tweener {
 	}
 
 	update(dt: number, preserve = true): void {
-		this._time += dt;
+		this._time += dt * 1000;
 
 		const time = this._time;
 		let tweenIds = Object.keys(this._tweens);

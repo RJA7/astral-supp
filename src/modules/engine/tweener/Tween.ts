@@ -45,7 +45,6 @@ export class Tween<T extends UnknownProps = any> {
 	constructor(object: T, group: Tweener) {
 		this._object = object;
 		this._group = group;
-		group.add(this);
 	}
 
 	getId(): number {
@@ -495,18 +494,6 @@ export class Tween<T extends UnknownProps = any> {
 		const elapsed = calculateElapsedPortion();
 		const value = this._easingFunction(elapsed);
 
-		// properties transformations
-		this._updateProperties(
-			this._object,
-			this._valuesStart,
-			this._valuesEnd,
-			value,
-		);
-
-		if (this._onUpdateCallback) {
-			this._onUpdateCallback(this._object, elapsed);
-		}
-
 		if (this._duration === 0 || elapsedTime >= this._duration) {
 			if (this._repeat > 0) {
 				const completeCount = Math.min(
@@ -540,6 +527,8 @@ export class Tween<T extends UnknownProps = any> {
 
 				this._startTime += durationAndDelay * completeCount;
 
+				this._updateTransform(value, elapsed);
+
 				if (this._onRepeatCallback) {
 					this._onRepeatCallback(this._object);
 				}
@@ -548,6 +537,8 @@ export class Tween<T extends UnknownProps = any> {
 
 				return true;
 			} else {
+				this._updateTransform(value, elapsed);
+
 				if (this._onCompleteCallback) {
 					this._onCompleteCallback(this._object);
 				}
@@ -568,7 +559,22 @@ export class Tween<T extends UnknownProps = any> {
 			}
 		}
 
+		this._updateTransform(value, elapsed);
+
 		return true;
+	}
+
+	private _updateTransform(value: number, elapsed: number) {
+		this._updateProperties(
+			this._object,
+			this._valuesStart,
+			this._valuesEnd,
+			value,
+		);
+
+		if (this._onUpdateCallback) {
+			this._onUpdateCallback(this._object, elapsed);
+		}
 	}
 
 	private _updateProperties(
