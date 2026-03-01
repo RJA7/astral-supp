@@ -2,12 +2,15 @@ import { ActionId } from './ActionId';
 import { Action } from './Action';
 import { PhysicsEvent } from './Physics';
 import { Messenger } from '../engine/Messenger';
+import Tweener from '../engine/tweener/Tweener';
 
 export class Controller {
 	messenger: Messenger;
+	tweener: Tweener;
 
 	constructor() {
 		this.messenger = new Messenger();
+		this.tweener = new Tweener();
 	}
 
 	final(): void {}

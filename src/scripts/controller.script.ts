@@ -45,6 +45,7 @@ export function update(this: Self, dt: number) {
 }
 
 export function late_update(this: Self, dt: number) {
+	this.controller.tweener.update(dt);
 	this.controller.lateUpdate(dt);
 }
 
