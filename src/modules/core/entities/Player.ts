@@ -1,9 +1,7 @@
-import { clampMagnitude } from '../../utils/ClampMagnitude';
 import { PlayerLayout } from '../../layouts/CoreLayout';
 
 // Max jump per physics iteration. This limits how close safe zones can be
-const MAX_SPEED = 10;
-const SENSITIVITY = 0.2;
+const SENSITIVITY = 0.1;
 
 export class Player {
 	private readonly layout: PlayerLayout;
@@ -18,9 +16,6 @@ export class Player {
 		isPointerDown: boolean,
 	) {
 		if (!isPointerDown) return;
-
-		let speed = inputDelta.mul(SENSITIVITY);
-		speed = clampMagnitude(speed, MAX_SPEED);
-		this.layout.addPosition2D(speed);
+		this.layout.addPosition2D(inputDelta.mul(SENSITIVITY));
 	}
 }
