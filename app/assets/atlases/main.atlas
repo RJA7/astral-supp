@@ -1,23 +1,17 @@
 images {
   image: "/assets/atlases/main/white_pixel.png"
 }
-animations {
-  id: "idle"
-  images {
-    image: "/assets/atlases/main/character_pink_idle.png"
-  }
-  playback: PLAYBACK_NONE
+images {
+  image: "/assets/atlases/main/player_green.png"
 }
-animations {
-  id: "walk"
-  images {
-    image: "/assets/atlases/main/character_pink_walk_a.png"
-  }
-  images {
-    image: "/assets/atlases/main/character_pink_walk_b.png"
-  }
-  playback: PLAYBACK_LOOP_FORWARD
-  fps: 7
+images {
+  image: "/assets/atlases/main/player_purple.png"
+}
+images {
+  image: "/assets/atlases/main/player_red.png"
+}
+images {
+  image: "/assets/atlases/main/player_yellow.png"
 }
 animations {
   id: "cursor_grab"

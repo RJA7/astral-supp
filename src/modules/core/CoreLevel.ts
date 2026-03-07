@@ -1,8 +1,7 @@
 import { CoreLayout } from '../layouts/CoreLayout';
 import { LevelLayout, levelSchema } from '../layouts/LevelLayout';
-import { playLevelAnimations } from './levels/Level1';
 import { createCollectionLayout } from '../engine/layout/CollectionLayout';
-import { screen } from '../engine/render/Screen';
+import { safeZoneSchema } from '../layouts/SafeZoneLayout';
 
 export class CoreLevel {
 	private readonly levelLayout: LevelLayout;
@@ -10,16 +9,23 @@ export class CoreLevel {
 	constructor(layout: CoreLayout) {
 		const levelIdsMap = layout.root.level_factory.create();
 		this.levelLayout = createCollectionLayout(levelSchema, levelIdsMap);
+		layout.world.addChild(this.levelLayout.root);
 
-		const stroke = vmath.vector3(50, 50, 0);
+		const outlineSize = vmath.vector3(50, 50, 0);
 
-		for (const safeZoneLayout of this.levelLayout.safe_zones) {
-			const { sprite, body } = safeZoneLayout;
-			body.box.set(safeZoneLayout.sprite.getSize().sub(stroke));
-			sprite.setSize(sprite.getSize());
-		}
+		this.levelLayout.root.spine_model.safe_zones.forEach((safeZoneBone, i) => {
+			this.levelLayout.root.spine_model.hideSlotAttachment(
+				`safe_zone_slot${i}`,
+			);
 
-		playLevelAnimations(levelIdsMap);
+			const safeZone = layout.root.safe_zone_factory.create(safeZoneSchema);
+			safeZoneBone.addChild(safeZone);
+
+			const boneScale = safeZoneBone.getScale();
+			safeZone.setScale(vmath.vector3(1 / boneScale.x, 1 / boneScale.y, 1));
+			safeZone.sprite.setSize(boneScale.add(outlineSize));
+			safeZone.body.box.set(boneScale);
+		});
 	}
 
 	public getPlayerPosition(): vmath.vector3 {
@@ -27,7 +33,7 @@ export class CoreLevel {
 	}
 
 	public resize() {
-		this.levelLayout.bg.sprite.width = screen.width;
-		this.levelLayout.bg.sprite.height = screen.height;
+		// this.levelLayout.bg.sprite.width = screen.width;
+		// this.levelLayout.bg.sprite.height = screen.height;
 	}
 }

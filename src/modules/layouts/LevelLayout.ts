@@ -1,11 +1,14 @@
 import { Sprite } from '../engine/components/Sprite';
 import { BoxShape } from '../engine/shapes/BoxShape';
 import { CollectionLayout, CollectionSchema } from '../engine/layout/types';
-import { body, list } from '../engine/layout/Elements';
+import { body, list, spineModel } from '../engine/layout/Elements';
+import { GameObject } from '../engine/GameObject';
 
 export const levelSchema = {
-	bg: {
-		sprite: Sprite,
+	root: {
+		spine_model: spineModel({
+			safe_zones: list(GameObject),
+		}),
 	},
 	player_position: {},
 	safe_zones: list({
