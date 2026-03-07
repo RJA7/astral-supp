@@ -23,4 +23,5 @@ game_binding = /game.input_bindingc
 
 [physics]
 debug = 0
+trigger_overlap_capacity = 32
 

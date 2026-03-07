@@ -20,7 +20,7 @@ export function componentUrl(
 }
 
 export function componentExists(url: ComponentUrl) {
-	return spriteExists(url) || bodyExists(url);
+	return spriteExists(url) || bodyExists(url) || spineExists(url);
 }
 
 function spriteExists(url: ComponentUrl) {
@@ -31,4 +31,9 @@ function spriteExists(url: ComponentUrl) {
 function bodyExists(url: ComponentUrl) {
 	const [ok] = pcall(physics.get_group, url);
 	return ok;
+}
+
+function spineExists(url: ComponentUrl) {
+	const [ok, error] = pcall(spine.get_go, url, hash(''));
+	return ok || error.startsWith("the bone '' could not be found in component");
 }
