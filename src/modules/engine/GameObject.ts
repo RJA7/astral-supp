@@ -36,6 +36,40 @@ export class GameObject {
 		);
 	}
 
+	getParentId() {
+		return go.get_parent(this.id);
+	}
+
+	setWorldPosition2D(position: vmath.vector3) {
+		const parentId = this.getParentId();
+
+		const local = parentId
+			? go.world_to_local_position(position, this.id)
+			: position;
+
+		this.setPosition2D(local);
+	}
+
+	getWorldPosition() {
+		return go.get_world_position(this.id);
+	}
+
+	worldToLocalPosition(position: vmath.vector3) {
+		return go.world_to_local_position(position, this.id);
+	}
+
+	getWorldTransform() {
+		return go.get_world_transform(this.id);
+	}
+
+	worldToLocalTransform(transform: vmath.matrix4) {
+		return go.world_to_local_transform(transform, this.id);
+	}
+
+	updateWorldTransform() {
+		go.update_world_transform(this.id);
+	}
+
 	addPosition2D(position: vmath.vector3) {
 		this.setPosition2D(this.getPosition().add(position));
 	}
@@ -108,6 +142,10 @@ export class GameObject {
 
 	addChild(child: GameObject) {
 		go.set_parent(child.id, this.id);
+	}
+
+	delete(recursive = true) {
+		go.delete(this.id, recursive);
 	}
 
 	private wrapAnimationComplete(

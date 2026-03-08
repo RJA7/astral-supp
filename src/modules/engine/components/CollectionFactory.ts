@@ -21,4 +21,9 @@ export class CollectionFactory implements Component {
 		const map = this.create();
 		return createCollectionLayout(schema, map);
 	}
+
+	public setPrototype(value: string) {
+		collectionfactory.unload(this.url);
+		collectionfactory.set_prototype(this.url, value);
+	}
 }

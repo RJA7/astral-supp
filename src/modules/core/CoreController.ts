@@ -10,6 +10,7 @@ import { CoreLevel } from './CoreLevel';
 import { CoreLayout, coreSchema } from '../layouts/CoreLayout';
 import { createCollectionLayout } from '../engine/layout/CollectionLayout';
 import { screen } from '../engine/render/Screen';
+import { CoreState } from './CoreState';
 
 export class CoreController extends Controller {
 	private readonly layout: CoreLayout;
@@ -18,9 +19,12 @@ export class CoreController extends Controller {
 	private readonly cursor: Cursor;
 	private readonly level: CoreLevel;
 	private readonly physics: CorePhysics;
+	private state: CoreState;
 
 	constructor() {
 		super();
+
+		this.state = new CoreState();
 
 		this.layout = createCollectionLayout(coreSchema);
 		this.layout.root.acquireInputFocus();
@@ -28,11 +32,8 @@ export class CoreController extends Controller {
 		this.input = new CoreInput();
 		this.player = new Player(this.layout.player);
 		this.cursor = new Cursor(this.layout.cursor);
-		this.level = new CoreLevel(this.layout);
-		this.physics = new CorePhysics(this.layout.player_center.id);
-
-		this.layout.player.setPosition2D(this.level.getPlayerPosition());
-		this.layout.cursor.setPosition2D(this.level.getPlayerPosition());
+		this.level = new CoreLevel(this.state, this.layout);
+		this.physics = new CorePhysics(this.state, this.layout.player_center.id);
 	}
 
 	update(_dt: number) {

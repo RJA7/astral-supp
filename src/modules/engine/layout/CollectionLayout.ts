@@ -1,4 +1,4 @@
-import { IdsMap } from '../types/Hash';
+import { GameObjectId, IdsMap } from '../types/Hash';
 import { CollectionLayout, CollectionSchema } from './types';
 import { isListLayout } from './ListLayout';
 import {
@@ -8,16 +8,20 @@ import {
 
 export function createCollectionLayout<T extends CollectionSchema>(
 	schema: T,
-	map?: IdsMap,
+	idsMap?: IdsMap,
 ): CollectionLayout<T> {
-	const layout: Record<string, any> = {};
+	const nameById = new Map<GameObjectId, string>();
+	const layout: Record<string, any> = {
+		nameById,
+	};
 
 	for (const [name, goSchema] of Object.entries(schema)) {
 		if (isListLayout(goSchema)) {
-			layout[name] = createGameObjectLayouts(goSchema, name, map);
+			layout[name] = createGameObjectLayouts(goSchema, name, nameById, idsMap);
 		} else {
 			const ownId = hash(`/${name}`);
-			const id = map ? map.get(ownId)! : ownId;
+			const id = idsMap ? idsMap.get(ownId)! : ownId;
+			nameById.set(id, name);
 			layout[name] = createGameObjectLayout(id, goSchema);
 		}
 	}

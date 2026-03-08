@@ -1,13 +1,21 @@
 import { PhysicsEvent, PhysicsEventType, PhysicsGroup } from '../types/Physics';
 import { GameObjectId } from '../engine/types/Hash';
+import { CoreState } from './CoreState';
 
 export class CorePhysics {
+	private readonly state: CoreState;
+
 	private isSafeById = new Map<GameObjectId, number>();
 
 	private readonly playerCenterId: GameObjectId;
 
-	constructor(playerCenterId: GameObjectId) {
+	constructor(state: CoreState, playerCenterId: GameObjectId) {
+		this.state = state;
 		this.playerCenterId = playerCenterId;
+
+		this.state.onLevelPartChanged.add(() => {
+			this.isSafeById.clear();
+		});
 	}
 
 	public handleEvents(events: PhysicsEvent[]) {
@@ -35,6 +43,15 @@ export class CorePhysics {
 			} else {
 				this.isSafeById.set(event.a.id, Math.max(0, current - 1));
 			}
+		}
+
+		if (
+			event.type === PhysicsEventType.trigger_event &&
+			event.a.group === PhysicsGroup.player &&
+			event.b.group === PhysicsGroup.portal
+		) {
+			this.state.onPlayerPortalCollision.dispatch(event.b.id);
+			print(event.b.id);
 		}
 	}
 

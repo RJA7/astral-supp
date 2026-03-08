@@ -3,6 +3,7 @@ import { ComponentClass } from '../components/Component';
 import { ShapeClass } from '../shapes/Shape';
 import { RigidBody } from '../components/RigidBody';
 import { SpineModel } from '../components/SpineModel';
+import { NameById } from '../types/Hash';
 
 export type ListLayout<T> = {
 	isList: true;
@@ -43,6 +44,8 @@ export type SpineModelSchema<T extends SpineModelBones = SpineModelBones> = {
 };
 
 export type CollectionLayout<T extends CollectionSchema> = {
+	nameById: NameById;
+} & {
 	[K in keyof T]: T[K] extends ListLayout<GameObjectSchema>
 		? GameObjectLayout<T[K]['schema']>[]
 		: T[K] extends GameObjectSchema

@@ -15,9 +15,9 @@ import { createSpineModelLayout } from './SpineModelLayout';
 export function createComponentLayouts(
 	list: ListLayout<ComponentSchema>,
 	id: GameObjectId,
-	name: string,
+	propName: string,
 ) {
-	const baseName = resolveListItemName(list, name);
+	const baseName = resolveListItemName(list, propName);
 	const layouts: ComponentLayout<any>[] = [];
 
 	for (let i = 0; true; i++) {
