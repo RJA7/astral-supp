@@ -3,7 +3,7 @@ import { LevelLayout, levelSchema } from '../layouts/LevelLayout';
 import { safeZoneSchema } from '../layouts/SafeZoneLayout';
 import { CoreState } from './CoreState';
 import { GameObjectId } from '../engine/types/Hash';
-import { level1 } from './levels/level1';
+import { level1 } from './levels/Level1';
 import { LevelData, LevelPart } from './types/LevelData';
 
 export class CoreLevel {

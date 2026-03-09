@@ -17,6 +17,10 @@ export enum MessageId {
 	trigger_response = 'trigger_response',
 	contact_point_response = 'contact_point_response',
 	window_resized = 'window_resized',
+
+	// gui
+	InitGuiController = 'InitGuiController',
+	PlayerHpChanged = 'PlayerHpChanged',
 }
 
 patchEnum(MessageId, toHash);

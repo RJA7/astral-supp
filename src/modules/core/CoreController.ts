@@ -11,6 +11,7 @@ import { CoreLayout, coreSchema } from '../layouts/CoreLayout';
 import { createCollectionLayout } from '../engine/layout/CollectionLayout';
 import { screen } from '../engine/render/Screen';
 import { CoreState } from './CoreState';
+import { MessageId } from '../types/MessageId';
 
 export class CoreController extends Controller {
 	private readonly layout: CoreLayout;
@@ -19,7 +20,7 @@ export class CoreController extends Controller {
 	private readonly cursor: Cursor;
 	private readonly level: CoreLevel;
 	private readonly physics: CorePhysics;
-	private state: CoreState;
+	private readonly state: CoreState;
 
 	constructor() {
 		super();
@@ -34,6 +35,18 @@ export class CoreController extends Controller {
 		this.cursor = new Cursor(this.layout.cursor);
 		this.level = new CoreLevel(this.state, this.layout);
 		this.physics = new CorePhysics(this.state, this.layout.player_center.id);
+
+		this.layout.gui.core.postMessage({
+			mid: MessageId.InitGuiController,
+			controllerName: hash('CoreGuiController'),
+		});
+
+		this.state.onPlayerHpChanged.addAndCall(() => {
+			this.layout.gui.core.postMessage({
+				mid: MessageId.PlayerHpChanged,
+				hp: this.state.playerHp,
+			});
+		});
 	}
 
 	update(_dt: number) {

@@ -29,6 +29,13 @@ export class Signal<T extends any[] = []> {
 		return binding;
 	}
 
+	public addAndCall(cb: () => void): SignalBinding {
+		const binding = this.add(cb);
+		cb();
+
+		return binding;
+	}
+
 	public dispatch(...args: T) {
 		for (const binding of this.bindings) {
 			binding.cb(...args);

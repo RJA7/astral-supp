@@ -23,7 +23,7 @@ export class CorePhysics {
 			this.handleEvent(event);
 		}
 
-		this.logResult();
+		this.dispatchSignals();
 	}
 
 	private handleEvent(event: PhysicsEvent) {
@@ -55,15 +55,27 @@ export class CorePhysics {
 		}
 	}
 
-	private logResult() {
+	private dispatchSignals() {
+		if (this.state.playerHp === 0) return;
+
 		if (this.isSafeById.get(this.playerCenterId) === 0) {
-			print('KILL');
+			this.state.playerHp = 0;
+			this.state.onPlayerHpChanged.dispatch();
+
 			return;
 		}
 
+		let changed = false;
+
 		for (const [id] of this.isSafeById) {
 			if (this.isSafeById.get(id) !== 0) continue;
-			print('HIT', id);
+
+			this.state.playerHp = Math.max(0, this.state.playerHp - 10);
+			changed = true;
+		}
+
+		if (changed) {
+			this.state.onPlayerHpChanged.dispatch();
 		}
 	}
 }

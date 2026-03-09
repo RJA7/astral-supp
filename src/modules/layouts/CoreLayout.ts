@@ -2,6 +2,7 @@ import { Sprite } from '../engine/components/Sprite';
 import { CollectionFactory } from '../engine/components/CollectionFactory';
 import { CollectionLayout, CollectionSchema } from '../engine/layout/types';
 import { Factory } from '../engine/components/Factory';
+import { Script } from '../engine/components/Script';
 
 export const coreSchema = {
 	root: {
@@ -16,6 +17,9 @@ export const coreSchema = {
 	},
 	vignette: {
 		sprite: Sprite,
+	},
+	gui: {
+		core: Script,
 	},
 } satisfies CollectionSchema;
 

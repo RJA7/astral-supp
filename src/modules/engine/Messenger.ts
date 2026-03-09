@@ -33,15 +33,6 @@ export class Messenger {
 		return binding;
 	}
 
-	public wrapCrossScript<T extends (...args: any) => any>(cb: T): T {
-		const url = msg.url('.');
-
-		return ((...args: any[]) => {
-			this.messageSignal.addOnce(() => cb(...args));
-			msg.post(url, '__signal');
-		}) as T;
-	}
-
 	public final() {
 		this.messageSignal.removeAll();
 	}

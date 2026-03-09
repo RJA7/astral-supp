@@ -1,3 +1,4 @@
+script: "/scripts/controller.gui_script"
 fonts {
   name: "GoblinOne-Regular"
   font: "/assets/fonts/GoblinOne-Regular.font"

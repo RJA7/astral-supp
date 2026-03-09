@@ -5,7 +5,9 @@ export type Message =
 	| AnimationDoneMessage
 	| ClearColorMessage
 	| ContactPointResponseMessage
-	| TriggerResponseMessage;
+	| TriggerResponseMessage
+	| InitGuiControllerMessage
+	| PlayerHpChangedMessage;
 
 export type VoidMessageId =
 	| MessageId.enable
@@ -58,4 +60,14 @@ export type TriggerResponseMessage = {
 	group: hash;
 	other_group: hash;
 	own_group: hash;
+};
+
+export type InitGuiControllerMessage = {
+	mid: MessageId.InitGuiController;
+	controllerName: hash;
+};
+
+export type PlayerHpChangedMessage = {
+	mid: MessageId.PlayerHpChanged;
+	hp: number;
 };

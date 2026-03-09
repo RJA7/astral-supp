@@ -1,4 +1,3 @@
-
 import { LevelData, LevelPart } from '../types/LevelData';
 
 export const level1: LevelData = {
