@@ -1,21 +1,26 @@
 import { componentUrl, ComponentUrl } from '../ComponentUrl';
 import { Component } from './Component';
 import { Fragment, GameObjectId } from '../types/Hash';
-import { Message, VoidMessageId } from '../../types/Message';
+import { MessageId } from '../../types/MessageId';
+import { postMessage } from '../PostMessage';
+import { ScriptBridge } from '../ScriptBridge';
+import { ControllerName } from '../../ControllerName';
 
-export class Script implements Component {
+export class Script<T extends ControllerName> implements Component {
 	public readonly url: ComponentUrl;
 
-	constructor(id: GameObjectId, fragment: Fragment) {
-		this.url = componentUrl(id, fragment, true);
-	}
+	private readonly bridge: ScriptBridge<T>;
 
-	postMessage(messageOrId: Message | VoidMessageId) {
-		if (type(messageOrId) === 'table') {
-			const message = messageOrId as Message;
-			msg.post(this.url, message.mid, message);
-		} else {
-			msg.post(this.url, messageOrId as unknown as hash);
-		}
+	public readonly call: ScriptBridge<T>['call'];
+
+	constructor(id: GameObjectId, fragment: Fragment, controllerName: T) {
+		this.url = componentUrl(id, fragment, true);
+		this.bridge = new ScriptBridge(this.url);
+		this.call = this.bridge.call.bind(this.bridge);
+
+		postMessage(this.url, {
+			mid: MessageId.SetController,
+			controllerName,
+		});
 	}
 }

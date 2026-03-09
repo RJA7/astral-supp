@@ -1,4 +1,5 @@
 import { MessageId } from './MessageId';
+import { ControllerName } from '../ControllerName';
 
 export type Message =
 	| VoidMessage
@@ -7,7 +8,7 @@ export type Message =
 	| ContactPointResponseMessage
 	| TriggerResponseMessage
 	| InitGuiControllerMessage
-	| PlayerHpChangedMessage;
+	| ScriptBridgeCallMessage;
 
 export type VoidMessageId =
 	| MessageId.enable
@@ -63,11 +64,12 @@ export type TriggerResponseMessage = {
 };
 
 export type InitGuiControllerMessage = {
-	mid: MessageId.InitGuiController;
-	controllerName: hash;
+	mid: MessageId.SetController;
+	controllerName: ControllerName;
 };
 
-export type PlayerHpChangedMessage = {
-	mid: MessageId.PlayerHpChanged;
-	hp: number;
+export type ScriptBridgeCallMessage = {
+	mid: MessageId.ScriptBridgeCall;
+	methodName: string;
+	args: any[];
 };

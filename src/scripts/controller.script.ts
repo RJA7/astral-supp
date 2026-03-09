@@ -8,9 +8,10 @@ import { Controllers } from '../modules/Controllers';
 import { PhysicsEvent } from '../modules/types/Physics';
 import { SignalBinding } from '../modules/engine/Signal';
 import { screen } from '../modules/engine/render/Screen';
+import { ControllerName } from '../modules/ControllerName';
 
 type Self = {
-	Controller: hash;
+	Controller: ControllerName;
 	controller: Controller;
 	instance: lua_script_instance.Instance;
 	resizeBinding: SignalBinding;
@@ -21,7 +22,7 @@ go.property('Controller', hash(''));
 export function init(this: Self) {
 	this.instance = lua_script_instance.Get();
 
-	const Controller = Controllers.get(this.Controller);
+	const Controller = Controllers[this.Controller];
 
 	if (!Controller) {
 		throw new Error(`Controller ${this.Controller} not found`);

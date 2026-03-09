@@ -4,6 +4,8 @@ import { ShapeClass } from '../shapes/Shape';
 import { RigidBody } from '../components/RigidBody';
 import { SpineModel } from '../components/SpineModel';
 import { NameById } from '../types/Hash';
+import { Script } from '../components/Script';
+import { ControllerName } from '../../ControllerName';
 
 export type ListLayout<T> = {
 	isList: true;
@@ -20,11 +22,13 @@ export type GameObjectSchema = Record<string, ListOr<ComponentSchema>>;
 export type ComponentSchema =
 	| ComponentClass
 	| RigidBodySchema
-	| SpineModelSchema;
+	| SpineModelSchema
+	| ScriptSchema;
 
 export enum ComponentType {
 	RigidBody = 'RigidBody',
 	SpineModel = 'SpineModel',
+	Script = 'Script',
 }
 
 export type RigidBodySchemaShapes = Record<string, ListOr<ShapeClass>>;
@@ -41,6 +45,11 @@ export type SpineModelBones = Record<string, ListOr<GameObjectClass>>;
 export type SpineModelSchema<T extends SpineModelBones = SpineModelBones> = {
 	type: ComponentType.SpineModel;
 	bones: T;
+};
+
+export type ScriptSchema<T extends ControllerName = ControllerName> = {
+	type: ComponentType.Script;
+	controllerName: T;
 };
 
 export type CollectionLayout<T extends CollectionSchema> = {
@@ -66,9 +75,11 @@ export type ComponentLayout<T extends ComponentSchema> =
 		? RigidBodyLayout<T>
 		: T extends SpineModelSchema
 			? SpineModelLayout<T>
-			: T extends ComponentClass
-				? InstanceType<T>
-				: never;
+			: T extends ScriptSchema
+				? Script<T['controllerName']>
+				: T extends ComponentClass
+					? InstanceType<T>
+					: never;
 
 export type RigidBodyLayout<
 	S extends RigidBodySchema,

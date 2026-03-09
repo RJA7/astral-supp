@@ -8,6 +8,13 @@ textures {
   texture: "/assets/atlases/mockups.atlas"
 }
 nodes {
+  type: TYPE_BOX
+  id: "hud"
+  layer: "hud"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
   position {
     x: 125.0
     y: 664.0
@@ -20,6 +27,7 @@ nodes {
   text: "LIFE"
   font: "GoblinOne-Regular"
   id: "life_label"
+  parent: "hud"
   inherit_alpha: true
 }
 nodes {
@@ -36,6 +44,7 @@ nodes {
   ""
   font: "GoblinOne-Regular"
   id: "life_text"
+  parent: "hud"
   inherit_alpha: true
 }
 nodes {
@@ -51,6 +60,7 @@ nodes {
   text: "SCORE"
   font: "GoblinOne-Regular"
   id: "score_label"
+  parent: "hud"
   inherit_alpha: true
 }
 nodes {
@@ -71,6 +81,7 @@ nodes {
   text: "0001573"
   font: "GoblinOne-Regular"
   id: "score_text"
+  parent: "hud"
   inherit_alpha: true
 }
 nodes {
@@ -86,6 +97,7 @@ nodes {
   text: "WORLD 1-5"
   font: "GoblinOne-Regular"
   id: "world_text"
+  parent: "hud"
   inherit_alpha: true
 }
 nodes {
@@ -100,6 +112,110 @@ nodes {
   alpha: 0.5
   size_mode: SIZE_MODE_AUTO
   enabled: false
+}
+nodes {
+  position {
+    x: 640.0
+    y: 360.0
+  }
+  type: TYPE_BOX
+  id: "popups"
+  layer: "popup"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 1280.0
+    y: 720.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "popup_overlay"
+  adjust_mode: ADJUST_MODE_STRETCH
+  parent: "popups"
+  layer: "popup_overlay"
+  inherit_alpha: true
+  alpha: 0.8
+  size_mode: SIZE_MODE_AUTO
+  enabled: false
+}
+nodes {
+  size {
+    x: 360.0
+    y: 266.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.46666667
+  }
+  type: TYPE_BOX
+  id: "restart_popup"
+  parent: "popups"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  enabled: false
+}
+nodes {
+  position {
+    y: 60.666668
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Lost\n"
+  ""
+  font: "GoblinOne-Regular"
+  id: "restart_title"
+  parent: "restart_popup"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    y: -43.33333
+  }
+  size {
+    x: 279.33334
+    y: 100.0
+  }
+  color {
+    x: 0.46666667
+    y: 0.46666667
+  }
+  type: TYPE_BOX
+  id: "restart_button"
+  parent: "restart_popup"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Restart\n"
+  ""
+  font: "GoblinOne-Regular"
+  id: "restart_button_label"
+  parent: "restart_button"
+  inherit_alpha: true
+}
+layers {
+  name: "hud"
+}
+layers {
+  name: "popup_overlay"
+}
+layers {
+  name: "popup"
 }
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT

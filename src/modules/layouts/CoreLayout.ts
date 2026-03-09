@@ -2,7 +2,8 @@ import { Sprite } from '../engine/components/Sprite';
 import { CollectionFactory } from '../engine/components/CollectionFactory';
 import { CollectionLayout, CollectionSchema } from '../engine/layout/types';
 import { Factory } from '../engine/components/Factory';
-import { Script } from '../engine/components/Script';
+import { script } from '../engine/layout/Elements';
+import { ControllerName } from '../ControllerName';
 
 export const coreSchema = {
 	root: {
@@ -19,7 +20,7 @@ export const coreSchema = {
 		sprite: Sprite,
 	},
 	gui: {
-		core: Script,
+		core: script(ControllerName.CoreGuiController),
 	},
 } satisfies CollectionSchema;
 

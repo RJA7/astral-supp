@@ -19,8 +19,8 @@ export enum MessageId {
 	window_resized = 'window_resized',
 
 	// gui
-	InitGuiController = 'InitGuiController',
-	PlayerHpChanged = 'PlayerHpChanged',
+	SetController = 'SetController',
+	ScriptBridgeCall = 'ScriptBridgeCall',
 }
 
 patchEnum(MessageId, toHash);

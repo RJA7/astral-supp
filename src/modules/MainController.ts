@@ -21,4 +21,8 @@ export class MainController extends Controller {
 	final() {
 		this.layout.root.releaseInputFocus();
 	}
+
+	restart() {
+		this.proxyLoader.loadProxy(this.layout.root.proxy_core);
+	}
 }

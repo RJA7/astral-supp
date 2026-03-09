@@ -3,9 +3,11 @@ import {
 	ListLayout,
 	RigidBodySchema,
 	RigidBodySchemaShapes,
+	ScriptSchema,
 	SpineModelBones,
 	SpineModelSchema,
 } from './types';
+import { ControllerName } from '../../ControllerName';
 
 export function body<T extends RigidBodySchemaShapes>(
 	shapes: T,
@@ -25,10 +27,16 @@ export function spineModel<T extends SpineModelBones>(
 	};
 }
 
-export function list<T>(
-	schema: T,
-	baseName?: string,
-): ListLayout<T> {
+export function script<T extends ControllerName>(
+	controllerName: T,
+): ScriptSchema<T> {
+	return {
+		type: ComponentType.Script,
+		controllerName,
+	};
+}
+
+export function list<T>(schema: T, baseName?: string): ListLayout<T> {
 	return {
 		isList: true,
 		schema,

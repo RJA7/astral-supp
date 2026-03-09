@@ -1,9 +1,11 @@
 import { MainController } from './MainController';
 import { CoreController } from './core/CoreController';
-import { Controller } from './types/Controller';
+import { ControllerClass } from './types/Controller';
 import { CoreGuiController } from './core/CoreGuiController';
+import { ControllerName } from './ControllerName';
 
-export const Controllers = new Map<hash, new () => Controller>();
-Controllers.set(hash('MainController'), MainController);
-Controllers.set(hash('CoreController'), CoreController);
-Controllers.set(hash('CoreGuiController'), CoreGuiController);
+export const Controllers = {
+	[ControllerName.MainController]: MainController,
+	[ControllerName.CoreController]: CoreController,
+	[ControllerName.CoreGuiController]: CoreGuiController,
+} satisfies Record<ControllerName, ControllerClass>;

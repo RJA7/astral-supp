@@ -51,7 +51,7 @@ export class Cursor {
 		sprite.playFlipBook(asset);
 	}
 
-	private setMouseLocked(value: boolean) {
+	public setMouseLocked(value: boolean) {
 		window.set_mouse_lock(value);
 	}
 

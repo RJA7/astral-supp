@@ -42,8 +42,8 @@ export function on_message(
 ) {
 	message.mid = messageId;
 
-	if (message.mid === MessageId.InitGuiController) {
-		const Controller = Controllers.get(message.controllerName);
+	if (message.mid === MessageId.SetController) {
+		const Controller = Controllers[message.controllerName];
 
 		if (!Controller) {
 			throw new Error(`GuiController ${message.controllerName} not found`);

@@ -11,7 +11,6 @@ import { CoreLayout, coreSchema } from '../layouts/CoreLayout';
 import { createCollectionLayout } from '../engine/layout/CollectionLayout';
 import { screen } from '../engine/render/Screen';
 import { CoreState } from './CoreState';
-import { MessageId } from '../types/MessageId';
 
 export class CoreController extends Controller {
 	private readonly layout: CoreLayout;
@@ -36,16 +35,13 @@ export class CoreController extends Controller {
 		this.level = new CoreLevel(this.state, this.layout);
 		this.physics = new CorePhysics(this.state, this.layout.player_center.id);
 
-		this.layout.gui.core.postMessage({
-			mid: MessageId.InitGuiController,
-			controllerName: hash('CoreGuiController'),
-		});
-
 		this.state.onPlayerHpChanged.addAndCall(() => {
-			this.layout.gui.core.postMessage({
-				mid: MessageId.PlayerHpChanged,
-				hp: this.state.playerHp,
-			});
+			this.layout.gui.core.call('setPlayerHp', this.state.playerHp);
+
+			if (this.state.playerHp === 0) {
+				this.cursor.setMouseLocked(false);
+				this.layout.gui.core.call('showRestartPopup', false);
+			}
 		});
 	}
 

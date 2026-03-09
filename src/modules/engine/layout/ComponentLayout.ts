@@ -11,6 +11,7 @@ import { ComponentClass } from '../components/Component';
 import { createRigidBodyLayout } from './RigidBodyLayout';
 import { assertNever } from '../utils/assertNever';
 import { createSpineModelLayout } from './SpineModelLayout';
+import { Script } from '../components/Script';
 
 export function createComponentLayouts(
 	list: ListLayout<ComponentSchema>,
@@ -47,6 +48,14 @@ export function createComponentLayout<T extends ComponentSchema>(
 
 	if (schema.type === ComponentType.SpineModel) {
 		return createSpineModelLayout(id, fragment, schema) as ComponentLayout<T>;
+	}
+
+	if (schema.type === ComponentType.Script) {
+		return new Script(
+			id,
+			fragment,
+			schema.controllerName,
+		) as ComponentLayout<T>;
 	}
 
 	assertNever(schema);
