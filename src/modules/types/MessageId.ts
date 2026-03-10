@@ -20,7 +20,10 @@ export enum MessageId {
 
 	// gui
 	SetController = 'SetController',
+	ScriptBridgeConnect = 'ScriptBridgeConnect',
+	ScriptBridgeDisconnect = 'ScriptBridgeDisconnect',
 	ScriptBridgeCall = 'ScriptBridgeCall',
+	ScriptBridgeEvent = 'ScriptBridgeEvent',
 }
 
 patchEnum(MessageId, toHash);

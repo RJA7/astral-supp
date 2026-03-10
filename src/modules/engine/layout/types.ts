@@ -6,6 +6,7 @@ import { SpineModel } from '../components/SpineModel';
 import { NameById } from '../types/Hash';
 import { Script } from '../components/Script';
 import { ControllerName } from '../../ControllerName';
+import { CollectionProxy } from '../components/CollectionProxy';
 
 export type ListLayout<T> = {
 	isList: true;
@@ -23,12 +24,14 @@ export type ComponentSchema =
 	| ComponentClass
 	| RigidBodySchema
 	| SpineModelSchema
-	| ScriptSchema;
+	| ScriptSchema
+	| CollectionProxySchema;
 
 export enum ComponentType {
 	RigidBody = 'RigidBody',
 	SpineModel = 'SpineModel',
 	Script = 'Script',
+	CollectionProxy = 'CollectionProxy',
 }
 
 export type RigidBodySchemaShapes = Record<string, ListOr<ShapeClass>>;
@@ -49,6 +52,12 @@ export type SpineModelSchema<T extends SpineModelBones = SpineModelBones> = {
 
 export type ScriptSchema<T extends ControllerName = ControllerName> = {
 	type: ComponentType.Script;
+	controllerName: T;
+};
+
+export type CollectionProxySchema<T extends ControllerName = ControllerName> = {
+	type: ComponentType.CollectionProxy;
+	collectionName: string;
 	controllerName: T;
 };
 
@@ -77,9 +86,11 @@ export type ComponentLayout<T extends ComponentSchema> =
 			? SpineModelLayout<T>
 			: T extends ScriptSchema
 				? Script<T['controllerName']>
-				: T extends ComponentClass
-					? InstanceType<T>
-					: never;
+				: T extends CollectionProxySchema
+					? CollectionProxy<T['controllerName']>
+					: T extends ComponentClass
+						? InstanceType<T>
+						: never;
 
 export type RigidBodyLayout<
 	S extends RigidBodySchema,

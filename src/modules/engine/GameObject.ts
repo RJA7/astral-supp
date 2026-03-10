@@ -94,14 +94,6 @@ export class GameObject {
 		postVoidMessage(this.id, MessageId.disable);
 	}
 
-	acquireInputFocus(): void {
-		postVoidMessage(this.id, MessageId.acquire_input_focus);
-	}
-
-	releaseInputFocus(): void {
-		postVoidMessage(this.id, MessageId.release_input_focus);
-	}
-
 	animate(
 		property: Property,
 		to: number | vmath.vector3 | vmath.vector4 | vmath.quaternion,

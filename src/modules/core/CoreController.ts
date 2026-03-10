@@ -11,10 +11,16 @@ import { CoreLayout, coreSchema } from '../layouts/CoreLayout';
 import { createCollectionLayout } from '../engine/layout/CollectionLayout';
 import { screen } from '../engine/render/Screen';
 import { CoreState } from './CoreState';
+import { Popups } from '../popups/Popups';
+import { PopupName } from '../popups/types/PopupName';
+import { Signal } from '../engine/Signal';
 
 export class CoreController extends Controller {
+	public onRestart = new Signal();
+
 	private readonly layout: CoreLayout;
 	private readonly input: CoreInput;
+	private readonly popups: Popups;
 	private readonly player: Player;
 	private readonly cursor: Cursor;
 	private readonly level: CoreLevel;
@@ -27,20 +33,23 @@ export class CoreController extends Controller {
 		this.state = new CoreState();
 
 		this.layout = createCollectionLayout(coreSchema);
-		this.layout.root.acquireInputFocus();
-
 		this.input = new CoreInput();
+		this.popups = new Popups(this.messenger);
 		this.player = new Player(this.layout.player);
 		this.cursor = new Cursor(this.layout.cursor);
 		this.level = new CoreLevel(this.state, this.layout);
 		this.physics = new CorePhysics(this.state, this.layout.player_center.id);
 
+		this.layout.hud.gui.setController({});
+
 		this.state.onPlayerHpChanged.addAndCall(() => {
-			this.layout.hud.root.call('setPlayerHp', this.state.playerHp);
+			this.layout.hud.gui.call('setPlayerHp', this.state.playerHp);
 
 			if (this.state.playerHp === 0) {
 				this.cursor.setMouseLocked(false);
-				// this.layout.gui.core.call('showRestartPopup', false);
+
+				const popup = this.popups.show(PopupName.restart, { win: false });
+				popup.script.bridge.onRestartClick = () => this.onRestart.dispatch();
 			}
 		});
 	}
@@ -73,9 +82,5 @@ export class CoreController extends Controller {
 
 	physicsListener(events: PhysicsEvent[]): void {
 		this.physics.handleEvents(events);
-	}
-
-	final() {
-		this.layout.root.releaseInputFocus();
 	}
 }

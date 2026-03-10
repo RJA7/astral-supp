@@ -20,7 +20,7 @@ export const coreSchema = {
 		sprite: Sprite,
 	},
 	hud: {
-		root: script(ControllerName.CoreGuiController),
+		gui: script(ControllerName.CoreGuiController),
 	},
 } satisfies CollectionSchema;
 

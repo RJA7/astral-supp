@@ -8,6 +8,37 @@ textures {
   texture: "/assets/atlases/mockups.atlas"
 }
 nodes {
+  position {
+    x: 640.0
+    y: 360.0
+  }
+  size {
+    x: 1280.0
+    y: 720.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "dimmer"
+  adjust_mode: ADJUST_MODE_STRETCH
+  inherit_alpha: true
+  alpha: 0.8
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 640.0
+    y: 360.0
+  }
+  type: TYPE_BOX
+  id: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
   size {
     x: 360.0
     y: 266.0
@@ -19,6 +50,7 @@ nodes {
   }
   type: TYPE_BOX
   id: "bg"
+  parent: "root"
   inherit_alpha: true
   size_mode: SIZE_MODE_AUTO
 }
@@ -52,6 +84,7 @@ nodes {
   }
   type: TYPE_BOX
   id: "restart_button"
+  parent: "root"
   inherit_alpha: true
   size_mode: SIZE_MODE_AUTO
 }

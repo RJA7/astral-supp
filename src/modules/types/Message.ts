@@ -8,8 +8,11 @@ export type Message =
 	| ClearColorMessage
 	| ContactPointResponseMessage
 	| TriggerResponseMessage
-	| InitGuiControllerMessage
-	| ScriptBridgeCallMessage;
+	| SetControllerMessage
+	| ScriptBridgeConnectMessage
+	| ScriptBridgeDisconnectMessage
+	| ScriptBridgeCallMessage
+	| ScriptBridgeEventMessage;
 
 export type VoidMessageId =
 	| MessageId.enable
@@ -64,16 +67,28 @@ export type TriggerResponseMessage = {
 	own_group: hash;
 };
 
-export type InitGuiControllerMessage<
-	T extends ControllerName = ControllerName,
-> = {
+export type SetControllerMessage<T extends ControllerName = ControllerName> = {
 	mid: MessageId.SetController;
 	controllerName: T;
 	props: ConstructorParameters<(typeof Controllers)[T]>[0];
 };
 
+export type ScriptBridgeConnectMessage = {
+	mid: MessageId.ScriptBridgeConnect;
+};
+
+export type ScriptBridgeDisconnectMessage = {
+	mid: MessageId.ScriptBridgeDisconnect;
+};
+
 export type ScriptBridgeCallMessage = {
 	mid: MessageId.ScriptBridgeCall;
 	methodName: string;
+	args: any[];
+};
+
+export type ScriptBridgeEventMessage = {
+	mid: MessageId.ScriptBridgeEvent;
+	eventName: string;
 	args: any[];
 };

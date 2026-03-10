@@ -1,31 +1,43 @@
 import { PopupName } from './types/PopupName';
-import { PopupsLayout } from '../layouts/PopupsLayout';
 import { Script } from '../engine/components/Script';
 import { ControllerNameByPopupName } from './types/ControllerNameByPopupName';
-import { InitGuiControllerMessage } from '../types/Message';
+import { SetControllerMessage } from '../types/Message';
 import { ControllerName } from '../ControllerName';
+import { componentUrl } from '../engine/ComponentUrl';
+import { Fragment, GameObjectId } from '../engine/types/Hash';
+import { Messenger } from '../engine/Messenger';
+import { Popup } from './Popup';
+
+const POPUPS_ID: GameObjectId = hash('/popups');
+const POPUP_GUI_FRAGMENT: Fragment = hash('gui');
 
 export class Popups {
-	private readonly layout: PopupsLayout;
+	private readonly messenger: Messenger;
 
-	constructor(layout: PopupsLayout) {
-		this.layout = layout;
+	constructor(messenger: Messenger) {
+		this.messenger = messenger;
 	}
 
 	public show<
 		T extends PopupName,
 		C extends ControllerName = (typeof ControllerNameByPopupName)[T],
-	>(popupName: T, props: InitGuiControllerMessage<C>['props']) {
-		const factoryUrl = this.layout[popupName].url;
+	>(popupName: T, props: SetControllerMessage<C>['props']): Popup<C> {
+		const factoryUrl = componentUrl(POPUPS_ID, hash(popupName), true);
 		const rootId = factory.create(factoryUrl);
-		go.set_parent(rootId, this.layout.id);
-
 		const controllerName = ControllerNameByPopupName[popupName];
-		const script = new Script(
-			rootId,
-			hash('gui'),
-			controllerName,
-			props as any,
+
+		const script = new Script<C>(
+			componentUrl(rootId, POPUP_GUI_FRAGMENT, true),
+			controllerName as C,
 		);
+		script.setController(props);
+		script.connect(this.messenger);
+
+		return new Popup<C>(rootId, script);
+	}
+
+	public hide(popup: Popup<ControllerName>) {
+		popup.script.disconnect();
+		go.delete(popup.rootId, true);
 	}
 }

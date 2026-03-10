@@ -4,10 +4,9 @@ import { MessageId } from '../types/MessageId';
 export class CoreGuiController extends Controller {
 	private readonly lifeText: node;
 
-	constructor() {
+	constructor(_props: object) {
 		super();
 
-		msg.post('.', MessageId.acquire_input_focus);
 		this.lifeText = gui.get_node('life_text');
 	}
 

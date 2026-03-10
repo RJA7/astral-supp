@@ -36,12 +36,14 @@ export function init(this: Self) {
 		this.controller.onResize();
 	});
 	physics.set_event_listener(physics_listener);
+	msg.post('.', MessageId.acquire_input_focus);
 }
 
 export function final(this: Self) {
 	this.resizeBinding.destroy();
 	this.controller.messenger.final();
 	this.controller.final();
+	msg.post('.', MessageId.release_input_focus);
 }
 
 export function update(this: Self, dt: number) {
@@ -69,6 +71,7 @@ export function on_message(
 
 export function on_input(this: Self, actionId: ActionId, action: Action) {
 	this.controller.onInput(actionId, action);
+	return true;
 }
 
 export function on_reload(this: Self) {

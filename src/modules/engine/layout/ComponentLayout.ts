@@ -12,6 +12,7 @@ import { createRigidBodyLayout } from './RigidBodyLayout';
 import { assertNever } from '../utils/assertNever';
 import { createSpineModelLayout } from './SpineModelLayout';
 import { Script } from '../components/Script';
+import { CollectionProxy } from '../components/CollectionProxy';
 
 export function createComponentLayouts(
 	list: ListLayout<ComponentSchema>,
@@ -52,10 +53,17 @@ export function createComponentLayout<T extends ComponentSchema>(
 
 	if (schema.type === ComponentType.Script) {
 		return new Script(
+			componentUrl(id, fragment, true),
+			schema.controllerName,
+		) as ComponentLayout<T>;
+	}
+
+	if (schema.type === ComponentType.CollectionProxy) {
+		return new CollectionProxy(
 			id,
 			fragment,
+			schema.collectionName,
 			schema.controllerName,
-			undefined,
 		) as ComponentLayout<T>;
 	}
 

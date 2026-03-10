@@ -1,4 +1,5 @@
 import {
+	CollectionProxySchema,
 	ComponentType,
 	ListLayout,
 	RigidBodySchema,
@@ -32,6 +33,17 @@ export function script<T extends ControllerName>(
 ): ScriptSchema<T> {
 	return {
 		type: ComponentType.Script,
+		controllerName,
+	};
+}
+
+export function collectionProxy<T extends ControllerName>(
+	collectionName: string,
+	controllerName: T,
+): CollectionProxySchema<T> {
+	return {
+		type: ComponentType.CollectionProxy,
+		collectionName,
 		controllerName,
 	};
 }

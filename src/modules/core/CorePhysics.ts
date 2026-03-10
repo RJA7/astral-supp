@@ -51,7 +51,6 @@ export class CorePhysics {
 			event.b.group === PhysicsGroup.portal
 		) {
 			this.state.onPlayerPortalCollision.dispatch(event.b.id);
-			print(event.b.id);
 		}
 	}
 

@@ -12,17 +12,16 @@ export class MainController extends Controller {
 		super();
 
 		this.layout = createCollectionLayout(mainSchema);
-		this.layout.root.acquireInputFocus();
-
 		this.proxyLoader = new ProxyLoader(this.messenger);
-		this.proxyLoader.loadProxy(this.layout.root.proxy_core);
-	}
 
-	final() {
-		this.layout.root.releaseInputFocus();
+		const { proxy_core } = this.layout.root;
+
+		this.proxyLoader.loadProxy(proxy_core);
+		proxy_core.script.bridge.onRestart = () => this.restart();
 	}
 
 	restart() {
-		this.proxyLoader.loadProxy(this.layout.root.proxy_core);
+		const { proxy_core } = this.layout.root;
+		this.proxyLoader.loadProxy(proxy_core);
 	}
 }

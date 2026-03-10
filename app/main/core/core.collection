@@ -7,7 +7,7 @@ scale_along_z: 0
 embedded_instances {
   id: "hud"
   data: "components {\n"
-  "  id: \"root\"\n"
+  "  id: \"gui\"\n"
   "  component: \"/main/core/core.gui\"\n"
   "}\n"
   ""
@@ -289,7 +289,7 @@ embedded_instances {
   id: "root"
   children: "levels_reference"
   data: "components {\n"
-  "  id: \"root\"\n"
+  "  id: \"controller\"\n"
   "  component: \"/scripts/controller.script\"\n"
   "  properties {\n"
   "    id: \"Controller\"\n"

@@ -60,11 +60,11 @@ export class CoreLevel {
 	}
 
 	private createLevelLayout(levelNumber: number, levelPart: LevelPart) {
-		this.coreLayout.root.level_factory.setPrototype(
+		const { level_factory, safe_zone_factory } = this.coreLayout.root;
+		level_factory.setPrototype(
 			`/main/levels/level_${levelNumber}_${levelPart}.collectionc`,
 		);
-		const levelLayout =
-			this.coreLayout.root.level_factory.createLayout(levelSchema);
+		const levelLayout = level_factory.createLayout(levelSchema);
 		this.coreLayout.world.addChild(levelLayout.root);
 
 		const outlineSize = vmath.vector3(50, 50, 0);
@@ -72,8 +72,7 @@ export class CoreLevel {
 		levelLayout.root.spine_model.safe_zones.forEach((safeZoneBone, i) => {
 			levelLayout.root.spine_model.hideSlotAttachment(`safe_zone_slot${i}`);
 
-			const safeZone =
-				this.coreLayout.root.safe_zone_factory.create(safeZoneSchema);
+			const safeZone = safe_zone_factory.create(safeZoneSchema);
 			safeZoneBone.addChild(safeZone);
 
 			const boneScale = safeZoneBone.getScale();

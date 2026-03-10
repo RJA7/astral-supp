@@ -1,9 +1,10 @@
 import { CollectionLayout, CollectionSchema } from '../engine/layout/types';
-import { CollectionProxy } from '../engine/components/CollectionProxy';
+import { ControllerName } from '../ControllerName';
+import { collectionProxy } from '../engine/layout/Elements';
 
 export const mainSchema = {
 	root: {
-		proxy_core: CollectionProxy,
+		proxy_core: collectionProxy('core', ControllerName.CoreController),
 	},
 } satisfies CollectionSchema;
 
