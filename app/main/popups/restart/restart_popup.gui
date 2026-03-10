@@ -1,0 +1,72 @@
+script: "/scripts/controller.gui_script"
+fonts {
+  name: "GoblinOne-Regular"
+  font: "/assets/fonts/GoblinOne-Regular.font"
+}
+textures {
+  name: "mockups"
+  texture: "/assets/atlases/mockups.atlas"
+}
+nodes {
+  size {
+    x: 360.0
+    y: 266.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.46666667
+  }
+  type: TYPE_BOX
+  id: "bg"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    y: 60.666668
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Lost\n"
+  ""
+  font: "GoblinOne-Regular"
+  id: "title"
+  parent: "bg"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    y: -43.33333
+  }
+  size {
+    x: 279.33334
+    y: 100.0
+  }
+  color {
+    x: 0.46666667
+    y: 0.46666667
+  }
+  type: TYPE_BOX
+  id: "restart_button"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Restart\n"
+  ""
+  font: "GoblinOne-Regular"
+  id: "restart_button_label"
+  parent: "restart_button"
+  inherit_alpha: true
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

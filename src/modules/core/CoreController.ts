@@ -36,11 +36,11 @@ export class CoreController extends Controller {
 		this.physics = new CorePhysics(this.state, this.layout.player_center.id);
 
 		this.state.onPlayerHpChanged.addAndCall(() => {
-			this.layout.gui.core.call('setPlayerHp', this.state.playerHp);
+			this.layout.hud.root.call('setPlayerHp', this.state.playerHp);
 
 			if (this.state.playerHp === 0) {
 				this.cursor.setMouseLocked(false);
-				this.layout.gui.core.call('showRestartPopup', false);
+				// this.layout.gui.core.call('showRestartPopup', false);
 			}
 		});
 	}

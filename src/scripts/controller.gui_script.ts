@@ -49,7 +49,10 @@ export function on_message(
 			throw new Error(`GuiController ${message.controllerName} not found`);
 		}
 
-		this.controller = new Controller();
+		this.controller = new Controller(
+			// @ts-ignore
+			message.props,
+		);
 	}
 
 	this.controller.messenger.onMessage(message, sender);

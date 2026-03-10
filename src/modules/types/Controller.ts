@@ -5,7 +5,7 @@ import { Messenger } from '../engine/Messenger';
 import Tweener from '../engine/tweener/Tweener';
 import { MessageId } from './MessageId';
 
-export type ControllerClass = new () => Controller;
+export type ControllerClass = new (props: any) => Controller;
 
 export class Controller {
 	messenger: Messenger;

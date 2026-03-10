@@ -1,5 +1,6 @@
 import { MessageId } from './MessageId';
 import { ControllerName } from '../ControllerName';
+import { Controllers } from '../Controllers';
 
 export type Message =
 	| VoidMessage
@@ -63,9 +64,12 @@ export type TriggerResponseMessage = {
 	own_group: hash;
 };
 
-export type InitGuiControllerMessage = {
+export type InitGuiControllerMessage<
+	T extends ControllerName = ControllerName,
+> = {
 	mid: MessageId.SetController;
-	controllerName: ControllerName;
+	controllerName: T;
+	props: ConstructorParameters<(typeof Controllers)[T]>[0];
 };
 
 export type ScriptBridgeCallMessage = {

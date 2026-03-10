@@ -28,6 +28,7 @@ export function init(this: Self) {
 		throw new Error(`Controller ${this.Controller} not found`);
 	}
 
+	// @ts-ignore
 	this.controller = new Controller();
 
 	this.resizeBinding = screen.onResize.add(() => {

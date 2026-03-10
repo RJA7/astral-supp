@@ -7,18 +7,14 @@ export type ProjectionFn = (
 ) => vmath.matrix4;
 
 function fixedProjection(camera: Camera, state: RenderState) {
-	const projectedWidth = state.windowWidth / camera.zoom;
-	const projectedHeight = state.windowHeight / camera.zoom;
-	const left = -(projectedWidth - state.width) / 2;
-	const bottom = -(projectedHeight - state.height) / 2;
-	const right = left + projectedWidth;
-	const top = bottom + projectedHeight;
+	const halfWidth = state.windowWidth / camera.zoom / 2;
+	const halfHeight = state.windowHeight / camera.zoom / 2;
 
 	return vmath.matrix4_orthographic(
-		left,
-		right,
-		bottom,
-		top,
+		-halfWidth,
+		halfWidth,
+		-halfHeight,
+		halfHeight,
 		camera.near,
 		camera.far,
 	);
@@ -48,14 +44,14 @@ function renderTargetProjection(camera: Camera, state: RenderState) {
 	const width = state.width; // 1280
 	const height = state.height; // 720
 
-	const projectedWidth = width / camera.zoom;
-	const projectedHeight = height / camera.zoom;
+	const halfWidth = width / camera.zoom / 2;
+	const halfHeight = height / camera.zoom / 2;
 
 	return vmath.matrix4_orthographic(
-		0,
-		projectedWidth,
-		0,
-		projectedHeight,
+		-halfWidth,
+		halfWidth,
+		-halfHeight,
+		halfHeight,
 		camera.near,
 		camera.far,
 	);

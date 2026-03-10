@@ -19,8 +19,8 @@ export const coreSchema = {
 	vignette: {
 		sprite: Sprite,
 	},
-	gui: {
-		core: script(ControllerName.CoreGuiController),
+	hud: {
+		root: script(ControllerName.CoreGuiController),
 	},
 } satisfies CollectionSchema;
 

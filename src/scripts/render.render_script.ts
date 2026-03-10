@@ -86,12 +86,9 @@ export function update(this: Self, dt: number) {
 
 	render.draw_debug3d();
 
-	render.set_camera(undefined);
-
 	// render GUI
 	const cameraGui = state.cameraGui;
-	render.set_view(cameraGui.view);
-	render.set_projection(cameraGui.proj);
+	setCamera(cameraGui);
 
 	render.enable_state(graphics.STATE_STENCIL_TEST);
 	render.draw(predicates.gui, cameraGui.options);

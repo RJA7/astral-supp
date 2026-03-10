@@ -55,6 +55,7 @@ export function createComponentLayout<T extends ComponentSchema>(
 			id,
 			fragment,
 			schema.controllerName,
+			undefined,
 		) as ComponentLayout<T>;
 	}
 
