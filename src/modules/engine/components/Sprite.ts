@@ -6,6 +6,7 @@ import { Component } from './Component';
 import { Fragment, GameObjectId, ImageResource, Material } from '../types/Hash';
 import { Easing } from '../types/Easing';
 import { Playback } from '../types/Playback';
+import { AnyEasing, wrapAnimationComplete } from '../utils/Animate';
 
 export class Sprite implements Component {
 	public readonly url: ComponentUrl;
@@ -87,12 +88,7 @@ export class Sprite implements Component {
 		property: SpriteProperty,
 		to: number | vmath.vector3 | vmath.vector4 | vmath.quaternion,
 		duration: number,
-		easing:
-			| Easing
-			| vmath.vector3
-			| vmath.vector4
-			| vmath.quaternion
-			| ReturnType<typeof vmath.vector> = Easing.LINEAR,
+		easing: AnyEasing = Easing.LINEAR,
 		delay: number = 0,
 		playback: Playback = Playback.PLAYBACK_ONCE_FORWARD,
 		complete?: (url: ComponentUrl, property: SpriteProperty) => void,
@@ -105,7 +101,7 @@ export class Sprite implements Component {
 			typeof easing === 'string' ? go[easing] : easing,
 			duration,
 			delay,
-			this.wrapAnimationComplete(complete),
+			wrapAnimationComplete(complete),
 		);
 	}
 
@@ -131,16 +127,6 @@ export class Sprite implements Component {
 			// @ts-expect-error
 			message.mid = messageId;
 			complete(message as AnimationDoneMessage, sender as ComponentUrl);
-		};
-	}
-
-	private wrapAnimationComplete(
-		complete?: (url: ComponentUrl, property: SpriteProperty) => void,
-	) {
-		if (!complete) return;
-
-		return function (this: object, url: ComponentUrl, property: string | hash) {
-			complete(url, property as SpriteProperty);
 		};
 	}
 }

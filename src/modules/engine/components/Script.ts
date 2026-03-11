@@ -42,7 +42,7 @@ export class Script<
 		});
 	}
 
-	setController(props: SetControllerMessage<T>['props']) {
+	initController(props: SetControllerMessage<T>['props']) {
 		postMessage(this.url, {
 			mid: MessageId.SetController,
 			controllerName: this.controllerName,

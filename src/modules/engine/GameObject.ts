@@ -5,6 +5,7 @@ import { Playback } from './types/Playback';
 import { Property } from './types/Property';
 import { Easing } from './types/Easing';
 import { GameObjectId } from './types/Hash';
+import { AnyEasing, wrapAnimationComplete } from './utils/Animate';
 
 export type GameObjectClass = typeof GameObject;
 
@@ -98,15 +99,10 @@ export class GameObject {
 		property: Property,
 		to: number | vmath.vector3 | vmath.vector4 | vmath.quaternion,
 		duration: number,
-		easing:
-			| Easing
-			| vmath.vector3
-			| vmath.vector4
-			| vmath.quaternion
-			| ReturnType<typeof vmath.vector> = Easing.LINEAR,
+		easing: AnyEasing = Easing.LINEAR,
 		delay: number = 0,
 		playback: Playback = Playback.PLAYBACK_ONCE_FORWARD,
-		completeFunction?: (url: ComponentUrl, property: Property) => void,
+		complete?: (url: ComponentUrl, property: Property) => void,
 	) {
 		go.animate(
 			this.id,
@@ -116,7 +112,7 @@ export class GameObject {
 			typeof easing === 'string' ? go[easing] : easing,
 			duration,
 			delay,
-			this.wrapAnimationComplete(completeFunction),
+			wrapAnimationComplete(complete),
 		);
 	}
 
@@ -138,15 +134,5 @@ export class GameObject {
 
 	delete(recursive = true) {
 		go.delete(this.id, recursive);
-	}
-
-	private wrapAnimationComplete(
-		complete?: (url: ComponentUrl, property: Property) => void,
-	) {
-		if (!complete) return;
-
-		return function (this: object, url: ComponentUrl, property: string | hash) {
-			complete(url, property as Property);
-		};
 	}
 }

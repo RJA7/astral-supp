@@ -40,9 +40,11 @@ export class CoreController extends Controller {
 		this.level = new CoreLevel(this.state, this.layout);
 		this.physics = new CorePhysics(this.state, this.layout.player_center.id);
 
-		this.layout.hud.gui.setController({});
+		this.layout.hud.gui.initController({
+			playerHp: this.state.playerHp,
+		});
 
-		this.state.onPlayerHpChanged.addAndCall(() => {
+		this.state.onPlayerHpChanged.add(() => {
 			this.layout.hud.gui.call('setPlayerHp', this.state.playerHp);
 
 			if (this.state.playerHp === 0) {

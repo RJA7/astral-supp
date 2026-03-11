@@ -4,10 +4,11 @@ import { MessageId } from '../types/MessageId';
 export class CoreGuiController extends Controller {
 	private readonly lifeText: node;
 
-	constructor(_props: object) {
+	constructor(props: { playerHp: number }) {
 		super();
 
 		this.lifeText = gui.get_node('life_text');
+		this.setPlayerHp(props.playerHp);
 	}
 
 	public setPlayerHp(value: number) {

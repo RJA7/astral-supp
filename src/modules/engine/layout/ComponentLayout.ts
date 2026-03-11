@@ -9,7 +9,7 @@ import { componentExists, componentUrl } from '../ComponentUrl';
 import { Fragment, GameObjectId } from '../types/Hash';
 import { ComponentClass } from '../components/Component';
 import { createRigidBodyLayout } from './RigidBodyLayout';
-import { assertNever } from '../utils/assertNever';
+import { assertNever } from '../utils/AssertNever';
 import { createSpineModelLayout } from './SpineModelLayout';
 import { Script } from '../components/Script';
 import { CollectionProxy } from '../components/CollectionProxy';

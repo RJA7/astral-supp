@@ -30,7 +30,7 @@ export class Popups {
 			componentUrl(rootId, POPUP_GUI_FRAGMENT, true),
 			controllerName as C,
 		);
-		script.setController(props);
+		script.initController(props);
 		script.connect(this.messenger);
 
 		return new Popup<C>(rootId, script);
