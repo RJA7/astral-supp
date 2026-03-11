@@ -52,6 +52,8 @@ export class CoreController extends Controller {
 				popup.script.bridge.onRestartClick = () => this.onRestart.dispatch();
 			}
 		});
+
+		physics.set_event_listener(this.physicsListener.bind(this));
 	}
 
 	update(_dt: number) {
@@ -60,6 +62,7 @@ export class CoreController extends Controller {
 			this.input.getDelta(),
 			this.input.isPointerDown(),
 		);
+		this.input.resetDelta();
 	}
 
 	fixedUpdate(dt: number) {

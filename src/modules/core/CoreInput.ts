@@ -14,6 +14,11 @@ export class CoreInput {
 		return this.delta;
 	}
 
+	public resetDelta() {
+		this.delta.x = 0;
+		this.delta.y = 0;
+	}
+
 	public onInput(actionId: ActionId, action: Action): void {
 		if (actionId === ActionId.touch) {
 			if (action.pressed) {

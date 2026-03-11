@@ -1,6 +1,5 @@
 import { ActionId } from './ActionId';
 import { Action } from './Action';
-import { PhysicsEvent } from './Physics';
 import { Messenger } from '../engine/Messenger';
 import Tweener from '../engine/tweener/Tweener';
 import { MessageId } from './MessageId';
@@ -72,6 +71,4 @@ export class Controller {
 	onReload(): void {}
 
 	onResize(): void {}
-
-	physicsListener(_events: PhysicsEvent[]): void {}
 }

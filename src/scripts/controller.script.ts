@@ -5,7 +5,6 @@ import { ActionId } from '../modules/types/ActionId';
 import { Action } from '../modules/types/Action';
 import { Controller } from '../modules/types/Controller';
 import { Controllers } from '../modules/Controllers';
-import { PhysicsEvent } from '../modules/types/Physics';
 import { SignalBinding } from '../modules/engine/Signal';
 import { screen } from '../modules/engine/render/Screen';
 import { ControllerName } from '../modules/ControllerName';
@@ -35,7 +34,7 @@ export function init(this: Self) {
 		lua_script_instance.Set(this.instance);
 		this.controller.onResize();
 	});
-	physics.set_event_listener(physics_listener);
+
 	msg.post('.', MessageId.acquire_input_focus);
 }
 
@@ -76,8 +75,4 @@ export function on_input(this: Self, actionId: ActionId, action: Action) {
 
 export function on_reload(this: Self) {
 	this.controller.onReload();
-}
-
-function physics_listener(this: Self, events: PhysicsEvent[]) {
-	this.controller.physicsListener(events);
 }
