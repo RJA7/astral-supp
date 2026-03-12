@@ -3,8 +3,8 @@ instances {
   id: "portal0"
   prototype: "/main/core/portal.go"
   position {
-    x: -187.0
-    y: 165.0
+    x: -416.0
+    y: -237.0
     z: 20.0
   }
 }
@@ -12,8 +12,8 @@ instances {
   id: "portal1"
   prototype: "/main/core/portal.go"
   position {
-    x: 376.0
-    y: 226.0
+    x: 375.0
+    y: 211.0
     z: 20.0
   }
   rotation {
@@ -25,8 +25,8 @@ instances {
   id: "pickup0"
   prototype: "/main/core/pickup.go"
   position {
-    x: 131.0
-    y: -235.0
+    x: -174.0
+    y: 164.0
     z: 20.0
   }
 }
@@ -34,8 +34,8 @@ instances {
   id: "pickup1"
   prototype: "/main/core/pickup.go"
   position {
-    x: -419.66666
-    y: -235.0
+    x: 126.33334
+    y: -238.0
     z: 20.0
   }
 }
@@ -58,6 +58,47 @@ embedded_instances {
   "\"\n"
   "  position {\n"
   "    z: 10.0\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"indicator\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"player_yellow\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "size {\\n"
+  "  x: 80.0\\n"
+  "  y: 80.0\\n"
+  "}\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/assets/atlases/main.atlas\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: -510.0\n"
+  "    y: 233.0\n"
+  "    z: 20.0\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"label\"\n"
+  "  type: \"label\"\n"
+  "  data: \"size {\\n"
+  "  x: 128.0\\n"
+  "  y: 32.0\\n"
+  "}\\n"
+  "text: \\\"3\\\"\\n"
+  "font: \\\"/builtins/fonts/default.font\\\"\\n"
+  "material: \\\"/builtins/fonts/label-df.material\\\"\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: -508.0\n"
+  "    y: 236.00003\n"
+  "    z: 20.0\n"
+  "  }\n"
+  "  scale {\n"
+  "    x: 3.0\n"
+  "    y: 3.0\n"
   "  }\n"
   "}\n"
   ""

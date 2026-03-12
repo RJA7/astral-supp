@@ -29,14 +29,7 @@ export class CoreLevel {
 		});
 
 		this.state.onPlayerPortalCollision.add((portalId: GameObjectId) => {
-			const name = this.levelLayout.nameById.get(portalId);
-
-			if (!name) return;
-
-			const portalData = this.data.parts[this.state.levelPart].portals[name];
-
-			if (!portalData) return;
-
+			const portalData = this.getPortalDataById(portalId);
 			this.state.setLevelPart(portalData.targetPart);
 		});
 	}
@@ -47,11 +40,6 @@ export class CoreLevel {
 			this.state.levelNumber,
 			levelPart,
 		);
-
-		const playerPosition = this.levelLayout.player_position.getWorldPosition();
-		this.coreLayout.player.setScale2D(this.levelLayout.root.getScale());
-		this.coreLayout.player.setPosition2D(playerPosition);
-		this.coreLayout.cursor.setPosition2D(playerPosition);
 	}
 
 	public resize() {
@@ -60,11 +48,14 @@ export class CoreLevel {
 	}
 
 	private createLevelLayout(levelNumber: number, levelPart: LevelPart) {
+		const { player, cursor } = this.coreLayout;
 		const { level_factory, safe_zone_factory } = this.coreLayout.root;
+
 		level_factory.setPrototype(
 			`/main/levels/level_${levelNumber}_${levelPart}.collectionc`,
 		);
 		const levelLayout = level_factory.createLayout(levelSchema);
+		this.levelLayout = levelLayout;
 		this.coreLayout.world.addChild(levelLayout.root);
 
 		const outlineSize = vmath.vector3(50, 50, 0);
@@ -81,6 +72,22 @@ export class CoreLevel {
 			safeZone.body.box.set(boneScale);
 		});
 
+		levelLayout.portals.forEach((portal) => {
+			const portalData = this.getPortalDataById(portal.id);
+			const asset = this.data.colorByPart[portalData.targetPart];
+			portal.sprite.playFlipBook(asset);
+		});
+
+		const playerPosition = this.levelLayout.player_position.getWorldPosition();
+		player.setScale2D(this.levelLayout.root.getScale());
+		player.setPosition2D(playerPosition);
+		cursor.setPosition2D(playerPosition);
+
 		return levelLayout;
+	}
+
+	private getPortalDataById(portalId: GameObjectId) {
+		const name = this.levelLayout.nameById.get(portalId)!;
+		return this.data.parts[this.state.levelPart].portals[name];
 	}
 }

@@ -1,6 +1,12 @@
 import { LevelData, LevelPart } from '../types/LevelData';
 
 export const level1: LevelData = {
+	colorByPart: {
+		[LevelPart.LT]: 'player_yellow',
+		[LevelPart.RT]: 'player_purple',
+		[LevelPart.RB]: 'player_red',
+		[LevelPart.LB]: 'player_green',
+	},
 	parts: {
 		[LevelPart.LT]: {
 			portals: {
@@ -15,10 +21,10 @@ export const level1: LevelData = {
 		[LevelPart.RT]: {
 			portals: {
 				portal0: {
-					targetPart: LevelPart.LT,
+					targetPart: LevelPart.RB,
 				},
 				portal1: {
-					targetPart: LevelPart.RB,
+					targetPart: LevelPart.LT,
 				},
 			},
 		},
@@ -35,10 +41,10 @@ export const level1: LevelData = {
 		[LevelPart.LB]: {
 			portals: {
 				portal0: {
-					targetPart: LevelPart.RB,
+					targetPart: LevelPart.LT,
 				},
 				portal1: {
-					targetPart: LevelPart.LT,
+					targetPart: LevelPart.RB,
 				},
 			},
 		},

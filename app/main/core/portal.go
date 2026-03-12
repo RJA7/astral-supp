@@ -9,7 +9,7 @@ embedded_components {
   "}\n"
   ""
   scale {
-    x: 0.1
+    x: 0.4
     y: 0.4
   }
 }
@@ -33,7 +33,7 @@ embedded_components {
   "    count: 3\n"
   "    id: \"box\"\n"
   "  }\n"
-  "  data: 4.0\n"
+  "  data: 16.0\n"
   "  data: 16.0\n"
   "  data: 10.0\n"
   "}\n"

@@ -1,18 +1,6 @@
 images {
   image: "/assets/atlases/main/white_pixel.png"
 }
-images {
-  image: "/assets/atlases/main/player_green.png"
-}
-images {
-  image: "/assets/atlases/main/player_purple.png"
-}
-images {
-  image: "/assets/atlases/main/player_red.png"
-}
-images {
-  image: "/assets/atlases/main/player_yellow.png"
-}
 animations {
   id: "cursor_grab"
   images {
@@ -31,6 +19,34 @@ animations {
   id: "glow"
   images {
     image: "/assets/atlases/main/glow.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+}
+animations {
+  id: "player_green"
+  images {
+    image: "/assets/atlases/main/player_green.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+}
+animations {
+  id: "player_red"
+  images {
+    image: "/assets/atlases/main/player_red.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+}
+animations {
+  id: "player_purple"
+  images {
+    image: "/assets/atlases/main/player_purple.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+}
+animations {
+  id: "player_yellow"
+  images {
+    image: "/assets/atlases/main/player_yellow.png"
   }
   playback: PLAYBACK_LOOP_FORWARD
 }

@@ -6,6 +6,7 @@ export enum LevelPart {
 }
 
 export type LevelData = {
+	colorByPart: Record<LevelPart, string>;
 	parts: Record<LevelPart, LevelPartData>;
 };
 

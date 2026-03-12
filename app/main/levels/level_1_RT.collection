@@ -3,8 +3,8 @@ instances {
   id: "portal0"
   prototype: "/main/core/portal.go"
   position {
-    x: -187.0
-    y: 165.0
+    x: -423.66666
+    y: -236.66667
     z: 20.0
   }
 }
@@ -13,7 +13,7 @@ instances {
   prototype: "/main/core/portal.go"
   position {
     x: 376.0
-    y: 226.0
+    y: 211.0
     z: 20.0
   }
   rotation {
@@ -34,8 +34,8 @@ instances {
   id: "pickup1"
   prototype: "/main/core/pickup.go"
   position {
-    x: -419.66666
-    y: -235.0
+    x: -94.66667
+    y: 166.66667
     z: 20.0
   }
 }
@@ -60,6 +60,51 @@ embedded_instances {
   "    z: 10.0\n"
   "  }\n"
   "}\n"
+  "embedded_components {\n"
+  "  id: \"indicator\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"player_purple\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "size {\\n"
+  "  x: 80.0\\n"
+  "  y: 80.0\\n"
+  "}\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/assets/atlases/main.atlas\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: 491.0\n"
+  "    y: -221.99997\n"
+  "    z: 20.0\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"label\"\n"
+  "  type: \"label\"\n"
+  "  data: \"size {\\n"
+  "  x: 128.0\\n"
+  "  y: 32.0\\n"
+  "}\\n"
+  "text: \\\"2\\\"\\n"
+  "font: \\\"/builtins/fonts/default.font\\\"\\n"
+  "material: \\\"/builtins/fonts/label-df.material\\\"\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: 494.0\n"
+  "    y: -220.99997\n"
+  "    z: 20.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    z: 0.70710677\n"
+  "    w: -0.70710677\n"
+  "  }\n"
+  "  scale {\n"
+  "    x: 3.0\n"
+  "    y: 3.0\n"
+  "  }\n"
+  "}\n"
   ""
   rotation {
     z: 0.70710677
@@ -74,7 +119,7 @@ embedded_instances {
   id: "player_position"
   data: ""
   position {
-    x: 373.0
-    y: 167.0
+    x: 243.0
+    y: 163.66666
   }
 }

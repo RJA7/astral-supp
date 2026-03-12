@@ -17,7 +17,9 @@ export const levelSchema = {
 		}),
 		sprite: Sprite,
 	}),
-	portals: list({}),
+	portals: list({
+		sprite: Sprite,
+	}),
 } satisfies CollectionSchema;
 
 export type LevelLayout = CollectionLayout<typeof levelSchema>;
