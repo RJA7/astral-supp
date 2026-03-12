@@ -73,6 +73,7 @@ export class CoreController extends Controller {
 			this.input.getDelta(),
 			this.input.isPointerDown(),
 		);
+		this.physics.fixedUpdate();
 	}
 
 	onResize(): void {

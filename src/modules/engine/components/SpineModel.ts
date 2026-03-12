@@ -18,6 +18,14 @@ export class SpineModel implements Component {
 		return go.get(this.url, SpriteProperty.Alpha) as number;
 	}
 
+	set playbackRate(value: number) {
+		go.set(this.url, 'playback_rate', value);
+	}
+
+	get playbackRate() {
+		return go.get(this.url, 'playback_rate') as number;
+	}
+
 	public hideSlotAttachment(slotName: string) {
 		spine.set_attachment(this.url, slotName, undefined!);
 	}

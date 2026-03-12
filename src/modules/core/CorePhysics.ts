@@ -22,8 +22,6 @@ export class CorePhysics {
 		for (const event of events) {
 			this.handleEvent(event);
 		}
-
-		this.dispatchSignals();
 	}
 
 	private handleEvent(event: PhysicsEvent) {
@@ -69,12 +67,16 @@ export class CorePhysics {
 		for (const [id] of this.isSafeById) {
 			if (this.isSafeById.get(id) !== 0) continue;
 
-			this.state.playerHp = Math.max(0, this.state.playerHp - 10);
+			this.state.playerHp = Math.max(0, this.state.playerHp - 1);
 			changed = true;
 		}
 
 		if (changed) {
 			this.state.onPlayerHpChanged.dispatch();
 		}
+	}
+
+	public fixedUpdate() {
+		this.dispatchSignals();
 	}
 }
