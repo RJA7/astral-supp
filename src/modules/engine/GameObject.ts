@@ -5,7 +5,7 @@ import { Playback } from './types/Playback';
 import { Property } from './types/Property';
 import { Easing } from './types/Easing';
 import { GameObjectId } from './types/Hash';
-import { AnyEasing, wrapAnimationComplete } from './utils/Animate';
+import { AnimateTo, AnyEasing, wrapAnimationComplete } from './utils/Animate';
 
 export type GameObjectClass = typeof GameObject;
 
@@ -97,9 +97,9 @@ export class GameObject {
 
 	animate(
 		property: Property,
-		to: number | vmath.vector3 | vmath.vector4 | vmath.quaternion,
+		to: AnimateTo,
 		duration: number,
-		easing: AnyEasing = Easing.LINEAR,
+		easing: AnyEasing = Easing.Linear,
 		delay: number = 0,
 		playback: Playback = Playback.PLAYBACK_ONCE_FORWARD,
 		complete?: (url: ComponentUrl, property: Property) => void,

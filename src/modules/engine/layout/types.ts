@@ -7,6 +7,7 @@ import { NameById } from '../types/Hash';
 import { Script } from '../components/Script';
 import { ControllerName } from '../../ControllerName';
 import { CollectionProxy } from '../components/CollectionProxy';
+import { GuiNode } from '../components/GuiNode';
 
 export type ListLayout<T> = {
 	isList: true;
@@ -108,4 +109,30 @@ export type SpineModelLayout<
 	T = S['bones'],
 > = SpineModel & {
 	[K in keyof T]: T[K] extends ListLayout<object> ? GameObject[] : GameObject;
+};
+
+// GUI
+export type GuiSchema = Record<string, ListOr<GuiAnyNodeSchema>>;
+
+export type GuiAnyNodeSchema = GuiNodeSchema | GuiTemplateSchema;
+
+export type GuiNodeSchema = {
+	type: 'node';
+};
+
+export type GuiTemplateSchema<T extends GuiSchema = any> = {
+	type: 'template';
+	schema: T;
+};
+
+export type GuiLayout<T extends GuiSchema> = {
+	[K in keyof T]: T[K] extends ListLayout<GuiNodeSchema>
+		? GuiNode[]
+		: T[K] extends GuiNodeSchema
+			? GuiNode
+			: T[K] extends ListLayout<GuiTemplateSchema>
+				? GuiLayout<T[K]['schema']['schema']>[]
+				: T[K] extends GuiTemplateSchema
+					? GuiLayout<T[K]['schema']>
+					: never;
 };

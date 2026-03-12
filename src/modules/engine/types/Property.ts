@@ -76,7 +76,7 @@ export enum GuiProperty {
 	ColorR = 'color.x',
 	ColorG = 'color.y',
 	ColorB = 'color.z',
-	ColorA = 'color.w',
+	Alpha = 'color.w',
 
 	Outline = 'outline',
 	OutlineR = 'outline.x',

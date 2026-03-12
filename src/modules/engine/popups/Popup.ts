@@ -1,6 +1,6 @@
-import { Script } from '../engine/components/Script';
-import { ControllerName } from '../ControllerName';
-import { GameObjectId } from '../engine/types/Hash';
+import { Script } from '../components/Script';
+import { ControllerName } from '../../ControllerName';
+import { GameObjectId } from '../types/Hash';
 
 export class Popup<T extends ControllerName> {
 	public readonly rootId: GameObjectId;

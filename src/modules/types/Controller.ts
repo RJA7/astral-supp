@@ -1,7 +1,6 @@
 import { ActionId } from './ActionId';
 import { Action } from './Action';
 import { Messenger } from '../engine/Messenger';
-import Tweener from '../engine/tweener/Tweener';
 import { MessageId } from './MessageId';
 import { Signal, SignalBinding } from '../engine/Signal';
 import { postMessage } from '../engine/PostMessage';
@@ -10,11 +9,9 @@ export type ControllerClass = new (props: any) => Controller;
 
 export class Controller {
 	messenger: Messenger;
-	tweener: Tweener;
 
 	constructor() {
 		this.messenger = new Messenger();
-		this.tweener = new Tweener();
 
 		this.messenger.on(MessageId.ScriptBridgeCall, (message) => {
 			(this as any)[message.methodName](...message.args);

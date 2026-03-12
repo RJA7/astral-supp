@@ -6,7 +6,7 @@ import { Component } from './Component';
 import { Fragment, GameObjectId, ImageResource, Material } from '../types/Hash';
 import { Easing } from '../types/Easing';
 import { Playback } from '../types/Playback';
-import { AnyEasing, wrapAnimationComplete } from '../utils/Animate';
+import { AnimateTo, AnyEasing, wrapAnimationComplete } from '../utils/Animate';
 
 export class Sprite implements Component {
 	public readonly url: ComponentUrl;
@@ -86,9 +86,9 @@ export class Sprite implements Component {
 
 	animate(
 		property: SpriteProperty,
-		to: number | vmath.vector3 | vmath.vector4 | vmath.quaternion,
+		to: AnimateTo,
 		duration: number,
-		easing: AnyEasing = Easing.LINEAR,
+		easing: AnyEasing = Easing.Linear,
 		delay: number = 0,
 		playback: Playback = Playback.PLAYBACK_ONCE_FORWARD,
 		complete?: (url: ComponentUrl, property: SpriteProperty) => void,

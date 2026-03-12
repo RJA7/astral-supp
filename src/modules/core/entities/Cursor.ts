@@ -40,14 +40,14 @@ export class Cursor {
 		sprite.animate(SpriteProperty.Alpha, value ? 1 : 0, 0.1);
 
 		const scale = value ? 1 : 0.6;
-		const easing = value ? Easing.OUTSINE : Easing.INSINE;
+		const easing = value ? Easing.SinOut : Easing.SinIn;
 		this.layout.animate(Property.Scale, scale, 0.3, easing);
 
 		const alpha = value ? 1 : 0;
 		const delay = value ? 0 : 0.2;
 		const asset = value ? 'cursor_hand' : 'cursor_grab';
 		sprite.cancelAnimation(SpriteProperty.Alpha);
-		sprite.animate(SpriteProperty.Alpha, alpha, 0.1, Easing.LINEAR, delay);
+		sprite.animate(SpriteProperty.Alpha, alpha, 0.1, Easing.Linear, delay);
 		sprite.playFlipBook(asset);
 	}
 

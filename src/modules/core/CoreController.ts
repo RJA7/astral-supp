@@ -11,8 +11,8 @@ import { CoreLayout, coreSchema } from '../layouts/CoreLayout';
 import { createCollectionLayout } from '../engine/layout/CollectionLayout';
 import { screen } from '../engine/render/Screen';
 import { CoreState } from './CoreState';
-import { Popups } from '../popups/Popups';
-import { PopupName } from '../popups/types/PopupName';
+import { Popups } from '../engine/popups/Popups';
+import { PopupName } from '../engine/popups/types/PopupName';
 import { Signal } from '../engine/Signal';
 
 export class CoreController extends Controller {

@@ -1,6 +1,9 @@
 import {
 	CollectionProxySchema,
 	ComponentType,
+	GuiNodeSchema,
+	GuiSchema,
+	GuiTemplateSchema,
 	ListLayout,
 	RigidBodySchema,
 	RigidBodySchemaShapes,
@@ -53,5 +56,18 @@ export function list<T>(schema: T, baseName?: string): ListLayout<T> {
 		isList: true,
 		schema,
 		baseName,
+	};
+}
+
+export function guiNode(): GuiNodeSchema {
+	return { type: 'node' };
+}
+
+export function guiTemplate<T extends GuiSchema>(
+	schema: T,
+): GuiTemplateSchema<T> {
+	return {
+		type: 'template',
+		schema,
 	};
 }

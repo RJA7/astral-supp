@@ -1,11 +1,11 @@
 import { PopupName } from './types/PopupName';
-import { Script } from '../engine/components/Script';
+import { Script } from '../components/Script';
 import { ControllerNameByPopupName } from './types/ControllerNameByPopupName';
-import { SetControllerMessage } from '../types/Message';
-import { ControllerName } from '../ControllerName';
-import { componentUrl } from '../engine/ComponentUrl';
-import { Fragment, GameObjectId } from '../engine/types/Hash';
-import { Messenger } from '../engine/Messenger';
+import { SetControllerMessage } from '../../types/Message';
+import { ControllerName } from '../../ControllerName';
+import { componentUrl } from '../ComponentUrl';
+import { Fragment, GameObjectId } from '../types/Hash';
+import { Messenger } from '../Messenger';
 import { Popup } from './Popup';
 
 const POPUPS_ID: GameObjectId = hash('/popups');

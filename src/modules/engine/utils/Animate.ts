@@ -1,5 +1,10 @@
-import { ComponentUrl } from '../ComponentUrl';
 import { Easing } from '../types/Easing';
+
+export type AnimateTo =
+	| number
+	| vmath.vector3
+	| vmath.vector4
+	| vmath.quaternion;
 
 export type AnyEasing =
 	| Easing
@@ -9,11 +14,11 @@ export type AnyEasing =
 	| ReturnType<typeof vmath.vector>;
 
 export function wrapAnimationComplete(
-	complete?: (url: ComponentUrl, property: any) => void,
-) {
+	complete?: (url: any, property: any) => void,
+): any {
 	if (!complete) return;
 
-	return function (this: object, url: ComponentUrl, property: string | hash) {
+	return function (this: object, url: any, property: string | hash) {
 		complete(url, property);
 	};
 }

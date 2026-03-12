@@ -2,49 +2,39 @@ import { Controller } from '../types/Controller';
 import { ActionId } from '../types/ActionId';
 import { Action } from '../types/Action';
 import { Signal } from '../engine/Signal';
+import { GuiLayout, GuiSchema } from '../engine/layout/types';
+import { guiNode } from '../engine/layout/Elements';
+import { createGuiLayout } from '../engine/layout/GuiLayout';
+import { playPopupOpening } from '../animations/PlayPopupOpening';
+
+const restartPopupSchema = {
+	dimmer: guiNode(),
+	root: guiNode(),
+	title: guiNode(),
+	restart_button: guiNode(),
+} satisfies GuiSchema;
+
+type RestartPopupLayout = GuiLayout<typeof restartPopupSchema>;
 
 export class RestartPopupController extends Controller {
 	public onRestartClick = new Signal();
 
-	private readonly dimmer: node;
-	private readonly root: node;
-	private readonly title: node;
-	private readonly restartButton: node;
+	private readonly layout: RestartPopupLayout;
 
 	constructor(props: { win: boolean }) {
 		super();
 
-		this.dimmer = gui.get_node('dimmer');
-		this.root = gui.get_node('root');
-		this.title = gui.get_node('title');
-		this.restartButton = gui.get_node('restart_button');
+		this.layout = createGuiLayout(restartPopupSchema);
+		this.layout.title.text = props.win ? 'You Win!' : 'You Lose!';
 
-		gui.set_text(this.title, props.win ? 'You Win!' : 'You Lose!');
-
-		this.playShowAnimation();
+		playPopupOpening(this.layout);
 	}
 
 	public onInput(actionId: ActionId, action: Action) {
 		if (actionId !== ActionId.touch) return;
 
-		if (
-			action.pressed &&
-			gui.pick_node(this.restartButton, action.x, action.y)
-		) {
+		if (action.pressed && this.layout.restart_button.pick(action.x, action.y)) {
 			this.onRestartClick.dispatch();
 		}
-	}
-
-	private playShowAnimation() {
-		const position = gui.get_position(this.root);
-
-		gui.set_alpha(this.dimmer, 0);
-		gui.set_position(
-			this.root,
-			vmath.vector3(position.x, position.y + 500, position.z),
-		);
-
-		gui.animate(this.dimmer, 'color.w', 0.8, go.EASING_LINEAR, 0.3);
-		gui.animate(this.root, 'position.y', position.y, go.EASING_OUTBACK, 0.5);
 	}
 }

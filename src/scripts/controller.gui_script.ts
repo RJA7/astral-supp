@@ -34,7 +34,6 @@ export function final(this: Self) {
 
 export function update(this: Self, dt: number) {
 	this.controller.update(dt);
-	this.controller.tweener.update(dt);
 }
 
 export function on_message(
