@@ -50,6 +50,14 @@ export class CorePhysics {
 		) {
 			this.state.onPlayerPortalCollision.dispatch(event.b.id);
 		}
+
+		if (
+			event.type === PhysicsEventType.trigger_event &&
+			event.a.group === PhysicsGroup.player &&
+			event.b.group === PhysicsGroup.pickup
+		) {
+			this.state.onPlayerPickupCollision.dispatch(event.b.id);
+		}
 	}
 
 	private dispatchSignals() {

@@ -3,15 +3,21 @@ import { GameObjectId } from '../engine/types/Hash';
 import { LevelPart } from './types/LevelData';
 
 export class CoreState {
+	onPlayerPortalCollision = new Signal<[GameObjectId]>();
+
+	onPlayerPickupCollision = new Signal<[GameObjectId]>();
+
 	onLevelPartChanged = new Signal();
 
-	onPlayerPortalCollision = new Signal<[GameObjectId]>();
+	onLevelSpeedChanged = new Signal();
 
 	onPlayerHpChanged = new Signal();
 
 	levelNumber = 1;
 
-	levelPart = LevelPart.LT;
+	levelSpeed = 1;
+
+	levelPart = LevelPart.RB;
 
 	playerHp = 100;
 
@@ -23,5 +29,10 @@ export class CoreState {
 	setHp(value: number) {
 		this.playerHp = value;
 		this.onPlayerHpChanged.dispatch();
+	}
+
+	setLevelSpeed(value: number) {
+		this.levelSpeed = value;
+		this.onLevelSpeedChanged.dispatch();
 	}
 }

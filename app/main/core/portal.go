@@ -39,5 +39,6 @@ embedded_components {
   "}\n"
   "event_collision: false\n"
   "event_contact: false\n"
+  "event_trigger: false\n"
   ""
 }

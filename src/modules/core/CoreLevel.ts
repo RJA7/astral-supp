@@ -4,7 +4,8 @@ import { safeZoneSchema } from '../layouts/SafeZoneLayout';
 import { CoreState } from './CoreState';
 import { GameObjectId } from '../engine/types/Hash';
 import { level1 } from './levels/Level1';
-import { LevelData, LevelPart } from './types/LevelData';
+import { LevelData, LevelPart, PickupType } from './types/LevelData';
+import { assertNever } from '../engine/utils/AssertNever';
 
 export class CoreLevel {
 	private readonly state: CoreState;
@@ -31,6 +32,15 @@ export class CoreLevel {
 		this.state.onPlayerPortalCollision.add((portalId: GameObjectId) => {
 			const portalData = this.getPortalDataById(portalId);
 			this.state.setLevelPart(portalData.targetPart);
+		});
+
+		this.state.onPlayerPickupCollision.add((pickupId: GameObjectId) => {
+			const pickupData = this.getPickupDataById(pickupId);
+			this.handlePickupCollected(pickupData.type);
+		});
+
+		this.state.onLevelSpeedChanged.addAndCall(() => {
+			this.levelLayout.root.spine_model.playbackRate = this.state.levelSpeed;
 		});
 	}
 
@@ -78,6 +88,11 @@ export class CoreLevel {
 			portal.sprite.playFlipBook(asset);
 		});
 
+		levelLayout.pickups.forEach((pickup) => {
+			const pickupData = this.getPickupDataById(pickup.id);
+			pickup.sprite.playFlipBook(pickupData.color);
+		});
+
 		const playerPosition = this.levelLayout.player_position.getWorldPosition();
 		player.setScale2D(this.levelLayout.root.getScale());
 		player.setPosition2D(playerPosition);
@@ -89,5 +104,20 @@ export class CoreLevel {
 	private getPortalDataById(portalId: GameObjectId) {
 		const name = this.levelLayout.nameById.get(portalId)!;
 		return this.data.parts[this.state.levelPart].portals[name];
+	}
+
+	private getPickupDataById(pickupId: GameObjectId) {
+		const name = this.levelLayout.nameById.get(pickupId)!;
+		return this.data.parts[this.state.levelPart].pickups[name];
+	}
+
+	private handlePickupCollected(type: PickupType) {
+		if (type === PickupType.SpeedUp) {
+			this.state.setLevelSpeed(2);
+		} else if (type === PickupType.SlowDown) {
+			this.state.setLevelSpeed(0.5);
+		} else {
+			assertNever(type);
+		}
 	}
 }

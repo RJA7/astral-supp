@@ -1,11 +1,11 @@
-import { LevelData, LevelPart } from '../types/LevelData';
+import { Color, LevelData, LevelPart, PickupType } from '../types/LevelData';
 
 export const level1: LevelData = {
 	colorByPart: {
-		[LevelPart.LT]: 'player_yellow',
-		[LevelPart.RT]: 'player_purple',
-		[LevelPart.RB]: 'player_red',
-		[LevelPart.LB]: 'player_green',
+		[LevelPart.LT]: Color.Yellow,
+		[LevelPart.RT]: Color.Purple,
+		[LevelPart.RB]: Color.Red,
+		[LevelPart.LB]: Color.Green,
 	},
 	parts: {
 		[LevelPart.LT]: {
@@ -17,6 +17,10 @@ export const level1: LevelData = {
 					targetPart: LevelPart.RT,
 				},
 			},
+			pickups: {
+				pickup0: { type: PickupType.SpeedUp, color: Color.Yellow },
+				pickup1: { type: PickupType.SlowDown, color: Color.Red },
+			},
 		},
 		[LevelPart.RT]: {
 			portals: {
@@ -26,6 +30,10 @@ export const level1: LevelData = {
 				portal1: {
 					targetPart: LevelPart.LT,
 				},
+			},
+			pickups: {
+				pickup0: { type: PickupType.SpeedUp, color: Color.Purple },
+				pickup1: { type: PickupType.SlowDown, color: Color.Green },
 			},
 		},
 		[LevelPart.RB]: {
@@ -37,6 +45,10 @@ export const level1: LevelData = {
 					targetPart: LevelPart.LB,
 				},
 			},
+			pickups: {
+				pickup0: { type: PickupType.SpeedUp, color: Color.Yellow },
+				pickup1: { type: PickupType.SlowDown, color: Color.Red },
+			},
 		},
 		[LevelPart.LB]: {
 			portals: {
@@ -46,6 +58,10 @@ export const level1: LevelData = {
 				portal1: {
 					targetPart: LevelPart.RB,
 				},
+			},
+			pickups: {
+				pickup0: { type: PickupType.SpeedUp, color: Color.Purple },
+				pickup1: { type: PickupType.SlowDown, color: Color.Green },
 			},
 		},
 	},

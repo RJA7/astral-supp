@@ -20,6 +20,9 @@ export const levelSchema = {
 	portals: list({
 		sprite: Sprite,
 	}),
+	pickups: list({
+		sprite: Sprite,
+	}),
 } satisfies CollectionSchema;
 
 export type LevelLayout = CollectionLayout<typeof levelSchema>;

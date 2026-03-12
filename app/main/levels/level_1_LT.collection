@@ -76,7 +76,7 @@ embedded_instances {
   "\"\n"
   "  position {\n"
   "    x: -510.0\n"
-  "    y: 233.0\n"
+  "    y: 153.0\n"
   "    z: 20.0\n"
   "  }\n"
   "}\n"
@@ -93,7 +93,7 @@ embedded_instances {
   "\"\n"
   "  position {\n"
   "    x: -508.0\n"
-  "    y: 236.00003\n"
+  "    y: 155.00003\n"
   "    z: 20.0\n"
   "  }\n"
   "  scale {\n"
@@ -107,7 +107,7 @@ embedded_instances {
   id: "player_position"
   data: ""
   position {
-    x: 373.0
-    y: 167.0
+    x: 17.0
+    y: -84.0
   }
 }
