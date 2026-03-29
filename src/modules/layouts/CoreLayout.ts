@@ -16,9 +16,6 @@ export const coreSchema = {
 	cursor: {
 		sprite: Sprite,
 	},
-	vignette: {
-		sprite: Sprite,
-	},
 	hud: {
 		gui: script(ControllerName.CoreGuiController),
 	},

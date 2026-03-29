@@ -1,7 +1,7 @@
 import { PlayerLayout } from '../../layouts/CoreLayout';
 
 // Max jump per physics iteration. This limits how close safe zones can be
-const SENSITIVITY = 0.1;
+const SENSITIVITY = 0.2;
 
 export class Player {
 	private readonly layout: PlayerLayout;

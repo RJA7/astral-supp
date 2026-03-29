@@ -13,7 +13,7 @@ export class CorePhysics {
 		this.state = state;
 		this.playerCenterId = playerCenterId;
 
-		this.state.onLevelPartChanged.add(() => {
+		this.state.onLevelChanged.add(() => {
 			this.isSafeById.clear();
 		});
 	}
@@ -25,6 +25,8 @@ export class CorePhysics {
 	}
 
 	private handleEvent(event: PhysicsEvent) {
+		if (this.state.gameOver) return;
+
 		if (event.a.group < event.b.group) {
 			[event.a, event.b] = [event.b, event.a];
 		}
@@ -46,41 +48,40 @@ export class CorePhysics {
 		if (
 			event.type === PhysicsEventType.trigger_event &&
 			event.a.group === PhysicsGroup.player &&
-			event.b.group === PhysicsGroup.portal
+			event.b.group === PhysicsGroup.finish_zone
 		) {
-			this.state.onPlayerPortalCollision.dispatch(event.b.id);
+			this.state.finish();
 		}
 
 		if (
 			event.type === PhysicsEventType.trigger_event &&
 			event.a.group === PhysicsGroup.player &&
-			event.b.group === PhysicsGroup.pickup
+			event.b.group === PhysicsGroup.bullet
 		) {
-			this.state.onPlayerPickupCollision.dispatch(event.b.id);
+			this.state.setHp(0);
 		}
 	}
 
 	private dispatchSignals() {
-		if (this.state.playerHp === 0) return;
+		if (this.state.gameOver) return;
 
 		if (this.isSafeById.get(this.playerCenterId) === 0) {
-			this.state.playerHp = 0;
-			this.state.onPlayerHpChanged.dispatch();
-
+			this.state.setHp(0);
 			return;
 		}
 
+		let hp = this.state.playerHp;
 		let changed = false;
 
 		for (const [id] of this.isSafeById) {
 			if (this.isSafeById.get(id) !== 0) continue;
 
-			this.state.playerHp = Math.max(0, this.state.playerHp - 1);
+			hp = Math.max(0, hp - 1);
 			changed = true;
 		}
 
 		if (changed) {
-			this.state.onPlayerHpChanged.dispatch();
+			this.state.setHp(hp);
 		}
 	}
 

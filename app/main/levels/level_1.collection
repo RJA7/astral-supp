@@ -1,0 +1,173 @@
+name: "level1"
+instances {
+  id: "finish"
+  prototype: "/main/core/finish_zone.go"
+  position {
+    x: -245.0
+    y: -119.0
+  }
+}
+instances {
+  id: "safe_zone0"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: -508.3333
+    y: -53.0
+  }
+  scale3 {
+    x: 60.0
+    y: 500.0
+  }
+}
+instances {
+  id: "safe_zone1"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: 11.666679
+    y: 166.66667
+  }
+  scale3 {
+    x: 1000.0
+    y: 60.0
+  }
+}
+instances {
+  id: "safe_zone2"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: 488.3333
+    y: -53.333324
+  }
+  scale3 {
+    x: 60.0
+    y: 500.0
+  }
+}
+instances {
+  id: "safe_zone3"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: 61.666676
+    y: -273.3333
+  }
+  scale3 {
+    x: 800.0
+    y: 60.0
+  }
+}
+instances {
+  id: "safe_zone4"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: -368.3333
+    y: -103.33332
+  }
+  scale3 {
+    x: 60.0
+    y: 400.0
+  }
+}
+instances {
+  id: "safe_zone5"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: 3.333347
+    y: 65.00001
+  }
+  scale3 {
+    x: 800.0
+    y: 60.0
+  }
+}
+instances {
+  id: "safe_zone6"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: 373.33334
+    y: -64.99999
+  }
+  scale3 {
+    x: 60.0
+    y: 200.0
+  }
+}
+instances {
+  id: "safe_zone7"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: 101.66668
+    y: -138.33331
+  }
+  scale3 {
+    x: 600.0
+    y: 60.0
+  }
+}
+scale_along_z: 0
+embedded_instances {
+  id: "root"
+  children: "bullets"
+  children: "finish"
+  children: "player_position"
+  children: "safe_zones"
+  data: ""
+}
+embedded_instances {
+  id: "player_position"
+  data: ""
+  position {
+    x: -506.99997
+    y: -271.3333
+  }
+}
+embedded_instances {
+  id: "bullets"
+  children: "shooter"
+  data: "embedded_components {\n"
+  "  id: \"factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/main/core/bullet.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: -1.0
+    y: -37.0
+    z: 60.0
+  }
+}
+embedded_instances {
+  id: "shooter"
+  data: "embedded_components {\n"
+  "  id: \"sprite\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"cursor_hand\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "size {\\n"
+  "  x: 46.0\\n"
+  "  y: 46.0\\n"
+  "}\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/assets/atlases/main.atlas\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "  rotation {\n"
+  "    z: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+}
+embedded_instances {
+  id: "safe_zones"
+  children: "safe_zone0"
+  children: "safe_zone1"
+  children: "safe_zone2"
+  children: "safe_zone3"
+  children: "safe_zone4"
+  children: "safe_zone5"
+  children: "safe_zone6"
+  children: "safe_zone7"
+  data: ""
+}

@@ -22,15 +22,23 @@ export class CoreInput {
 	public onInput(actionId: ActionId, action: Action): void {
 		if (actionId === ActionId.touch) {
 			if (action.pressed) {
+				this.delta.x = 0;
+				this.delta.y = 0;
 				this.pointerDown = true;
+
+				return;
 			}
 
 			if (action.released) {
+				this.delta.x = 0;
+				this.delta.y = 0;
 				this.pointerDown = false;
+
+				return;
 			}
 		}
 
-		this.delta.x = action.dx;
-		this.delta.y = action.dy;
+		this.delta.x = action.screen_dx;
+		this.delta.y = action.screen_dy;
 	}
 }

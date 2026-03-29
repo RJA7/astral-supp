@@ -31,6 +31,19 @@ export class Sprite implements Component {
 		return go.get(this.url, SpriteProperty.Height) as number;
 	}
 
+	set scale2D(value: vmath.vector3) {
+		go.set(this.url, SpriteProperty.ScaleX, value.x);
+		go.set(this.url, SpriteProperty.ScaleY, value.y);
+	}
+
+	set scale(value: vmath.vector3) {
+		go.set(this.url, SpriteProperty.Scale, value);
+	}
+
+	get scale() {
+		return go.get(this.url, SpriteProperty.Scale) as vmath.vector3;
+	}
+
 	set alpha(value: number) {
 		go.set(this.url, SpriteProperty.Alpha, value);
 	}

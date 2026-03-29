@@ -55,6 +55,13 @@ export class CoreController extends Controller {
 			}
 		});
 
+		this.state.onFinished.addOnce(() => {
+			this.cursor.setMouseLocked(false);
+
+			const popup = this.popups.show(PopupName.restart, { win: true });
+			popup.script.bridge.onRestartClick = () => this.onRestart.dispatch();
+		});
+
 		physics.set_event_listener(this.physicsListener.bind(this));
 	}
 
@@ -77,8 +84,6 @@ export class CoreController extends Controller {
 	}
 
 	onResize(): void {
-		this.layout.vignette.sprite.width = screen.width;
-		this.layout.vignette.sprite.height = screen.height;
 		this.level.resize();
 	}
 

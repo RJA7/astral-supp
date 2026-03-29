@@ -6,6 +6,7 @@ import { Property } from './types/Property';
 import { Easing } from './types/Easing';
 import { GameObjectId } from './types/Hash';
 import { AnimateTo, AnyEasing, wrapAnimationComplete } from './utils/Animate';
+import { DEG_TO_RAD } from './utils/Math';
 
 export type GameObjectClass = typeof GameObject;
 
@@ -93,6 +94,22 @@ export class GameObject {
 
 	disable() {
 		postVoidMessage(this.id, MessageId.disable);
+	}
+
+	get angle() {
+		return go.get(this.id, Property.EulerZ) as number;
+	}
+
+	set angle(value: number) {
+		go.set(this.id, Property.EulerZ, value);
+	}
+
+	get rotation() {
+		return this.angle * DEG_TO_RAD;
+	}
+
+	set rotation(value: number) {
+		this.angle = value * DEG_TO_RAD;
 	}
 
 	animate(

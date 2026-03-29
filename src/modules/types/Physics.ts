@@ -9,8 +9,8 @@ patchEnum(PhysicsEventType, toHash);
 export enum PhysicsGroup {
 	player = 'player',
 	safe_zone = 'safe_zone',
-	portal = 'portal',
-	pickup = 'pickup',
+	finish_zone = 'finish_zone',
+	bullet = 'bullet',
 }
 patchEnum(PhysicsGroup, toHash);
 

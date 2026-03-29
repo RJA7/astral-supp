@@ -1,38 +1,35 @@
 import { Signal } from '../engine/Signal';
-import { GameObjectId } from '../engine/types/Hash';
-import { LevelPart } from './types/LevelData';
 
 export class CoreState {
-	onPlayerPortalCollision = new Signal<[GameObjectId]>();
-
-	onPlayerPickupCollision = new Signal<[GameObjectId]>();
-
-	onLevelPartChanged = new Signal();
-
-	onLevelSpeedChanged = new Signal();
+	onLevelChanged = new Signal();
 
 	onPlayerHpChanged = new Signal();
 
+	onFinished = new Signal();
+
 	levelNumber = 1;
-
-	levelSpeed = 1;
-
-	levelPart = LevelPart.RB;
 
 	playerHp = 100;
 
-	setLevelPart(value: LevelPart) {
-		this.levelPart = value;
-		this.onLevelPartChanged.dispatch();
+	gameOver = false;
+
+	setLevel(value: number) {
+		this.levelNumber = value;
+		this.onLevelChanged.dispatch();
 	}
 
 	setHp(value: number) {
-		this.playerHp = value;
+		this.playerHp = Math.max(0, value);
+
+		if (this.playerHp === 0) {
+			this.gameOver = true;
+		}
+
 		this.onPlayerHpChanged.dispatch();
 	}
 
-	setLevelSpeed(value: number) {
-		this.levelSpeed = value;
-		this.onLevelSpeedChanged.dispatch();
+	finish() {
+		this.gameOver = true;
+		this.onFinished.dispatch();
 	}
 }

@@ -1,55 +1,27 @@
 import { CoreLayout } from '../layouts/CoreLayout';
 import { LevelLayout, levelSchema } from '../layouts/LevelLayout';
-import { safeZoneSchema } from '../layouts/SafeZoneLayout';
 import { CoreState } from './CoreState';
-import { GameObjectId } from '../engine/types/Hash';
-import { level1 } from './levels/Level1';
-import { LevelData, LevelPart, PickupType } from './types/LevelData';
-import { assertNever } from '../engine/utils/AssertNever';
+import { Property } from '../engine/types/Property';
+import { Playback } from '../engine/types/Playback';
+import { bulletSchema } from '../layouts/BulletLayout';
+import { DEG_TO_RAD } from '../engine/utils/Math';
 
 export class CoreLevel {
 	private readonly state: CoreState;
 
 	private readonly coreLayout: CoreLayout;
 
-	private levelLayout: LevelLayout;
-
-	private data: LevelData = level1;
+	private levelLayout!: LevelLayout;
 
 	constructor(state: CoreState, coreLayout: CoreLayout) {
 		this.state = state;
 		this.coreLayout = coreLayout;
 
-		this.levelLayout = this.createLevelLayout(
-			this.state.levelNumber,
-			this.state.levelPart,
-		);
-
-		this.state.onLevelPartChanged.add(() => {
-			this.teleportTo(this.state.levelPart);
+		this.state.onLevelChanged.add(() => {
+			this.levelLayout = this.createLevelLayout(this.state.levelNumber);
 		});
 
-		this.state.onPlayerPortalCollision.add((portalId: GameObjectId) => {
-			const portalData = this.getPortalDataById(portalId);
-			this.state.setLevelPart(portalData.targetPart);
-		});
-
-		this.state.onPlayerPickupCollision.add((pickupId: GameObjectId) => {
-			const pickupData = this.getPickupDataById(pickupId);
-			this.handlePickupCollected(pickupData.type);
-		});
-
-		this.state.onLevelSpeedChanged.addAndCall(() => {
-			this.levelLayout.root.spine_model.playbackRate = this.state.levelSpeed;
-		});
-	}
-
-	private teleportTo(levelPart: LevelPart) {
-		this.levelLayout.root.delete();
-		this.levelLayout = this.createLevelLayout(
-			this.state.levelNumber,
-			levelPart,
-		);
+		this.state.setLevel(1);
 	}
 
 	public resize() {
@@ -57,40 +29,20 @@ export class CoreLevel {
 		// this.levelLayout.bg.sprite.height = screen.height;
 	}
 
-	private createLevelLayout(levelNumber: number, levelPart: LevelPart) {
+	private createLevelLayout(levelNumber: number) {
 		const { player, cursor } = this.coreLayout;
 		const { level_factory, safe_zone_factory } = this.coreLayout.root;
 
-		level_factory.setPrototype(
-			`/main/levels/level_${levelNumber}_${levelPart}.collectionc`,
-		);
+		level_factory.setPrototype(`/main/levels/level_${levelNumber}.collectionc`);
 		const levelLayout = level_factory.createLayout(levelSchema);
 		this.levelLayout = levelLayout;
 		this.coreLayout.world.addChild(levelLayout.root);
 
-		const outlineSize = vmath.vector3(50, 50, 0);
-
-		levelLayout.root.spine_model.safe_zones.forEach((safeZoneBone, i) => {
-			levelLayout.root.spine_model.hideSlotAttachment(`safe_zone_slot${i}`);
-
-			const safeZone = safe_zone_factory.create(safeZoneSchema);
-			safeZoneBone.addChild(safeZone);
-
-			const boneScale = safeZoneBone.getScale();
-			safeZone.setScale(vmath.vector3(1 / boneScale.x, 1 / boneScale.y, 1));
-			safeZone.sprite.setSize(boneScale.add(outlineSize));
-			safeZone.body.box.set(boneScale);
-		});
-
-		levelLayout.portals.forEach((portal) => {
-			const portalData = this.getPortalDataById(portal.id);
-			const asset = this.data.colorByPart[portalData.targetPart];
-			portal.sprite.playFlipBook(asset);
-		});
-
-		levelLayout.pickups.forEach((pickup) => {
-			const pickupData = this.getPickupDataById(pickup.id);
-			pickup.sprite.playFlipBook(pickupData.color);
+		levelLayout.safe_zones.forEach((safeZone) => {
+			const size = safeZone.getScale();
+			safeZone.setScale2D(vmath.vector3(1, 1, 1));
+			safeZone.sprite.setSize(size);
+			safeZone.body.box.set(size);
 		});
 
 		const playerPosition = this.levelLayout.player_position.getWorldPosition();
@@ -98,26 +50,47 @@ export class CoreLevel {
 		player.setPosition2D(playerPosition);
 		cursor.setPosition2D(playerPosition);
 
+		this.setupShooter();
+
 		return levelLayout;
 	}
 
-	private getPortalDataById(portalId: GameObjectId) {
-		const name = this.levelLayout.nameById.get(portalId)!;
-		return this.data.parts[this.state.levelPart].portals[name];
-	}
+	private setupShooter() {
+		const { shooter, bullets } = this.levelLayout;
 
-	private getPickupDataById(pickupId: GameObjectId) {
-		const name = this.levelLayout.nameById.get(pickupId)!;
-		return this.data.parts[this.state.levelPart].pickups[name];
-	}
+		shooter.animate(
+			Property.EulerZ,
+			-360,
+			6,
+			undefined,
+			0,
+			Playback.PLAYBACK_LOOP_FORWARD,
+		);
 
-	private handlePickupCollected(type: PickupType) {
-		if (type === PickupType.SpeedUp) {
-			this.state.setLevelSpeed(2);
-		} else if (type === PickupType.SlowDown) {
-			this.state.setLevelSpeed(0.5);
-		} else {
-			assertNever(type);
-		}
+		timer.delay(0.4, true, () => {
+			[0, 120, 240].forEach((angle, i) => {
+				const bullet = bullets.factory.create(bulletSchema);
+				const rotation = (shooter.angle + angle) * DEG_TO_RAD;
+				const direction = vmath.vector3(
+					Math.cos(rotation),
+					Math.sin(rotation),
+					0,
+				);
+				const distance = 1000;
+				const target = bullet.getPosition().add(direction.mul(distance));
+
+				bullet.animate(
+					Property.Position,
+					target,
+					6,
+					undefined,
+					undefined,
+					undefined,
+					() => {
+						bullet.delete();
+					},
+				);
+			});
+		});
 	}
 }

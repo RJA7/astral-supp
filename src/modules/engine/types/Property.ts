@@ -22,6 +22,16 @@ export enum Property {
 }
 
 export enum SpriteProperty {
+	Position = 'position',
+	PositionX = 'position.x',
+	PositionY = 'position.y',
+	PositionZ = 'position.z',
+
+	Scale = 'scale',
+	ScaleX = 'scale.x',
+	ScaleY = 'scale.y',
+	ScaleZ = 'scale.z',
+
 	Size = 'size',
 	Width = 'size.x',
 	Height = 'size.y',
