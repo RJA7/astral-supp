@@ -19,6 +19,10 @@ export class CoreInput {
 		this.delta.y = 0;
 	}
 
+	public resetPointerDown() {
+		this.pointerDown = false;
+	}
+
 	public onInput(actionId: ActionId, action: Action): void {
 		if (actionId === ActionId.touch) {
 			if (action.pressed) {

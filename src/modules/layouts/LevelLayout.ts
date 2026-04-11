@@ -16,3 +16,5 @@ export const levelSchema = {
 } satisfies CollectionSchema;
 
 export type LevelLayout = CollectionLayout<typeof levelSchema>;
+
+export type SafeZoneLayout = LevelLayout['safe_zones'][number];

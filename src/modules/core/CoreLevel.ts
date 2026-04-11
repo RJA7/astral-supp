@@ -1,6 +1,7 @@
 import { CoreLayout } from '../layouts/CoreLayout';
 import { CoreState } from './CoreState';
 import { Level, levels } from './levels/levels';
+import { syncSafeZoneCollider } from './helpers/SyncSafeAreaCollider';
 
 export class CoreLevel {
 	private readonly state: CoreState;
@@ -40,11 +41,7 @@ export class CoreLevel {
 		});
 
 		this.coreLayout.world.addChild(level.layout.root);
-
-		level.layout.safe_zones.forEach((safeZone) => {
-			const size = safeZone.getScale();
-			safeZone.body.box.set(vmath.vector3(size.x, size.y, 1));
-		});
+		level.layout.safe_zones.forEach(syncSafeZoneCollider);
 
 		const playerPosition = level.layout.player_position.getWorldPosition();
 		player.setScale2D(level.layout.root.getScale());

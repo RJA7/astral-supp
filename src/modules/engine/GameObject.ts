@@ -38,6 +38,14 @@ export class GameObject {
 		);
 	}
 
+	get position() {
+		return this.getPosition();
+	}
+
+	set position(position: vmath.vector3) {
+		this.setPosition(position);
+	}
+
 	getParentId() {
 		return go.get_parent(this.id);
 	}

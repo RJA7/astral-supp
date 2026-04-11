@@ -55,7 +55,9 @@ export class CoreController extends Controller {
 			}
 		});
 
-		this.state.onFinished.addOnce(() => {
+		this.state.onFinished.add(() => {
+			this.input.resetPointerDown();
+
 			if (levels[this.state.levelNumber + 1]) {
 				this.state.setLevel(this.state.levelNumber + 1);
 				return;

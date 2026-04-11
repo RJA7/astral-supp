@@ -59,7 +59,7 @@ instances {
   id: "safe_zone4"
   prototype: "/main/core/safe_zone.go"
   position {
-    x: 64.6667
+    x: -115.3333
     y: 248.0
   }
   scale3 {

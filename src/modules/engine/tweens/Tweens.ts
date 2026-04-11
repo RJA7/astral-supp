@@ -65,7 +65,7 @@ export class Tweens {
 	}
 }
 
-export class Tween<T extends object, P extends keyof T = keyof T> {
+export class Tween<T extends object, P extends keyof T = any> {
 	public readonly object: T;
 	public readonly property: P;
 	public readonly value: T[P];
