@@ -1,0 +1,25 @@
+
+
+BONES
+root
+> safe_zone0 - для анімації позиції, ротейт. Скейл все x: 1 y: 1
+>> safe_zone0_size - для анімації скейлу і початкового скейлу
+>>> Слот і атачмент - якась назва. Якщо звичайна картинка то можна міняти альфу. Якщо шейдер то альфа не працює
+
+> safe_zone1
+>> safe_zone1_size ...
+
+Наприклад інший обєкт в грі, який використовує інший матеріал, повинен мати інший префікс
+> danger_zone0
+>> danger_zone0_size
+
+> finish_zone0
+>> finish_zone0_size
+>>> attachment
+
+
+> safe_zone_mask0
+>> safe_zone_mask0_size
+>>> attachment 1px
+
+ітд
