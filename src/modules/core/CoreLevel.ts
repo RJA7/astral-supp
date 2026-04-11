@@ -1,30 +1,19 @@
 import { CoreLayout } from '../layouts/CoreLayout';
-import { CoreState } from './CoreState';
 import { Level, levels } from './levels/levels';
 import { syncSafeZoneCollider } from './helpers/SyncSafeAreaCollider';
-import { storage } from '../services/Storage';
 
 export class CoreLevel {
-	private readonly state: CoreState;
-
 	private readonly coreLayout: CoreLayout;
 
 	private level!: Level;
 
-	constructor(state: CoreState, coreLayout: CoreLayout) {
-		this.state = state;
+	constructor(coreLayout: CoreLayout) {
 		this.coreLayout = coreLayout;
+	}
 
-		this.state.onLevelChanged.add(() => {
-			if (!!this.level) {
-				this.level.destroy();
-				this.level.layout.root.delete();
-			}
-
-			this.level = this.createLevel(this.state.levelNumber);
-		});
-
-		this.state.setLevel(storage.data.levelNumber);
+	public startLevel(levelNumber: number) {
+		this.destroyCurrentLevel();
+		this.level = this.createLevel(levelNumber);
 	}
 
 	public resize() {
@@ -50,5 +39,12 @@ export class CoreLevel {
 		cursor.setPosition2D(playerPosition);
 
 		return level;
+	}
+
+	private destroyCurrentLevel() {
+		if (!this.level) return;
+
+		this.level.destroy();
+		this.level.layout.root.delete();
 	}
 }

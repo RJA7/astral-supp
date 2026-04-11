@@ -127,7 +127,7 @@ embedded_instances {
   id: "player_position"
   data: ""
   position {
-    x: -506.99997
+    x: -477.99997
     y: -271.3333
   }
 }

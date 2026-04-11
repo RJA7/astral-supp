@@ -11,12 +11,15 @@ const restartPopupSchema = {
 	dimmer: guiNode(),
 	root: guiNode(),
 	title: guiNode(),
+	reset_button: guiNode(),
 	restart_button: guiNode(),
 } satisfies GuiSchema;
 
 type RestartPopupLayout = GuiLayout<typeof restartPopupSchema>;
 
 export class RestartPopupController extends Controller {
+	public onResetClick = new Signal();
+
 	public onRestartClick = new Signal();
 
 	private readonly layout: RestartPopupLayout;
@@ -32,6 +35,10 @@ export class RestartPopupController extends Controller {
 
 	public onInput(actionId: ActionId, action: Action) {
 		if (actionId !== ActionId.touch) return;
+
+		if (action.pressed && this.layout.reset_button.pick(action.x, action.y)) {
+			this.onResetClick.dispatch();
+		}
 
 		if (action.pressed && this.layout.restart_button.pick(action.x, action.y)) {
 			this.onRestartClick.dispatch();

@@ -41,7 +41,7 @@ nodes {
 nodes {
   size {
     x: 360.0
-    y: 266.0
+    y: 400.0
   }
   color {
     x: 0.0
@@ -56,7 +56,7 @@ nodes {
 }
 nodes {
   position {
-    y: 60.666668
+    y: 116.66667
   }
   size {
     x: 200.0
@@ -72,7 +72,38 @@ nodes {
 }
 nodes {
   position {
-    y: -43.33333
+    y: 4.666672
+  }
+  size {
+    x: 279.33334
+    y: 100.0
+  }
+  color {
+    x: 0.46666667
+    y: 0.46666667
+  }
+  type: TYPE_BOX
+  id: "reset_button"
+  parent: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Reset\n"
+  ""
+  font: "GoblinOne-Regular"
+  id: "restart_button_label"
+  parent: "reset_button"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    y: -122.666664
   }
   size {
     x: 279.33334
@@ -97,7 +128,7 @@ nodes {
   text: "Restart\n"
   ""
   font: "GoblinOne-Regular"
-  id: "restart_button_label"
+  id: "restart_button_label1"
   parent: "restart_button"
   inherit_alpha: true
 }

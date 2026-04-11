@@ -368,11 +368,11 @@ instances {
   prototype: "/main/core/safe_zone.go"
   position {
     x: 395.33334
-    y: -35.0
+    y: -17.0
   }
   scale3 {
     x: 60.0
-    y: 159.26666
+    y: 121.86667
   }
 }
 scale_along_z: 0

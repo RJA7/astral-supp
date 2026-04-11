@@ -12,10 +12,10 @@ export class CorePhysics {
 	constructor(state: CoreState, playerCenterId: GameObjectId) {
 		this.state = state;
 		this.playerCenterId = playerCenterId;
+	}
 
-		this.state.onLevelChanged.add(() => {
-			this.isSafeById.clear();
-		});
+	public onLevelChanged() {
+		this.isSafeById.clear();
 	}
 
 	public handleEvents(events: PhysicsEvent[]) {
@@ -86,6 +86,7 @@ export class CorePhysics {
 	}
 
 	public fixedUpdate() {
+		if (this.state.gameOver) return;
 		this.dispatchSignals();
 	}
 }

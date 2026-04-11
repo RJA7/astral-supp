@@ -38,7 +38,7 @@ export class CoreController extends Controller {
 		this.popups = new Popups(this.messenger);
 		this.player = new Player(this.layout.player);
 		this.cursor = new Cursor(this.layout.cursor);
-		this.level = new CoreLevel(this.state, this.layout);
+		this.level = new CoreLevel(this.layout);
 		this.physics = new CorePhysics(this.state, this.layout.player_center.id);
 
 		this.layout.hud.gui.initController({
@@ -50,31 +50,26 @@ export class CoreController extends Controller {
 
 			if (this.state.playerHp === 0) {
 				this.cursor.setMouseLocked(false);
-
-				const popup = this.popups.show(PopupName.restart, { win: false });
-				popup.script.bridge.onRestartClick = () => this.onRestart.dispatch();
+				this.showRestartPopup(false);
 			}
 		});
 
 		this.state.onFinished.add(() => {
+			const nextLevelNumber = storage.data.levelNumber + 1;
 			this.input.resetPointerDown();
 
-			if (levels[this.state.levelNumber + 1]) {
-				this.state.setLevel(this.state.levelNumber + 1);
+			if (levels[nextLevelNumber]) {
+				this.startLevel(nextLevelNumber);
 				return;
 			}
 
 			this.cursor.setMouseLocked(false);
-
-			const popup = this.popups.show(PopupName.restart, { win: true });
-			popup.script.bridge.onRestartClick = () => this.onRestart.dispatch();
-		});
-
-		this.state.onLevelChanged.add(() => {
-			storage.save({ levelNumber: this.state.levelNumber });
+			this.showRestartPopup(true);
 		});
 
 		physics.set_event_listener(this.physicsListener.bind(this));
+
+		this.startLevel(storage.data.levelNumber);
 	}
 
 	update(_dt: number) {
@@ -105,5 +100,26 @@ export class CoreController extends Controller {
 
 	physicsListener(events: PhysicsEvent[]): void {
 		this.physics.handleEvents(events);
+	}
+
+	private startLevel(levelNumber: number) {
+		storage.save({ levelNumber });
+		this.level.startLevel(levelNumber);
+
+		timer.delay(0.01, false, () => {
+			this.state.gameOver = false;
+			this.physics.onLevelChanged();
+		});
+	}
+
+	private showRestartPopup(win: boolean) {
+		const popup = this.popups.show(PopupName.restart, { win });
+
+		popup.script.bridge.onResetClick = () => {
+			storage.save({ levelNumber: 1 });
+			this.onRestart.dispatch();
+		};
+
+		popup.script.bridge.onRestartClick = () => this.onRestart.dispatch();
 	}
 }
