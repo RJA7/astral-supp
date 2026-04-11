@@ -88,6 +88,14 @@ export class GameObject {
 		go.set_scale_xy(scale, this.id);
 	}
 
+	get scale() {
+		return this.getScale();
+	}
+
+	set scale(scale: vmath.vector3) {
+		this.setScale(scale);
+	}
+
 	enable() {
 		postVoidMessage(this.id, MessageId.enable);
 	}

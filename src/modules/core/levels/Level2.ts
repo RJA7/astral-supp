@@ -1,10 +1,8 @@
 import { levelSchema } from '../../layouts/LevelLayout';
 import { CollectionLayout, CollectionSchema } from '../../engine/layout/types';
 import { Level, LevelProps } from './levels';
-import { Property } from '../../engine/types/Property';
-import { Easing } from '../../engine/types/Easing';
-import { Playback } from '../../engine/types/Playback';
 import { createLevelLayout } from '../helpers/CreateLevelLayout';
+import { Tweens } from '../../engine/tweens/Tweens';
 
 const schema = {
 	...levelSchema,
@@ -15,8 +13,12 @@ type Layout = CollectionLayout<typeof schema>;
 export class Level2 implements Level {
 	public readonly layout: Layout;
 
+	private readonly tweens: Tweens;
+
 	constructor(props: LevelProps) {
 		const { level_factory, levelNumber } = props;
+
+		this.tweens = new Tweens();
 
 		this.layout = createLevelLayout(level_factory, levelNumber, schema);
 		this.animate();
@@ -25,14 +27,14 @@ export class Level2 implements Level {
 	private animate() {
 		const { safe_zones } = this.layout;
 
-		safe_zones[1].animate(
-			Property.ScaleX,
-			0,
-			0.5,
-			Easing.SinInOut,
-			0.5,
-			Playback.PLAYBACK_LOOP_PINGPONG,
-		);
+		this.tweens
+			.add(safe_zones[1], 'scale', { x: 0.01 }, 1)
+			.yoyo()
+			.repeat(Infinity, 1)
+			.onUpdate((tween) => {
+				const size = tween.object.getScale();
+				tween.object.body.box.set(vmath.vector3(size.x, size.y, 1));
+			});
 	}
 
 	destroy(): void {}

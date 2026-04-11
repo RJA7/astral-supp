@@ -43,9 +43,7 @@ export class CoreLevel {
 
 		level.layout.safe_zones.forEach((safeZone) => {
 			const size = safeZone.getScale();
-			safeZone.setScale2D(vmath.vector3(1, 1, 1));
-			safeZone.sprite.setSize(size);
-			safeZone.body.box.set(size);
+			safeZone.body.box.set(vmath.vector3(size.x, size.y, 1));
 		});
 
 		const playerPosition = level.layout.player_position.getWorldPosition();
