@@ -104,14 +104,5 @@ nodes {
   parent: "score_group"
   inherit_alpha: true
 }
-nodes {
-  type: TYPE_BOX
-  texture: "mockups/mockup_level_1"
-  id: "mockup"
-  inherit_alpha: true
-  alpha: 0.5
-  size_mode: SIZE_MODE_AUTO
-  enabled: false
-}
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT

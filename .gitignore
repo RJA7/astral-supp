@@ -38,4 +38,5 @@ app/builtins
 dmengine*
 
 app/.editor_settings
+app/user_data
 .idea

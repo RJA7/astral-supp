@@ -1,0 +1,468 @@
+name: "level1"
+instances {
+  id: "finish"
+  prototype: "/main/core/finish_zone.go"
+  position {
+    x: 395.0
+    y: -105.0
+  }
+  scale3 {
+    x: 0.6
+    y: 0.6
+  }
+}
+instances {
+  id: "safe_zone0"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: -119.33331
+    y: -116.0
+  }
+  rotation {
+    z: 0.13052619
+    w: 0.9914449
+  }
+  scale3 {
+    x: 60.0
+    y: 186.59999
+  }
+}
+instances {
+  id: "safe_zone1"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: -37.66664
+    y: -29.0
+  }
+  rotation {
+    z: 0.13052619
+    w: 0.9914449
+  }
+  scale3 {
+    x: 154.46666
+    y: 60.0
+  }
+}
+instances {
+  id: "safe_zone2"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: -22.666643
+    y: 96.0
+  }
+  rotation {
+    z: 0.13052619
+    w: 0.9914449
+  }
+  scale3 {
+    x: 60.0
+    y: 184.33333
+  }
+}
+instances {
+  id: "safe_zone3"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: 60.33336
+    y: 183.0
+  }
+  rotation {
+    z: 0.13052619
+    w: 0.9914449
+  }
+  scale3 {
+    x: 146.13333
+    y: 60.0
+  }
+}
+instances {
+  id: "safe_zone4"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: 81.33336
+    y: 270.0
+  }
+  rotation {
+    z: 0.13052619
+    w: 0.9914449
+  }
+  scale3 {
+    x: 60.0
+    y: 99.8
+  }
+}
+instances {
+  id: "safe_zone5"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: -255.66664
+    y: 200.0
+  }
+  rotation {
+    z: 0.13052619
+    w: 0.9914449
+  }
+  scale3 {
+    x: 627.6667
+    y: 60.0
+  }
+}
+instances {
+  id: "safe_zone6"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: -491.66666
+    y: -14.0
+  }
+  rotation {
+    z: 0.13052619
+    w: 0.9914449
+  }
+  scale3 {
+    x: 60.0
+    y: 234.06667
+  }
+}
+instances {
+  id: "safe_zone7"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: -383.66666
+    y: -75.0
+  }
+  rotation {
+    z: 0.13052619
+    w: 0.9914449
+  }
+  scale3 {
+    x: 120.333336
+    y: 60.0
+  }
+}
+instances {
+  id: "safe_zone8"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: -381.66666
+    y: 30.0
+  }
+  rotation {
+    z: 0.13052619
+    w: 0.9914449
+  }
+  scale3 {
+    x: 60.0
+    y: 145.2
+  }
+}
+instances {
+  id: "safe_zone9"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: -240.66664
+    y: 112.0
+  }
+  rotation {
+    z: 0.13052619
+    w: 0.9914449
+  }
+  scale3 {
+    x: 257.46667
+    y: 60.0
+  }
+}
+instances {
+  id: "safe_zone10"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: -124.66664
+    y: 61.0
+  }
+  rotation {
+    z: 0.13052619
+    w: 0.9914449
+  }
+  scale3 {
+    x: 60.0
+    y: 98.666664
+  }
+}
+instances {
+  id: "safe_zone11"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: -222.66664
+    y: 14.0
+  }
+  rotation {
+    z: 0.13052619
+    w: 0.9914449
+  }
+  scale3 {
+    x: 155.86667
+    y: 60.0
+  }
+}
+instances {
+  id: "safe_zone12"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: -219.66664
+    y: -177.0
+  }
+  rotation {
+    z: 0.13052619
+    w: 0.9914449
+  }
+  scale3 {
+    x: 60.0
+    y: 316.06668
+  }
+}
+instances {
+  id: "safe_zone13"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: 72.33336
+    y: -231.0
+  }
+  rotation {
+    z: 0.13052619
+    w: 0.9914449
+  }
+  scale3 {
+    x: 483.93332
+    y: 60.0
+  }
+}
+instances {
+  id: "safe_zone14"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: 258.33334
+    y: -112.0
+  }
+  rotation {
+    z: 0.13052619
+    w: 0.9914449
+  }
+  scale3 {
+    x: 60.0
+    y: 79.4
+  }
+}
+instances {
+  id: "safe_zone15"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: 103.33336
+    y: -144.0
+  }
+  rotation {
+    z: 0.13052619
+    w: 0.9914449
+  }
+  scale3 {
+    x: 258.4
+    y: 60.0
+  }
+}
+instances {
+  id: "safe_zone16"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: -9.666643
+    y: -105.0
+  }
+  rotation {
+    z: 0.13052619
+    w: 0.9914449
+  }
+  scale3 {
+    x: 60.0
+    y: 78.0
+  }
+}
+instances {
+  id: "safe_zone17"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: 87.33336
+    y: -70.0
+  }
+  rotation {
+    z: 0.13052619
+    w: 0.9914449
+  }
+  scale3 {
+    x: 150.2
+    y: 60.0
+  }
+}
+instances {
+  id: "safe_zone18"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: 103.33336
+    y: 43.0
+  }
+  rotation {
+    z: 0.13052619
+    w: 0.9914449
+  }
+  scale3 {
+    x: 60.0
+    y: 152.93333
+  }
+}
+instances {
+  id: "safe_zone19"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: 168.33336
+    y: 109.0
+  }
+  rotation {
+    z: 0.13052619
+    w: 0.9914449
+  }
+  scale3 {
+    x: 104.4
+    y: 60.0
+  }
+}
+instances {
+  id: "safe_zone20"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: 210.33336
+    y: 38.0
+  }
+  rotation {
+    z: 0.13052619
+    w: 0.9914449
+  }
+  scale3 {
+    x: 60.0
+    y: 102.0
+  }
+}
+instances {
+  id: "safe_zone21"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: 330.33334
+    y: 49.0
+  }
+  rotation {
+    z: 0.13052619
+    w: 0.9914449
+  }
+  scale3 {
+    x: 181.26666
+    y: 60.0
+  }
+}
+instances {
+  id: "safe_zone22"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: 395.33334
+    y: -35.0
+  }
+  scale3 {
+    x: 60.0
+    y: 159.26666
+  }
+}
+scale_along_z: 0
+embedded_instances {
+  id: "root"
+  children: "bullets"
+  children: "finish"
+  children: "player_position"
+  children: "safe_zones"
+  data: ""
+  position {
+    x: 9.0
+    y: 38.0
+  }
+}
+embedded_instances {
+  id: "player_position"
+  data: ""
+  position {
+    x: -103.99997
+    y: -171.33331
+  }
+}
+embedded_instances {
+  id: "safe_zones"
+  children: "safe_zone0"
+  children: "safe_zone1"
+  children: "safe_zone10"
+  children: "safe_zone11"
+  children: "safe_zone12"
+  children: "safe_zone13"
+  children: "safe_zone14"
+  children: "safe_zone15"
+  children: "safe_zone16"
+  children: "safe_zone17"
+  children: "safe_zone18"
+  children: "safe_zone19"
+  children: "safe_zone2"
+  children: "safe_zone20"
+  children: "safe_zone21"
+  children: "safe_zone22"
+  children: "safe_zone3"
+  children: "safe_zone4"
+  children: "safe_zone5"
+  children: "safe_zone6"
+  children: "safe_zone7"
+  children: "safe_zone8"
+  children: "safe_zone9"
+  data: ""
+}
+embedded_instances {
+  id: "bullets"
+  children: "shooter"
+  data: "embedded_components {\n"
+  "  id: \"factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/main/core/bullet.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 457.0
+    y: 140.0
+    z: 60.0
+  }
+}
+embedded_instances {
+  id: "shooter"
+  data: "embedded_components {\n"
+  "  id: \"sprite\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"cursor_hand\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "size {\\n"
+  "  x: 46.0\\n"
+  "  y: 46.0\\n"
+  "}\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/assets/atlases/main.atlas\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "  rotation {\n"
+  "    z: -0.70710677\n"
+  "    w: 0.70710677\n"
+  "  }\n"
+  "}\n"
+  ""
+  rotation {
+    z: 0.9848077
+    w: -0.17364818
+  }
+}

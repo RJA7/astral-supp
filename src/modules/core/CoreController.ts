@@ -14,6 +14,7 @@ import { Popups } from '../engine/popups/Popups';
 import { PopupName } from '../engine/popups/types/PopupName';
 import { Signal } from '../engine/Signal';
 import { levels } from './levels/levels';
+import { storage } from '../services/Storage';
 
 export class CoreController extends Controller {
 	public onRestart = new Signal();
@@ -67,6 +68,10 @@ export class CoreController extends Controller {
 
 			const popup = this.popups.show(PopupName.restart, { win: true });
 			popup.script.bridge.onRestartClick = () => this.onRestart.dispatch();
+		});
+
+		this.state.onLevelChanged.add(() => {
+			storage.save({ levelNumber: this.state.levelNumber });
 		});
 
 		physics.set_event_listener(this.physicsListener.bind(this));

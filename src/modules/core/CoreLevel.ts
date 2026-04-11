@@ -2,6 +2,7 @@ import { CoreLayout } from '../layouts/CoreLayout';
 import { CoreState } from './CoreState';
 import { Level, levels } from './levels/levels';
 import { syncSafeZoneCollider } from './helpers/SyncSafeAreaCollider';
+import { storage } from '../services/Storage';
 
 export class CoreLevel {
 	private readonly state: CoreState;
@@ -23,7 +24,7 @@ export class CoreLevel {
 			this.level = this.createLevel(this.state.levelNumber);
 		});
 
-		this.state.setLevel(1);
+		this.state.setLevel(storage.data.levelNumber);
 	}
 
 	public resize() {

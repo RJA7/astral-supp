@@ -91,5 +91,7 @@ export class Level2 implements Level {
 			.onUpdate(syncSafeZoneTweenCollider);
 	}
 
-	destroy(): void {}
+	destroy(): void {
+		this.tweens.destroy();
+	}
 }
