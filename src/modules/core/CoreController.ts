@@ -9,11 +9,11 @@ import { PhysicsEvent } from '../types/Physics';
 import { CoreLevel } from './CoreLevel';
 import { CoreLayout, coreSchema } from '../layouts/CoreLayout';
 import { createCollectionLayout } from '../engine/layout/CollectionLayout';
-import { screen } from '../engine/render/Screen';
 import { CoreState } from './CoreState';
 import { Popups } from '../engine/popups/Popups';
 import { PopupName } from '../engine/popups/types/PopupName';
 import { Signal } from '../engine/Signal';
+import { levels } from './levels/levels';
 
 export class CoreController extends Controller {
 	public onRestart = new Signal();
@@ -56,6 +56,11 @@ export class CoreController extends Controller {
 		});
 
 		this.state.onFinished.addOnce(() => {
+			if (levels[this.state.levelNumber + 1]) {
+				this.state.setLevel(this.state.levelNumber + 1);
+				return;
+			}
+
 			this.cursor.setMouseLocked(false);
 
 			const popup = this.popups.show(PopupName.restart, { win: true });

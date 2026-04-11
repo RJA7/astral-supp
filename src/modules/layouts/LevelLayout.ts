@@ -13,10 +13,6 @@ export const levelSchema = {
 		}),
 	}),
 	player_position: {},
-	shooter: {},
-	bullets: {
-		factory: Factory,
-	},
 } satisfies CollectionSchema;
 
 export type LevelLayout = CollectionLayout<typeof levelSchema>;

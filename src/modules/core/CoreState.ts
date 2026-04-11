@@ -14,6 +14,7 @@ export class CoreState {
 	gameOver = false;
 
 	setLevel(value: number) {
+		this.gameOver = false;
 		this.levelNumber = value;
 		this.onLevelChanged.dispatch();
 	}

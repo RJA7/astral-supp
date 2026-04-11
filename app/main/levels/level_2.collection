@@ -1,0 +1,146 @@
+name: "level1"
+instances {
+  id: "finish"
+  prototype: "/main/core/finish_zone.go"
+  position {
+    x: 465.0
+    y: -250.0
+  }
+}
+instances {
+  id: "safe_zone0"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: -475.3333
+    y: -202.0
+  }
+  scale3 {
+    x: 180.0
+    y: 200.0
+  }
+}
+instances {
+  id: "safe_zone1"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: -475.3333
+    y: 19.0
+  }
+  scale3 {
+    x: 180.0
+    y: 246.8
+  }
+}
+instances {
+  id: "safe_zone2"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: -315.3333
+    y: 169.0
+  }
+  scale3 {
+    x: 500.0
+    y: 60.0
+  }
+}
+instances {
+  id: "safe_zone3"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: 264.6667
+    y: 169.0
+  }
+  scale3 {
+    x: 500.0
+    y: 60.0
+  }
+}
+instances {
+  id: "safe_zone4"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: 64.6667
+    y: 248.0
+  }
+  scale3 {
+    x: 100.0
+    y: 100.0
+  }
+}
+instances {
+  id: "safe_zone5"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: 464.6667
+    y: 116.0
+  }
+  scale3 {
+    x: 100.0
+    y: 50.0
+  }
+}
+instances {
+  id: "safe_zone6"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: 464.6667
+    y: 44.0
+  }
+  scale3 {
+    x: 100.0
+    y: 100.0
+  }
+}
+instances {
+  id: "safe_zone7"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: 464.6667
+    y: -54.0
+  }
+  scale3 {
+    x: 100.0
+    y: 100.0
+  }
+}
+instances {
+  id: "safe_zone8"
+  prototype: "/main/core/safe_zone.go"
+  position {
+    x: 464.6667
+    y: -152.0
+  }
+  scale3 {
+    x: 100.0
+    y: 100.0
+  }
+}
+scale_along_z: 0
+embedded_instances {
+  id: "root"
+  children: "finish"
+  children: "player_position"
+  children: "safe_zones"
+  data: ""
+}
+embedded_instances {
+  id: "player_position"
+  data: ""
+  position {
+    x: -506.99997
+    y: -271.3333
+  }
+}
+embedded_instances {
+  id: "safe_zones"
+  children: "safe_zone0"
+  children: "safe_zone1"
+  children: "safe_zone2"
+  children: "safe_zone3"
+  children: "safe_zone4"
+  children: "safe_zone5"
+  children: "safe_zone6"
+  children: "safe_zone7"
+  children: "safe_zone8"
+  data: ""
+}

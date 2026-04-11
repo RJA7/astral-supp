@@ -349,5 +349,12 @@ embedded_instances {
   "exclude: true\\n"
   "\"\n"
   "}\n"
+  "embedded_components {\n"
+  "  id: \"level_2\"\n"
+  "  type: \"collectionproxy\"\n"
+  "  data: \"collection: \\\"/main/levels/level_2.collection\\\"\\n"
+  "exclude: true\\n"
+  "\"\n"
+  "}\n"
   ""
 }
