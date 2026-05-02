@@ -11,6 +11,7 @@ export enum PhysicsGroup {
 	safe_zone = 'safe_zone',
 	finish_zone = 'finish_zone',
 	bullet = 'bullet',
+	wall = 'wall',
 }
 patchEnum(PhysicsGroup, toHash);
 

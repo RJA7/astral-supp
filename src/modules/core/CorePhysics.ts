@@ -1,4 +1,9 @@
-import { PhysicsEvent, PhysicsEventType, PhysicsGroup } from '../types/Physics';
+import {
+	PhysicsEvent,
+	PhysicsEventType,
+	PhysicsGroup,
+	PhysicsObject,
+} from '../types/Physics';
 import { GameObjectId } from '../engine/types/Hash';
 import { CoreState } from './CoreState';
 
@@ -12,6 +17,14 @@ export class CorePhysics {
 	constructor(state: CoreState, playerCenterId: GameObjectId) {
 		this.state = state;
 		this.playerCenterId = playerCenterId;
+
+		// watch({
+		// 	type: PhysicsEventType.trigger_event,
+		// 	groups: [PhysicsGroup.player, PhysicsGroup.safe_zone],
+		// 	callback: (event: PhysicsEvent, a: PhysicsObject, b: PhysicsObject) => {
+		//
+		// 	},
+		// });
 	}
 
 	public onLevelChanged() {
@@ -59,6 +72,14 @@ export class CorePhysics {
 			event.b.group === PhysicsGroup.bullet
 		) {
 			this.state.setHp(0);
+		}
+
+		if (
+			event.type === PhysicsEventType.trigger_event &&
+			event.a.group === PhysicsGroup.wall &&
+			event.b.group === PhysicsGroup.bullet
+		) {
+			go.delete(event.b.id);
 		}
 	}
 
