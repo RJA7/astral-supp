@@ -4,6 +4,8 @@ import { Messenger } from '../engine/Messenger';
 import { MessageId } from './MessageId';
 import { Signal, SignalBinding } from '../engine/Signal';
 import { postMessage } from '../engine/PostMessage';
+import { PhysicsEventDistributor } from '../engine/physics/PhysicsEventDistributor';
+import { gameObjectRegister } from '../engine/GameObjectRegister';
 
 export type ControllerClass = new (props: any) => Controller;
 
@@ -68,4 +70,11 @@ export class Controller {
 	onReload(): void {}
 
 	onResize(): void {}
+
+	protected enablePhysics(): void {
+		const eventDistributor = new PhysicsEventDistributor(gameObjectRegister);
+		physics.set_event_listener(
+			eventDistributor.distributeEvents.bind(eventDistributor),
+		);
+	}
 }

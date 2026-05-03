@@ -1,6 +1,6 @@
 name: "level1"
 instances {
-  id: "finish"
+  id: "finish_zone"
   prototype: "/main/core/finish_zone.go"
   position {
     x: -245.0
@@ -158,13 +158,22 @@ instances {
     y: 116.0
   }
 }
+instances {
+  id: "slow_down_trigger"
+  prototype: "/main/core/slow_down_trigger.go"
+  position {
+    x: -509.0
+    y: -273.0
+  }
+}
 scale_along_z: 0
 embedded_instances {
   id: "root"
   children: "bullets"
-  children: "finish"
+  children: "finish_zone"
   children: "player_position"
   children: "safe_zones"
+  children: "slow_down_trigger"
   children: "walls"
   data: ""
 }
@@ -172,8 +181,8 @@ embedded_instances {
   id: "player_position"
   data: ""
   position {
-    x: 3.1E-5
-    y: 170.66669
+    x: -0.999969
+    y: 168.66669
   }
 }
 embedded_instances {

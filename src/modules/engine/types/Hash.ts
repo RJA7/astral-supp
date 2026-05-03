@@ -9,5 +9,3 @@ export type Material = hash;
 export type ImageResource = hash;
 
 export type IdsMap = LuaMap<hash, hash>;
-
-export type NameById = Map<GameObjectId, string>;

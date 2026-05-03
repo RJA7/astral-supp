@@ -1,4 +1,4 @@
-import { GameObjectId, IdsMap, NameById } from '../types/Hash';
+import { GameObjectId, IdsMap } from '../types/Hash';
 import { GameObject } from '../GameObject';
 import { GameObjectLayout, GameObjectSchema, ListLayout } from './types';
 import { isListLayout, resolveListItemName } from './ListLayout';
@@ -10,7 +10,6 @@ import {
 export function createGameObjectLayouts(
 	list: ListLayout<GameObjectSchema>,
 	propName: string,
-	nameById: NameById,
 	map?: IdsMap,
 ) {
 	const baseName = resolveListItemName(list, propName);
@@ -23,7 +22,6 @@ export function createGameObjectLayouts(
 
 		if (!id || !go.exists(id)) break;
 
-		nameById.set(id, goName);
 		layouts.push(createGameObjectLayout(id, list.schema));
 	}
 

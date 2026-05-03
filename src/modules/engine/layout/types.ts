@@ -3,11 +3,11 @@ import { ComponentClass } from '../components/Component';
 import { ShapeClass } from '../shapes/Shape';
 import { RigidBody } from '../components/RigidBody';
 import { SpineModel } from '../components/SpineModel';
-import { NameById } from '../types/Hash';
 import { Script } from '../components/Script';
 import { ControllerName } from '../../ControllerName';
 import { CollectionProxy } from '../components/CollectionProxy';
 import { GuiNode } from '../components/GuiNode';
+import { Collection } from '../Collection';
 
 export type ListLayout<T> = {
 	isList: true;
@@ -62,9 +62,7 @@ export type CollectionProxySchema<T extends ControllerName = ControllerName> = {
 	controllerName: T;
 };
 
-export type CollectionLayout<T extends CollectionSchema> = {
-	nameById: NameById;
-} & {
+export type CollectionLayout<T extends CollectionSchema> = Collection & {
 	[K in keyof T]: T[K] extends ListLayout<GameObjectSchema>
 		? GameObjectLayout<T[K]['schema']>[]
 		: T[K] extends GameObjectSchema

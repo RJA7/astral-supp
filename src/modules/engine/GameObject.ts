@@ -7,11 +7,15 @@ import { Easing } from './types/Easing';
 import { GameObjectId } from './types/Hash';
 import { AnimateTo, AnyEasing, wrapAnimationComplete } from './utils/Animate';
 import { DEG_TO_RAD } from './utils/Math';
+import { GameObjectPhysics } from './GameObjectPhysics';
+import { gameObjectRegister } from './GameObjectRegister';
 
 export type GameObjectClass = typeof GameObject;
 
 export class GameObject {
 	public readonly id: GameObjectId;
+
+	private _physics: GameObjectPhysics | null = null;
 
 	constructor(id: GameObjectId) {
 		if (!go.exists(id)) {
@@ -21,6 +25,16 @@ export class GameObject {
 		}
 
 		this.id = id;
+		gameObjectRegister.add(this);
+	}
+
+	public hasPhysics(): boolean {
+		return !!this._physics;
+	}
+
+	get physics(): GameObjectPhysics {
+		this._physics = this._physics || new GameObjectPhysics();
+		return this._physics;
 	}
 
 	getPosition() {
@@ -167,5 +181,6 @@ export class GameObject {
 
 	delete(recursive = true) {
 		go.delete(this.id, recursive);
+		gameObjectRegister.delete(this);
 	}
 }

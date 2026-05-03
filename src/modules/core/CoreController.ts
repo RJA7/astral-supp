@@ -5,7 +5,6 @@ import { Player } from './entities/Player';
 import { Controller } from '../types/Controller';
 import { CoreInput } from './CoreInput';
 import { CorePhysics } from './CorePhysics';
-import { PhysicsEvent } from '../types/Physics';
 import { CoreLevel } from './CoreLevel';
 import { CoreLayout, coreSchema } from '../layouts/CoreLayout';
 import { createCollectionLayout } from '../engine/layout/CollectionLayout';
@@ -39,7 +38,7 @@ export class CoreController extends Controller {
 		this.player = new Player(this.layout.player);
 		this.cursor = new Cursor(this.layout.cursor);
 		this.level = new CoreLevel(this.layout);
-		this.physics = new CorePhysics(this.state, this.layout.player_center.id);
+		this.physics = new CorePhysics(this.state, this.layout);
 
 		this.layout.hud.gui.initController({
 			playerHp: this.state.playerHp,
@@ -67,9 +66,8 @@ export class CoreController extends Controller {
 			this.showRestartPopup(true);
 		});
 
-		physics.set_event_listener(this.physicsListener.bind(this));
-
 		this.startLevel(storage.data.levelNumber);
+		this.enablePhysics();
 	}
 
 	update(_dt: number) {
@@ -96,10 +94,6 @@ export class CoreController extends Controller {
 
 	onInput(actionId: ActionId, action: Action): void {
 		this.input.onInput(actionId, action);
-	}
-
-	physicsListener(events: PhysicsEvent[]): void {
-		this.physics.handleEvents(events);
 	}
 
 	private startLevel(levelNumber: number) {

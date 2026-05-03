@@ -1,92 +1,54 @@
-import {
-	PhysicsEvent,
-	PhysicsEventType,
-	PhysicsGroup,
-	PhysicsObject,
-} from '../types/Physics';
+import { PhysicsGroup } from '../types/Physics';
 import { GameObjectId } from '../engine/types/Hash';
 import { CoreState } from './CoreState';
+import { CoreLayout } from '../layouts/CoreLayout';
 
 export class CorePhysics {
 	private readonly state: CoreState;
 
 	private isSafeById = new Map<GameObjectId, number>();
 
-	private readonly playerCenterId: GameObjectId;
+	private readonly layout: CoreLayout;
 
-	constructor(state: CoreState, playerCenterId: GameObjectId) {
+	constructor(state: CoreState, layout: CoreLayout) {
 		this.state = state;
-		this.playerCenterId = playerCenterId;
+		this.layout = layout;
 
-		// watch({
-		// 	type: PhysicsEventType.trigger_event,
-		// 	groups: [PhysicsGroup.player, PhysicsGroup.safe_zone],
-		// 	callback: (event: PhysicsEvent, a: PhysicsObject, b: PhysicsObject) => {
-		//
-		// 	},
-		// });
+		[layout.player_center, ...layout.player_edges].forEach((playerTrigger) => {
+			[PhysicsGroup.safe_zone, PhysicsGroup.finish_zone].forEach((group) => {
+				playerTrigger.physics.setHandler(group, (event) => {
+					if (this.state.gameOver) return;
+
+					const current = this.isSafeById.get(playerTrigger.id) ?? 0;
+
+					if (event.enter) {
+						this.isSafeById.set(playerTrigger.id, current + 1);
+					} else {
+						this.isSafeById.set(playerTrigger.id, Math.max(0, current - 1));
+					}
+				});
+			});
+		});
+
+		layout.player.physics.setHandler(PhysicsGroup.finish_zone, () => {
+			if (this.state.gameOver) return;
+			this.state.finish();
+		});
+
+		layout.player.physics.setHandler(PhysicsGroup.bullet, () => {
+			if (this.state.gameOver) return;
+			this.state.setHp(0);
+		});
 	}
 
 	public onLevelChanged() {
 		this.isSafeById.clear();
 	}
 
-	public handleEvents(events: PhysicsEvent[]) {
-		for (const event of events) {
-			this.handleEvent(event);
-		}
-	}
-
-	private handleEvent(event: PhysicsEvent) {
-		if (this.state.gameOver) return;
-
-		if (event.a.group < event.b.group) {
-			[event.a, event.b] = [event.b, event.a];
-		}
-
-		if (
-			event.type === PhysicsEventType.trigger_event &&
-			event.a.group === PhysicsGroup.player &&
-			event.b.group === PhysicsGroup.safe_zone
-		) {
-			const current = this.isSafeById.get(event.a.id) ?? 0;
-
-			if (event.enter) {
-				this.isSafeById.set(event.a.id, current + 1);
-			} else {
-				this.isSafeById.set(event.a.id, Math.max(0, current - 1));
-			}
-		}
-
-		if (
-			event.type === PhysicsEventType.trigger_event &&
-			event.a.group === PhysicsGroup.player &&
-			event.b.group === PhysicsGroup.finish_zone
-		) {
-			this.state.finish();
-		}
-
-		if (
-			event.type === PhysicsEventType.trigger_event &&
-			event.a.group === PhysicsGroup.player &&
-			event.b.group === PhysicsGroup.bullet
-		) {
-			this.state.setHp(0);
-		}
-
-		if (
-			event.type === PhysicsEventType.trigger_event &&
-			event.a.group === PhysicsGroup.wall &&
-			event.b.group === PhysicsGroup.bullet
-		) {
-			go.delete(event.b.id);
-		}
-	}
-
 	private dispatchSignals() {
 		if (this.state.gameOver) return;
 
-		if (this.isSafeById.get(this.playerCenterId) === 0) {
+		if (this.isSafeById.get(this.layout.player_center.id) === 0) {
 			this.state.setHp(0);
 			return;
 		}

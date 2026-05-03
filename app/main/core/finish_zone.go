@@ -7,6 +7,7 @@ embedded_components {
   "restitution: 0.5\n"
   "group: \"finish_zone\"\n"
   "mask: \"player\"\n"
+  "mask: \"player_trigger\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
   "    shape_type: TYPE_BOX\n"

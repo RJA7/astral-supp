@@ -1,27 +1,24 @@
-import { GameObjectId, IdsMap } from '../types/Hash';
+import { IdsMap } from '../types/Hash';
 import { CollectionLayout, CollectionSchema } from './types';
 import { isListLayout } from './ListLayout';
 import {
 	createGameObjectLayout,
 	createGameObjectLayouts,
 } from './GameObjectLayout';
+import { Collection } from '../Collection';
 
 export function createCollectionLayout<T extends CollectionSchema>(
 	schema: T,
 	idsMap?: IdsMap,
 ): CollectionLayout<T> {
-	const nameById = new Map<GameObjectId, string>();
-	const layout: Record<string, any> = {
-		nameById,
-	};
+	const layout: Record<string, any> = new Collection();
 
 	for (const [name, goSchema] of Object.entries(schema)) {
 		if (isListLayout(goSchema)) {
-			layout[name] = createGameObjectLayouts(goSchema, name, nameById, idsMap);
+			layout[name] = createGameObjectLayouts(goSchema, name, idsMap);
 		} else {
 			const ownId = hash(`/${name}`);
 			const id = idsMap ? idsMap.get(ownId)! : ownId;
-			nameById.set(id, name);
 			layout[name] = createGameObjectLayout(id, goSchema);
 		}
 	}

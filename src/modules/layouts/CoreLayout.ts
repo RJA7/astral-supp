@@ -2,7 +2,7 @@ import { Sprite } from '../engine/components/Sprite';
 import { CollectionFactory } from '../engine/components/CollectionFactory';
 import { CollectionLayout, CollectionSchema } from '../engine/layout/types';
 import { Factory } from '../engine/components/Factory';
-import { script } from '../engine/layout/Elements';
+import { list, script } from '../engine/layout/Elements';
 import { ControllerName } from '../ControllerName';
 
 export const coreSchema = {
@@ -13,6 +13,7 @@ export const coreSchema = {
 	world: {},
 	player: {},
 	player_center: {},
+	player_edges: list({}),
 	cursor: {
 		sprite: Sprite,
 	},

@@ -7,6 +7,7 @@ import { bulletSchema } from '../../layouts/BulletLayout';
 import { DEG_TO_RAD } from '../../engine/utils/Math';
 import { Level, LevelProps } from './levels';
 import { createLevelLayout } from '../helpers/CreateLevelLayout';
+import { PhysicsGroup } from '../../types/Physics';
 
 const schema = {
 	...levelSchema,
@@ -65,6 +66,10 @@ export class Level1 implements Level {
 						bullet.delete();
 					},
 				);
+
+				bullet.physics.setHandler(PhysicsGroup.wall, () => {
+					bullet.delete();
+				});
 			});
 		});
 
