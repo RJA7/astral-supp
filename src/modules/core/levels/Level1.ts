@@ -15,6 +15,7 @@ const schema = {
 	bullets: {
 		factory: Factory,
 	},
+	slow_down_trigger: {},
 } satisfies CollectionSchema;
 
 export type Layout = CollectionLayout<typeof schema>;
@@ -22,13 +23,22 @@ export type Layout = CollectionLayout<typeof schema>;
 export class Level1 implements Level {
 	public readonly layout: Layout;
 
-	private readonly timerIds: number[] = [];
+	private readonly bulletTimerIds: number[] = [];
 
 	constructor(props: LevelProps) {
 		const { level_factory, levelNumber } = props;
 
 		this.layout = createLevelLayout(level_factory, levelNumber, schema);
 		this.setupShooter();
+		this.setupBullets(1);
+
+		this.layout.slow_down_trigger.physics.setHandler(
+			PhysicsGroup.player,
+			() => {
+				this.layout.slow_down_trigger.delete();
+				this.setupBullets(2);
+			},
+		);
 	}
 
 	private setupShooter() {
@@ -42,8 +52,22 @@ export class Level1 implements Level {
 			0,
 			Playback.PLAYBACK_LOOP_FORWARD,
 		);
+	}
 
-		const timerId = timer.delay(1, true, () => {
+	public destroy() {
+		this.bulletTimerIds.forEach((id) => {
+			timer.cancel(id);
+		});
+	}
+
+	private setupBullets(timeScale: number) {
+		const { shooter, bullets } = this.layout;
+
+		this.bulletTimerIds.forEach((id) => {
+			timer.cancel(id);
+		});
+
+		const timerId = timer.delay(0.5 * timeScale, true, () => {
 			[0, 120, 240].forEach((angle, i) => {
 				const bullet = bullets.factory.create(bulletSchema);
 				const rotation = (shooter.angle + angle) * DEG_TO_RAD;
@@ -73,12 +97,6 @@ export class Level1 implements Level {
 			});
 		});
 
-		this.timerIds.push(timerId);
-	}
-
-	public destroy() {
-		this.timerIds.forEach((id) => {
-			timer.cancel(id);
-		});
+		this.bulletTimerIds.push(timerId);
 	}
 }

@@ -82,6 +82,7 @@ embedded_instances {
   "group: \\\"player\\\"\\n"
   "mask: \\\"finish_zone\\\"\\n"
   "mask: \\\"bullet\\\"\\n"
+  "mask: \\\"pickup\\\"\\n"
   "embedded_collision_shape {\\n"
   "  shapes {\\n"
   "    shape_type: TYPE_BOX\\n"

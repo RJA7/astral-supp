@@ -164,6 +164,7 @@ instances {
   position {
     x: -509.0
     y: -273.0
+    z: 50.0
   }
 }
 scale_along_z: 0
