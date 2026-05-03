@@ -1,33 +1,31 @@
-import { PopupName } from './types/PopupName';
 import { Script } from '../components/Script';
-import { ControllerNameByPopupName } from './types/ControllerNameByPopupName';
-import { SetControllerMessage } from '../../types/Message';
-import { ControllerName } from '../../ControllerName';
+import { SetControllerMessage } from '../types/Message';
+import { ControllerName } from '../../enums/ControllerName';
 import { componentUrl } from '../ComponentUrl';
-import { Fragment, GameObjectId } from '../types/Hash';
 import { Messenger } from '../Messenger';
 import { Popup } from './Popup';
 
-const POPUPS_ID: GameObjectId = hash('/popups');
-const POPUP_GUI_FRAGMENT: Fragment = hash('gui');
-
 export class Popups {
 	private readonly messenger: Messenger;
+
+	public popupsId = hash('/popups');
+
+	public popupGuiFragment = hash('gui');
 
 	constructor(messenger: Messenger) {
 		this.messenger = messenger;
 	}
 
-	public show<
-		T extends PopupName,
-		C extends ControllerName = (typeof ControllerNameByPopupName)[T],
-	>(popupName: T, props: SetControllerMessage<C>['props']): Popup<C> {
-		const factoryUrl = componentUrl(POPUPS_ID, hash(popupName), true);
+	public show<C extends ControllerName>(
+		popupName: string,
+		controllerName: C,
+		props: SetControllerMessage<C>['props'],
+	): Popup<C> {
+		const factoryUrl = componentUrl(this.popupsId, hash(popupName), true);
 		const rootId = factory.create(factoryUrl);
-		const controllerName = ControllerNameByPopupName[popupName];
 
 		const script = new Script<C>(
-			componentUrl(rootId, POPUP_GUI_FRAGMENT, true),
+			componentUrl(rootId, this.popupGuiFragment, true),
 			controllerName as C,
 		);
 		script.initController(props);

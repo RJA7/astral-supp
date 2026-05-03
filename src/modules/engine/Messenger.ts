@@ -1,4 +1,4 @@
-import { Message } from '../types/Message';
+import { Message } from './types/Message';
 import { Signal } from './Signal';
 import { ComponentUrl } from './ComponentUrl';
 

@@ -1,9 +1,13 @@
-import { Sprite } from '../engine/components/Sprite';
-import { CollectionFactory } from '../engine/components/CollectionFactory';
-import { CollectionLayout, CollectionSchema } from '../engine/layout/types';
-import { Factory } from '../engine/components/Factory';
-import { list, script } from '../engine/layout/Elements';
-import { ControllerName } from '../ControllerName';
+import {
+	CollectionFactory,
+	CollectionLayout,
+	CollectionSchema,
+	Factory,
+	list,
+	script,
+	Sprite,
+} from '../engine';
+import { ControllerName } from '../enums/ControllerName';
 
 export const coreSchema = {
 	root: {

@@ -1,12 +1,15 @@
+import {
+	CollectionLayout,
+	CollectionSchema,
+	DEG_TO_RAD,
+	Factory,
+	Property,
+	Timeline,
+} from '../../engine';
 import { levelSchema } from '../../layouts/LevelLayout';
-import { CollectionLayout, CollectionSchema } from '../../engine/layout/types';
 import { Level, LevelProps } from './levels';
 import { createLevelLayout } from '../helpers/CreateLevelLayout';
-import { Factory } from '../../engine/components/Factory';
-import { Property } from '../../engine/types/Property';
 import { bulletSchema } from '../../layouts/BulletLayout';
-import { DEG_TO_RAD } from '../../engine/utils/Math';
-import { Timeline } from '../../engine/timeline/Timeline';
 
 const schema = {
 	...levelSchema,

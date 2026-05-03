@@ -1,13 +1,15 @@
-import { Message } from '../modules/types/Message';
-import { MessageId } from '../modules/types/MessageId';
-import { ComponentUrl } from '../modules/engine/ComponentUrl';
-import { ActionId } from '../modules/types/ActionId';
-import { Action } from '../modules/types/Action';
-import { Controller } from '../modules/types/Controller';
+import {
+	Action,
+	ActionId,
+	ComponentUrl,
+	Controller,
+	Message,
+	MessageId,
+	screen,
+	SignalBinding,
+} from '../modules/engine';
 import { Controllers } from '../modules/Controllers';
-import { SignalBinding } from '../modules/engine/Signal';
-import { screen } from '../modules/engine/render/Screen';
-import { ControllerName } from '../modules/ControllerName';
+import { ControllerName } from '../modules/enums/ControllerName';
 
 type Self = {
 	Controller: ControllerName;

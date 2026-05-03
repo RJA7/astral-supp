@@ -1,5 +1,4 @@
-import { ActionId } from '../types/ActionId';
-import { Action } from '../types/Action';
+import { Action, ActionId } from '../engine';
 
 export class CoreInput {
 	private readonly delta = vmath.vector3();

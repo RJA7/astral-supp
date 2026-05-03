@@ -1,4 +1,4 @@
-import { patchEnum, toHash } from './utils/PatchEnum';
+import { patchEnum, toHash } from '../engine';
 
 export enum ControllerName {
 	MainController = 'MainController',

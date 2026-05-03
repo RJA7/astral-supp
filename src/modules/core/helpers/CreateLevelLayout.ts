@@ -1,4 +1,4 @@
-import { CollectionFactory } from '../../engine/components/CollectionFactory';
+import { CollectionFactory } from '../../engine';
 import { levelSchema } from '../../layouts/LevelLayout';
 
 export function createLevelLayout<T extends typeof levelSchema>(

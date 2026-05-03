@@ -1,4 +1,5 @@
-import { PhysicsEvent, PhysicsGroup } from '../types/Physics';
+import { PhysicsGroup } from '../enums/PhysicsGroup';
+import { PhysicsEvent } from './physics/types';
 
 export type CollisionHandler = (event: PhysicsEvent) => void;
 

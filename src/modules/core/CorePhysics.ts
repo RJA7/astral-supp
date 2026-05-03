@@ -1,5 +1,5 @@
-import { PhysicsGroup } from '../types/Physics';
-import { GameObjectId } from '../engine/types/Hash';
+import { GameObjectId } from '../engine';
+import { PhysicsGroup } from '../enums/PhysicsGroup';
 import { CoreState } from './CoreState';
 import { CoreLayout } from '../layouts/CoreLayout';
 

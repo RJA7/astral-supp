@@ -1,6 +1,4 @@
-import { GuiProperty } from '../engine/types/Property';
-import { Easing } from '../engine/types/Easing';
-import { GuiNode } from '../engine/components/GuiNode';
+import { Easing, GuiNode, GuiProperty } from '../engine';
 
 export function playPopupOpening(layout: { dimmer: GuiNode; root: GuiNode }) {
 	const { dimmer, root } = layout;

@@ -4,7 +4,7 @@ import { ShapeClass } from '../shapes/Shape';
 import { RigidBody } from '../components/RigidBody';
 import { SpineModel } from '../components/SpineModel';
 import { Script } from '../components/Script';
-import { ControllerName } from '../../ControllerName';
+import { ControllerName } from '../../enums/ControllerName';
 import { CollectionProxy } from '../components/CollectionProxy';
 import { GuiNode } from '../components/GuiNode';
 import { Collection } from '../Collection';

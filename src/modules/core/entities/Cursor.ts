@@ -1,6 +1,4 @@
-import { Easing } from '../../engine/types/Easing';
-import { Property, SpriteProperty } from '../../engine/types/Property';
-import { clampMagnitude } from '../../utils/ClampMagnitude';
+import { clampMagnitude, Easing, Property, SpriteProperty } from '../../engine';
 import { CursorLayout } from '../../layouts/CoreLayout';
 
 const MAX_CURSOR_OFFSET = 25;

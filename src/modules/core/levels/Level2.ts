@@ -1,9 +1,8 @@
+import { CollectionLayout, CollectionSchema, Timeline } from '../../engine';
 import { levelSchema } from '../../layouts/LevelLayout';
-import { CollectionLayout, CollectionSchema } from '../../engine/layout/types';
 import { Level, LevelProps } from './levels';
 import { createLevelLayout } from '../helpers/CreateLevelLayout';
-import { syncSafeZoneTweenCollider } from '../helpers/SyncSafeAreaCollider';
-import { Timeline } from '../../engine/timeline/Timeline';
+import { syncSafeZoneTweenCollider } from '../helpers/SyncSafeZoneCollider';
 
 const schema = {
 	...levelSchema,

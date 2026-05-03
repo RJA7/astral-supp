@@ -1,10 +1,12 @@
-import { MessageId } from '../modules/types/MessageId';
-import { Message } from '../modules/types/Message';
-import { RenderState } from '../modules/engine/render/RenderState';
-import { RenderPass } from '../modules/engine/render/types';
-import { OutlineRenderPass } from '../modules/engine/render_passes/OutlineRenderPass';
-import { setCamera } from '../modules/engine/render/Helpers';
-import { screen } from '../modules/engine/render/Screen';
+import {
+	Message,
+	MessageId,
+	OutlineRenderPass,
+	RenderPass,
+	RenderState,
+	screen,
+	setCamera,
+} from '../modules/engine';
 
 type Self = {
 	state: RenderState;

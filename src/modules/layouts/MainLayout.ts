@@ -1,6 +1,5 @@
-import { CollectionLayout, CollectionSchema } from '../engine/layout/types';
-import { ControllerName } from '../ControllerName';
-import { collectionProxy } from '../engine/layout/Elements';
+import { CollectionLayout, collectionProxy, CollectionSchema } from '../engine';
+import { ControllerName } from '../enums/ControllerName';
 
 export const mainSchema = {
 	root: {

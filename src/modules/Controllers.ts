@@ -1,8 +1,8 @@
+import { ControllerClass } from './engine';
 import { MainController } from './MainController';
 import { CoreController } from './core/CoreController';
-import { ControllerClass } from './types/Controller';
 import { CoreGuiController } from './core/CoreGuiController';
-import { ControllerName } from './ControllerName';
+import { ControllerName } from './enums/ControllerName';
 import { RestartPopupController } from './popups/RestartPopupController';
 
 export const Controllers = {

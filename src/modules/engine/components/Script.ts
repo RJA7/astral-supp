@@ -1,13 +1,12 @@
-import { ComponentUrl, componentUrl } from '../ComponentUrl';
-import { Fragment, GameObjectId } from '../types/Hash';
-import { MessageId } from '../../types/MessageId';
+import { ComponentUrl } from '../ComponentUrl';
+import { MessageId } from '../types/MessageId';
 import { postMessage } from '../PostMessage';
-import { ControllerName } from '../../ControllerName';
-import { SetControllerMessage } from '../../types/Message';
+import { ControllerName } from '../../enums/ControllerName';
+import { SetControllerMessage } from '../types/Message';
 import { Signal, SignalBinding } from '../Signal';
 import { Messenger } from '../Messenger';
 import { Controllers } from '../../Controllers';
-import { Controller } from '../../types/Controller';
+import { Controller } from '../Controller';
 
 export type ScriptBridge<
 	N extends ControllerName,

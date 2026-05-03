@@ -1,4 +1,4 @@
-import { Storage } from '../engine/Storage';
+import { Storage } from '../engine';
 
 type UserData = {
 	levelNumber: number;

@@ -1,5 +1,5 @@
-import { MessageId } from '../../types/MessageId';
-import { AnimationDoneMessage } from '../../types/Message';
+import { MessageId } from '../types/MessageId';
+import { AnimationDoneMessage } from '../types/Message';
 import { componentUrl, ComponentUrl } from '../ComponentUrl';
 import { SpriteProperty } from '../types/Property';
 import { Component } from './Component';

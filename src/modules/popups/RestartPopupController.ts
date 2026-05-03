@@ -1,10 +1,13 @@
-import { Controller } from '../types/Controller';
-import { ActionId } from '../types/ActionId';
-import { Action } from '../types/Action';
-import { Signal } from '../engine/Signal';
-import { GuiLayout, GuiSchema } from '../engine/layout/types';
-import { guiNode } from '../engine/layout/Elements';
-import { createGuiLayout } from '../engine/layout/GuiLayout';
+import {
+	Action,
+	ActionId,
+	Controller,
+	createGuiLayout,
+	GuiLayout,
+	guiNode,
+	GuiSchema,
+	Signal,
+} from '../engine';
 import { playPopupOpening } from '../animations/PlayPopupOpening';
 
 const restartPopupSchema = {

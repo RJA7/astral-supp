@@ -11,7 +11,7 @@ import {
 	SpineModelBones,
 	SpineModelSchema,
 } from './types';
-import { ControllerName } from '../../ControllerName';
+import { ControllerName } from '../../enums/ControllerName';
 
 export function body<T extends RigidBodySchemaShapes>(
 	shapes: T,

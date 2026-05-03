@@ -1,5 +1,5 @@
+import { CollectionFactory } from '../../engine';
 import { LevelLayout } from '../../layouts/LevelLayout';
-import { CollectionFactory } from '../../engine/components/CollectionFactory';
 import { Level1 } from './Level1';
 import { Level2 } from './Level2';
 import { Level3 } from './Level3';

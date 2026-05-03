@@ -1,5 +1,4 @@
-import { Controller } from '../types/Controller';
-import { MessageId } from '../types/MessageId';
+import { Controller, MessageId } from '../engine';
 
 export class CoreGuiController extends Controller {
 	private readonly lifeText: node;

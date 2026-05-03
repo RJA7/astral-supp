@@ -1,6 +1,5 @@
-import { GameObjectLayout, GameObjectSchema } from '../engine/layout/types';
-import { Factory } from '../engine/components/Factory';
-import { PopupName } from '../engine/popups/types/PopupName';
+import { Factory, GameObjectLayout, GameObjectSchema } from '../engine';
+import { PopupName } from '../enums/PopupName';
 
 export const popupsSchema: Record<PopupName, typeof Factory> =
 	Object.fromEntries(

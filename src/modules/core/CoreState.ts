@@ -1,4 +1,4 @@
-import { Signal } from '../engine/Signal';
+import { Signal } from '../engine';
 
 export class CoreState {
 	onPlayerHpChanged = new Signal();

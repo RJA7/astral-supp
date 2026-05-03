@@ -1,6 +1,6 @@
 import { MessageId } from './MessageId';
-import { ControllerName } from '../ControllerName';
-import { Controllers } from '../Controllers';
+import { ControllerName } from '../../enums/ControllerName';
+import { Controllers } from '../../Controllers';
 
 export type Message =
 	| VoidMessage

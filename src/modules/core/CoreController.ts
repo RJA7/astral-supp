@@ -1,19 +1,22 @@
+import {
+	Action,
+	ActionId,
+	Controller,
+	createCollectionLayout,
+	Popups,
+	Signal,
+} from '../engine';
 import { Cursor } from './entities/Cursor';
-import { ActionId } from '../types/ActionId';
-import { Action } from '../types/Action';
 import { Player } from './entities/Player';
-import { Controller } from '../types/Controller';
 import { CoreInput } from './CoreInput';
 import { CorePhysics } from './CorePhysics';
 import { CoreLevel } from './CoreLevel';
 import { CoreLayout, coreSchema } from '../layouts/CoreLayout';
-import { createCollectionLayout } from '../engine/layout/CollectionLayout';
 import { CoreState } from './CoreState';
-import { Popups } from '../engine/popups/Popups';
-import { PopupName } from '../engine/popups/types/PopupName';
-import { Signal } from '../engine/Signal';
+import { PopupName } from '../enums/PopupName';
 import { levels } from './levels/levels';
 import { storage } from '../services/Storage';
+import { ControllerName } from '../enums/ControllerName';
 
 export class CoreController extends Controller {
 	public onRestart = new Signal();
@@ -107,7 +110,11 @@ export class CoreController extends Controller {
 	}
 
 	private showRestartPopup(win: boolean) {
-		const popup = this.popups.show(PopupName.restart, { win });
+		const popup = this.popups.show(
+			PopupName.restart,
+			ControllerName.RestartPopupController,
+			{ win },
+		);
 
 		popup.script.bridge.onResetClick = () => {
 			storage.save({ levelNumber: 1 });

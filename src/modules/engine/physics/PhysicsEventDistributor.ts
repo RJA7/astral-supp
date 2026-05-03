@@ -1,5 +1,5 @@
 import { GameObjectRegister } from '../GameObjectRegister';
-import { PhysicsEvent } from '../../types/Physics';
+import { PhysicsEvent } from './types';
 
 export class PhysicsEventDistributor {
 	private readonly register: GameObjectRegister;

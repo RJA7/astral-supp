@@ -1,8 +1,11 @@
-import { Sprite } from '../engine/components/Sprite';
-import { CollectionLayout, CollectionSchema } from '../engine/layout/types';
-import { body, list } from '../engine/layout/Elements';
-import { BoxShape } from '../engine/shapes/BoxShape';
-import { Factory } from '../engine/components/Factory';
+import {
+	body,
+	BoxShape,
+	CollectionLayout,
+	CollectionSchema,
+	list,
+	Sprite,
+} from '../engine';
 
 export const levelSchema = {
 	root: {},

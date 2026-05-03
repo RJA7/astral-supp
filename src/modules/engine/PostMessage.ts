@@ -1,4 +1,4 @@
-import { Message, VoidMessageId } from '../types/Message';
+import { Message, VoidMessageId } from './types/Message';
 import { ComponentUrl } from './ComponentUrl';
 import { GameObjectId } from './types/Hash';
 

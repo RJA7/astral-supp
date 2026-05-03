@@ -1,7 +1,6 @@
-import { ProxyLoader } from './engine/ProxyLoader';
-import { Controller } from './types/Controller';
+import { Controller } from './engine';
+import { createCollectionLayout, ProxyLoader } from './engine';
 import { MainLayout, mainSchema } from './layouts/MainLayout';
-import { createCollectionLayout } from './engine/layout/CollectionLayout';
 
 export class MainController extends Controller {
 	private readonly layout: MainLayout;

@@ -1,6 +1,6 @@
 import { ComponentUrl } from './ComponentUrl';
-import { VoidMessage } from '../types/Message';
-import { MessageId } from '../types/MessageId';
+import { VoidMessage } from './types/Message';
+import { MessageId } from './types/MessageId';
 import { CollectionProxy } from './components/CollectionProxy';
 import { Messenger } from './Messenger';
 

@@ -1,6 +1,6 @@
 import { ComponentUrl } from './ComponentUrl';
 import { postVoidMessage } from './PostMessage';
-import { MessageId } from '../types/MessageId';
+import { MessageId } from './types/MessageId';
 import { Playback } from './types/Playback';
 import { Property } from './types/Property';
 import { Easing } from './types/Easing';

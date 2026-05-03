@@ -1,10 +1,10 @@
 import { postVoidMessage } from '../PostMessage';
-import { MessageId } from '../../types/MessageId';
+import { MessageId } from '../types/MessageId';
 import { componentUrl, ComponentUrl } from '../ComponentUrl';
 import { Fragment, GameObjectId } from '../types/Hash';
 import { Component } from './Component';
 import { Script } from './Script';
-import { ControllerName } from '../../ControllerName';
+import { ControllerName } from '../../enums/ControllerName';
 
 const COLLECTION_ROOT_ID: GameObjectId = hash('/root');
 const COLLECTION_SCRIPT_FRAGMENT: Fragment = hash('controller');

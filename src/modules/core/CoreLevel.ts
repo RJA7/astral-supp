@@ -1,6 +1,6 @@
 import { CoreLayout } from '../layouts/CoreLayout';
 import { Level, levels } from './levels/levels';
-import { syncSafeZoneCollider } from './helpers/SyncSafeAreaCollider';
+import { syncSafeZoneCollider } from './helpers/SyncSafeZoneCollider';
 
 export class CoreLevel {
 	private readonly coreLayout: CoreLayout;

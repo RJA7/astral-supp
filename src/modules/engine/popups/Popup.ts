@@ -1,5 +1,5 @@
 import { Script } from '../components/Script';
-import { ControllerName } from '../../ControllerName';
+import { ControllerName } from '../../enums/ControllerName';
 import { GameObjectId } from '../types/Hash';
 
 export class Popup<T extends ControllerName> {

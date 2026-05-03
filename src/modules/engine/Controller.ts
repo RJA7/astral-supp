@@ -1,11 +1,11 @@
-import { ActionId } from './ActionId';
-import { Action } from './Action';
-import { Messenger } from '../engine/Messenger';
-import { MessageId } from './MessageId';
-import { Signal, SignalBinding } from '../engine/Signal';
-import { postMessage } from '../engine/PostMessage';
-import { PhysicsEventDistributor } from '../engine/physics/PhysicsEventDistributor';
-import { gameObjectRegister } from '../engine/GameObjectRegister';
+import { ActionId } from './types/ActionId';
+import { Action } from './types/Action';
+import { Messenger } from './Messenger';
+import { MessageId } from './types/MessageId';
+import { Signal, SignalBinding } from './Signal';
+import { postMessage } from './PostMessage';
+import { PhysicsEventDistributor } from './physics/PhysicsEventDistributor';
+import { gameObjectRegister } from './GameObjectRegister';
 
 export type ControllerClass = new (props: any) => Controller;
 
