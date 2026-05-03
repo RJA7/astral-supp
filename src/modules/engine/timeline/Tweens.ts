@@ -5,12 +5,9 @@ type OnlyNumberProps<T> = {
 function noop() {}
 
 export class Tweens {
-	private readonly timerId: number;
-
 	private readonly tweens: Set<Tween<any, any>>;
 
 	constructor() {
-		this.timerId = timer.delay(0, true, this.update.bind(this));
 		this.tweens = new Set<Tween<any>>();
 	}
 
@@ -26,11 +23,7 @@ export class Tweens {
 		return tween;
 	}
 
-	public destroy() {
-		timer.cancel(this.timerId);
-	}
-
-	private update(_timerId: number, dt: number) {
+	public update(dt: number) {
 		for (const tween of this.tweens) {
 			let complete = tween.update(dt);
 			tween.object[tween.property] = tween.value;

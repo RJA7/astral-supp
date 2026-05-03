@@ -4,9 +4,9 @@ import { Level, LevelProps } from './levels';
 import { createLevelLayout } from '../helpers/CreateLevelLayout';
 import { Factory } from '../../engine/components/Factory';
 import { Property } from '../../engine/types/Property';
-import { Playback } from '../../engine/types/Playback';
 import { bulletSchema } from '../../layouts/BulletLayout';
 import { DEG_TO_RAD } from '../../engine/utils/Math';
+import { Timeline } from '../../engine/timeline/Timeline';
 
 const schema = {
 	...levelSchema,
@@ -21,28 +21,27 @@ type Layout = CollectionLayout<typeof schema>;
 export class Level3 implements Level {
 	public readonly layout: Layout;
 
-	private readonly timerIds: number[] = [];
+	private readonly timeline: Timeline;
 
 	constructor(props: LevelProps) {
 		const { level_factory, levelNumber } = props;
 
 		this.layout = createLevelLayout(level_factory, levelNumber, schema);
+
+		this.timeline = new Timeline();
+
 		this.setupShooter();
 	}
 
 	private setupShooter() {
 		const { shooter, bullets } = this.layout;
 
-		shooter.animate(
-			Property.EulerZ,
-			160,
-			3,
-			undefined,
-			0,
-			Playback.PLAYBACK_LOOP_PINGPONG,
-		);
+		this.timeline
+			.tween(shooter, 'euler', { z: 160 }, 3)
+			.yoyo()
+			.repeat(Infinity);
 
-		const timerId = timer.delay(0.8, true, () => {
+		this.timeline.loop(0.8, () => {
 			const bullet = bullets.factory.create(bulletSchema);
 			const rotation = shooter.angle * DEG_TO_RAD;
 			const direction = vmath.vector3(
@@ -65,13 +64,9 @@ export class Level3 implements Level {
 				},
 			);
 		});
-
-		this.timerIds.push(timerId);
 	}
 
 	public destroy() {
-		this.timerIds.forEach((id) => {
-			timer.cancel(id);
-		});
+		this.timeline.destroy();
 	}
 }

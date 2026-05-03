@@ -142,6 +142,14 @@ export class GameObject {
 		this.angle = value * DEG_TO_RAD;
 	}
 
+	get euler() {
+		return go.get(this.id, Property.Euler) as vmath.vector3;
+	}
+
+	set euler(value: vmath.vector3) {
+		go.set(this.id, Property.Euler, value);
+	}
+
 	animate(
 		property: Property,
 		to: AnimateTo,

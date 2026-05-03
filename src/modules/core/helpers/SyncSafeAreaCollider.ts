@@ -1,4 +1,4 @@
-import { Tween } from '../../engine/tweens/Tweens';
+import { Tween } from '../../engine/timeline/Tweens';
 import { SafeZoneLayout } from '../../layouts/LevelLayout';
 
 export function syncSafeZoneTweenCollider(tween: Tween<SafeZoneLayout>) {

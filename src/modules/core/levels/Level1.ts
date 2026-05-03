@@ -2,12 +2,12 @@ import { levelSchema } from '../../layouts/LevelLayout';
 import { Factory } from '../../engine/components/Factory';
 import { CollectionLayout, CollectionSchema } from '../../engine/layout/types';
 import { Property } from '../../engine/types/Property';
-import { Playback } from '../../engine/types/Playback';
 import { bulletSchema } from '../../layouts/BulletLayout';
 import { DEG_TO_RAD } from '../../engine/utils/Math';
 import { Level, LevelProps } from './levels';
 import { createLevelLayout } from '../helpers/CreateLevelLayout';
 import { PhysicsGroup } from '../../types/Physics';
+import { Timeline } from '../../engine/timeline/Timeline';
 
 const schema = {
 	...levelSchema,
@@ -23,51 +23,40 @@ export type Layout = CollectionLayout<typeof schema>;
 export class Level1 implements Level {
 	public readonly layout: Layout;
 
-	private readonly bulletTimerIds: number[] = [];
+	private readonly timeline: Timeline;
 
 	constructor(props: LevelProps) {
 		const { level_factory, levelNumber } = props;
 
 		this.layout = createLevelLayout(level_factory, levelNumber, schema);
+
+		this.timeline = new Timeline();
+
 		this.setupShooter();
-		this.setupBullets(1);
+		this.setupBullets();
 
 		this.layout.slow_down_trigger.physics.setHandler(
 			PhysicsGroup.player,
 			() => {
 				this.layout.slow_down_trigger.delete();
-				this.setupBullets(2);
+				this.timeline.timeScale = 0.5;
 			},
 		);
 	}
 
 	private setupShooter() {
-		const { shooter, bullets } = this.layout;
-
-		shooter.animate(
-			Property.EulerZ,
-			-360,
-			6,
-			undefined,
-			0,
-			Playback.PLAYBACK_LOOP_FORWARD,
-		);
+		const { shooter } = this.layout;
+		this.timeline.tween(shooter, 'euler', { z: -360 }, 6).repeat(Infinity);
 	}
 
 	public destroy() {
-		this.bulletTimerIds.forEach((id) => {
-			timer.cancel(id);
-		});
+		this.timeline.destroy();
 	}
 
-	private setupBullets(timeScale: number) {
+	private setupBullets() {
 		const { shooter, bullets } = this.layout;
 
-		this.bulletTimerIds.forEach((id) => {
-			timer.cancel(id);
-		});
-
-		const timerId = timer.delay(0.5 * timeScale, true, () => {
+		this.timeline.loop(0.5, () => {
 			[0, 120, 240].forEach((angle, i) => {
 				const bullet = bullets.factory.create(bulletSchema);
 				const rotation = (shooter.angle + angle) * DEG_TO_RAD;
@@ -96,7 +85,5 @@ export class Level1 implements Level {
 				});
 			});
 		});
-
-		this.bulletTimerIds.push(timerId);
 	}
 }

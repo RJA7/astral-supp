@@ -11,12 +11,6 @@ export class GameObjectRegister {
 	}
 
 	public add(gameObject: GameObject): void {
-		const oldObject = this.objects.get(gameObject.id);
-
-		if (oldObject && oldObject.hasPhysics()) {
-			oldObject.physics.handlers.clear();
-		}
-
 		this.objects.set(gameObject.id, gameObject);
 	}
 
