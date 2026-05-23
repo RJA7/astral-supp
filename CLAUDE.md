@@ -48,7 +48,7 @@ Defold `.script` files (in `src/scripts/`) act as thin bridges that delegate to 
 
 Collections and game object hierarchies are declared as schemas using `createCollectionLayout()`. This generates type-safe accessors instead of raw string URLs.
 
-- `src/layouts/` — layout schemas for each collection (`CoreLayout`, `MainLayout`, etc.)
+- `src/modules/layouts/` — layout schemas for each collection (`CoreLayout`, `MainLayout`, etc.)
 - Access components via the typed layout object, never via raw Defold URL strings.
 
 ### Entity & Component Wrappers
@@ -61,7 +61,7 @@ Collections and game object hierarchies are declared as schemas using `createCol
 
 ### Services
 
-`Storage<T>` (`src/modules/services/Storage.ts`) is a generic persistent key-value store wrapping Defold's `sys.save`/`sys.load`. Used for level progress via `src/services/`.
+`Storage<T>` (`src/modules/services/Storage.ts`) is a generic persistent key-value store wrapping Defold's `sys.save`/`sys.load`. Used for level progress via `src/modules/services/`.
 
 ## Key Conventions
 
