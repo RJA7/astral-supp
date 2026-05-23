@@ -17,7 +17,7 @@
 - Scale: `0` = invisible / no collision, `60` = standard platform size (in world units)
 - Tween duration for scale transitions: typically `0.5s`
 
-**Interacts with:** Player movement (must stay on), Player HP (damage when off).
+**Interacts with:** Player movement (must stay on), Player HP (damage when off), Bullets (destroyed on contact with zone walls).
 
 ---
 
@@ -36,7 +36,7 @@
 - Travel distance before auto-destroy: `1000` world units
 - Shooter rotation period: `6s` per full revolution
 
-**Interacts with:** Player HP (damage on contact), Safe zone walls (bullet destroyed on contact).
+**Interacts with:** Player HP (damage on contact), Safe zone walls (bullet destroyed on contact), Slow-Down Trigger (fire rate halves when trigger activates).
 
 ---
 
@@ -69,6 +69,8 @@
 **Key parameters:**
 - Starting value: `100`
 - Game-over threshold: `0`
+- Damage per bullet hit: instant kill (HP set to `0`)
+- Damage per second off safe zone: `60` HP/s (1 HP per physics tick at 60 Hz)
 
 **Interacts with:** Bullets (damage source), Safe zone (damage when off all zones), HUD (display), Restart popup (trigger on 0).
 
