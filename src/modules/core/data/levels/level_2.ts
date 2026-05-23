@@ -133,4 +133,5 @@ export default {
 			],
 		},
 	],
+	walls: [],
 } satisfies LevelData;

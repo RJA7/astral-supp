@@ -24,6 +24,9 @@ export const levelSchema = {
 	bullets: {
 		factory: Factory,
 	},
+	walls: {
+		factory: Factory,
+	},
 } satisfies CollectionSchema;
 
 export type LevelLayout = CollectionLayout<typeof levelSchema>;

@@ -3,6 +3,7 @@ export type LevelData = {
 	finishZone: FinishZoneData;
 	playerPosition: PointData;
 	shooters: ShooterData[];
+	walls: WallData[];
 };
 
 export type AnimationTrack = {
@@ -46,3 +47,5 @@ export type ShooterData = {
 	bulletSpread?: number;
 	animations?: AnimationTrack[];
 };
+
+export type WallData = RectZoneData;

@@ -110,6 +110,10 @@ instances {
     x: -91.0
     y: 116.0
   }
+  scale3 {
+    x: 20.0
+    y: 20.0
+  }
 }
 instances {
   id: "wall1"

@@ -143,4 +143,5 @@ export default {
 	finishZone: { x: 465, y: -250, width: 1, height: 1, angle: 0 },
 	playerPosition: { x: -477.99997, y: -271.3333 },
 	shooters: [],
+	walls: [],
 } satisfies LevelData;

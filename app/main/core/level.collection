@@ -12,6 +12,31 @@ instances {
 }
 scale_along_z: 0
 embedded_instances {
+  id: "root"
+  children: "bullets"
+  children: "cursor"
+  children: "finish_zone"
+  children: "outline"
+  children: "player"
+  children: "safe_zones"
+  children: "shooters"
+  children: "walls"
+  data: ""
+}
+embedded_instances {
+  id: "bullets"
+  data: "embedded_components {\n"
+  "  id: \"factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/main/core/bullet.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    z: 20.0
+  }
+}
+embedded_instances {
   id: "cursor"
   data: "embedded_components {\n"
   "  id: \"sprite\"\n"
@@ -331,15 +356,12 @@ embedded_instances {
   ""
 }
 embedded_instances {
-  id: "bullets"
+  id: "walls"
   data: "embedded_components {\n"
   "  id: \"factory\"\n"
   "  type: \"factory\"\n"
-  "  data: \"prototype: \\\"/main/core/bullet.go\\\"\\n"
+  "  data: \"prototype: \\\"/main/core/wall.go\\\"\\n"
   "\"\n"
   "}\n"
   ""
-  position {
-    z: 20.0
-  }
 }

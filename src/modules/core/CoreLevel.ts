@@ -4,6 +4,7 @@ import { Level } from './levels/Level';
 import { Player } from './entities/Player';
 import { Cursor } from './entities/Cursor';
 import { safeZoneSchema } from '../layouts/SafeZoneLayout';
+import { wallSchema } from '../layouts/WallLayout';
 import { syncSafeZoneCollider } from './helpers/SyncSafeZoneCollider';
 import { levels } from './data/levels';
 import { levelSchema } from '../layouts/LevelLayout';
@@ -49,6 +50,14 @@ export class CoreLevel {
 		layout.finish_zone.setScale2D(
 			vmath.vector3(levelData.finishZone.width, levelData.finishZone.height, 1),
 		);
+
+		for (const wallData of levelData.walls) {
+			const wall = layout.walls.factory.create(wallSchema);
+			wall.setPosition2D(vmath.vector3(wallData.x, wallData.y, 0));
+			wall.setScale2D(vmath.vector3(wallData.width, wallData.height, 1));
+			wall.angle = wallData.angle;
+			wall.body.box.set(wall.getScale());
+		}
 
 		this.physics.setLayout(layout);
 
