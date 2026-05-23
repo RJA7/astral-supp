@@ -9,6 +9,8 @@ Authoritative specification for this project. All development — human or AI-as
 - **All game logic is written in TypeScript** inside `src/`. Lua is an output format, not a development language.
 - `app/modules/` and `app/scripts/` contain **generated Lua** produced by `tstl` from `src/`. **Never edit these files directly** — any manual change will be silently overwritten on the next build.
 - The only hand-maintained files under `app/` are assets and Defold project files (`.collection`, `.go`, `.script`, `.gui`, `.atlas`, `game.project`, etc.).
+- Game design intent and mechanic vocabulary live in `docs/specs/` — start with [`docs/specs/README.md`](docs/specs/README.md).
+- **Spec-first rule:** before adding a new mechanic or a boss level, write (or update) the relevant spec in `docs/specs/` and commit it. Regular levels are defined as JSON via the level editor — no markdown spec needed.
 
 ---
 

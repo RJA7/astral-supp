@@ -3,6 +3,7 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 See [constitution.md](constitution.md) for the authoritative development rules and architecture spec.
+See [docs/specs/README.md](docs/specs/README.md) for game design intent and mechanic vocabulary.
 
 ## Project Overview
 
