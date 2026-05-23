@@ -17,9 +17,11 @@
     "build": "tstl",
     "lint": "eslint src",
     "prettier": "prettier \"./**/*.{yml,json,ts,md,d.ts}\" --write",
-    "dev": "tstl --watch"
+    "dev": "tstl --watch",
+    "deploy": "gh-pages -d app/build/default_html5"
   },
   "devDependencies": {
+    "gh-pages": "^6.2.0",
     "prettier": "^3.1.0",
     "@ts-defold/library": "^0.1.1",
     "@ts-defold/tstl-userdata-sugar": "^1.0.1",
