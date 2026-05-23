@@ -34,7 +34,7 @@ jobs:
         run: npm run build
 
       - name: Build
-        run: 'java -jar $BOB --root ./app --archive --platform js-web --bundle-output ./app/build --verbose resolve distclean build bundle'
+        run: 'java -jar $BOB --root ./app --archive --platform js-web --bundle-output ./bundle --verbose resolve distclean build bundle'
 
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
