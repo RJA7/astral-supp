@@ -32,11 +32,9 @@ export class Level3 implements Level {
 		this.layout = createLevelLayout(level_factory, levelNumber, schema);
 
 		this.timeline = new Timeline();
-
-		this.setupShooter();
 	}
 
-	private setupShooter() {
+	public start() {
 		const { shooter, bullets } = this.layout;
 
 		this.timeline

@@ -21,10 +21,9 @@ export class Level2 implements Level {
 		this.timeline = new Timeline();
 
 		this.layout = createLevelLayout(level_factory, levelNumber, schema);
-		this.animate();
 	}
 
-	private animate() {
+	public start() {
 		const { safe_zones } = this.layout;
 
 		this.timeline

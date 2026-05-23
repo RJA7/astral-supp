@@ -38,6 +38,8 @@ export class CoreLevel {
 		player.setPosition2D(playerPosition);
 		cursor.setPosition2D(playerPosition);
 
+		level.start();
+
 		return level;
 	}
 

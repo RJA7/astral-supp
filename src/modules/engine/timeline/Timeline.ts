@@ -9,6 +9,7 @@ export class Timeline {
 
 	public readonly tween: typeof this.tweens.add;
 	public readonly wait: typeof this.timers.wait;
+	public readonly add: typeof this.timers.add;
 	public readonly repeat: typeof this.timers.repeat;
 	public readonly loop: typeof this.timers.loop;
 
@@ -20,6 +21,7 @@ export class Timeline {
 
 		this.tween = this.tweens.add.bind(this.tweens);
 		this.wait = this.timers.wait.bind(this.timers);
+		this.add = this.timers.add.bind(this.timers);
 		this.repeat = this.timers.repeat.bind(this.timers);
 		this.loop = this.timers.loop.bind(this.timers);
 	}

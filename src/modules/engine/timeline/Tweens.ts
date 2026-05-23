@@ -52,6 +52,7 @@ export class Tweens {
 				continue;
 			}
 
+			tween.updateCallback(tween);
 			tween.completeCallback(tween);
 			this.tweens.delete(tween);
 		}

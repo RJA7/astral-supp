@@ -7,5 +7,5 @@ export function syncSafeZoneTweenCollider(tween: Tween<SafeZoneLayout>) {
 
 export function syncSafeZoneCollider(safeZone: SafeZoneLayout) {
 	const size = safeZone.getScale();
-	safeZone.body.box.set(vmath.vector3(size.x, size.y, 1));
+	safeZone.body.box.set(size);
 }

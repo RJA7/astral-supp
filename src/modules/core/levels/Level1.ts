@@ -35,9 +35,6 @@ export class Level1 implements Level {
 
 		this.timeline = new Timeline();
 
-		this.setupShooter();
-		this.setupBullets();
-
 		this.layout.slow_down_trigger.physics.setHandler(
 			PhysicsGroup.player,
 			() => {
@@ -45,6 +42,11 @@ export class Level1 implements Level {
 				this.timeline.timeScale = 0.5;
 			},
 		);
+	}
+
+	public async start() {
+		this.setupShooter();
+		this.setupBullets();
 	}
 
 	private setupShooter() {

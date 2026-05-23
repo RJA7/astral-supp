@@ -6,7 +6,7 @@ import { Property } from './types/Property';
 import { Easing } from './types/Easing';
 import { GameObjectId } from './types/Hash';
 import { AnimateTo, AnyEasing, wrapAnimationComplete } from './utils/Animate';
-import { DEG_TO_RAD } from './utils/Math';
+import { DEG_TO_RAD, MIN_SCALE } from './utils/Math';
 import { GameObjectPhysics } from './GameObjectPhysics';
 import { gameObjectRegister } from './GameObjectRegister';
 
@@ -103,11 +103,11 @@ export class GameObject {
 	}
 
 	setScale(scale: vmath.vector3) {
-		go.set_scale(scale, this.id);
+		go.set_scale(this.clampScale(scale), this.id);
 	}
 
 	setScale2D(scale: vmath.vector3) {
-		go.set_scale_xy(scale, this.id);
+		go.set_scale_xy(this.clampScale(scale), this.id);
 	}
 
 	get scale() {
@@ -190,5 +190,17 @@ export class GameObject {
 	delete(recursive = true) {
 		go.delete(this.id, recursive);
 		gameObjectRegister.delete(this);
+	}
+
+	private clampScale(scale: vmath.vector3): vmath.vector3 {
+		if (scale.x < MIN_SCALE || scale.y < MIN_SCALE || scale.z < MIN_SCALE) {
+			return vmath.vector3(
+				Math.max(scale.x, MIN_SCALE),
+				Math.max(scale.y, MIN_SCALE),
+				Math.max(scale.z, MIN_SCALE),
+			);
+		}
+
+		return scale;
 	}
 }
