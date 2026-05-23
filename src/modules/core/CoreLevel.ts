@@ -8,6 +8,7 @@ import { wallSchema } from '../layouts/WallLayout';
 import { syncSafeZoneCollider } from './helpers/SyncSafeZoneCollider';
 import { levels } from './data/levels';
 import { levelSchema } from '../layouts/LevelLayout';
+import { LevelData } from './types/LevelData';
 
 export class CoreLevel {
 	private readonly coreLayout: CoreLayout;
@@ -22,9 +23,12 @@ export class CoreLevel {
 	}
 
 	public startLevel(levelNumber: number): { player: Player; cursor: Cursor } {
+		return this.startLevelWithData(levels[levelNumber] as LevelData);
+	}
+
+	public startLevelWithData(levelData: LevelData): { player: Player; cursor: Cursor } {
 		this.destroyCurrentLevel();
 
-		const levelData = levels[levelNumber];
 		const layout = this.coreLayout.root.level_factory.createLayout(levelSchema);
 
 		const safeZones = levelData.safeZones.map((zoneData) => {

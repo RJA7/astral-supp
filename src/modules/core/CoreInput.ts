@@ -5,8 +5,18 @@ export class CoreInput {
 
 	private pointerDown = false;
 
+	private middleClick = false;
+
 	public isPointerDown(): boolean {
 		return this.pointerDown;
+	}
+
+	public isMiddleClick(): boolean {
+		return this.middleClick;
+	}
+
+	public resetMiddleClick(): void {
+		this.middleClick = false;
 	}
 
 	public getDelta() {
@@ -41,7 +51,14 @@ export class CoreInput {
 			}
 		}
 
-		this.delta.x = action.screen_dx;
-		this.delta.y = action.screen_dy;
+		if (actionId === ActionId.middle_click && action.pressed) {
+			this.middleClick = true;
+			return;
+		}
+
+		if (action.screen_dx !== undefined) {
+			this.delta.x = action.screen_dx;
+			this.delta.y = action.screen_dy;
+		}
 	}
 }
