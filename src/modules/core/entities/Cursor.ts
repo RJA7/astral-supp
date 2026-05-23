@@ -1,5 +1,5 @@
 import { clampMagnitude, Easing, Property, SpriteProperty } from '../../engine';
-import { CursorLayout } from '../../layouts/CoreLayout';
+import { CursorLayout } from '../../layouts/LevelLayout';
 
 const MAX_CURSOR_OFFSET = 25;
 const CURSOR_FOLLOW = 0.1;

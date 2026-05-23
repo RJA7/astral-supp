@@ -320,3 +320,26 @@ embedded_instances {
   "}\n"
   ""
 }
+embedded_instances {
+  id: "shooters"
+  data: "embedded_components {\n"
+  "  id: \"factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/main/core/shooter.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  ""
+}
+embedded_instances {
+  id: "bullets"
+  data: "embedded_components {\n"
+  "  id: \"factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/main/core/bullet.go\\\"\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    z: 20.0
+  }
+}

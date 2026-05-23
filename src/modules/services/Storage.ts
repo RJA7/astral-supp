@@ -1,9 +1,9 @@
 import { Storage } from '../engine';
 
 type UserData = {
-	levelNumber: number;
+	levelIndex: number;
 };
 
 export const storage = new Storage<UserData>('user_data', {
-	levelNumber: 1,
+	levelIndex: 0,
 });

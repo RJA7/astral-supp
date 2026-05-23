@@ -8,6 +8,7 @@ import {
 
 export const levelSchema = {
 	root: {},
+	finish_zone: {},
 	player: {},
 	player_center: {},
 	player_edges: list({}),
@@ -15,6 +16,12 @@ export const levelSchema = {
 		sprite: Sprite,
 	},
 	safe_zones: {
+		factory: Factory,
+	},
+	shooters: {
+		factory: Factory,
+	},
+	bullets: {
 		factory: Factory,
 	},
 } satisfies CollectionSchema;

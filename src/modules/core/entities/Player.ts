@@ -1,4 +1,4 @@
-import { PlayerLayout } from '../../layouts/CoreLayout';
+import { PlayerLayout } from '../../layouts/LevelLayout';
 
 // Max jump per physics iteration. This limits how close safe zones can be
 const SENSITIVITY = 0.2;
@@ -8,6 +8,10 @@ export class Player {
 
 	constructor(layout: PlayerLayout) {
 		this.layout = layout;
+	}
+
+	public getPosition(): vmath.vector3 {
+		return this.layout.getPosition();
 	}
 
 	public fixedUpdate(

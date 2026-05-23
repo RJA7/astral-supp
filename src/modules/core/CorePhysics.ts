@@ -1,19 +1,20 @@
 import { GameObjectId } from '../engine';
 import { PhysicsGroup } from '../enums/PhysicsGroup';
 import { CoreState } from './CoreState';
-import { CoreLayout } from '../layouts/CoreLayout';
+import { LevelLayout } from '../layouts/LevelLayout';
 
 export class CorePhysics {
 	private readonly state: CoreState;
 
 	private isSafeById = new Map<GameObjectId, number>();
 
-	private readonly layout: CoreLayout;
+	private playerCenterId!: GameObjectId;
 
-	constructor(state: CoreState, layout: CoreLayout) {
+	constructor(state: CoreState) {
 		this.state = state;
-		this.layout = layout;
+	}
 
+	public setLayout(layout: LevelLayout): void {
 		[layout.player_center, ...layout.player_edges].forEach((playerTrigger) => {
 			[PhysicsGroup.safe_zone, PhysicsGroup.finish_zone].forEach((group) => {
 				playerTrigger.physics.setHandler(group, (event) => {
@@ -39,6 +40,8 @@ export class CorePhysics {
 			if (this.state.gameOver) return;
 			this.state.setHp(0);
 		});
+
+		this.playerCenterId = layout.player_center.id;
 	}
 
 	public onLevelChanged() {
@@ -48,7 +51,7 @@ export class CorePhysics {
 	private dispatchSignals() {
 		if (this.state.gameOver) return;
 
-		if (this.isSafeById.get(this.layout.player_center.id) === 0) {
+		if (this.isSafeById.get(this.playerCenterId) === 0) {
 			this.state.setHp(0);
 			return;
 		}

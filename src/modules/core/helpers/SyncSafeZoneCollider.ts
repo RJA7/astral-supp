@@ -1,5 +1,5 @@
 import { Tween } from '../../engine';
-import { SafeZoneLayout } from '../../layouts/LevelLayout';
+import { SafeZoneLayout } from '../../layouts/SafeZoneLayout';
 
 export function syncSafeZoneTweenCollider(tween: Tween<SafeZoneLayout>) {
 	syncSafeZoneCollider(tween.object);

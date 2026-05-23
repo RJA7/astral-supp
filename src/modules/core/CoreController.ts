@@ -14,7 +14,7 @@ import { CoreLevel } from './CoreLevel';
 import { CoreLayout, coreSchema } from '../layouts/CoreLayout';
 import { CoreState } from './CoreState';
 import { PopupName } from '../enums/PopupName';
-import { levels } from './levels/levels';
+import { levels } from './data/levels';
 import { storage } from '../services/Storage';
 import { ControllerName } from '../enums/ControllerName';
 
@@ -22,13 +22,20 @@ export class CoreController extends Controller {
 	public onRestart = new Signal();
 
 	private readonly layout: CoreLayout;
+
 	private readonly input: CoreInput;
+
 	private readonly popups: Popups;
-	private readonly player: Player;
-	private readonly cursor: Cursor;
+
 	private readonly level: CoreLevel;
+
 	private readonly physics: CorePhysics;
+
 	private readonly state: CoreState;
+
+	private player!: Player;
+
+	private cursor!: Cursor;
 
 	constructor() {
 		super();
@@ -38,10 +45,8 @@ export class CoreController extends Controller {
 		this.layout = createCollectionLayout(coreSchema);
 		this.input = new CoreInput();
 		this.popups = new Popups(this.messenger);
-		this.player = new Player(this.layout.player);
-		this.cursor = new Cursor(this.layout.cursor);
-		this.level = new CoreLevel(this.layout);
-		this.physics = new CorePhysics(this.state, this.layout);
+		this.physics = new CorePhysics(this.state);
+		this.level = new CoreLevel(this.layout, this.physics);
 
 		this.layout.hud.gui.initController({
 			playerHp: this.state.playerHp,
@@ -57,10 +62,10 @@ export class CoreController extends Controller {
 		});
 
 		this.state.onFinished.add(() => {
-			const nextLevelNumber = storage.data.levelNumber + 1;
+			const nextLevelNumber = storage.data.levelIndex + 1;
 			this.input.resetPointerDown();
 
-			if (levels[nextLevelNumber]) {
+			if (nextLevelNumber < levels.length) {
 				this.startLevel(nextLevelNumber);
 				return;
 			}
@@ -69,13 +74,15 @@ export class CoreController extends Controller {
 			this.showRestartPopup(true);
 		});
 
-		this.startLevel(storage.data.levelNumber);
+		this.startLevel(storage.data.levelIndex);
 		this.enablePhysics();
 	}
 
 	update(_dt: number) {
+		if (!this.player) return;
+
 		this.cursor.update(
-			this.layout.player.getPosition(),
+			this.player.getPosition(),
 			this.input.getDelta(),
 			this.input.isPointerDown(),
 		);
@@ -83,6 +90,8 @@ export class CoreController extends Controller {
 	}
 
 	fixedUpdate(dt: number) {
+		if (!this.player) return;
+
 		this.player.fixedUpdate(
 			dt,
 			this.input.getDelta(),
@@ -100,8 +109,11 @@ export class CoreController extends Controller {
 	}
 
 	private startLevel(levelNumber: number) {
-		storage.save({ levelNumber });
-		this.level.startLevel(levelNumber);
+		storage.save({ levelIndex: levelNumber });
+
+		const result = this.level.startLevel(levelNumber);
+		this.player = result.player;
+		this.cursor = result.cursor;
 
 		timer.delay(0.01, false, () => {
 			this.state.gameOver = false;
@@ -117,7 +129,7 @@ export class CoreController extends Controller {
 		);
 
 		popup.script.bridge.onResetClick = () => {
-			storage.save({ levelNumber: 1 });
+			storage.save({ levelIndex: 0 });
 			this.onRestart.dispatch();
 		};
 

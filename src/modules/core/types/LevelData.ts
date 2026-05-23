@@ -5,8 +5,21 @@ export type LevelData = {
 	shooters: ShooterData[];
 };
 
+export type AnimationTrack = {
+	property: string; // "scale" | "scale.x" | "scale.y" | "position.x" | "position.y" | "euler.z"
+	keyframes: AnimationKeyframe[];
+	loop?: boolean;
+	loopDuration?: number;
+};
+
+export type AnimationKeyframe = {
+	time: number;
+	value: number;
+};
+
 export type SafeZoneData = RectZoneData & {
 	id: string;
+	animations?: AnimationTrack[];
 };
 
 export type FinishZoneData = RectZoneData;
@@ -28,5 +41,8 @@ export type ShooterData = {
 	x: number;
 	y: number;
 	angle: number;
-	fireInterval: number; // fire interval in seconds
+	fireInterval: number;
+	bulletCount?: number;
+	bulletSpread?: number;
+	animations?: AnimationTrack[];
 };

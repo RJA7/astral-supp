@@ -1,52 +1,72 @@
 import { CoreLayout } from '../layouts/CoreLayout';
-import { Level, levels } from './levels/levels';
+import { CorePhysics } from './CorePhysics';
+import { Level } from './levels/Level';
+import { Player } from './entities/Player';
+import { Cursor } from './entities/Cursor';
+import { safeZoneSchema } from '../layouts/SafeZoneLayout';
 import { syncSafeZoneCollider } from './helpers/SyncSafeZoneCollider';
+import { levels } from './data/levels';
+import { levelSchema } from '../layouts/LevelLayout';
 
 export class CoreLevel {
 	private readonly coreLayout: CoreLayout;
 
-	private level!: Level;
+	private readonly physics: CorePhysics;
 
-	constructor(coreLayout: CoreLayout) {
+	private level?: Level;
+
+	constructor(coreLayout: CoreLayout, physics: CorePhysics) {
 		this.coreLayout = coreLayout;
+		this.physics = physics;
 	}
 
-	public startLevel(levelNumber: number) {
+	public startLevel(levelNumber: number): { player: Player; cursor: Cursor } {
 		this.destroyCurrentLevel();
-		this.level = this.createLevel(levelNumber);
-	}
 
-	public resize() {
-		// this.levelLayout.bg.sprite.width = screen.width;
-		// this.levelLayout.bg.sprite.height = screen.height;
-	}
+		const levelData = levels[levelNumber];
+		const layout = this.coreLayout.root.level_factory.createLayout(levelSchema);
 
-	private createLevel(levelNumber: number) {
-		const { player, cursor } = this.coreLayout;
-		const { level_factory } = this.coreLayout.root;
-
-		const level = new levels[levelNumber]({
-			level_factory,
-			levelNumber,
+		const safeZones = levelData.safeZones.map((zoneData) => {
+			const safeZone = layout.safe_zones.factory.create(safeZoneSchema);
+			safeZone.setPosition2D(vmath.vector3(zoneData.x, zoneData.y, 0));
+			safeZone.setScale2D(vmath.vector3(zoneData.width, zoneData.height, 1));
+			if (zoneData.angle !== 0) {
+				go.set(safeZone.id, 'euler.z', zoneData.angle);
+			}
+			syncSafeZoneCollider(safeZone);
+			return safeZone;
 		});
 
-		this.coreLayout.world.addChild(level.layout.root);
-		level.layout.safe_zones.forEach(syncSafeZoneCollider);
+		layout.player.setPosition2D(
+			vmath.vector3(levelData.playerPosition.x, levelData.playerPosition.y, 0),
+		);
+		layout.cursor.setPosition2D(
+			vmath.vector3(levelData.playerPosition.x, levelData.playerPosition.y, 0),
+		);
+		layout.finish_zone.setPosition2D(
+			vmath.vector3(levelData.finishZone.x, levelData.finishZone.y, 0),
+		);
+		layout.finish_zone.setScale2D(
+			vmath.vector3(levelData.finishZone.width, levelData.finishZone.height, 1),
+		);
 
-		const playerPosition = level.layout.player_position.getWorldPosition();
-		player.setScale2D(level.layout.root.getScale());
-		player.setPosition2D(playerPosition);
-		cursor.setPosition2D(playerPosition);
+		this.physics.setLayout(layout);
 
-		level.start();
+		this.level = new Level({ layout, safeZones, levelData });
+		this.level.start();
 
-		return level;
+		return {
+			player: new Player(layout.player),
+			cursor: new Cursor(layout.cursor),
+		};
 	}
 
-	private destroyCurrentLevel() {
-		if (!this.level) return;
+	public resize(): void {}
 
+	private destroyCurrentLevel(): void {
+		if (!this.level) return;
 		this.level.destroy();
 		this.level.layout.root.delete();
+		this.level = undefined;
 	}
 }
