@@ -1,0 +1,243 @@
+
+ H
+ýGlocal ____lualib = require("lualib_bundle")
+local __TS__Class = ____lualib.__TS__Class
+local Error = ____lualib.Error
+local RangeError = ____lualib.RangeError
+local ReferenceError = ____lualib.ReferenceError
+local SyntaxError = ____lualib.SyntaxError
+local TypeError = ____lualib.TypeError
+local URIError = ____lualib.URIError
+local __TS__New = ____lualib.__TS__New
+local __TS__SetDescriptor = ____lualib.__TS__SetDescriptor
+local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["14"] = 2,["15"] = 2,["16"] = 3,["17"] = 3,["18"] = 4,["19"] = 4,["20"] = 5,["21"] = 5,["22"] = 6,["23"] = 6,["24"] = 8,["25"] = 8,["26"] = 9,["27"] = 9,["28"] = 9,["29"] = 10,["30"] = 10,["31"] = 11,["32"] = 11,["33"] = 15,["34"] = 15,["35"] = 15,["36"] = 20,["37"] = 18,["38"] = 21,["40"] = 22,["41"] = 22,["42"] = 22,["43"] = 22,["47"] = 27,["48"] = 28,["49"] = 20,["50"] = 31,["51"] = 32,["52"] = 31,["53"] = 40,["54"] = 41,["55"] = 40,["56"] = 44,["57"] = 45,["58"] = 44,["59"] = 48,["60"] = 49,["61"] = 50,["62"] = 50,["63"] = 50,["64"] = 50,["65"] = 49,["66"] = 49,["67"] = 49,["68"] = 48,["69"] = 63,["70"] = 64,["71"] = 63,["72"] = 67,["73"] = 68,["74"] = 70,["75"] = 74,["76"] = 67,["77"] = 77,["78"] = 78,["79"] = 77,["80"] = 81,["81"] = 82,["82"] = 81,["83"] = 85,["84"] = 86,["85"] = 85,["86"] = 89,["87"] = 90,["88"] = 89,["89"] = 93,["90"] = 94,["91"] = 93,["92"] = 97,["93"] = 98,["94"] = 97,["95"] = 101,["96"] = 102,["97"] = 101,["98"] = 105,["99"] = 106,["100"] = 106,["101"] = 106,["102"] = 106,["103"] = 105,["104"] = 109,["105"] = 110,["106"] = 110,["107"] = 110,["108"] = 110,["109"] = 109,["110"] = 121,["111"] = 122,["112"] = 121,["113"] = 125,["114"] = 126,["115"] = 125,["116"] = 153,["117"] = 157,["118"] = 157,["120"] = 158,["121"] = 158,["123"] = 159,["124"] = 159,["126"] = 162,["127"] = 162,["128"] = 162,["129"] = 162,["130"] = 162,["131"] = 162,["132"] = 162,["133"] = 162,["134"] = 162,["135"] = 162,["136"] = 153,["137"] = 174,["138"] = 175,["139"] = 174,["140"] = 178,["141"] = 179,["142"] = 178,["143"] = 182,["144"] = 183,["145"] = 182,["146"] = 186,["147"] = 187,["148"] = 186,["149"] = 190,["150"] = 190,["151"] = 190,["153"] = 191,["154"] = 192,["155"] = 190,["156"] = 195,["157"] = 196,["158"] = 197,["159"] = 197,["160"] = 197,["161"] = 197,["162"] = 197,["164"] = 204,["165"] = 195,["170"] = 36,["171"] = 37,["180"] = 56,["182"] = 59,["183"] = 60,["193"] = 114,["195"] = 117,["196"] = 118,["206"] = 130,["208"] = 133,["209"] = 134,["219"] = 138,["221"] = 141,["222"] = 142,["232"] = 146,["234"] = 149,["235"] = 150});
+local ____exports = {}
+local ____PostMessage = require("modules.engine.PostMessage")
+local postVoidMessage = ____PostMessage.postVoidMessage
+local ____MessageId = require("modules.engine.types.MessageId")
+local MessageId = ____MessageId.MessageId
+local ____Playback = require("modules.engine.types.Playback")
+local Playback = ____Playback.Playback
+local ____Property = require("modules.engine.types.Property")
+local Property = ____Property.Property
+local ____Easing = require("modules.engine.types.Easing")
+local Easing = ____Easing.Easing
+local ____Animate = require("modules.engine.utils.Animate")
+local wrapAnimationComplete = ____Animate.wrapAnimationComplete
+local ____Math = require("modules.engine.utils.Math")
+local DEG_TO_RAD = ____Math.DEG_TO_RAD
+local MIN_SCALE = ____Math.MIN_SCALE
+local ____GameObjectPhysics = require("modules.engine.GameObjectPhysics")
+local GameObjectPhysics = ____GameObjectPhysics.GameObjectPhysics
+local ____GameObjectRegister = require("modules.engine.GameObjectRegister")
+local gameObjectRegister = ____GameObjectRegister.gameObjectRegister
+____exports.GameObject = __TS__Class()
+local GameObject = ____exports.GameObject
+GameObject.name = "GameObject"
+function GameObject.prototype.____constructor(self, id)
+    self._physics = nil
+    if not go.exists(id) then
+        error(
+            __TS__New(
+                Error,
+                (("GameObject with id " .. tostring(id)) .. " does not exist in ") .. tostring(msg.url().socket)
+            ),
+            0
+        )
+    end
+    self.id = id
+    gameObjectRegister:add(self)
+end
+function GameObject.prototype.hasPhysics(self)
+    return not not self._physics
+end
+function GameObject.prototype.getPosition(self)
+    return go.get_position(self.id)
+end
+function GameObject.prototype.setPosition(self, position)
+    go.set_position(position, self.id)
+end
+function GameObject.prototype.setPosition2D(self, position)
+    go.set_position(
+        vmath.vector3(
+            position.x,
+            position.y,
+            self:getPosition().z
+        ),
+        self.id
+    )
+end
+function GameObject.prototype.getParentId(self)
+    return go.get_parent(self.id)
+end
+function GameObject.prototype.setWorldPosition2D(self, position)
+    local parentId = self:getParentId()
+    local ____local = parentId and go.world_to_local_position(position, self.id) or position
+    self:setPosition2D(____local)
+end
+function GameObject.prototype.getWorldPosition(self)
+    return go.get_world_position(self.id)
+end
+function GameObject.prototype.worldToLocalPosition(self, position)
+    return go.world_to_local_position(position, self.id)
+end
+function GameObject.prototype.getWorldTransform(self)
+    return go.get_world_transform(self.id)
+end
+function GameObject.prototype.worldToLocalTransform(self, transform)
+    return go.world_to_local_transform(transform, self.id)
+end
+function GameObject.prototype.updateWorldTransform(self)
+    go.update_world_transform(self.id)
+end
+function GameObject.prototype.addPosition2D(self, position)
+    self:setPosition2D(self:getPosition() + position)
+end
+function GameObject.prototype.getScale(self)
+    return go.get_scale(self.id)
+end
+function GameObject.prototype.setScale(self, scale)
+    go.set_scale(
+        self:clampScale(scale),
+        self.id
+    )
+end
+function GameObject.prototype.setScale2D(self, scale)
+    go.set_scale_xy(
+        self:clampScale(scale),
+        self.id
+    )
+end
+function GameObject.prototype.enable(self)
+    postVoidMessage(nil, self.id, MessageId.enable)
+end
+function GameObject.prototype.disable(self)
+    postVoidMessage(nil, self.id, MessageId.disable)
+end
+function GameObject.prototype.animate(self, property, to, duration, easing, delay, playback, complete)
+    if easing == nil then
+        easing = Easing.Linear
+    end
+    if delay == nil then
+        delay = 0
+    end
+    if playback == nil then
+        playback = Playback.PLAYBACK_ONCE_FORWARD
+    end
+    go.animate(
+        self.id,
+        property,
+        go[playback],
+        to,
+        type(easing) == "string" and go[easing] or easing,
+        duration,
+        delay,
+        wrapAnimationComplete(nil, complete)
+    )
+end
+function GameObject.prototype.cancelAnimation(self, property)
+    go.cancel_animations(self.id, property)
+end
+function GameObject.prototype.cancelAnimations(self)
+    go.cancel_animations(self.id)
+end
+function GameObject.prototype.setParent(self, parent)
+    go.set_parent(self.id, parent.id)
+end
+function GameObject.prototype.addChild(self, child)
+    go.set_parent(child.id, self.id)
+end
+function GameObject.prototype.delete(self, recursive)
+    if recursive == nil then
+        recursive = true
+    end
+    go.delete(self.id, recursive)
+    gameObjectRegister:delete(self)
+end
+function GameObject.prototype.clampScale(self, scale)
+    if scale.x < MIN_SCALE or scale.y < MIN_SCALE or scale.z < MIN_SCALE then
+        return vmath.vector3(
+            math.max(scale.x, MIN_SCALE),
+            math.max(scale.y, MIN_SCALE),
+            math.max(scale.z, MIN_SCALE)
+        )
+    end
+    return scale
+end
+__TS__SetDescriptor(
+    GameObject.prototype,
+    "physics",
+    {get = function(self)
+        self._physics = self._physics or __TS__New(GameObjectPhysics)
+        return self._physics
+    end},
+    true
+)
+__TS__SetDescriptor(
+    GameObject.prototype,
+    "position",
+    {
+        get = function(self)
+            return self:getPosition()
+        end,
+        set = function(self, position)
+            self:setPosition(position)
+        end
+    },
+    true
+)
+__TS__SetDescriptor(
+    GameObject.prototype,
+    "scale",
+    {
+        get = function(self)
+            return self:getScale()
+        end,
+        set = function(self, scale)
+            self:setScale(scale)
+        end
+    },
+    true
+)
+__TS__SetDescriptor(
+    GameObject.prototype,
+    "angle",
+    {
+        get = function(self)
+            return go.get(self.id, Property.EulerZ)
+        end,
+        set = function(self, value)
+            go.set(self.id, Property.EulerZ, value)
+        end
+    },
+    true
+)
+__TS__SetDescriptor(
+    GameObject.prototype,
+    "rotation",
+    {
+        get = function(self)
+            return self.angle * DEG_TO_RAD
+        end,
+        set = function(self, value)
+            self.angle = value * DEG_TO_RAD
+        end
+    },
+    true
+)
+__TS__SetDescriptor(
+    GameObject.prototype,
+    "euler",
+    {
+        get = function(self)
+            return go.get(self.id, Property.Euler)
+        end,
+        set = function(self, value)
+            go.set(self.id, Property.Euler, value)
+        end
+    },
+    true
+)
+return ____exports
+@modules/engine/GameObject.lualualib_bundlemodules.engine.PostMessagemodules.engine.types.MessageIdmodules.engine.types.Playbackmodules.engine.types.Propertymodules.engine.types.Easingmodules.engine.utils.Animatemodules.engine.utils.Math modules.engine.GameObjectPhysics!modules.engine.GameObjectRegister/lualib_bundle.luac /modules/engine/PostMessage.luac$/modules/engine/types/MessageId.luac#/modules/engine/types/Playback.luac#/modules/engine/types/Property.luac!/modules/engine/types/Easing.luac"/modules/engine/utils/Animate.luac/modules/engine/utils/Math.luac&/modules/engine/GameObjectPhysics.luac'/modules/engine/GameObjectRegister.luac" 

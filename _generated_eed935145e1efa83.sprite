@@ -1,0 +1,10 @@
+default_animation: "player_red"
+material: "/builtins/materials/sprite.material"
+size {
+  x: 80.0
+  y: 80.0
+}
+textures {
+  sampler: "texture_sampler"
+  texture: "/assets/atlases/main.atlas"
+}

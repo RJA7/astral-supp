@@ -1,0 +1,14 @@
+mesh: "/builtins/assets/meshes/quad.dae"
+name: "{{NAME}}"
+materials {
+  name: "default"
+  material: "/materials/outline/outline_final.material"
+  textures {
+    sampler: "texture_sampler"
+    texture: "/materials/outline/outline.render_target"
+  }
+  textures {
+    sampler: "mask_sampler"
+    texture: "/assets/atlases/level1/mask_on_safe.png"
+  }
+}

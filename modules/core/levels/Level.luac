@@ -1,0 +1,207 @@
+
+ÖN
+‚Mlocal ____lualib = require("lualib_bundle")
+local __TS__Class = ____lualib.__TS__Class
+local __TS__New = ____lualib.__TS__New
+local __TS__AsyncAwaiter = ____lualib.__TS__AsyncAwaiter
+local __TS__Await = ____lualib.__TS__Await
+local __TS__StringSlice = ____lualib.__TS__StringSlice
+local __TS__ArrayIncludes = ____lualib.__TS__ArrayIncludes
+local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["11"] = 1,["12"] = 1,["13"] = 1,["14"] = 1,["15"] = 4,["16"] = 4,["17"] = 5,["18"] = 5,["19"] = 7,["20"] = 8,["21"] = 9,["22"] = 11,["23"] = 11,["24"] = 19,["25"] = 19,["26"] = 19,["28"] = 28,["29"] = 28,["30"] = 28,["31"] = 28,["32"] = 28,["33"] = 28,["34"] = 29,["35"] = 30,["36"] = 31,["37"] = 32,["38"] = 28,["39"] = 35,["41"] = 36,["42"] = 36,["43"] = 37,["44"] = 38,["45"] = 39,["46"] = 40,["49"] = 36,["52"] = 44,["53"] = 45,["55"] = 35,["56"] = 49,["57"] = 50,["58"] = 49,["59"] = 53,["61"] = 58,["62"] = 58,["63"] = 58,["64"] = 59,["65"] = 59,["66"] = 59,["67"] = 59,["68"] = 61,["71"] = 63,["72"] = 64,["73"] = 66,["76"] = 67,["77"] = 67,["78"] = 68,["79"] = 69,["80"] = 70,["81"] = 72,["82"] = 73,["83"] = 73,["84"] = 73,["85"] = 73,["86"] = 73,["87"] = 73,["88"] = 73,["90"] = 75,["91"] = 76,["92"] = 82,["93"] = 83,["95"] = 85,["97"] = 67,["101"] = 66,["102"] = 90,["103"] = 91,["104"] = 92,["105"] = 93,["106"] = 94,["107"] = 94,["111"] = 97,["114"] = 53,["115"] = 101,["116"] = 102,["117"] = 102,["119"] = 103,["120"] = 104,["121"] = 104,["122"] = 104,["123"] = 104,["124"] = 101,["125"] = 110,["126"] = 114,["127"] = 115,["128"] = 115,["130"] = 116,["131"] = 110,["132"] = 119,["133"] = 126,["134"] = 127,["135"] = 128,["136"] = 129,["137"] = 130,["138"] = 131,["139"] = 131,["141"] = 132,["142"] = 133,["143"] = 134,["144"] = 135,["145"] = 136,["146"] = 137,["147"] = 138,["149"] = 119,["150"] = 142,["151"] = 143,["152"] = 145,["153"] = 146,["154"] = 147,["156"] = 150,["157"] = 151,["158"] = 152,["161"] = 156,["162"] = 156,["163"] = 156,["164"] = 157,["165"] = 158,["166"] = 159,["168"] = 161,["169"] = 161,["170"] = 162,["171"] = 163,["172"] = 164,["173"] = 166,["174"] = 167,["175"] = 167,["176"] = 167,["177"] = 167,["178"] = 167,["179"] = 172,["180"] = 173,["181"] = 175,["182"] = 175,["183"] = 175,["184"] = 175,["185"] = 175,["186"] = 175,["187"] = 175,["188"] = 182,["189"] = 183,["190"] = 175,["191"] = 175,["192"] = 187,["193"] = 187,["194"] = 187,["195"] = 188,["196"] = 187,["197"] = 187,["198"] = 161,["201"] = 156,["202"] = 156,["203"] = 142});
+local ____exports = {}
+local ____engine = require("modules.engine.index")
+local DEG_TO_RAD = ____engine.DEG_TO_RAD
+local Property = ____engine.Property
+local Timeline = ____engine.Timeline
+local ____BulletLayout = require("modules.layouts.BulletLayout")
+local bulletSchema = ____BulletLayout.bulletSchema
+local ____ShooterLayout = require("modules.layouts.ShooterLayout")
+local shooterSchema = ____ShooterLayout.shooterSchema
+local ____SyncSafeZoneCollider = require("modules.core.helpers.SyncSafeZoneCollider")
+local syncSafeZoneCollider = ____SyncSafeZoneCollider.syncSafeZoneCollider
+local syncSafeZoneTweenCollider = ____SyncSafeZoneCollider.syncSafeZoneTweenCollider
+local ____PhysicsGroup = require("modules.enums.PhysicsGroup")
+local PhysicsGroup = ____PhysicsGroup.PhysicsGroup
+____exports.Level = __TS__Class()
+local Level = ____exports.Level
+Level.name = "Level"
+function Level.prototype.____constructor(self, ____bindingPattern0)
+    local levelData
+    local safeZones
+    local layout
+    layout = ____bindingPattern0.layout
+    safeZones = ____bindingPattern0.safeZones
+    levelData = ____bindingPattern0.levelData
+    self.layout = layout
+    self.safeZones = safeZones
+    self.levelData = levelData
+    self.timeline = __TS__New(Timeline)
+end
+function Level.prototype.start(self)
+    do
+        local i = 0
+        while i < #self.levelData.safeZones do
+            local zoneData = self.levelData.safeZones[i + 1]
+            if zoneData.animations then
+                for ____, track in ipairs(zoneData.animations) do
+                    self:runTrack(track, self.safeZones[i + 1], true)
+                end
+            end
+            i = i + 1
+        end
+    end
+    for ____, shooter in ipairs(self.levelData.shooters) do
+        self:setupShooter(shooter)
+    end
+end
+function Level.prototype.destroy(self)
+    self.timeline:destroy()
+end
+function Level.prototype.runTrack(self, track, target, isSafeZone)
+    return __TS__AsyncAwaiter(function(____awaiter_resolve)
+        local ____temp_0 = self:parseProperty(track.property)
+        local group = ____temp_0.group
+        local axes = ____temp_0.axes
+        local ____track_1 = track
+        local keyframes = ____track_1.keyframes
+        local loop = ____track_1.loop
+        local loopDuration = ____track_1.loopDuration
+        if #keyframes == 0 then
+            return ____awaiter_resolve(nil)
+        end
+        local lastKfTime = keyframes[#keyframes].time
+        local cycleDuration = loopDuration or lastKfTime
+        local function runOnce()
+            return __TS__AsyncAwaiter(function(____awaiter_resolve)
+                do
+                    local i = 0
+                    while i < #keyframes do
+                        local kf = keyframes[i + 1]
+                        local prevTime = i > 0 and keyframes[i].time or 0
+                        local duration = kf.time - prevTime
+                        if duration == 0 then
+                            self:applyValue(
+                                target,
+                                group,
+                                axes,
+                                kf.value,
+                                isSafeZone
+                            )
+                        else
+                            local tweenTarget = self:buildTweenTarget(axes, kf.value)
+                            local tween = self.timeline:tween(target, group, tweenTarget, duration)
+                            if isSafeZone then
+                                tween:onUpdate(syncSafeZoneTweenCollider)
+                            end
+                            __TS__Await(self.timeline:wait(duration))
+                        end
+                        i = i + 1
+                    end
+                end
+            end)
+        end
+        if loop then
+            while true do
+                __TS__Await(runOnce(nil))
+                local gap = cycleDuration - lastKfTime
+                if gap > 0 then
+                    __TS__Await(self.timeline:wait(gap))
+                end
+            end
+        else
+            __TS__Await(runOnce(nil))
+        end
+    end)
+end
+function Level.prototype.parseProperty(self, property)
+    if property == "scale" then
+        return {group = "scale", axes = {"x", "y"}}
+    end
+    local dotIndex = (string.find(property, ".", nil, true) or 0) - 1
+    return {
+        group = __TS__StringSlice(property, 0, dotIndex),
+        axes = {__TS__StringSlice(property, dotIndex + 1)}
+    }
+end
+function Level.prototype.buildTweenTarget(self, axes, value)
+    local target = {}
+    for ____, axis in ipairs(axes) do
+        target[axis] = value
+    end
+    return target
+end
+function Level.prototype.applyValue(self, obj, group, axes, value, isSafeZone)
+    if group == "scale" then
+        local s = obj.scale
+        local nx = __TS__ArrayIncludes(axes, "x") and value or s.x
+        local ny = __TS__ArrayIncludes(axes, "y") and value or s.y
+        obj:setScale2D(vmath.vector3(nx, ny, 1))
+        if isSafeZone then
+            syncSafeZoneCollider(nil, obj)
+        end
+    elseif group == "euler" then
+        go.set(obj.id, "euler.z", value)
+    elseif group == "position" then
+        local p = obj.position
+        local nx = __TS__ArrayIncludes(axes, "x") and value or p.x
+        local ny = __TS__ArrayIncludes(axes, "y") and value or p.y
+        obj:setPosition2D(vmath.vector3(nx, ny, 0))
+    end
+end
+function Level.prototype.setupShooter(self, data)
+    local shooter = self.layout.shooters.factory:create(shooterSchema)
+    shooter:setPosition2D(vmath.vector3(data.x, data.y, 0))
+    if data.angle ~= 0 then
+        go.set(shooter.id, "euler.z", data.angle)
+    end
+    if data.animations then
+        for ____, track in ipairs(data.animations) do
+            self:runTrack(track, shooter, false)
+        end
+    end
+    self.timeline:loop(
+        data.fireInterval,
+        function()
+            local count = data.bulletCount or 1
+            local spread = data.bulletSpread or 0
+            local shooterPos = shooter:getPosition()
+            do
+                local i = 0
+                while i < count do
+                    local bullet = self.layout.bullets.factory:create(bulletSchema)
+                    bullet:setPosition(shooterPos)
+                    local offsetAngle = count > 1 and i * spread - spread * (count - 1) / 2 or 0
+                    local rotation = (shooter.angle + offsetAngle) * DEG_TO_RAD
+                    local direction = vmath.vector3(
+                        math.cos(rotation),
+                        math.sin(rotation),
+                        0
+                    )
+                    local distance = 1500
+                    local target = shooterPos + direction * distance
+                    bullet:animate(
+                        Property.Position,
+                        target,
+                        8,
+                        nil,
+                        nil,
+                        nil,
+                        function()
+                            bullet:delete()
+                        end
+                    )
+                    bullet.physics:setHandler(
+                        PhysicsGroup.wall,
+                        function()
+                            bullet:delete()
+                        end
+                    )
+                    i = i + 1
+                end
+            end
+        end
+    )
+end
+return ____exports
+@modules/core/levels/Level.lualualib_bundlemodules.engine.indexmodules.layouts.BulletLayoutmodules.layouts.ShooterLayout)modules.core.helpers.SyncSafeZoneCollidermodules.enums.PhysicsGroup/lualib_bundle.luac/modules/engine/index.luac"/modules/layouts/BulletLayout.luac#/modules/layouts/ShooterLayout.luac//modules/core/helpers/SyncSafeZoneCollider.luac /modules/enums/PhysicsGroup.luac" 

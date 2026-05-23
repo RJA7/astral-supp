@@ -1,0 +1,670 @@
+[ {
+  "path" : "/<AnonymousRoot>",
+  "hexDigest" : null,
+  "children" : [ "/main/main.collectionc", "/default.renderc", "/game.input_bindingc", "/builtins/input/default.gamepadsc", "/builtins/render/default.display_profilesc", "/builtins/scripts/debugger.luac" ]
+}, {
+  "path" : "/main/main.collectionc",
+  "hexDigest" : "0c57c482be4c4dca168ca4efa8cc18f1a4796ac3",
+  "children" : [ "/_generated_f30e51f12ad82e80.goc" ]
+}, {
+  "path" : "/_generated_f30e51f12ad82e80.goc",
+  "hexDigest" : "d6bb48e04f9c5e9be4dc6096785368c272d144bc",
+  "children" : [ "/scripts/controller.scriptc", "/_generated_56dd22bc5d3a0b94.collectionproxyc" ]
+}, {
+  "path" : "/scripts/controller.scriptc",
+  "hexDigest" : "697eb9883640e4ed4bf2297aea6a5edf719db346",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/index.luac", "/modules/Controllers.luac" ]
+}, {
+  "path" : "/lualib_bundle.luac",
+  "hexDigest" : "ea342c4d68b1150421ad41abf6e2694eba093c0f",
+  "children" : [ ]
+}, {
+  "path" : "/modules/engine/index.luac",
+  "hexDigest" : "beb9c7d7052254b95ca3ec7a1e750c856fbb3cd2",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/components/CollectionFactory.luac", "/modules/engine/components/CollectionProxy.luac", "/modules/engine/components/Component.luac", "/modules/engine/components/Factory.luac", "/modules/engine/components/GuiNode.luac", "/modules/engine/components/RigidBody.luac", "/modules/engine/components/Script.luac", "/modules/engine/components/SpineModel.luac", "/modules/engine/components/Sprite.luac", "/modules/engine/layout/CollectionLayout.luac", "/modules/engine/layout/ComponentLayout.luac", "/modules/engine/layout/Elements.luac", "/modules/engine/layout/GameObjectLayout.luac", "/modules/engine/layout/GuiLayout.luac", "/modules/engine/layout/ListLayout.luac", "/modules/engine/layout/RigidBodyLayout.luac", "/modules/engine/layout/SpineModelLayout.luac", "/modules/engine/layout/types.luac", "/modules/engine/physics/PhysicsEventDistributor.luac", "/modules/engine/popups/Popup.luac", "/modules/engine/popups/Popups.luac", "/modules/engine/render/Camera.luac", "/modules/engine/render/Constants.luac", "/modules/engine/render/Helpers.luac", "/modules/engine/render/Projection.luac", "/modules/engine/render/RenderState.luac", "/modules/engine/render/Screen.luac", "/modules/engine/render/types.luac", "/modules/engine/render_passes/OutlineRenderPass.luac", "/modules/engine/shapes/BoxShape.luac", "/modules/engine/shapes/Shape.luac", "/modules/engine/shapes/SphereShape.luac", "/modules/engine/timeline/Timeline.luac", "/modules/engine/timeline/Timers.luac", "/modules/engine/timeline/Tweens.luac", "/modules/engine/types/Action.luac", "/modules/engine/types/ActionId.luac", "/modules/engine/types/Easing.luac", "/modules/engine/types/Hash.luac", "/modules/engine/types/Message.luac", "/modules/engine/types/MessageId.luac", "/modules/engine/types/Playback.luac", "/modules/engine/types/Property.luac", "/modules/engine/utils/AssertNever.luac", "/modules/engine/utils/ClampMagnitude.luac", "/modules/engine/utils/Math.luac", "/modules/engine/utils/PatchEnum.luac", "/modules/engine/Collection.luac", "/modules/engine/ComponentUrl.luac", "/modules/engine/Controller.luac", "/modules/engine/GameObject.luac", "/modules/engine/GameObjectPhysics.luac", "/modules/engine/GameObjectRegister.luac", "/modules/engine/Messenger.luac", "/modules/engine/PostMessage.luac", "/modules/engine/ProxyLoader.luac", "/modules/engine/Signal.luac", "/modules/engine/Storage.luac" ]
+}, {
+  "path" : "/modules/engine/components/CollectionFactory.luac",
+  "hexDigest" : "9083f4f120e3fa1e6a857e216e8838cf33f82072",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/ComponentUrl.luac", "/modules/engine/layout/CollectionLayout.luac" ]
+}, {
+  "path" : "/modules/engine/ComponentUrl.luac",
+  "hexDigest" : "e8df6618149a8edf7ac9cd9c465c3479b5b27513",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/types/Property.luac" ]
+}, {
+  "path" : "/modules/engine/types/Property.luac",
+  "hexDigest" : "446e259f0d838ff71d19466ca41c993401c2ce7a",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/layout/CollectionLayout.luac",
+  "hexDigest" : "80bf2da0f1a408cf87d5824b9f95aff5d9bca0d4",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/layout/ListLayout.luac", "/modules/engine/layout/GameObjectLayout.luac", "/modules/engine/Collection.luac" ]
+}, {
+  "path" : "/modules/engine/layout/ListLayout.luac",
+  "hexDigest" : "b7ada3bf15539e9e40e528fe7ec12db0b3e50026",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/layout/GameObjectLayout.luac",
+  "hexDigest" : "abd2b4d95040ba6c60b0580f3ab1bf645c9dc22a",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/GameObject.luac", "/modules/engine/layout/ListLayout.luac", "/modules/engine/layout/ComponentLayout.luac" ]
+}, {
+  "path" : "/modules/engine/GameObject.luac",
+  "hexDigest" : "2765db494020f7036d793460115b8bb7eddb7f28",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/PostMessage.luac", "/modules/engine/types/MessageId.luac", "/modules/engine/types/Playback.luac", "/modules/engine/types/Property.luac", "/modules/engine/types/Easing.luac", "/modules/engine/utils/Animate.luac", "/modules/engine/utils/Math.luac", "/modules/engine/GameObjectPhysics.luac", "/modules/engine/GameObjectRegister.luac" ]
+}, {
+  "path" : "/modules/engine/PostMessage.luac",
+  "hexDigest" : "98365aec750d53801e0947c7962a74958164c0f2",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/types/MessageId.luac",
+  "hexDigest" : "bcbac5238d74ef9dc0546455f8750a3c98d99561",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/utils/PatchEnum.luac" ]
+}, {
+  "path" : "/modules/engine/utils/PatchEnum.luac",
+  "hexDigest" : "1e736105084c339acaafd65d152d89786076f085",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/types/Playback.luac",
+  "hexDigest" : "17877dc4f5c7b9b450710445aa7b1292f1fc31de",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/types/Easing.luac",
+  "hexDigest" : "138a2bfc0465eef05feed8741be758b18a030c20",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/utils/Animate.luac",
+  "hexDigest" : "27c0f77bfd1112d5dad05e167f46b403a011a3be",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/utils/Math.luac",
+  "hexDigest" : "cb547022bf88596825d4f8d25e77b200fb40baa0",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/GameObjectPhysics.luac",
+  "hexDigest" : "20027d09568b0b9d191cad26f1380b0044e439f5",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/GameObjectRegister.luac",
+  "hexDigest" : "d4914c968bb2857bfb65cb352ba46e54e6ab864b",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/layout/ComponentLayout.luac",
+  "hexDigest" : "e4138ace5397d165cabc1b6cfb5562f6d998271c",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/layout/ListLayout.luac", "/modules/engine/layout/types.luac", "/modules/engine/ComponentUrl.luac", "/modules/engine/layout/RigidBodyLayout.luac", "/modules/engine/utils/AssertNever.luac", "/modules/engine/layout/SpineModelLayout.luac", "/modules/engine/components/Script.luac", "/modules/engine/components/CollectionProxy.luac" ]
+}, {
+  "path" : "/modules/engine/layout/types.luac",
+  "hexDigest" : "d45d3b17ce9bed49c7b551b8e2f4de83a56fc79b",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/layout/RigidBodyLayout.luac",
+  "hexDigest" : "ae2dea29073cd5af78e85937892a3a3af42f2a73",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/layout/ListLayout.luac", "/modules/engine/components/RigidBody.luac" ]
+}, {
+  "path" : "/modules/engine/components/RigidBody.luac",
+  "hexDigest" : "fd92f40fb8d31a062c7868d789c5c06fcc6880db",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/ComponentUrl.luac" ]
+}, {
+  "path" : "/modules/engine/utils/AssertNever.luac",
+  "hexDigest" : "258f85be390d2042e6426c6996b6f658afa3f34a",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/layout/SpineModelLayout.luac",
+  "hexDigest" : "0ba2223ed8868e24ffc4e15c991574ccb07f0989",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/layout/ListLayout.luac", "/modules/engine/components/SpineModel.luac", "/modules/engine/GameObject.luac" ]
+}, {
+  "path" : "/modules/engine/components/SpineModel.luac",
+  "hexDigest" : "83dde632e8889a2c2b4146b8ba616dd0f59616e1",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/ComponentUrl.luac", "/modules/engine/types/Property.luac" ]
+}, {
+  "path" : "/modules/engine/components/Script.luac",
+  "hexDigest" : "017009fe18277434e42d2838f1bc4c7cfcd30fcb",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/types/MessageId.luac", "/modules/engine/PostMessage.luac" ]
+}, {
+  "path" : "/modules/engine/components/CollectionProxy.luac",
+  "hexDigest" : "665e32f44c68dee13c04186b44b393f9837c3cac",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/PostMessage.luac", "/modules/engine/types/MessageId.luac", "/modules/engine/ComponentUrl.luac", "/modules/engine/components/Script.luac" ]
+}, {
+  "path" : "/modules/engine/Collection.luac",
+  "hexDigest" : "da43f876ca3d8e7ba0d6bbaeaa8233d1f7ed3bfe",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/components/Component.luac",
+  "hexDigest" : "550ce0623da0d01e85aee974472151b6727391dc",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/components/Factory.luac",
+  "hexDigest" : "69aaa17eab9b6fce5c7e3633a1b0eed113f31f30",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/ComponentUrl.luac", "/modules/engine/layout/GameObjectLayout.luac" ]
+}, {
+  "path" : "/modules/engine/components/GuiNode.luac",
+  "hexDigest" : "4ab5b6cabf9426c4c8f45f59ecbcb91c687ebb3c",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/utils/Animate.luac", "/modules/engine/types/Easing.luac", "/modules/engine/types/Playback.luac" ]
+}, {
+  "path" : "/modules/engine/components/Sprite.luac",
+  "hexDigest" : "725ecc702884d9559e66217458e3ed0460310760",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/ComponentUrl.luac", "/modules/engine/types/Property.luac", "/modules/engine/types/Easing.luac", "/modules/engine/types/Playback.luac", "/modules/engine/utils/Animate.luac" ]
+}, {
+  "path" : "/modules/engine/layout/Elements.luac",
+  "hexDigest" : "f61d64feb0c550757c6f14074b7d69c40f6244aa",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/layout/types.luac" ]
+}, {
+  "path" : "/modules/engine/layout/GuiLayout.luac",
+  "hexDigest" : "cf19d1c97b731d66e5bf1d70ec21c323671556e2",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/layout/ListLayout.luac", "/modules/engine/components/GuiNode.luac", "/modules/engine/utils/AssertNever.luac" ]
+}, {
+  "path" : "/modules/engine/physics/PhysicsEventDistributor.luac",
+  "hexDigest" : "c76416215daa5243ddcf09d2666e9fa6330caddc",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/popups/Popup.luac",
+  "hexDigest" : "6abe115d0d933a825fc9e98b2ab7aaa5d25f5cdd",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/popups/Popups.luac",
+  "hexDigest" : "af986720f225d02ae4b62ea67c420db39eead6b4",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/components/Script.luac", "/modules/engine/ComponentUrl.luac", "/modules/engine/popups/Popup.luac" ]
+}, {
+  "path" : "/modules/engine/render/Camera.luac",
+  "hexDigest" : "45c8035dcbbb2b267cc29a72082d903b32d4f2da",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/render/Constants.luac",
+  "hexDigest" : "dd74feae36bbb2e87fa5dd5d671aa3c878292a37",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/render/Helpers.luac",
+  "hexDigest" : "5c852ae6f1fa4d4d56ca82612400393340759d03",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/render/Projection.luac",
+  "hexDigest" : "5b087dace7015092bc8348c15fb3d5f3786cb315",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/render/RenderState.luac",
+  "hexDigest" : "037c6833e2581a900ca90f3434232a8e20770032",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/render/Camera.luac", "/modules/engine/render/Projection.luac" ]
+}, {
+  "path" : "/modules/engine/render/Screen.luac",
+  "hexDigest" : "853b6162ebdaffc62ae29c3ca30e387177ced530",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/Signal.luac" ]
+}, {
+  "path" : "/modules/engine/Signal.luac",
+  "hexDigest" : "9683cef7cc0022310715a414a478f1a5e74166fa",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/render/types.luac",
+  "hexDigest" : "222bd838d8f8d34cc5a228942fbc157a5b6531f5",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/render_passes/OutlineRenderPass.luac",
+  "hexDigest" : "ce22a2d13407c11aa24cad2e6c1118bde9ca74a0",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/render/Constants.luac", "/modules/engine/render/Projection.luac", "/modules/engine/render/Helpers.luac" ]
+}, {
+  "path" : "/modules/engine/shapes/BoxShape.luac",
+  "hexDigest" : "9305fddffeba28e144103441b81c61df0d14ab9a",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/shapes/Shape.luac",
+  "hexDigest" : "d9596b99d9e46e528fd25aafc10c4852702d61d2",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/shapes/SphereShape.luac",
+  "hexDigest" : "a9f4e6cfb8a7f879aecdbe2fb864cb9696145def",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/timeline/Timeline.luac",
+  "hexDigest" : "332ef7e0ed733908b0864a1b02494a12ab4fd489",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/timeline/Tweens.luac", "/modules/engine/timeline/Timers.luac" ]
+}, {
+  "path" : "/modules/engine/timeline/Tweens.luac",
+  "hexDigest" : "f7f7ca2b58356d3e695e6a8b684bcf443ed1418e",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/timeline/Timers.luac",
+  "hexDigest" : "fc7316375f23e10301c106130babbffac012b717",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/types/Action.luac",
+  "hexDigest" : "494ed665fb4da263786e88c0f4a461a1ae801f1c",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/types/ActionId.luac",
+  "hexDigest" : "631cf80f2867114cfef7bcf863dcbd6aed062d7c",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/utils/PatchEnum.luac" ]
+}, {
+  "path" : "/modules/engine/types/Hash.luac",
+  "hexDigest" : "0889fb641ecb7eb6b42a046dab908c8b33392893",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/types/Message.luac",
+  "hexDigest" : "7cee35a1b5ed10a38cfd0d4e31091a6d731c8d0c",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/utils/ClampMagnitude.luac",
+  "hexDigest" : "4c3e8ba75b0deaad1946deb77ea9eee4e5030379",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/engine/Controller.luac",
+  "hexDigest" : "fe64bcdfda159d2391f70da6ccd8f2863816577a",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/Messenger.luac", "/modules/engine/types/MessageId.luac", "/modules/engine/Signal.luac", "/modules/engine/PostMessage.luac", "/modules/engine/physics/PhysicsEventDistributor.luac", "/modules/engine/GameObjectRegister.luac" ]
+}, {
+  "path" : "/modules/engine/Messenger.luac",
+  "hexDigest" : "76460e342865e416f53301f70d8523f6d7a28b2f",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/Signal.luac" ]
+}, {
+  "path" : "/modules/engine/ProxyLoader.luac",
+  "hexDigest" : "3545e7ac3cba279907c4bcb1216ec7f70281bfa0",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/types/MessageId.luac" ]
+}, {
+  "path" : "/modules/engine/Storage.luac",
+  "hexDigest" : "27016b77097ece0c6597794e44b852e7fdbb724a",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/Controllers.luac",
+  "hexDigest" : "3d457770cee5778c78ce3458a68110ed48a872c8",
+  "children" : [ "/lualib_bundle.luac", "/modules/MainController.luac", "/modules/core/CoreController.luac", "/modules/core/CoreGuiController.luac", "/modules/enums/ControllerName.luac", "/modules/popups/RestartPopupController.luac" ]
+}, {
+  "path" : "/modules/MainController.luac",
+  "hexDigest" : "339e0da3b695e8b59cb21a2eac273f0db78d4d53",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/index.luac", "/modules/layouts/MainLayout.luac" ]
+}, {
+  "path" : "/modules/layouts/MainLayout.luac",
+  "hexDigest" : "ae9b55fff7a02c8e0419cc1a8bf1fc2d3437f538",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/index.luac", "/modules/enums/ControllerName.luac" ]
+}, {
+  "path" : "/modules/enums/ControllerName.luac",
+  "hexDigest" : "b3f2de102709e0c9a63b229f3b9cc79cf74c6073",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/index.luac" ]
+}, {
+  "path" : "/modules/core/CoreController.luac",
+  "hexDigest" : "b4806cb8793c2ee91f8a6ee8bc33b219bb6d7f53",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/index.luac", "/modules/engine/utils/Clipboard.luac", "/modules/core/CoreInput.luac", "/modules/core/CorePhysics.luac", "/modules/core/CoreLevel.luac", "/modules/layouts/CoreLayout.luac", "/modules/core/CoreState.luac", "/modules/enums/PopupName.luac", "/modules/core/data/levels.luac", "/modules/services/Storage.luac", "/modules/enums/ControllerName.luac" ]
+}, {
+  "path" : "/modules/engine/utils/Clipboard.luac",
+  "hexDigest" : "aaa9e89910d87e49c7d8d68f9e0e68d34daae8c6",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/core/CoreInput.luac",
+  "hexDigest" : "2cd2b45207d92e164f4398eb1649ef0d5fe0149c",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/index.luac" ]
+}, {
+  "path" : "/modules/core/CorePhysics.luac",
+  "hexDigest" : "99f237592708aad1e3c1eea3401bd120a150b905",
+  "children" : [ "/lualib_bundle.luac", "/modules/enums/PhysicsGroup.luac" ]
+}, {
+  "path" : "/modules/enums/PhysicsGroup.luac",
+  "hexDigest" : "f8a70ba9d6602897946fd9ace7c858c23398024d",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/index.luac" ]
+}, {
+  "path" : "/modules/core/CoreLevel.luac",
+  "hexDigest" : "e4e2d8e3ae6874051dd26550a10b5fb85bb5644c",
+  "children" : [ "/lualib_bundle.luac", "/modules/core/levels/Level.luac", "/modules/core/entities/Player.luac", "/modules/core/entities/Cursor.luac", "/modules/layouts/SafeZoneLayout.luac", "/modules/layouts/WallLayout.luac", "/modules/core/helpers/SyncSafeZoneCollider.luac", "/modules/core/data/levels.luac", "/modules/layouts/LevelLayout.luac" ]
+}, {
+  "path" : "/modules/core/levels/Level.luac",
+  "hexDigest" : "c2ea08f18c09b9b6338b1772838c59bc6626606a",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/index.luac", "/modules/layouts/BulletLayout.luac", "/modules/layouts/ShooterLayout.luac", "/modules/core/helpers/SyncSafeZoneCollider.luac", "/modules/enums/PhysicsGroup.luac" ]
+}, {
+  "path" : "/modules/layouts/BulletLayout.luac",
+  "hexDigest" : "7d5d0ec2e8dcfa577c7a0055acbfce2b803b39a1",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/index.luac" ]
+}, {
+  "path" : "/modules/layouts/ShooterLayout.luac",
+  "hexDigest" : "051a4cbe4ccf3f7c0c85ed8b45c2ee5cd612cfbb",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/index.luac" ]
+}, {
+  "path" : "/modules/core/helpers/SyncSafeZoneCollider.luac",
+  "hexDigest" : "be1f2b1fa2c118a1e92d3fc58ce1a35b3fde82b7",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/core/entities/Player.luac",
+  "hexDigest" : "d53c827385d7b804f577d049b93ced184dea5223",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/core/entities/Cursor.luac",
+  "hexDigest" : "52c6e68543a602e6c982a32aa9859162b7283666",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/index.luac" ]
+}, {
+  "path" : "/modules/layouts/SafeZoneLayout.luac",
+  "hexDigest" : "7e9fb71357b1dc1379d53641993fa0a9964abe5d",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/index.luac" ]
+}, {
+  "path" : "/modules/layouts/WallLayout.luac",
+  "hexDigest" : "beff70f12a2d586526293e2ca211d4b26eda1e49",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/index.luac" ]
+}, {
+  "path" : "/modules/core/data/levels.luac",
+  "hexDigest" : "e8554e02a17ece21a045c30a007d9ee581eb54ba",
+  "children" : [ "/lualib_bundle.luac", "/modules/core/data/levels/level_0.luac", "/modules/core/data/levels/level_1.luac", "/modules/core/data/levels/level_2.luac", "/modules/core/data/levels/level_3.luac" ]
+}, {
+  "path" : "/modules/core/data/levels/level_0.luac",
+  "hexDigest" : "fc1a04e8af7003e608d36751ce56b7d34b44d74f",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/core/data/levels/level_1.luac",
+  "hexDigest" : "18a86c01368695451fc14b6b24b8523f8a1cb82d",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/core/data/levels/level_2.luac",
+  "hexDigest" : "b68dcb87363d0cb16514acae17e64490a38d9ddd",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/core/data/levels/level_3.luac",
+  "hexDigest" : "bd758cdfbc65fa21418030a79b35a963ad79ca5f",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/layouts/LevelLayout.luac",
+  "hexDigest" : "fe2fece3aaa618ddd5b149e3c1a4e98260e2e814",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/index.luac" ]
+}, {
+  "path" : "/modules/layouts/CoreLayout.luac",
+  "hexDigest" : "4813d203bb226b071e94b12f2dd7a4b296a73864",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/index.luac", "/modules/enums/ControllerName.luac" ]
+}, {
+  "path" : "/modules/core/CoreState.luac",
+  "hexDigest" : "c31ea4a7e6c3aea86644aaf071e75b12e489ff5a",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/index.luac" ]
+}, {
+  "path" : "/modules/enums/PopupName.luac",
+  "hexDigest" : "ce11b5ecbeaacb294c1376a66b2dc481873042ba",
+  "children" : [ "/lualib_bundle.luac" ]
+}, {
+  "path" : "/modules/services/Storage.luac",
+  "hexDigest" : "61a909c2dc2d590f6978f22b6713a5fcf19276b5",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/index.luac" ]
+}, {
+  "path" : "/modules/core/CoreGuiController.luac",
+  "hexDigest" : "488a31e6a57a0beb9ca944457635feaab0d91c06",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/index.luac" ]
+}, {
+  "path" : "/modules/popups/RestartPopupController.luac",
+  "hexDigest" : "6f89db149457522ebdd4532abb38697f5e28ac40",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/index.luac", "/modules/animations/PlayPopupOpening.luac" ]
+}, {
+  "path" : "/modules/animations/PlayPopupOpening.luac",
+  "hexDigest" : "2b87b6012a36ce793ac965d5044a3252015d6ace",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/index.luac" ]
+}, {
+  "path" : "/_generated_56dd22bc5d3a0b94.collectionproxyc",
+  "hexDigest" : "d5c66dcb758318d92d5dcbef4a83718a7e408606",
+  "nodeType" : "CollectionProxy",
+  "children" : [ "/main/core/core.collectionc" ]
+}, {
+  "path" : "/main/core/core.collectionc",
+  "hexDigest" : "556eb3faa7c9f7248cfff98d057a300e4d79360a",
+  "children" : [ "/_generated_47af04351f7ddd70.goc", "/main/popups/popups.goc", "/_generated_251b405b52b93ff1.goc" ]
+}, {
+  "path" : "/_generated_47af04351f7ddd70.goc",
+  "hexDigest" : "dfd673759172260125df4a3eafa074b179bbe2a7",
+  "children" : [ "/main/core/core.guic" ]
+}, {
+  "path" : "/main/core/core.guic",
+  "hexDigest" : "161ae3c21a52ee0f29bf53b7df5f02a5ad5fa455",
+  "children" : [ "/scripts/controller.gui_scriptc", "/assets/fonts/GoblinOne-Regular.fontc", "/assets/atlases/mockups.a.texturesetc", "/builtins/materials/gui.materialc" ]
+}, {
+  "path" : "/scripts/controller.gui_scriptc",
+  "hexDigest" : "cc4f02fa2fa6e2725e66e7ed08baec5af9cc3560",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/index.luac", "/modules/Controllers.luac" ]
+}, {
+  "path" : "/assets/fonts/GoblinOne-Regular.fontc",
+  "hexDigest" : "fd49f0d8844bac912329fff448da84d13da7bc9b",
+  "children" : [ "/builtins/fonts/font.materialc", "/_generated_GoblinOne-Regular_d4ca934b0a1ea157.glyph_bankc" ]
+}, {
+  "path" : "/builtins/fonts/font.materialc",
+  "hexDigest" : "0c4f6c83816a92c7470199147a962f1651d9720d",
+  "children" : [ "/shader_4711226249295902305.spc" ]
+}, {
+  "path" : "/shader_4711226249295902305.spc",
+  "hexDigest" : "ed6035462bdf9c98908717cbb8c0a20ac163238a",
+  "children" : [ ]
+}, {
+  "path" : "/_generated_GoblinOne-Regular_d4ca934b0a1ea157.glyph_bankc",
+  "hexDigest" : "ea32467facac12abd4dad93393906b52fa38dae7",
+  "children" : [ ]
+}, {
+  "path" : "/assets/atlases/mockups.a.texturesetc",
+  "hexDigest" : "d03b399e8b064ce4cbfd1f493784a436c734e9e1",
+  "children" : [ "/assets/atlases/mockups.texturec" ]
+}, {
+  "path" : "/assets/atlases/mockups.texturec",
+  "hexDigest" : "d3624d42b722354184fedd7fe4e18a4b8b045ef0",
+  "children" : [ ]
+}, {
+  "path" : "/builtins/materials/gui.materialc",
+  "hexDigest" : "ea4cbed1ddcc693822de188e07c6acc30e862c99",
+  "children" : [ "/shader_2713870051161532414.spc" ]
+}, {
+  "path" : "/shader_2713870051161532414.spc",
+  "hexDigest" : "20769aa1a4bf882cfe981b1960bda69bdde336ec",
+  "children" : [ ]
+}, {
+  "path" : "/main/popups/popups.goc",
+  "hexDigest" : "f41cda606caf4395aedc7577d759e4ad328c5ef3",
+  "children" : [ "/_generated_82ccaccdf2282d3.factoryc" ]
+}, {
+  "path" : "/_generated_82ccaccdf2282d3.factoryc",
+  "hexDigest" : "357b122a19960413946b3ee3d741798aff9673dc",
+  "children" : [ "/main/popups/restart/restart_popup.goc" ]
+}, {
+  "path" : "/main/popups/restart/restart_popup.goc",
+  "hexDigest" : "674f859534bb8aea80e92800c5f8bc6a841b9a30",
+  "children" : [ "/main/popups/restart/restart_popup.guic" ]
+}, {
+  "path" : "/main/popups/restart/restart_popup.guic",
+  "hexDigest" : "370564c5239c894f709393356b5c771496ea2424",
+  "children" : [ "/scripts/controller.gui_scriptc", "/assets/fonts/GoblinOne-Regular.fontc", "/assets/atlases/mockups.a.texturesetc", "/builtins/materials/gui.materialc" ]
+}, {
+  "path" : "/_generated_251b405b52b93ff1.goc",
+  "hexDigest" : "67cf980ebe4e682bec53f64287f82d7434da05c3",
+  "children" : [ "/scripts/controller.scriptc", "/_generated_e0d7847c93b90a9a.collectionfactoryc" ]
+}, {
+  "path" : "/_generated_e0d7847c93b90a9a.collectionfactoryc",
+  "hexDigest" : "269b2cedea715dabeba196c5952ef60eca14faa1",
+  "children" : [ "/main/core/level.collectionc" ]
+}, {
+  "path" : "/main/core/level.collectionc",
+  "hexDigest" : "5a572b2accced72c09b8343d622c331d19437ffd",
+  "children" : [ "/_generated_e76d1087e03922bb.goc", "/main/core/finish_zone.goc", "/_generated_3dc8285ad56cfd5e.goc", "/_generated_8ac09ce1ac539af5.goc", "/_generated_8ac09ce1ac539af5.goc", "/_generated_8ac09ce1ac539af5.goc", "/_generated_8ac09ce1ac539af5.goc", "/_generated_0.goc", "/_generated_a57eaf5d90714332.goc", "/_generated_f01faeadc667eba.goc", "/_generated_795726371e5a7d1e.goc", "/_generated_d01177aa4a2f77c2.goc", "/_generated_f240682005485f47.goc", "/_generated_8ac09ce1ac539af5.goc" ]
+}, {
+  "path" : "/_generated_e76d1087e03922bb.goc",
+  "hexDigest" : "334badd69ee0c2eeee8c5cb69b10ac27d56ac47e",
+  "children" : [ "/_generated_6a40121f69598cac.spritec" ]
+}, {
+  "path" : "/_generated_6a40121f69598cac.spritec",
+  "hexDigest" : "8e06629357e4c3c4f3481eefc371128e2159ee69",
+  "children" : [ "/builtins/materials/sprite.materialc", "/assets/atlases/main.a.texturesetc" ]
+}, {
+  "path" : "/builtins/materials/sprite.materialc",
+  "hexDigest" : "5fcb8d2abe470a02e6bf66ea5032b911c6109f57",
+  "children" : [ "/shader_-7170045909771754498.spc" ]
+}, {
+  "path" : "/shader_-7170045909771754498.spc",
+  "hexDigest" : "ccda13b3085279108d4015d37072db9bccdf4fa5",
+  "children" : [ ]
+}, {
+  "path" : "/assets/atlases/main.a.texturesetc",
+  "hexDigest" : "04074a72f36d0840487c7d83c51aec8675f84d81",
+  "children" : [ "/assets/atlases/main.texturec" ]
+}, {
+  "path" : "/assets/atlases/main.texturec",
+  "hexDigest" : "c699bf2c412e5fb22c41635ea0c4e3fabf4f76a7",
+  "children" : [ ]
+}, {
+  "path" : "/main/core/finish_zone.goc",
+  "hexDigest" : "42fba97ca7397cf30cb9f7d974b3a35dba6bb948",
+  "children" : [ "/_generated_4a77e1bd39b9778.collisionobjectc", "/_generated_2ecd82f2f5d6cdf5.spritec" ]
+}, {
+  "path" : "/_generated_4a77e1bd39b9778.collisionobjectc",
+  "hexDigest" : "35a1083dcf66bbe38068285d09149d6227b439c2",
+  "children" : [ ]
+}, {
+  "path" : "/_generated_2ecd82f2f5d6cdf5.spritec",
+  "hexDigest" : "7c577a178cb9a55d3709ce9896bf43bb36cec4a9",
+  "children" : [ "/builtins/materials/sprite.materialc", "/assets/atlases/main.a.texturesetc" ]
+}, {
+  "path" : "/_generated_3dc8285ad56cfd5e.goc",
+  "hexDigest" : "dc8ca5e0299d17e92ef2a7fa8b956e22424de09e",
+  "children" : [ "/_generated_efe307c75c0d572.modelc" ]
+}, {
+  "path" : "/_generated_efe307c75c0d572.modelc",
+  "hexDigest" : "32bf80e2fa0a801f99185670d97dbdad2daf91f0",
+  "children" : [ "/_generated_efe307c75c0d572.rigscenec", "/materials/outline/outline_final.materialc", "/materials/outline/outline.render_targetc", "/assets/atlases/level1/mask_on_safe.texturec" ]
+}, {
+  "path" : "/_generated_efe307c75c0d572.rigscenec",
+  "hexDigest" : "ddaa2237b76770d8d61980a7393907c7b04c2190",
+  "children" : [ "/builtins/assets/meshes/quad.meshsetc" ]
+}, {
+  "path" : "/builtins/assets/meshes/quad.meshsetc",
+  "hexDigest" : "e4993dc728563f8f5d9ae405d98c8be318cbd90c",
+  "children" : [ ]
+}, {
+  "path" : "/materials/outline/outline_final.materialc",
+  "hexDigest" : "09df9df9d1e314ea02715d212b46f815005f2a66",
+  "children" : [ "/shader_2566892435184615897.spc" ]
+}, {
+  "path" : "/shader_2566892435184615897.spc",
+  "hexDigest" : "17b405e070308582178bcfae646555a2d6fabb0c",
+  "children" : [ ]
+}, {
+  "path" : "/materials/outline/outline.render_targetc",
+  "hexDigest" : "5befd2553bbf04291ae08f33485be1306371610f",
+  "children" : [ ]
+}, {
+  "path" : "/assets/atlases/level1/mask_on_safe.texturec",
+  "hexDigest" : "0ea0c444e56df41d338d6701bb623d592d4a622a",
+  "children" : [ ]
+}, {
+  "path" : "/_generated_8ac09ce1ac539af5.goc",
+  "hexDigest" : "d0420a77831c91680c0a390f0faea43fb205ec7d",
+  "children" : [ "/_generated_b6cc774a10baafbc.collisionobjectc" ]
+}, {
+  "path" : "/_generated_b6cc774a10baafbc.collisionobjectc",
+  "hexDigest" : "4d1d10a2631da6bc9e4c2ba75c8ad22ed80b3e52",
+  "children" : [ ]
+}, {
+  "path" : "/_generated_0.goc",
+  "hexDigest" : "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+  "children" : [ ]
+}, {
+  "path" : "/_generated_a57eaf5d90714332.goc",
+  "hexDigest" : "066218eb4d564cfb2fe7ac37f46bf21f276dea22",
+  "children" : [ "/_generated_442875a763bd2c72.factoryc" ]
+}, {
+  "path" : "/_generated_442875a763bd2c72.factoryc",
+  "hexDigest" : "d6430db9a4f722fc3f88dcb43730024b32372286",
+  "children" : [ "/main/core/safe_zone.goc" ]
+}, {
+  "path" : "/main/core/safe_zone.goc",
+  "hexDigest" : "20112302be968cdb0ea034222074eac1ea76828d",
+  "children" : [ "/_generated_78e30e5019bfd43a.collisionobjectc", "/_generated_f6be8784dec788e6.spritec" ]
+}, {
+  "path" : "/_generated_78e30e5019bfd43a.collisionobjectc",
+  "hexDigest" : "9a0d53d01abb747fd145fb3866470a9b67256528",
+  "children" : [ ]
+}, {
+  "path" : "/_generated_f6be8784dec788e6.spritec",
+  "hexDigest" : "34d6b5593dbaccbb3e9f55f42e423e1956c20332",
+  "children" : [ "/materials/outline/outline_rt.materialc", "/assets/atlases/main.a.texturesetc" ]
+}, {
+  "path" : "/materials/outline/outline_rt.materialc",
+  "hexDigest" : "fbc0490ddcbb60e5930fd72c340151900de94aa1",
+  "children" : [ "/shader_-7170045909771754498.spc" ]
+}, {
+  "path" : "/_generated_f01faeadc667eba.goc",
+  "hexDigest" : "940a9ba3226060bef654aa6979d91e83ffef1b38",
+  "children" : [ "/_generated_c523f47f6efb2d08.factoryc" ]
+}, {
+  "path" : "/_generated_c523f47f6efb2d08.factoryc",
+  "hexDigest" : "12b867c31a21d79c8a7848b20dd00fdab657f061",
+  "children" : [ "/main/core/shooter.goc" ]
+}, {
+  "path" : "/main/core/shooter.goc",
+  "hexDigest" : "84e8536ba898a3af478740726bedc54706a38f31",
+  "children" : [ "/_generated_f12928ab6a13f618.factoryc", "/_generated_6a40121f69598cac.spritec" ]
+}, {
+  "path" : "/_generated_f12928ab6a13f618.factoryc",
+  "hexDigest" : "edcdcc90ff9f3f2a3cef46aa7ebe181d56b203bb",
+  "children" : [ "/main/core/bullet.goc" ]
+}, {
+  "path" : "/main/core/bullet.goc",
+  "hexDigest" : "d7333e0e34cb2f069a742493931f37b1293ed461",
+  "children" : [ "/_generated_8b1432887f0ed508.spritec", "/_generated_2f246eba9d9d9964.collisionobjectc" ]
+}, {
+  "path" : "/_generated_8b1432887f0ed508.spritec",
+  "hexDigest" : "9d320ba34e59a6c2649ba90bfc8e9f308b5035e8",
+  "children" : [ "/builtins/materials/sprite.materialc", "/assets/atlases/main.a.texturesetc" ]
+}, {
+  "path" : "/_generated_2f246eba9d9d9964.collisionobjectc",
+  "hexDigest" : "ce37e9488046058e2ea86ed880367e1f8c9678c1",
+  "children" : [ ]
+}, {
+  "path" : "/_generated_795726371e5a7d1e.goc",
+  "hexDigest" : "195133dbe04290b68201177add04945e9d2659cb",
+  "children" : [ "/_generated_7592a0444733e38b.factoryc" ]
+}, {
+  "path" : "/_generated_7592a0444733e38b.factoryc",
+  "hexDigest" : "708640f72a3d5bc8ab041876549d6d51f8674d40",
+  "children" : [ "/main/core/wall.goc" ]
+}, {
+  "path" : "/main/core/wall.goc",
+  "hexDigest" : "53b9bc423a129d512e2f6662923b47e8ec0d4f14",
+  "children" : [ "/_generated_946a02aa3f3fb8c7.spritec", "/_generated_e9b27e787d38280d.collisionobjectc" ]
+}, {
+  "path" : "/_generated_946a02aa3f3fb8c7.spritec",
+  "hexDigest" : "8ce50544bd6d64d9cfe1e5f8c91fae461db54acf",
+  "children" : [ "/builtins/materials/sprite.materialc", "/assets/atlases/main.a.texturesetc" ]
+}, {
+  "path" : "/_generated_e9b27e787d38280d.collisionobjectc",
+  "hexDigest" : "d60cbf4f5ee49a11fdbd1c8c9c40f015ee407a6c",
+  "children" : [ ]
+}, {
+  "path" : "/_generated_d01177aa4a2f77c2.goc",
+  "hexDigest" : "2b3a465142832abad9ad0a1946167e2b3cba4857",
+  "children" : [ "/_generated_f12928ab6a13f618.factoryc" ]
+}, {
+  "path" : "/_generated_f240682005485f47.goc",
+  "hexDigest" : "967a8bc1a07f95b4952c9e56c38bebfa9dc10f48",
+  "children" : [ "/_generated_eed935145e1efa83.spritec", "/_generated_543c2229a206d5bf.collisionobjectc" ]
+}, {
+  "path" : "/_generated_eed935145e1efa83.spritec",
+  "hexDigest" : "72c70865cc14601026d398df0311d3a25d76aa4c",
+  "children" : [ "/builtins/materials/sprite.materialc", "/assets/atlases/main.a.texturesetc" ]
+}, {
+  "path" : "/_generated_543c2229a206d5bf.collisionobjectc",
+  "hexDigest" : "c2cec65de66e16073875bef0fca86bcf1c74d206",
+  "children" : [ ]
+}, {
+  "path" : "/default.renderc",
+  "hexDigest" : "c6fda3985740c2eda906fc171cdad0fd61629c36",
+  "children" : [ "/scripts/render.render_scriptc", "/materials/outline/outline.render_targetc" ]
+}, {
+  "path" : "/scripts/render.render_scriptc",
+  "hexDigest" : "e7d5ee6931c9b6475e8e4bdd4c539ef1e2ef3bc3",
+  "children" : [ "/lualib_bundle.luac", "/modules/engine/index.luac" ]
+}, {
+  "path" : "/game.input_bindingc",
+  "hexDigest" : "2ae6bf56a76d59acf73c7222084fc7549fafbf3e",
+  "children" : [ ]
+}, {
+  "path" : "/builtins/input/default.gamepadsc",
+  "hexDigest" : "0ce57d647ce8e3f153cdc37100c7a855b60d15b2",
+  "children" : [ ]
+}, {
+  "path" : "/builtins/render/default.display_profilesc",
+  "hexDigest" : "4187e11a10b0dd0d7f1b34d3ae3c0e9632dc69fd",
+  "children" : [ ]
+}, {
+  "path" : "/builtins/scripts/debugger.luac",
+  "hexDigest" : "295de3d8806f7f55a79af4a232b5a43fbb0db603",
+  "children" : [ "/builtins/scripts/edn.luac", "/builtins/scripts/mobdebug.luac" ]
+}, {
+  "path" : "/builtins/scripts/edn.luac",
+  "hexDigest" : "eaf0475067978220d1cd9d7d699920287e9026ec",
+  "children" : [ ]
+}, {
+  "path" : "/builtins/scripts/mobdebug.luac",
+  "hexDigest" : "cf91ad784c0cb1bd25bc4e08ec57a0e9a09ca99d",
+  "children" : [ "/builtins/scripts/socket.luac", "/builtins/scripts/edn.luac" ]
+}, {
+  "path" : "/builtins/scripts/socket.luac",
+  "hexDigest" : "1c74296215f50a9069da7bf6d8e360e9966cfa21",
+  "children" : [ ]
+} ]

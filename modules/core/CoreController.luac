@@ -1,0 +1,199 @@
+
+ÊF
+¡Flocal ____lualib = require("lualib_bundle")
+local __TS__Class = ____lualib.__TS__Class
+local __TS__ClassExtends = ____lualib.__TS__ClassExtends
+local __TS__New = ____lualib.__TS__New
+local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["8"] = 1,["9"] = 4,["10"] = 5,["11"] = 6,["12"] = 7,["13"] = 9,["14"] = 9,["15"] = 9,["16"] = 9,["17"] = 12,["18"] = 12,["19"] = 13,["20"] = 13,["21"] = 14,["22"] = 14,["23"] = 15,["24"] = 15,["25"] = 16,["26"] = 16,["27"] = 17,["28"] = 17,["29"] = 18,["30"] = 18,["31"] = 19,["32"] = 19,["33"] = 20,["34"] = 20,["35"] = 23,["36"] = 23,["37"] = 23,["38"] = 23,["40"] = 23,["41"] = 24,["42"] = 42,["43"] = 44,["44"] = 49,["45"] = 51,["46"] = 52,["47"] = 53,["48"] = 54,["49"] = 55,["50"] = 57,["51"] = 61,["52"] = 62,["53"] = 64,["54"] = 65,["55"] = 66,["57"] = 61,["58"] = 70,["59"] = 71,["60"] = 73,["61"] = 74,["62"] = 75,["65"] = 79,["66"] = 81,["67"] = 82,["70"] = 86,["71"] = 87,["72"] = 70,["73"] = 90,["74"] = 91,["75"] = 46,["76"] = 94,["77"] = 95,["80"] = 97,["81"] = 98,["82"] = 99,["83"] = 100,["84"] = 101,["87"] = 105,["88"] = 105,["89"] = 105,["90"] = 105,["91"] = 105,["92"] = 110,["93"] = 94,["94"] = 113,["95"] = 114,["98"] = 116,["99"] = 116,["100"] = 116,["101"] = 116,["102"] = 116,["103"] = 121,["104"] = 113,["105"] = 124,["106"] = 125,["107"] = 124,["108"] = 128,["109"] = 129,["110"] = 131,["111"] = 132,["112"] = 133,["113"] = 134,["114"] = 135,["116"] = 137,["119"] = 128,["120"] = 142,["121"] = 143,["122"] = 144,["125"] = 145,["126"] = 142,["127"] = 148,["128"] = 149,["129"] = 150,["132"] = 151,["133"] = 148,["134"] = 154,["137"] = 158,["140"] = 156,["146"] = 155,["149"] = 154,["150"] = 162,["151"] = 163,["152"] = 163,["154"] = 164,["155"] = 164,["157"] = 165,["158"] = 166,["159"] = 162,["160"] = 180,["161"] = 181,["162"] = 183,["163"] = 184,["164"] = 185,["165"] = 187,["166"] = 187,["167"] = 187,["168"] = 187,["169"] = 188,["170"] = 189,["171"] = 187,["172"] = 187,["173"] = 180,["174"] = 193,["175"] = 194,["176"] = 196,["177"] = 197,["178"] = 198,["179"] = 200,["180"] = 200,["181"] = 200,["182"] = 200,["183"] = 201,["184"] = 202,["185"] = 200,["186"] = 200,["187"] = 193,["188"] = 206,["189"] = 207,["190"] = 213,["191"] = 214,["192"] = 215,["193"] = 213,["194"] = 218,["195"] = 206});
+local ____exports = {}
+local ____engine = require("modules.engine.index")
+local Controller = ____engine.Controller
+local createCollectionLayout = ____engine.createCollectionLayout
+local Popups = ____engine.Popups
+local Signal = ____engine.Signal
+local ____Clipboard = require("modules.engine.utils.Clipboard")
+local isClipboardAsync = ____Clipboard.isClipboardAsync
+local pollClipboard = ____Clipboard.pollClipboard
+local readClipboard = ____Clipboard.readClipboard
+local ____CoreInput = require("modules.core.CoreInput")
+local CoreInput = ____CoreInput.CoreInput
+local ____CorePhysics = require("modules.core.CorePhysics")
+local CorePhysics = ____CorePhysics.CorePhysics
+local ____CoreLevel = require("modules.core.CoreLevel")
+local CoreLevel = ____CoreLevel.CoreLevel
+local ____CoreLayout = require("modules.layouts.CoreLayout")
+local coreSchema = ____CoreLayout.coreSchema
+local ____CoreState = require("modules.core.CoreState")
+local CoreState = ____CoreState.CoreState
+local ____PopupName = require("modules.enums.PopupName")
+local PopupName = ____PopupName.PopupName
+local ____levels = require("modules.core.data.levels")
+local levels = ____levels.levels
+local ____Storage = require("modules.services.Storage")
+local storage = ____Storage.storage
+local ____ControllerName = require("modules.enums.ControllerName")
+local ControllerName = ____ControllerName.ControllerName
+____exports.CoreController = __TS__Class()
+local CoreController = ____exports.CoreController
+CoreController.name = "CoreController"
+__TS__ClassExtends(CoreController, Controller)
+function CoreController.prototype.____constructor(self)
+    Controller.prototype.____constructor(self)
+    self.onRestart = __TS__New(Signal)
+    self.isTestLevel = false
+    self.awaitingClipboard = false
+    self.state = __TS__New(CoreState)
+    self.layout = createCollectionLayout(nil, coreSchema)
+    self.input = __TS__New(CoreInput)
+    self.popups = __TS__New(Popups, self.messenger)
+    self.physics = __TS__New(CorePhysics, self.state)
+    self.level = __TS__New(CoreLevel, self.layout, self.physics)
+    self.layout.hud.gui:initController({playerHp = self.state.playerHp})
+    self.state.onPlayerHpChanged:add(function()
+        self.layout.hud.gui:call("setPlayerHp", self.state.playerHp)
+        if self.state.playerHp == 0 then
+            self.cursor:setMouseLocked(false)
+            self:showRestartPopup(false)
+        end
+    end)
+    self.state.onFinished:add(function()
+        self.input:resetPointerDown()
+        if self.isTestLevel then
+            self.isTestLevel = false
+            self:startLevel(storage.data.levelIndex)
+            return
+        end
+        local nextLevelNumber = storage.data.levelIndex + 1
+        if nextLevelNumber < #levels then
+            self:startLevel(nextLevelNumber)
+            return
+        end
+        self.cursor:setMouseLocked(false)
+        self:showRestartPopup(true)
+    end)
+    self:startLevel(storage.data.levelIndex)
+    self:enablePhysics()
+end
+function CoreController.prototype.update(self, _dt)
+    if not self.player then
+        return
+    end
+    if self.awaitingClipboard then
+        local text = pollClipboard(nil)
+        if text ~= nil then
+            self.awaitingClipboard = false
+            self:tryTestLevelWithText(text)
+        end
+    end
+    self.cursor:update(
+        self.player:getPosition(),
+        self.input:getDelta(),
+        self.input:isPointerDown()
+    )
+    self.input:resetDelta()
+end
+function CoreController.prototype.fixedUpdate(self, dt)
+    if not self.player then
+        return
+    end
+    self.player:fixedUpdate(
+        dt,
+        self.input:getDelta(),
+        self.input:isPointerDown()
+    )
+    self.physics:fixedUpdate()
+end
+function CoreController.prototype.onResize(self)
+    self.level:resize()
+end
+function CoreController.prototype.onInput(self, actionId, action)
+    self.input:onInput(actionId, action)
+    if self.input:isMiddleClick() then
+        self.input:resetMiddleClick()
+        if isClipboardAsync(nil) then
+            readClipboard(nil)
+            self.awaitingClipboard = true
+        else
+            self:tryTestLevel()
+        end
+    end
+end
+function CoreController.prototype.tryTestLevel(self)
+    local text = readClipboard(nil)
+    if text == nil then
+        return
+    end
+    self:tryTestLevelWithText(text)
+end
+function CoreController.prototype.tryTestLevelWithText(self, text)
+    local raw = self:parseJson(text)
+    if not self:isValidLevelData(raw) then
+        return
+    end
+    self:startTestLevel(raw)
+end
+function CoreController.prototype.parseJson(self, text)
+    do
+        local function ____catch(_e)
+            return true, nil
+        end
+        local ____try, ____hasReturned, ____returnValue = pcall(function()
+            return true, json.decode(text)
+        end)
+        if not ____try then
+            ____hasReturned, ____returnValue = ____catch(____hasReturned)
+        end
+        if ____hasReturned then
+            return ____returnValue
+        end
+    end
+end
+function CoreController.prototype.isValidLevelData(self, data)
+    if type(data) ~= "table" then
+        return false
+    end
+    if data == nil then
+        return false
+    end
+    local d = data
+    return type(d.safeZones) == "table" and d.safeZones ~= nil and type(d.finishZone) == "table" and d.finishZone ~= nil and type(d.playerPosition) == "table" and d.playerPosition ~= nil and type(d.shooters) == "table" and d.shooters ~= nil and type(d.walls) == "table" and d.walls ~= nil
+end
+function CoreController.prototype.startTestLevel(self, levelData)
+    self.isTestLevel = true
+    local result = self.level:startLevelWithData(levelData)
+    self.player = result.player
+    self.cursor = result.cursor
+    timer.delay(
+        0.01,
+        false,
+        function()
+            self.state.gameOver = false
+            self.physics:onLevelChanged()
+        end
+    )
+end
+function CoreController.prototype.startLevel(self, levelNumber)
+    storage:save({levelIndex = levelNumber})
+    local result = self.level:startLevel(levelNumber)
+    self.player = result.player
+    self.cursor = result.cursor
+    timer.delay(
+        0.01,
+        false,
+        function()
+            self.state.gameOver = false
+            self.physics:onLevelChanged()
+        end
+    )
+end
+function CoreController.prototype.showRestartPopup(self, win)
+    local popup = self.popups:show(PopupName.restart, ControllerName.RestartPopupController, {win = win})
+    popup.script.bridge.onResetClick = function()
+        storage:save({levelIndex = 0})
+        self.onRestart:dispatch()
+    end
+    popup.script.bridge.onRestartClick = function() return self.onRestart:dispatch() end
+end
+return ____exports
+ @modules/core/CoreController.lualualib_bundlemodules.engine.indexmodules.engine.utils.Clipboardmodules.core.CoreInputmodules.core.CorePhysicsmodules.core.CoreLevelmodules.layouts.CoreLayoutmodules.core.CoreStatemodules.enums.PopupNamemodules.core.data.levelsmodules.services.Storagemodules.enums.ControllerName/lualib_bundle.luac/modules/engine/index.luac$/modules/engine/utils/Clipboard.luac/modules/core/CoreInput.luac/modules/core/CorePhysics.luac/modules/core/CoreLevel.luac /modules/layouts/CoreLayout.luac/modules/core/CoreState.luac/modules/enums/PopupName.luac/modules/core/data/levels.luac/modules/services/Storage.luac"/modules/enums/ControllerName.luac" 

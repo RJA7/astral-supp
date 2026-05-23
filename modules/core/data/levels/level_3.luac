@@ -1,0 +1,284 @@
+
+Ü^
+²^local ____lualib = require("lualib_bundle")
+local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["5"] = 8,["6"] = 9,["7"] = 10,["8"] = 10,["9"] = 10,["10"] = 10,["11"] = 10,["12"] = 10,["13"] = 10,["14"] = 9,["15"] = 11,["16"] = 11,["17"] = 11,["18"] = 11,["19"] = 11,["20"] = 11,["21"] = 11,["22"] = 18,["23"] = 22,["24"] = 22,["25"] = 22,["26"] = 22,["27"] = 22,["28"] = 11,["29"] = 9,["30"] = 33,["31"] = 33,["32"] = 33,["33"] = 33,["34"] = 33,["35"] = 33,["36"] = 33,["37"] = 40,["38"] = 44,["39"] = 44,["40"] = 44,["41"] = 44,["42"] = 44,["43"] = 33,["44"] = 9,["45"] = 55,["46"] = 55,["47"] = 55,["48"] = 55,["49"] = 55,["50"] = 55,["51"] = 55,["52"] = 62,["53"] = 66,["54"] = 66,["55"] = 66,["56"] = 66,["57"] = 66,["58"] = 55,["59"] = 9,["60"] = 77,["61"] = 77,["62"] = 77,["63"] = 77,["64"] = 77,["65"] = 77,["66"] = 77,["67"] = 84,["68"] = 88,["69"] = 88,["70"] = 88,["71"] = 88,["72"] = 88,["73"] = 77,["74"] = 9,["75"] = 99,["76"] = 99,["77"] = 99,["78"] = 99,["79"] = 99,["80"] = 99,["81"] = 99,["82"] = 99,["83"] = 9,["84"] = 119,["85"] = 119,["86"] = 119,["87"] = 119,["88"] = 119,["89"] = 119,["90"] = 119,["91"] = 126,["92"] = 130,["93"] = 130,["94"] = 130,["95"] = 130,["96"] = 130,["97"] = 119,["98"] = 9,["99"] = 141,["100"] = 141,["101"] = 141,["102"] = 141,["103"] = 141,["104"] = 141,["105"] = 141,["106"] = 141,["107"] = 9,["108"] = 160,["109"] = 160,["110"] = 160,["111"] = 160,["112"] = 160,["113"] = 160,["114"] = 160,["115"] = 160,["116"] = 9,["117"] = 179,["118"] = 179,["119"] = 179,["120"] = 179,["121"] = 179,["122"] = 179,["123"] = 179,["124"] = 179,["125"] = 9,["126"] = 199,["127"] = 199,["128"] = 199,["129"] = 199,["130"] = 199,["131"] = 199,["132"] = 199,["133"] = 206,["134"] = 210,["135"] = 210,["136"] = 210,["137"] = 210,["138"] = 210,["139"] = 199,["140"] = 9,["141"] = 221,["142"] = 221,["143"] = 221,["144"] = 221,["145"] = 221,["146"] = 221,["147"] = 221,["148"] = 228,["149"] = 232,["150"] = 232,["151"] = 232,["152"] = 232,["153"] = 232,["154"] = 221,["155"] = 9,["156"] = 243,["157"] = 243,["158"] = 243,["159"] = 243,["160"] = 243,["161"] = 243,["162"] = 243,["163"] = 250,["164"] = 254,["165"] = 254,["166"] = 254,["167"] = 254,["168"] = 254,["169"] = 243,["170"] = 9,["171"] = 265,["172"] = 265,["173"] = 265,["174"] = 265,["175"] = 265,["176"] = 265,["177"] = 265,["178"] = 265,["179"] = 9,["180"] = 285,["181"] = 285,["182"] = 285,["183"] = 285,["184"] = 285,["185"] = 285,["186"] = 285,["187"] = 292,["188"] = 296,["189"] = 296,["190"] = 296,["191"] = 296,["192"] = 296,["193"] = 285,["194"] = 9,["195"] = 307,["196"] = 307,["197"] = 307,["198"] = 307,["199"] = 307,["200"] = 307,["201"] = 307,["202"] = 307,["203"] = 9,["204"] = 326,["205"] = 326,["206"] = 326,["207"] = 326,["208"] = 326,["209"] = 326,["210"] = 326,["211"] = 9,["212"] = 327,["213"] = 327,["214"] = 327,["215"] = 327,["216"] = 327,["217"] = 327,["218"] = 327,["219"] = 334,["220"] = 338,["221"] = 338,["222"] = 338,["223"] = 338,["224"] = 338,["225"] = 327,["226"] = 9,["227"] = 349,["228"] = 349,["229"] = 349,["230"] = 349,["231"] = 349,["232"] = 349,["233"] = 349,["234"] = 356,["235"] = 360,["236"] = 360,["237"] = 360,["238"] = 360,["239"] = 360,["240"] = 349,["241"] = 9,["242"] = 371,["243"] = 371,["244"] = 371,["245"] = 371,["246"] = 371,["247"] = 371,["248"] = 371,["249"] = 371,["250"] = 9,["251"] = 391,["252"] = 391,["253"] = 391,["254"] = 391,["255"] = 391,["256"] = 391,["257"] = 391,["258"] = 391,["259"] = 9,["260"] = 411,["261"] = 411,["262"] = 411,["263"] = 411,["264"] = 411,["265"] = 411,["266"] = 411,["267"] = 411,["268"] = 9,["269"] = 8,["270"] = 432,["271"] = 432,["272"] = 432,["273"] = 432,["274"] = 432,["275"] = 432,["276"] = 8,["277"] = 8,["278"] = 8,["279"] = 8,["280"] = 8});
+local ____exports = {}
+____exports.default = {
+    safeZones = {
+        {
+            id = "sz0",
+            x = -360,
+            y = 0,
+            width = 60,
+            height = 60,
+            angle = 0
+        },
+        {
+            id = "sz1",
+            x = -300,
+            y = 0,
+            width = 60,
+            height = 60,
+            angle = 0,
+            animations = {{property = "scale", keyframes = {
+                {time = 0, value = 0},
+                {time = 0.5, value = 0},
+                {time = 1, value = 60},
+                {time = 2.5, value = 60},
+                {time = 3, value = 0}
+            }, loop = false}}
+        },
+        {
+            id = "sz2",
+            x = -60,
+            y = -60,
+            width = 60,
+            height = 60,
+            angle = 0,
+            animations = {{property = "scale", keyframes = {
+                {time = 0, value = 0},
+                {time = 1.5, value = 0},
+                {time = 2, value = 60},
+                {time = 4.5, value = 60},
+                {time = 5, value = 0}
+            }, loop = false}}
+        },
+        {
+            id = "sz3",
+            x = 0,
+            y = -60,
+            width = 60,
+            height = 60,
+            angle = 0,
+            animations = {{property = "scale", keyframes = {
+                {time = 0, value = 0},
+                {time = 1.5, value = 0},
+                {time = 2, value = 60},
+                {time = 8.5, value = 60},
+                {time = 9, value = 0}
+            }, loop = false}}
+        },
+        {
+            id = "sz4",
+            x = 60,
+            y = -60,
+            width = 60,
+            height = 60,
+            angle = 0,
+            animations = {{property = "scale", keyframes = {
+                {time = 0, value = 0},
+                {time = 3.5, value = 0},
+                {time = 4, value = 60},
+                {time = 6.5, value = 60},
+                {time = 7, value = 0}
+            }, loop = false}}
+        },
+        {
+            id = "sz5",
+            x = 60,
+            y = 0,
+            width = 60,
+            height = 60,
+            angle = 0,
+            animations = {{property = "scale", keyframes = {{time = 0, value = 0}, {time = 5.5, value = 0}, {time = 6, value = 60}}, loop = false}}
+        },
+        {
+            id = "sz6",
+            x = 60,
+            y = 60,
+            width = 60,
+            height = 60,
+            angle = 0,
+            animations = {{property = "scale", keyframes = {
+                {time = 0, value = 0},
+                {time = 5.5, value = 0},
+                {time = 6, value = 60},
+                {time = 16.5, value = 60},
+                {time = 17, value = 0}
+            }, loop = false}}
+        },
+        {
+            id = "sz7",
+            x = 120,
+            y = 60,
+            width = 60,
+            height = 60,
+            angle = 0,
+            animations = {{property = "scale", keyframes = {{time = 11.5, value = 60}, {time = 12, value = 0}}, loop = false}}
+        },
+        {
+            id = "sz8",
+            x = 180,
+            y = 60,
+            width = 60,
+            height = 60,
+            angle = 0,
+            animations = {{property = "scale", keyframes = {{time = 13.5, value = 60}, {time = 14, value = 0}}, loop = false}}
+        },
+        {
+            id = "sz9",
+            x = 180,
+            y = 0,
+            width = 60,
+            height = 60,
+            angle = 0,
+            animations = {{property = "scale", keyframes = {{time = 0, value = 0}, {time = 9.5, value = 0}, {time = 10, value = 60}}, loop = false}}
+        },
+        {
+            id = "sz10",
+            x = 180,
+            y = -60,
+            width = 60,
+            height = 60,
+            angle = 0,
+            animations = {{property = "scale", keyframes = {
+                {time = 0, value = 0},
+                {time = 10.5, value = 0},
+                {time = 11, value = 60},
+                {time = 15.5, value = 60},
+                {time = 16, value = 0}
+            }, loop = false}}
+        },
+        {
+            id = "sz11",
+            x = 240,
+            y = -60,
+            width = 60,
+            height = 60,
+            angle = 0,
+            animations = {{property = "scale", keyframes = {
+                {time = 0, value = 0},
+                {time = 12.5, value = 0},
+                {time = 13, value = 60},
+                {time = 18.5, value = 60},
+                {time = 19, value = 0}
+            }, loop = false}}
+        },
+        {
+            id = "sz12",
+            x = -300,
+            y = -60,
+            width = 60,
+            height = 60,
+            angle = 0,
+            animations = {{property = "scale", keyframes = {
+                {time = 0, value = 0},
+                {time = 14.5, value = 0},
+                {time = 15, value = 60},
+                {time = 22.5, value = 60},
+                {time = 23, value = 0}
+            }, loop = false}}
+        },
+        {
+            id = "sz13",
+            x = 300,
+            y = -60,
+            width = 60,
+            height = 60,
+            angle = 0,
+            animations = {{property = "scale", keyframes = {{time = 0, value = 0}, {time = 14.5, value = 0}, {time = 15, value = 60}}, loop = false}}
+        },
+        {
+            id = "sz14",
+            x = 300,
+            y = 0,
+            width = 60,
+            height = 60,
+            angle = 0,
+            animations = {{property = "scale", keyframes = {
+                {time = 0, value = 0},
+                {time = 17.5, value = 0},
+                {time = 18, value = 60},
+                {time = 20.5, value = 60},
+                {time = 21, value = 0}
+            }, loop = false}}
+        },
+        {
+            id = "sz15",
+            x = -240,
+            y = -60,
+            width = 60,
+            height = 60,
+            angle = 0,
+            animations = {{property = "scale", keyframes = {{time = 24.5, value = 60}, {time = 25, value = 0}}, loop = false}}
+        },
+        {
+            id = "sz16",
+            x = -180,
+            y = -60,
+            width = 60,
+            height = 60,
+            angle = 0
+        },
+        {
+            id = "sz17",
+            x = -180,
+            y = 0,
+            width = 60,
+            height = 60,
+            angle = 0,
+            animations = {{property = "scale", keyframes = {
+                {time = 0, value = 0},
+                {time = 21.5, value = 0},
+                {time = 22, value = 60},
+                {time = 26.5, value = 60},
+                {time = 27, value = 0}
+            }, loop = false}}
+        },
+        {
+            id = "sz18",
+            x = -180,
+            y = 60,
+            width = 60,
+            height = 60,
+            angle = 0,
+            animations = {{property = "scale", keyframes = {
+                {time = 0, value = 0},
+                {time = 23.5, value = 0},
+                {time = 24, value = 60},
+                {time = 28.5, value = 60},
+                {time = 29, value = 0}
+            }, loop = false}}
+        },
+        {
+            id = "sz19",
+            x = -120,
+            y = 60,
+            width = 60,
+            height = 60,
+            angle = 0,
+            animations = {{property = "scale", keyframes = {{time = 0, value = 0}, {time = 23.5, value = 0}, {time = 24, value = 60}}, loop = false}}
+        },
+        {
+            id = "sz20",
+            x = -60,
+            y = 60,
+            width = 60,
+            height = 60,
+            angle = 0,
+            animations = {{property = "scale", keyframes = {{time = 0, value = 0}, {time = 25.5, value = 0}, {time = 26, value = 60}}, loop = false}}
+        },
+        {
+            id = "sz21",
+            x = -60,
+            y = 0,
+            width = 60,
+            height = 60,
+            angle = 0,
+            animations = {{property = "scale", keyframes = {{time = 0, value = 0}, {time = 27.5, value = 0}, {time = 28, value = 60}}, loop = false}}
+        }
+    },
+    finishZone = {
+        x = 360,
+        y = 0,
+        width = 60,
+        height = 60,
+        angle = 0
+    },
+    playerPosition = {x = -360, y = 0},
+    shooters = {},
+    walls = {}
+}
+return ____exports
+%@modules/core/data/levels/level_3.lualualib_bundle/lualib_bundle.luac" 
