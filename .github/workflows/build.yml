@@ -36,9 +36,6 @@ jobs:
       - name: Build
         run: 'java -jar $BOB --root ./app --archive --platform js-web --bundle-output ./bundle --verbose resolve distclean build bundle'
 
-      - name: List build output
-        run: find . -name "*.html" -not -path "*/node_modules/*" 2>/dev/null || true
-
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
         run: |

@@ -18,7 +18,7 @@
     "lint": "eslint src",
     "prettier": "prettier \"./**/*.{yml,json,ts,md,d.ts}\" --write",
     "dev": "tstl --watch",
-    "deploy": "gh-pages -d bundle/default_html5"
+    "deploy": "gh-pages -d bundle/astral-supp"
   },
   "devDependencies": {
     "gh-pages": "^6.2.0",
