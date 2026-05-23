@@ -429,7 +429,7 @@ export default {
 			],
 		}, // safe_zone9  idx 21
 	],
-	finishZone: { x: 360, y: 0, width: 0.6, height: 0.6, angle: 0 },
+	finishZone: { x: 360, y: 0, width: 60, height: 60, angle: 0 },
 	playerPosition: { x: -360, y: 0 },
 	shooters: [],
 	walls: [],

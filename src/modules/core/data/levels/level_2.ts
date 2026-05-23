@@ -110,7 +110,7 @@ export default {
 		},
 		{ id: 'sz22', x: 404.3334, y: 21.0, width: 60, height: 121.8667, angle: 0 },
 	],
-	finishZone: { x: 404, y: -67, width: 0.6, height: 0.6, angle: 0 },
+	finishZone: { x: 404, y: -67, width: 60, height: 60, angle: 0 },
 	playerPosition: { x: -94.99997, y: -133.33331 },
 	shooters: [
 		{
