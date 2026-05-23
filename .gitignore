@@ -40,3 +40,5 @@ dmengine*
 app/.editor_settings
 app/user_data
 .idea
+
+.claude/settings.local.json
