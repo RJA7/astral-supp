@@ -1,23 +1,26 @@
 import {
-	body,
-	BoxShape,
 	CollectionLayout,
 	CollectionSchema,
+	Factory,
 	list,
 	Sprite,
 } from '../engine';
 
 export const levelSchema = {
 	root: {},
-	safe_zones: list({
+	player: {},
+	player_center: {},
+	player_edges: list({}),
+	cursor: {
 		sprite: Sprite,
-		body: body({
-			box: BoxShape,
-		}),
-	}),
-	player_position: {},
+	},
+	safe_zones: {
+		factory: Factory,
+	},
 } satisfies CollectionSchema;
 
 export type LevelLayout = CollectionLayout<typeof levelSchema>;
 
-export type SafeZoneLayout = LevelLayout['safe_zones'][number];
+export type PlayerLayout = LevelLayout['player'];
+
+export type CursorLayout = LevelLayout['cursor'];

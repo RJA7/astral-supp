@@ -1,4 +1,10 @@
-import { body, BoxShape, GameObjectSchema, Sprite } from '../engine';
+import {
+	body,
+	BoxShape,
+	GameObjectLayout,
+	GameObjectSchema,
+	Sprite,
+} from '../engine';
 
 export const safeZoneSchema = {
 	sprite: Sprite,
@@ -6,3 +12,5 @@ export const safeZoneSchema = {
 		box: BoxShape,
 	}),
 } satisfies GameObjectSchema;
+
+export type SafeZoneLayout = GameObjectLayout<typeof safeZoneSchema>;
