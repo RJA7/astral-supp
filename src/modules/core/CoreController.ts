@@ -6,7 +6,7 @@ import {
 	Popups,
 	Signal,
 } from '../engine';
-import { readClipboard } from '../engine/utils/Clipboard';
+import { isClipboardAsync, pollClipboard, readClipboard } from '../engine/utils/Clipboard';
 import { Cursor } from './entities/Cursor';
 import { Player } from './entities/Player';
 import { CoreInput } from './CoreInput';
@@ -40,6 +40,8 @@ export class CoreController extends Controller {
 	private cursor!: Cursor;
 
 	private isTestLevel = false;
+
+	private awaitingClipboard = false;
 
 	constructor() {
 		super();
@@ -92,6 +94,14 @@ export class CoreController extends Controller {
 	update(_dt: number) {
 		if (!this.player) return;
 
+		if (this.awaitingClipboard) {
+			const text = pollClipboard();
+			if (text !== undefined) {
+				this.awaitingClipboard = false;
+				this.tryTestLevelWithText(text);
+			}
+		}
+
 		this.cursor.update(
 			this.player.getPosition(),
 			this.input.getDelta(),
@@ -120,17 +130,24 @@ export class CoreController extends Controller {
 
 		if (this.input.isMiddleClick()) {
 			this.input.resetMiddleClick();
-			this.tryTestLevel();
+			if (isClipboardAsync()) {
+				readClipboard();
+				this.awaitingClipboard = true;
+			} else {
+				this.tryTestLevel();
+			}
 		}
 	}
 
 	private tryTestLevel() {
 		const text = readClipboard();
 		if (text === undefined) return;
+		this.tryTestLevelWithText(text);
+	}
 
+	private tryTestLevelWithText(text: string) {
 		const raw = this.parseJson(text);
 		if (!this.isValidLevelData(raw)) return;
-
 		this.startTestLevel(raw);
 	}
 
