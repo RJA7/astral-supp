@@ -28,5 +28,5 @@ export type ShooterData = {
 	x: number;
 	y: number;
 	angle: number;
-	shorRate: number; // shoot every seconds
+	fireInterval: number; // fire interval in seconds
 };

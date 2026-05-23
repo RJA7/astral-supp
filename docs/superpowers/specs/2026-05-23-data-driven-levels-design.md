@@ -97,7 +97,7 @@ type ShooterData = {
   x: number;
   y: number;
   angle: number;          // initial euler Z in degrees
-  shorRate: number;       // fire interval in seconds
+  fireInterval: number;   // fire interval in seconds
   bulletCount?: number;   // default 1
   bulletSpread?: number;  // degrees between bullets; default 0
 };
@@ -195,7 +195,7 @@ class Level {
 
 `setupShooter(data: ShooterData)`:
 - Set `layout.shooter` position and initial euler from data
-- `timeline.loop(data.shorRate, () => { /* spawn bullets */ })`
+- `timeline.loop(data.fireInterval, () => { /* spawn bullets */ })`
 - Spawn `data.bulletCount ?? 1` bullets, each offset by `data.bulletSpread ?? 0` degrees from shooter angle
 - Each bullet: `layout.bullets.factory.create(bulletSchema)`, animate to distance, set up wall/player collision handler to delete
 
@@ -257,7 +257,7 @@ export const levels = [level_0, level_1, level_2, level_3];
 Safe zones from `level_1.collection` positions/scales. Root at (0,0) — no offset.  
 Player position: `(-1, 168.67)`.  
 Finish zone: `(-245, -119)`.  
-Shooter: `{ x: -1, y: -37, angle: 0, shorRate: 0.5, bulletCount: 3, bulletSpread: 120 }`.  
+Shooter: `{ x: -1, y: -37, angle: 0, fireInterval: 0.5, bulletCount: 3, bulletSpread: 120 }`.  
 Animations: one track — shooter full 360° rotation over 6s, loop.
 
 ### `level_1.ts` (old Level2 / level_2.collection)
@@ -273,7 +273,7 @@ All positions offset by root `(9, 38)`.
 Safe zones: all 23 zones, angle = 15° (quaternion z:0.13052619 w:0.9914449).  
 Player position: `(-95, -133.33)` (raw `(-104, -171.33)` + offset).  
 Finish zone: `(404, -67)`.  
-Shooter: `{ x: 466, y: 178, angle: 200, shorRate: 0.8, bulletCount: 1 }`.  
+Shooter: `{ x: 466, y: 178, angle: 200, fireInterval: 0.8, bulletCount: 1 }`.  
 Animations: one track — shooter oscillates 200°→160°→200°, 3s per half, loop.
 
 ### `level_3.ts` (old Level4 / level_4.collection)
